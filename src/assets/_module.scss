@@ -1,0 +1,21 @@
+$black: #000;
+$white: #fff;
+$white-040: rgba($black, 0.4);
+
+$pink-025: rgb(246, 195, 195);
+
+@mixin flex-constructor ($flow: row nowrap, $jusCont: flex-start, $alItems: stretch, $alContent:stretch) {
+   display: flex;
+   flex-flow: $flow;
+   justify-content: $jusCont;
+   align-items: $alItems;
+   align-content: $alContent;
+}
+
+@mixin text-style ($size: inherit, $color: #000, $weight: normal, $align: left, $spacing: normal) {
+   font-size: $size;
+   color: $color;
+   font-weight: $weight;
+   text-align: $align;
+   letter-spacing: $spacing;
+}

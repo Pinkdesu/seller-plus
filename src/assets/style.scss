@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import "./module";
+
+html,
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+body > #root {
+  height: 100%;
+}
+
+input, button, textarea {
+   font-family: inherit;
+}
+
+button {
+   cursor: pointer;
+}
+
+.form-page {
+   @include flex-constructor(column nowrap, center);
+   height: inherit;
+
+   .form-column,
+   .links-block-column {
+      padding: 0 40px;
+   }
+}
+
+.form-column {
+   @include flex-constructor(column nowrap, center);
+
+   .form-column__title {
+      @include text-style(18px, $black, 600, center, 1px);
+      margin: 0 0 30px 0;
+   }
+
+   .form-column__primary-btn {
+      @include text-style(15px, $black, 700, center, 1px);
+      outline: none;
+      background-color: $white;
+      border-radius: 10px;
+      border: 3px solid $pink-025;
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+  
+  .form-column__input {
+      @include flex-constructor(column nowrap);
+      margin-bottom: 20px;
+
+      label {
+         @include text-style(12px, $white-040);
+         margin-bottom: 5px;
+      }
+
+      input {
+         @include text-style(14px);
+         outline: none;
+         border: none;
+         border-bottom: 2px solid $white-040;
+         padding: 5px 0;
+         line-height: 14px;
+      }
+  }
+}
+
+.links-block-column {
+   @include flex-constructor(column nowrap, center, center);
+
+   a {
+      @include text-style(14px);
+      text-decoration: none;
+   }
+   
+   a:visited {
+      color: $black;
+   }
+
+   a:first-child {
+      margin-bottom: 5px;
+   }
+}
