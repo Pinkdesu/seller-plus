@@ -1,33 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLocale } from '~/utils/useLocale';
 import Button from '~/features/Common/Button';
 import Input from '~/features/Common/Input';
+import { useLocale } from '~/utils/useLocale';
 
-const Login = () => {
+const Register = () => {
   const locale = useLocale();
 
   return (
     <div className="form-page">
       <div className="form-column">
-        <h1 className="form-column__title">{locale('enter').toUpperCase()}</h1>
+        <h1 className="form-column__title">
+          {locale('registration').toUpperCase()}
+        </h1>
+        <Input className="form-column__input" label={locale('name')} />
         <Input className="form-column__input" label={locale('login')} />
+        <Input className="form-column__input" label={locale('password')} />
         <Input
           className="form-column__input"
-          type="password"
-          label={locale('password')}
+          label={locale('repeatPassword')}
         />
         <Button
           className="form-column__primary-btn"
-          text={locale('signIn').toUpperCase()}
+          text={locale('signUp').toUpperCase()}
         />
       </div>
       <div className="links-block-column">
-        <Link to="/">{locale('forgotPassword')}?</Link>
-        <Link to="/registration">{locale('signUp')}</Link>
+        <Link to="/">{locale('signIn')}</Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

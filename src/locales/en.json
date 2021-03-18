@@ -1,8 +1,11 @@
 {
+   "name": "Name",
    "login": "Login",
    "password": "Password",
+   "repeatPassword": "Repeat the password",
    "signIn": "Sign in",
    "signUp": "Sign up",
    "enter": "Enter",
-   "forgotPassword": "Forgot your password" 
+   "forgotPassword": "Forgot your password",
+   "registration": "Registration" 
 }

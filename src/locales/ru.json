@@ -1,8 +1,11 @@
 {
+   "name": "Имя",
    "login": "Логин",
    "password": "Пароль",
+   "repeatPassword": "Повторите пароль",
    "signIn": "Войти",
    "signUp": "Зарегистрироваться",
    "enter": "Вход",
-   "forgotPassword": "Забыли пароль" 
+   "forgotPassword": "Забыли пароль",
+   "registration": "Регистрация" 
 }
