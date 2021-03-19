@@ -1,9 +1,3 @@
-$black: #000;
-$white: #fff;
-$white-040: rgba($black, 0.4);
-
-$pink-025: rgb(246, 195, 195);
-
 @mixin flex-constructor ($flow: row nowrap, $jusCont: flex-start, $alItems: stretch, $alContent:stretch) {
    display: flex;
    flex-flow: $flow;
@@ -19,3 +13,17 @@ $pink-025: rgb(246, 195, 195);
    text-align: $align;
    letter-spacing: $spacing;
 }
+
+$black: #000;
+$white: #fff;
+$white-050: #fafafa;
+$white-100: #f5f5f5;
+$white-200: #eeeeee;
+$white-300: #e0e0e0;
+$white-400: #bdbdbd;
+$white-500: #9e9e9e;
+$white-600: #757575;
+$white-700: #616161;
+$white-800: #424242;
+
+$pink-025: rgb(246, 195, 195);

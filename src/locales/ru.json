@@ -7,5 +7,9 @@
    "signUp": "Зарегистрироваться",
    "enter": "Вход",
    "forgotPassword": "Забыли пароль",
-   "registration": "Регистрация" 
+   "registration": "Регистрация",
+   "shop": "Магазин",
+   "rating": "Рейтинг",
+   "myTasks": "Мои задачи",
+   "profile": "Профиль" 
 }

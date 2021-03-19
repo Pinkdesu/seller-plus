@@ -7,5 +7,9 @@
    "signUp": "Sign up",
    "enter": "Enter",
    "forgotPassword": "Forgot your password",
-   "registration": "Registration" 
+   "registration": "Registration",
+   "shop": "Shop",
+   "rating": "Rating",
+   "myTasks": "My tasks",
+   "profile": "Profile" 
 }
