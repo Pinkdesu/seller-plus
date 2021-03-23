@@ -16,10 +16,10 @@ const Footer = () => {
 
   return (
     <nav className="menu">
-      <Section text={locale('shop')} icon={shopIcon} />
-      <Section text={locale('rating')} icon={starIcon} />
-      <Section text={locale('myTasks')} icon={tasksIcon} />
-      <Section text={locale('profile')} icon={profileIcon} />
+      <Section text={locale('shop')} icon={shopIcon} path="/shop" />
+      <Section text={locale('rating')} icon={starIcon} path="/rating" />
+      <Section text={locale('tasks')} icon={tasksIcon} path="/task" />
+      <Section text={locale('profile')} icon={profileIcon} path="profile" />
     </nav>
   );
 };

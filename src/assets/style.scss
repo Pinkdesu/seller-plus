@@ -88,3 +88,21 @@ button {
       margin-bottom: 5px;
    }
 }
+
+
+.header-page {
+   position: relative;
+   padding-top: 54px;
+   padding-bottom: 75px;
+   height: 100%;
+   box-sizing: border-box;
+   overflow: hidden;
+
+   .header-page__content-step {
+      @include flex-constructor(row wrap, space-between, flex-start, start);
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 0 15px;
+      height: 100%;
+   }
+}
