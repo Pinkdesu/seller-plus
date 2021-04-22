@@ -1,14 +1,11 @@
 import React from 'react';
-import * as S from './index.elements';
+import * as S from './elements';
+import SliderSection from './components/SliderSection';
 
 const Home = () => {
   return (
     <S.Main>
-      <S.PrimarySection>
-        <S.HeaderBlock>
-          <S.Header>ТюменьСтройГаз</S.Header>
-        </S.HeaderBlock>
-      </S.PrimarySection>
+      <SliderSection />
     </S.Main>
   );
 };

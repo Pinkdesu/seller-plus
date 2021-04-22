@@ -26,7 +26,9 @@ export const useLocale = () => {
       }
 
       if (process.env.NODE_ENV === 'development') {
-        console.error(`Bad locale lang: ${activeLocale}, key: ${key}`);
+        console.error(
+          `Bad locale lang: ${activeLocale}, key: ${key || '(empty)'}`,
+        );
       }
 
       return '';
