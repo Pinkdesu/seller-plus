@@ -12,16 +12,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Roboto', sans-serif;
    margin: 0;
    padding: 0;
-   height: 100%;
    max-width: 100%;
    overflow-x: hidden !important;
-  }
-
-  body > #root {
-   height: 100%;
   }
 
   input, button, textarea {

@@ -8,6 +8,7 @@
       "@testing-library/user-event": "^12.1.10",
       "classnames": "^2.2.6",
       "get-user-locale": "^1.4.0",
+      "keen-slider": "^5.4.0",
       "react": "^17.0.1",
       "react-dom": "^17.0.1",
       "react-router-dom": "^5.2.0",
