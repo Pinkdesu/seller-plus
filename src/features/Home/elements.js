@@ -112,11 +112,29 @@ export const ServiceCard = styled.article`
   position: relative;
   margin-bottom: 40px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
+
+  & > img {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
-export const CardImage = styled.img`
-  width: 100%;
-  height: 200px;
+export const CardImage = styled.img``;
+
+export const CardImageThumb = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 10px;
+  background: #c7cee1;
+
+  & > img {
+    width: 80%;
+    height: 80%;
+  }
 `;
 
 export const CardTextWrapper = styled.div`
@@ -142,4 +160,9 @@ export const CardDescription = styled.p`
   font-size: 1.1rem;
   margin-top: 15px;
   margin-bottom: 0;
+`;
+
+export const AdvantageCard = styled(ServiceCard)`
+  box-shadow: none;
+  align-items: center;
 `;

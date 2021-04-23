@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
-import { SLIDER_CONFIG, DELAY, SLIDES_INFO } from '../constants';
+import { SLIDER_CONFIG, DELAY } from '../constants';
 import * as S from '../elements';
 import Slide from './Slide';
 import 'keen-slider/keen-slider.min.css';
 
-const SliderSection = () => {
+const SliderSection = (props) => {
+  const { slides } = props;
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [sliderRef, slider] = useKeenSlider({
@@ -28,7 +30,7 @@ const SliderSection = () => {
   return (
     <S.SliderSection>
       <S.Slider className="keen-slider" ref={sliderRef}>
-        {SLIDES_INFO.map((info) => (
+        {slides.map((info) => (
           <Slide
             key={info.id}
             image={info.image}

@@ -1,18 +1,16 @@
 import React from 'react';
+import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
-import Card from './ServiceCard';
-
-import syberia from '~/assets/images/home/syberia.jpg';
 
 const Section = (props) => {
+  const locale = useLocale();
+
+  const { children, title } = props;
+
   return (
     <S.Section>
-      <S.SectionHeader>Наши услуги</S.SectionHeader>
-      <S.SectionContent>
-        <Card image={syberia} />
-        <Card image={syberia} />
-        <Card image={syberia} />
-      </S.SectionContent>
+      <S.SectionHeader>{locale(title)}</S.SectionHeader>
+      <S.SectionContent>{children}</S.SectionContent>
     </S.Section>
   );
 };

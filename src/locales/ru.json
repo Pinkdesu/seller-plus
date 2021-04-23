@@ -10,10 +10,16 @@
    "registration": "Регистрация",
    "shop": "Магазин",
    "profile": "Профиль",
+   "services": "Услуги",
    "home.title.whoAreWe": "Кто мы?",
    "home.subtitle.theTSG": "Компания «ТюменьСтройГаз» занимается поставкой оборудования для систем отопления, водоснабжения и канализации по Тюмени и Тюменской области.",
    "home.title.weOffer": "Мы предлагаем",
    "home.subtitle.wideRange": "Широкий ассортимент продукции. На сайте представлены такие марки как BAXI, Vaillant, Protherm, Bosch, Viessmann, РусНит, Viadrus, Drazice, Gorenje.",
    "home.title.weGuarantee": "Мы гарантируем",
-   "home.subtitle.allOurProducts": "Вся наша продукция отвечает сертификатам качества и сделана с использованием лучших современных материалов и технологий."
+   "home.subtitle.allOurProducts": "Вся наша продукция отвечает сертификатам качества и сделана с использованием лучших современных материалов и технологий.",
+   "home.title.favorablePrices": "Выгодные цены",
+   "home.title.qualityAssurance": "Гарантия качества",
+   "home.title.fastDelivery": "Быстрая доставка",
+   "home.title.professionalService": "Профессиональный сервис",
+   "home.description": "Тут небольшое описание"
 }
