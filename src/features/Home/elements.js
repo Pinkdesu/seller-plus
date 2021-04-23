@@ -13,7 +13,9 @@ const commonBlockStyle = css`
   height: 100vh;
 `;
 
-export const Main = styled.main``;
+export const Main = styled.main`
+  background: #ffffff;
+`;
 
 export const SliderSection = styled.section`
   ${commonBlockStyle}
@@ -31,7 +33,7 @@ export const TitleWrapper = styled.div`
   top: 45%;
   transform: translateY(-45%);
   text-align: center;
-  padding: 0 40px;
+  padding: 0 20px;
   max-width: 100%;
 `;
 
@@ -51,14 +53,13 @@ export const Title = styled.h1`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #fff;
-    opacity: 0.6;
+    background-color: #ffffff99;
   }
 `;
 
 export const Subtitle = styled.h2`
   ${commonTitleStyle}
-  padding: 10px 0;
+  padding: 10px;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -83,4 +84,62 @@ export const Dot = styled.button`
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
+`;
+
+export const Section = styled.section`
+  padding: 0 20px;
+  text-align: center;
+`;
+
+export const SectionHeader = styled.h1`
+  ${commonTitleStyle}
+  color: #000;
+  font-size: 28px;
+  font-weight: 400;
+  padding: 60px 0;
+`;
+
+export const SectionContent = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+`;
+
+export const ServiceCard = styled.article`
+  display: flex;
+  flex-flow: column nowrap;
+  background: #ffffff;
+  position: relative;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
+`;
+
+export const CardImage = styled.img`
+  width: 100%;
+  height: 200px;
+`;
+
+export const CardTextWrapper = styled.div`
+  padding: 20px 24px 40px 24px;
+`;
+
+export const CardTitle = styled(Title)`
+  color: #000000;
+  font-size: 1.75rem;
+  font-weight: 400;
+  padding: 0;
+
+  &:after {
+    background-color: #bbbbbb;
+    width: 50%;
+  }
+`;
+
+export const CardDescription = styled.p`
+  text-align: left;
+  font-weight: 400;
+  color: #999999;
+  font-size: 1.1rem;
+  margin-top: 15px;
+  margin-bottom: 0;
 `;
