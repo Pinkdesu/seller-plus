@@ -18,7 +18,7 @@ const SliderSection = (props) => {
   });
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    let timer = setInterval(() => {
       if (slider) {
         slider.next();
       }
