@@ -29,7 +29,7 @@ const SliderSection = (props) => {
 
   return (
     <S.SliderSection>
-      <S.Slider className="keen-slider" ref={sliderRef}>
+      <div className="keen-slider" ref={sliderRef}>
         {slides.map((info) => (
           <Slide
             key={info.id}
@@ -38,7 +38,7 @@ const SliderSection = (props) => {
             subtitle={info.subtitle}
           />
         ))}
-      </S.Slider>
+      </div>
       {slider && (
         <S.DotsWrapper>
           {[...Array(slider.details().size).keys()].map((num) => (
