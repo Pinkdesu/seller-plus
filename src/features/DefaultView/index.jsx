@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper } from './index.elements';
+import { Wrapper } from './elements';
 
 const DefaultView = (props) => {
   const { children } = props;

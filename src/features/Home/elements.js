@@ -83,14 +83,26 @@ export const Dot = styled.button`
   cursor: pointer;
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  background: #ffffff;
+
+  &.companies-list {
+    background: #2f4c78;
+  }
+`;
 
 export const SectionHeader = styled.h1`
   ${commonTitleStyle}
-  color: #000;
-  font-size: 28px;
+  color: #000000;
+  font-size: 32px;
   font-weight: 400;
   padding: 60px 0;
+
+  .companies-list & {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 600;
+  }
 `;
 
 export const SectionContent = styled.div`
@@ -110,6 +122,15 @@ export const Card = styled.article`
   &.services-list__card {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
   }
+
+  &.companies-list__card {
+    background: #2f4c78;
+  }
+
+  &.reviews-list__card {
+    border: 1px solid #3144382b;
+    padding: 25px;
+  }
 `;
 
 export const CardImageThumb = styled.div`
@@ -117,11 +138,18 @@ export const CardImageThumb = styled.div`
   justify-content: center;
   align-items: center;
 
-  .services-list__card & {
+  .companies-list__card & {
+    background: #2f4c78;
+
     & > img {
-      width: 100%;
-      height: 200px;
+      max-width: 350px;
+      max-height: 100px;
     }
+  }
+
+  .services-list__card & > img {
+    width: 100%;
+    height: 200px;
   }
 
   .advantages-list__card & {
@@ -136,19 +164,37 @@ export const CardImageThumb = styled.div`
       height: 80%;
     }
   }
+
+  .reviews-list__card & {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #c7cee1;
+
+    & > img {
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
 `;
 
 export const CardTextWrapper = styled.div`
   .services-list__card & {
-    padding: 20px 24px 40px 24px;
+    padding: 20px 25px 40px 25px;
   }
 
   .advantages-list__card & {
-    padding: 5px 15px;
+    padding: 5px 25px;
 
     & > p {
       text-align: center;
     }
+  }
+
+  .reviews-list__card & > h2 {
+    font-size: 1.35rem;
   }
 `;
 

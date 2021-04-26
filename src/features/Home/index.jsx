@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './elements';
 import SliderSection from './components/SliderSection';
 import Section from './components/Section';
-import { SLIDES_INFO, ADVANTAGE_CARDS } from './constants';
+import { SLIDES_INFO, ADVANTAGE_CARDS, COMPANIES, REVIEWS } from './constants';
 
 const Home = () => {
   return (
@@ -13,6 +13,17 @@ const Home = () => {
         className="advantages-list"
         title="services"
         data={ADVANTAGE_CARDS}
+      />
+      <Section
+        className="companies-list"
+        title="services"
+        data={COMPANIES}
+        cardText={false}
+      />
+      <Section
+        className="reviews-list"
+        title="home.title.customerReviews"
+        data={REVIEWS}
       />
     </S.Main>
   );
