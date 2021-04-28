@@ -7,7 +7,7 @@ import delivery from '~/assets/images/home/delivery.png';
 import thumb from '~/assets/images/home/thumb-up.png';
 import baxi from '~/assets/images/companies/baxi.png';
 import bosch from '~/assets/images/companies/bosch.png';
-//import drazice from '~/assets/images/companies/drazice.png';
+import drazice from '~/assets/images/companies/drazice.png';
 import gorenje from '~/assets/images/companies/gorenje.png';
 import protherm from '~/assets/images/companies/protherm.png';
 import rusnit from '~/assets/images/companies/rusnit.png';
@@ -86,7 +86,7 @@ export const COMPANIES = [
   },
   {
     id: 3,
-    image: viessmann,
+    image: drazice,
     name: 'Drazice',
   },
   {

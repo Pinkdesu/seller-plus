@@ -5,8 +5,8 @@ import { GlobalStyle } from './assets/global.style';
 const App = () => {
   return (
     <>
-      <AppBootstrap />
       <GlobalStyle />
+      <AppBootstrap />
     </>
   );
 };
