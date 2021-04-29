@@ -9,21 +9,20 @@ const commonTitleStyle = css`
   text-align: center;
 `;
 
-const commonBlockStyle = css`
-  position: relative;
-  height: 100vh;
-`;
-
 export const Main = styled.main`
   background: #ffffff;
 `;
 
 export const SliderSection = styled.section`
-  ${commonBlockStyle}
+  position: relative;
+  height: 100vh;
+
+  & .keen-slider {
+    height: inherit;
+  }
 `;
 
 export const Slide = styled.article`
-  ${commonBlockStyle}
   background: url(${(props) => props.image}) top/cover no-repeat;
 `;
 
@@ -31,8 +30,14 @@ export const TitleWrapper = styled.div`
   position: absolute;
   top: 45%;
   transform: translateY(-45%);
-  padding: 0 20px;
-  max-width: 100%;
+  padding: 5%;
+  padding-right: 2%;
+  max-width: 60%;
+
+  @media (max-width: 480px) {
+    padding: 0 20px;
+    max-width: 100%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -40,7 +45,7 @@ export const Title = styled.h1`
   position: relative;
   font-weight: 700;
   font-size: 36px;
-  line-height: 42px;
+  line-height: 1.1;
   padding: 15px 0;
 
   &:after {
@@ -53,6 +58,18 @@ export const Title = styled.h1`
     bottom: 0;
     background-color: #ffffff99;
   }
+
+  @media (min-width: 1280px) {
+    font-size: 7vw;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1280px) {
+    font-size: 400%;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 340%;
+  }
 `;
 
 export const Subtitle = styled.h2`
@@ -60,7 +77,12 @@ export const Subtitle = styled.h2`
   padding: 10px;
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 1.1;
+
+  @media (min-width: 992px) {
+    font-size: 1.5vw;
+    margin-top: 1.25em;
+  }
 `;
 
 export const DotsWrapper = styled.div`
@@ -77,7 +99,7 @@ export const Dot = styled.button`
   outline: none;
   width: 12px;
   height: 12px;
-  background: ${(props) => (props.active ? '#C0B3B3' : '#FFFFFF')};
+  background: ${(props) => (props.active ? '#FFFFFF' : '#C0B3B3')};
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;

@@ -1,5 +1,7 @@
 {
    "home": "Home",
+   "basket": "Basket",
+   "personalAccount": "Personal account",
    "name": "Name",
    "login": "Login",
    "password": "Password",

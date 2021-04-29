@@ -1,5 +1,7 @@
 {
    "home": "Главная",
+   "basket": "Корзина",
+   "personalAccount": "Личный кабинет",
    "name": "Имя",
    "login": "Логин",
    "password": "Пароль",

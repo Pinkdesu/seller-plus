@@ -1,38 +1,48 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocale } from '~/utils/useLocale';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './elements';
-import NavItem from './components/NavItem';
-import logo from '~/assets/images/header/logo-180-white.png';
+import RightSideMenu from './components/RightSideMenu';
+import TopSideMenu from './components/TopSideMenu';
+import { CLIENT_HEIGHT } from './constants';
 
 const Header = () => {
-  const locale = useLocale();
-
   const [open, setOpen] = useState(false);
+  const [topHidden, setTopHidden] = useState(true);
+
+  const handleScroll = useCallback(() => {
+    if (window.matchMedia('(min-width: 992px)').matches) {
+      const pageYOfffset = window.pageYOffset;
+
+      if (pageYOfffset >= CLIENT_HEIGHT && topHidden) {
+        setTopHidden(false);
+        setOpen(false);
+      }
+
+      if (pageYOfffset < CLIENT_HEIGHT && !topHidden) {
+        setTopHidden(true);
+      }
+    }
+  }, [topHidden]);
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   return (
-    <>
+    <S.Header open={open}>
       <S.MenuButton onClick={handleOpen}>
         <S.MenuHamburger open={open} />
       </S.MenuButton>
-      <S.Header open={open}>
-        <S.LogoBar>
-          <Link to="/">
-            <img src={logo} alt="logo" />
-          </Link>
-        </S.LogoBar>
-        <S.NavBar>
-          <NavItem path="/" text={locale('home')} exact />
-          <NavItem path="/shop" text={locale('shop')} />
-          <NavItem path="/service" text={locale('services')} />
-          <NavItem path="/profile" text={locale('profile')} />
-        </S.NavBar>
-      </S.Header>
-    </>
+      <RightSideMenu open={open} />
+      <TopSideMenu hidden={topHidden} />
+    </S.Header>
   );
 };
 

@@ -5,9 +5,9 @@ const NavItem = (props) => {
   const { path, text, exact = false } = props;
 
   return (
-    <S.Link to={path} exact={exact}>
+    <S.ActiveLink to={path} exact={exact}>
       {text}
-    </S.Link>
+    </S.ActiveLink>
   );
 };
 
