@@ -30,13 +30,12 @@ export const TitleWrapper = styled.div`
   position: absolute;
   top: 45%;
   transform: translateY(-45%);
-  padding: 5%;
-  padding-right: 2%;
-  max-width: 60%;
+  padding: 0 20px;
+  max-width: 100%;
 
-  @media (max-width: 480px) {
-    padding: 0 20px;
-    max-width: 100%;
+  @media (min-width: 992px) {
+    padding: 5%;
+    max-width: 60%;
   }
 `;
 
@@ -56,19 +55,20 @@ export const Title = styled.h1`
     left: 0;
     right: 0;
     bottom: 0;
+    width: 50%;
     background-color: #ffffff99;
   }
 
   @media (min-width: 1280px) {
-    font-size: 7vw;
+    font-size: 6vw;
   }
 
   @media (min-width: 1024px) and (max-width: 1280px) {
-    font-size: 400%;
+    font-size: 350%;
   }
 
   @media (max-width: 992px) {
-    font-size: 340%;
+    font-size: 280%;
   }
 `;
 
@@ -80,8 +80,9 @@ export const Subtitle = styled.h2`
   line-height: 1.1;
 
   @media (min-width: 992px) {
-    font-size: 1.5vw;
-    margin-top: 1.25em;
+    font-size: 1.3vw;
+    margin-top: 1em;
+    padding: 0 10%;
   }
 `;
 
@@ -109,7 +110,44 @@ export const Section = styled.section`
   background: #ffffff;
 
   &.companies-list {
-    background: #2f4c78;
+    background: #0a2248;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 24px;
+  }
+
+  @media (min-width: 480px) {
+    padding: 0 50px;
+  }
+
+  @media (min-width: 992px) {
+    &.services-list {
+      position: absolute;
+      right: 3%;
+      top: 80px;
+      background: none;
+      width: 40%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(100vh - 130px);
+      padding: 0 10px;
+
+      ::-webkit-scrollbar {
+        background-color: none;
+        width: 6px;
+        height: 0;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: none;
+        border-radius: 10px;
+
+        &:hover {
+          background-color: #00000040;
+        }
+      }
+    }
   }
 `;
 
@@ -125,12 +163,34 @@ export const SectionHeader = styled.h1`
     font-size: 26px;
     font-weight: 600;
   }
+
+  @media (min-width: 992px) {
+    .services-list & {
+      color: #ffffff;
+      text-align: left;
+      padding: 10px 0 40px 0;
+      font-weight: 600;
+    }
+  }
 `;
 
 export const SectionContent = styled.div`
   display: flex;
-  flex-flow: column nowrap;
-  padding: 0 20px;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+
+  @media (min-width: 992px) {
+    .services-list & {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
 export const Card = styled.article`
@@ -139,19 +199,28 @@ export const Card = styled.article`
   align-items: center;
   background: #ffffff;
   position: relative;
-  margin-bottom: 40px;
+  margin: 0 24px 40px 24px;
+  max-width: 450px;
+  min-width: 280px;
 
   &.services-list__card {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
+    padding: 0;
+
+    @media (min-width: 992px) {
+      width: 48%;
+      margin: 0;
+      margin-bottom: 40px;
+    }
   }
 
   &.companies-list__card {
-    background: #2f4c78;
+    background: #0a2248;
   }
 
   &.reviews-list__card {
     border: 1px solid #3144382b;
-    padding: 25px;
+    padding: 24px;
   }
 `;
 
@@ -161,7 +230,7 @@ export const CardImageThumb = styled.div`
   align-items: center;
 
   .companies-list__card & {
-    background: #2f4c78;
+    background: #0a2248;
 
     & > img {
       max-width: 350px;
@@ -228,7 +297,6 @@ export const CardTitle = styled(Title)`
 
   &:after {
     background-color: #bbbbbb;
-    width: 50%;
   }
 `;
 

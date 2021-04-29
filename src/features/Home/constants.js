@@ -44,6 +44,24 @@ export const SLIDES_INFO = [
     title: 'home.title.weGuarantee',
     subtitle: 'home.subtitle.allOurProducts',
   },
+  {
+    id: 4,
+    image: gasification,
+    title: 'home.title.whoAreWe',
+    subtitle: 'home.subtitle.theTSG',
+  },
+  {
+    id: 5,
+    image: amur,
+    title: 'home.title.weOffer',
+    subtitle: 'home.subtitle.wideRange',
+  },
+  {
+    id: 6,
+    image: syberia,
+    title: 'home.title.weGuarantee',
+    subtitle: 'home.subtitle.allOurProducts',
+  },
 ];
 
 export const ADVANTAGE_CARDS = [
