@@ -201,7 +201,7 @@ export const Card = styled.article`
   position: relative;
   margin: 0 24px 40px 24px;
   max-width: 450px;
-  min-width: 280px;
+  min-width: 250px;
 
   &.services-list__card {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
@@ -211,6 +211,12 @@ export const Card = styled.article`
       width: 48%;
       margin: 0;
       margin-bottom: 40px;
+    }
+  }
+
+  &.advantages-list__card {
+    @media (min-width: 992px) {
+      width: 20%;
     }
   }
 
