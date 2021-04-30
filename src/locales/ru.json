@@ -14,6 +14,9 @@
    "shop": "Магазин",
    "profile": "Профиль",
    "services": "Услуги",
+   "contactDetails": "Контактная информация",
+   "telephone": "Телефон",
+   "email": "Email",
    "home.title.whoAreWe": "Кто мы?",
    "home.subtitle.theTSG": "Компания «ТюменьСтройГаз» занимается поставкой оборудования для систем отопления, водоснабжения и канализации по Тюмени и Тюменской области.",
    "home.title.weOffer": "Мы предлагаем",
@@ -25,5 +28,6 @@
    "home.title.fastDelivery": "Быстрая доставка",
    "home.title.professionalService": "Профессиональный сервис",
    "home.title.customerReviews": "Отзывы клиентов",
-   "home.description": "Тут небольшое описание"
+   "home.description": "Тут небольшое описание",
+   "footer.companyDescriprion": "ТюменьСтройГаз - продажа теплового оборудования в Тюмени"
 }

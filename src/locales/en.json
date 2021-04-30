@@ -14,6 +14,9 @@
    "shop": "Shop",
    "profile": "Profile", 
    "services": "Services",
+   "contactDetails": "Contact details",
+   "telephone": "Telephone",
+   "email": "Email",
    "home.title.whoAreWe": "Who are we?",
    "home.subtitle.theTSG": "The «TyumenStroyGaz» company is engaged in the supply of equipment for heating, water supply and sewerage systems in Tyumen and the Tyumen region.",
    "home.title.weOffer": "We offer",
@@ -25,5 +28,6 @@
    "home.title.fastDelivery": "Fast delivery",
    "home.title.professionalService": "Professional service",
    "home.title.customerReviews": "Customer reviews",
-   "home.description": "Description for this"
+   "home.description": "Description for this",
+   "footer.companyDescriprion": "TyumenStroyGaz - sale of thermal equipment in Tyumen"
 }

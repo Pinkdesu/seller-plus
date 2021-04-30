@@ -25,7 +25,6 @@ const Home = () => {
         title="services"
         data={COMPANIES}
         cardText={false}
-        localize
       />
       <Section
         className="reviews-list"
