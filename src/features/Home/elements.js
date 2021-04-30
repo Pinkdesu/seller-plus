@@ -205,7 +205,19 @@ export const Card = styled.article`
 
   &.services-list__card {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
+    min-width: 300px;
+    cursor: pointer;
     padding: 0;
+    background: #ffffffd9;
+    transition: background 0.25s ease-in-out;
+
+    &:hover {
+      background: #ffffff;
+
+      img {
+        transform: scale(1.1);
+      }
+    }
 
     @media (min-width: 992px) {
       width: 48%;
@@ -244,9 +256,15 @@ export const CardImageThumb = styled.div`
     }
   }
 
-  .services-list__card & > img {
-    width: 100%;
-    height: 200px;
+  .services-list__card & {
+    overflow: hidden;
+
+    & > img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: all 0.25s ease-in-out;
+    }
   }
 
   .advantages-list__card & {
@@ -300,6 +318,7 @@ export const CardTitle = styled(Title)`
   font-size: 1.75rem;
   font-weight: 400;
   padding: 0;
+  padding-bottom: 6px;
 
   &:after {
     background-color: #bbbbbb;
@@ -308,7 +327,7 @@ export const CardTitle = styled(Title)`
 
 export const CardDescription = styled.p`
   font-weight: 400;
-  color: #999999;
+  color: #757575;
   font-size: 1.1rem;
   margin-top: 15px;
   margin-bottom: 0;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 
@@ -16,4 +16,4 @@ const Slide = (props) => {
   );
 };
 
-export default Slide;
+export default memo(Slide);

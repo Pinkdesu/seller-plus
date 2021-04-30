@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import { SLIDER_CONFIG, DELAY } from '../constants';
 import * as S from '../elements';
@@ -19,13 +19,16 @@ const SliderSection = (props) => {
 
   useEffect(() => {
     let timer = setInterval(() => {
-      if (slider) {
-        slider.next();
-      }
+      slider && slider.next();
     }, DELAY);
 
     return () => clearInterval(timer);
   }, [slider, currentSlide]);
+
+  const goToSlide = useCallback(
+    (num) => () => slider.moveToSlideRelative(num),
+    [slider],
+  );
 
   return (
     <S.SliderSection>
@@ -44,7 +47,7 @@ const SliderSection = (props) => {
           {[...Array(slider.details().size).keys()].map((num) => (
             <S.Dot
               key={num}
-              onClick={() => slider.moveToSlideRelative(num)}
+              onClick={goToSlide(num)}
               active={currentSlide === num}
             />
           ))}

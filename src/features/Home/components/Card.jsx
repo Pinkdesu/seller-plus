@@ -1,22 +1,19 @@
 import React from 'react';
-import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 
 const Card = (props) => {
-  const locale = useLocale();
-
-  const { className, image, title, description, imageAlt, cardText } = props;
+  const { className, image, title, description, imageAlt } = props;
 
   return (
     <S.Card className={className}>
       <S.CardImageThumb image={image}>
-        <img src={image} alt={locale(imageAlt)} />
+        <img src={image} alt={imageAlt} />
       </S.CardImageThumb>
 
-      {cardText && (
+      {(title || description) && (
         <S.CardTextWrapper>
-          <S.CardTitle as="h2">{locale(title)}</S.CardTitle>
-          <S.CardDescription>{locale(description)}</S.CardDescription>
+          <S.CardTitle as="h2">{title}</S.CardTitle>
+          <S.CardDescription>{description}</S.CardDescription>
         </S.CardTextWrapper>
       )}
     </S.Card>
