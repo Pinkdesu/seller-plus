@@ -17,6 +17,7 @@ import viessmann from '~/assets/images/companies/viessmann.png';
 import userFace from '~/assets/images/home/face.jpg';
 
 export const DELAY = 5000;
+export const PARALLAX_SPEED = 0.7;
 
 export const SLIDER_CONFIG = {
   loop: true,

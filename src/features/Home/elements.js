@@ -208,21 +208,21 @@ export const Card = styled.article`
     min-width: 300px;
     cursor: pointer;
     padding: 0;
-    background: #ffffffd9;
-    transition: background 0.25s ease-in-out;
-
-    &:hover {
-      background: #ffffff;
-
-      img {
-        transform: scale(1.1);
-      }
-    }
 
     @media (min-width: 992px) {
       width: 48%;
       margin: 0;
       margin-bottom: 40px;
+      transition: background 0.25s ease-in-out;
+      background: #ffffffd9;
+
+      &:hover {
+        background: #ffffff;
+
+        img {
+          transform: scale(1.1);
+        }
+      }
     }
   }
 
