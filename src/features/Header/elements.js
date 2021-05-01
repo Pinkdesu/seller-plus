@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 const headerStyle = css`
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 999;
 `;
 
@@ -17,6 +17,7 @@ const lineStyle = css`
   width: 100%;
   height: 3px;
   border-radius: 10px;
+  background-color: #c7cee1;
   transition: all 0.35s ease-in-out;
 `;
 
@@ -24,14 +25,14 @@ export const Header = styled.header`
   ${(props) => props.open && headerStyle}
 `;
 
-export const RightSideMenu = styled.div`
+export const LeftSideMenu = styled.div`
   ${headerStyle}
   ${menuStyle}
   width: 70%;
   max-width: 350px;
   height: 100vh;
   padding: 60px 20px 0 20px;
-  transform: translateX(${(props) => (props.open ? 0 : '100%')});
+  transform: translateX(${(props) => (props.open ? 0 : '-100%')});
 `;
 
 export const TopSideMenu = styled.div`
@@ -59,9 +60,13 @@ export const MenuButton = styled.div`
   height: 25px;
   position: fixed;
   top: 20px;
-  right: 15px;
+  left: 15px;
   z-index: 1000;
   cursor: pointer;
+
+  @media screen and (max-width: 480px) {
+    left: 10px;
+  }
 
   @media screen and (min-width: 992px) {
     position: absolute;
@@ -70,14 +75,17 @@ export const MenuButton = styled.div`
 
 export const MenuHamburger = styled.span`
   ${lineStyle}
-  background-color: ${(props) => (props.open ? 'transparent' : '#ffffff')};
+  ${(props) =>
+    props.open &&
+    css`
+      background-color: transparent;
+    `};
 
   &::before,
   &::after {
     ${lineStyle}
     content: '';
     position: absolute;
-    background-color: #ffffff;
     left: 0;
   }
 

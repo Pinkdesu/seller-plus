@@ -22,7 +22,7 @@ const Home = () => {
       />
       <Section
         className="companies-list"
-        title="services"
+        title="partners"
         data={COMPANIES}
         cardText={false}
       />

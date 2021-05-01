@@ -11,7 +11,7 @@ const RightSideMenu = (props) => {
   const { open } = props;
 
   return (
-    <S.RightSideMenu open={open}>
+    <S.LeftSideMenu open={open}>
       <LogoBar image={logo} />
       <S.NavBar>
         <NavItem path="/" text={locale('home')} exact />
@@ -20,7 +20,7 @@ const RightSideMenu = (props) => {
         <NavItem path="/account" text={locale('personalAccount')} />
         <NavItem path="/service" text={locale('services')} />
       </S.NavBar>
-    </S.RightSideMenu>
+    </S.LeftSideMenu>
   );
 };
 

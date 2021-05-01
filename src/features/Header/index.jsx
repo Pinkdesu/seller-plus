@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './elements';
-import RightSideMenu from './components/RightSideMenu';
+import LeftSideMenu from './components/LeftSideMenu';
 import TopSideMenu from './components/TopSideMenu';
 import { CLIENT_HEIGHT } from './constants';
 
@@ -40,7 +40,7 @@ const Header = () => {
       <S.MenuButton onClick={handleOpen}>
         <S.MenuHamburger open={open} />
       </S.MenuButton>
-      <RightSideMenu open={open} />
+      <LeftSideMenu open={open} />
       <TopSideMenu hidden={topHidden} />
     </S.Header>
   );

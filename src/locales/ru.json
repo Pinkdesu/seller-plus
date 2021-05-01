@@ -4,6 +4,7 @@
    "personalAccount": "Личный кабинет",
    "name": "Имя",
    "login": "Логин",
+   "partners": "Партнёры",
    "password": "Пароль",
    "repeatPassword": "Повторите пароль",
    "signIn": "Войти",

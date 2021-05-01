@@ -4,6 +4,7 @@
    "personalAccount": "Personal account",
    "name": "Name",
    "login": "Login",
+   "partners": "Partners",
    "password": "Password",
    "repeatPassword": "Repeat the password",
    "signIn": "Sign in",

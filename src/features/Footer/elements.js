@@ -63,11 +63,10 @@ export const FooterBottomSide = styled.div`
 export const SocialsWrapper = styled.div``;
 
 export const SocialNetwor = styled(Link)`
+  display: inline-block;
   font-size: 0;
   margin-right: 15px;
-  vertical-align: middle;
   text-decoration: none;
-  padding: 2px;
 
   &:last-child {
     margin-right: 0;
