@@ -8,6 +8,7 @@ export const PageOverflow = createGlobalStyle`
 
 export const Wrapper = styled.div`
   height: 100%;
+  background-color: #ffffff;
 `;
 
 export const Shadow = styled.div`

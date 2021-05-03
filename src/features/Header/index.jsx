@@ -23,7 +23,7 @@ const Header = () => {
     }
   }, [topHidden]);
 
-  const handleOpen = () => {
+  const toggleMenu = () => {
     setOpen(!open);
   };
 
@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <S.Header open={open}>
-      <S.MenuButton onClick={handleOpen}>
+      <S.MenuButton onClick={toggleMenu}>
         <S.MenuHamburger open={open} />
       </S.MenuButton>
       <LeftSideMenu open={open} />

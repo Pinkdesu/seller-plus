@@ -30,7 +30,7 @@ const Footer = () => {
       <S.FooterBottomSide>
         <p>{locale('footer.companyDescriprion')}</p>
         <p>
-          Copyright © <time datetime="2021">2021</time>
+          Copyright © <time dateTime="2021">2021</time>
         </p>
       </S.FooterBottomSide>
     </S.Footer>

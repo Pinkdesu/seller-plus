@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
-import { SLIDER_CONFIG, DELAY } from '../constants';
+import { SLIDER_CONFIG, DELAY, PARALLAX_SPEED } from '../constants';
+import { CLIENT_HEIGHT } from '~/features/Header/constants';
 import * as S from '../elements';
 import Slide from './Slide';
 import 'keen-slider/keen-slider.min.css';
@@ -25,6 +26,27 @@ const SliderSection = (props) => {
     return () => clearInterval(timer);
   }, [slider, currentSlide]);
 
+  useEffect(() => {
+    const items = document.querySelectorAll('.keen-slider__slide');
+
+    const handleScroll = () => {
+      const offset = window.pageYOffset;
+
+      if (offset <= CLIENT_HEIGHT) {
+        items.forEach(
+          (slide) =>
+            (slide.style.backgroundPositionY = `${offset * PARALLAX_SPEED}px`),
+        );
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const goToSlide = useCallback(
     (num) => () => slider.moveToSlideRelative(num),
     [slider],
@@ -32,7 +54,7 @@ const SliderSection = (props) => {
 
   return (
     <S.SliderSection>
-      <div className="keen-slider" ref={sliderRef}>
+      <div ref={sliderRef} className="keen-slider">
         {slides.map((info) => (
           <Slide
             key={info.id}
@@ -44,11 +66,11 @@ const SliderSection = (props) => {
       </div>
       {slider && (
         <S.DotsWrapper>
-          {[...Array(slider.details().size).keys()].map((num) => (
+          {slides.map((slide, index) => (
             <S.Dot
-              key={num}
-              onClick={goToSlide(num)}
-              active={currentSlide === num}
+              key={slide.id}
+              onClick={goToSlide(index)}
+              active={currentSlide === index}
             />
           ))}
         </S.DotsWrapper>

@@ -9,10 +9,6 @@ const commonTitleStyle = css`
   text-align: center;
 `;
 
-export const Main = styled.main`
-  background: #ffffff;
-`;
-
 export const SliderSection = styled.section`
   position: relative;
   height: 100vh;
