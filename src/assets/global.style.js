@@ -21,6 +21,8 @@ export const GlobalStyle = createGlobalStyle`
 
   input, button, textarea {
    font-family: inherit;
+   outline: none;
+   border: none;
   }
 
   button {

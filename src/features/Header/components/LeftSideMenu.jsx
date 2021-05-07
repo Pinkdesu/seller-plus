@@ -8,17 +8,25 @@ import logo from '~/assets/images/header/logo-180-white.png';
 const RightSideMenu = (props) => {
   const locale = useLocale();
 
-  const { open } = props;
+  const { open, toggleMenu } = props;
 
   return (
     <S.LeftSideMenu open={open}>
       <LogoBar image={logo} />
       <S.NavBar>
-        <NavItem path="/" text={locale('home')} exact />
-        <NavItem path="/shop" text={locale('shop')} />
-        <NavItem path="/basket" text={locale('basket')} />
-        <NavItem path="/account" text={locale('personalAccount')} />
-        <NavItem path="/service" text={locale('services')} />
+        <NavItem path="/" text={locale('home')} onClick={toggleMenu} exact />
+        <NavItem path="/shop" text={locale('shop')} onClick={toggleMenu} />
+        <NavItem path="/basket" text={locale('basket')} onClick={toggleMenu} />
+        <NavItem
+          path="/account"
+          text={locale('personalAccount')}
+          onClick={toggleMenu}
+        />
+        <NavItem
+          path="/service"
+          text={locale('services')}
+          onClick={toggleMenu}
+        />
       </S.NavBar>
     </S.LeftSideMenu>
   );
