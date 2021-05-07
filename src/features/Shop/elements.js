@@ -12,6 +12,14 @@ const rowContent = css`
 export const Main = styled.main`
   margin-top: 120px;
   padding: 0 20%;
+
+  & > section {
+    margin-top: 60px;
+
+    &:last-child {
+      margin-bottom: 100px;
+    }
+  }
 `;
 
 export const SearchBar = styled.div`
@@ -36,7 +44,7 @@ export const SearchField = styled.input`
 export const SearchButton = styled.button`
   text-align: center;
   background: none;
-  padding: 8px;
+  padding: 8px 14px 8px 18px;
   font-size: 0;
   height: 100%;
 
@@ -100,15 +108,23 @@ export const MobileTitle = styled.span`
 
 export const Categories = styled.section`
   ${rowContent}
-  margin-top: 50px;
 `;
 
 export const Category = styled.article`
-  background-color: #e0e0e0;
+  background-color: #fbc02d;
   height: 40vh;
+  width: 50%;
+
+  & span {
+    color: #ffffff;
+  }
 
   &:nth-child(even) {
     background-color: #b3e5fc;
+
+    & span {
+      color: #00000099;
+    }
   }
 `;
 
@@ -125,11 +141,75 @@ export const CategoryContent = styled(Link)`
 `;
 
 export const CategoryImage = styled.img`
-  width: 100%;
-  max-width: 300px;
+  max-width: 180px;
+  height: auto;
 `;
 
 export const CategoryName = styled.span`
+  font-size: 1.8em;
+`;
+
+export const PopularProducts = styled.section``;
+
+export const HeaderWrapper = styled.div`
+  margin-bottom: 30px;
+`;
+
+export const Header = styled.h1`
+  margin: 0;
   color: #00000099;
   font-size: 2em;
+`;
+
+export const Products = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  overflow-x: scroll;
+  padding-bottom: 20px;
+
+  &::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+`;
+
+export const Product = styled(Link)`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  flex: 0 0 160px;
+  height: 230px;
+`;
+
+export const ProductImageThumb = styled.img`
+  width: 100%;
+  height: 70%;
+  margin-bottom: 10px;
+`;
+
+export const ProductName = styled.span`
+  text-align: center;
+  font-size: 14px;
+
+  & > u {
+    border-bottom: 1px solid #b5c1dc;
+    text-decoration: none;
+  }
+`;
+
+export const ProductPrice = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+  color: #00000099;
 `;

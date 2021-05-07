@@ -6,6 +6,7 @@ import * as S from './elements';
 import MobileSearchBar from './components/MobileSearchBar';
 import SearchBar from './components/SearchBar';
 import Categories from './components/Categories';
+import PopularProducts from './components/PopularProducts';
 
 const Shop = () => {
   return (
@@ -13,6 +14,7 @@ const Shop = () => {
       <MobileSearchBar />
       <SearchBar />
       <Categories />
+      <PopularProducts />
     </S.Main>
   );
 };

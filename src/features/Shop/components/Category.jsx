@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from '../elements';
-import 'keen-slider/keen-slider.min.css';
 
 const Category = (props) => {
   const { className, image, name } = props;

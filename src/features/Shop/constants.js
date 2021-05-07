@@ -1,5 +1,5 @@
-import category1 from '~/assets/images/shop/category-1.jpg';
-import category2 from '~/assets/images/shop/category-2.jpg';
+import category1 from '~/assets/images/shop/category1.png';
+import category2 from '~/assets/images/shop/category2.png';
 
 export const CATEGORIES = [
   {
