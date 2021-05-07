@@ -3,7 +3,7 @@ import * as S from '../elements';
 import { ReactComponent as SearchSVG } from '~/assets/images/common/search.svg';
 import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
-const SearchBar = () => {
+const DesktopSearchBar = () => {
   return (
     <S.SearchBar>
       <S.SearchField placeholder="Что искать..." />
@@ -17,4 +17,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default DesktopSearchBar;
