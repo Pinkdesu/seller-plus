@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { MenuButton } from '~/features/Header/elements';
 
+export const SearchBarWrapper = styled.div``;
+
 export const SearchBar = styled.div`
   display: flex;
   padding: 6px 6px 6px 20px;

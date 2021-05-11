@@ -25,6 +25,11 @@ export const GlobalStyle = createGlobalStyle`
    border: none;
   }
 
+  li, ul {
+    list-style: none;
+    padding: 0;
+  }
+
   button {
    cursor: pointer;
   }

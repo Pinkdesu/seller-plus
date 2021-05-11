@@ -114,6 +114,7 @@ export const MenuHamburger = styled.span`
 
 export const LogoBar = styled.div`
   text-align: center;
+  flex-basis: 180px;
 
   a {
     display: inline-block;
@@ -128,9 +129,10 @@ export const NavBar = styled.nav`
   margin-top: 40px;
 
   ${TopSideMenu} & {
-    flex-flow: row nowrap;
     margin-top: 0;
-    margin-left: 40px;
+    flex-flow: row nowrap;
+    flex-basis: 180px;
+    justify-content: flex-end;
   }
 `;
 
