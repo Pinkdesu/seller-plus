@@ -5,7 +5,7 @@ const Product = (props) => {
   const { image, name, price, id } = props;
 
   return (
-    <S.Product to={`/product/${id}`}>
+    <S.Product to={`/shop/product/${id}`}>
       <S.ProductImageThumb src={image} />
       <S.ProductName>
         <u>{name}</u>
