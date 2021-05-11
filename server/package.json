@@ -1,0 +1,51 @@
+{
+  "name": "seller-plus-server",
+  "version": "1.0.0",
+  "description": "server for spa",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "<pinkdesu@yandex.ru>",
+  "license": "MIT",
+  "eslintConfig": {
+      "extends": "airbnb-base",
+      "env": {
+         "es6": true,
+         "browser": true
+      },
+      "rules": {
+         "brace-style": [
+            "error",
+            "stroustrup"
+         ],
+         "comma-dangle": [
+            "error",
+            "never"
+         ],
+         "no-unused-vars": [
+            "warn"
+         ],
+         "no-var": [
+            "off"
+         ],
+         "one-var": [
+            "off"
+         ]
+      }
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "nodemon": "^2.0.7"
+  }
+}
