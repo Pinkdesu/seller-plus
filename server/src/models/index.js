@@ -29,7 +29,7 @@ const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
-  image: { type: DataTypes.ARRAY }
+  image: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });
 
 const ProductInfo = sequelize.define('product_info', {
