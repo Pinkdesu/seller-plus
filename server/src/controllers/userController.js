@@ -11,10 +11,8 @@ class UserController {
 
   }
 
-  async checkAuth(req, re, next) {
-    if (!req.query.id) {
-      next(ApiError.badRequest);
-    }
+  async checkAuth(req, res, next) {
+
   }
 }
 
