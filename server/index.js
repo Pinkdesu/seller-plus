@@ -5,8 +5,10 @@ const SERVER_PORT = process.env.SERVER_PORT || 4000;
 
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./src/database/db');
+const path = require('path');
+const fileUpload = require('express-fileupload');
 const models = require('./src/models');
+const sequelize = require('./src/database/db');
 const indexRouter = require('./src/routers');
 
 const errorHandler = require('./src/middleware/errorHandingMiddleware');
@@ -15,6 +17,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(fileUpload({}));
 
 app.use('/api', indexRouter);
 
