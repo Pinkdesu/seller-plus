@@ -1,34 +1,52 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const path = require('path');
 const ApiError = require('../error/apiError');
-const createFileName = require('../utils/createFileName');
-const { Product } = require('../models');
+const moveFile = require('../utils/moveFile');
+const { Product, ProductInfo } = require('../models');
 
 class ProductController {
   async create(req, res, next) {
     try {
       const {
-        name,
-        price,
-        brandId,
-        categoryId,
-        info
-      } = req.body;
-      const { image } = req.files;
-
-      const fileName = createFileName(image);
-      image.mv(path.resolve(__dirname, '../../', 'static', fileName));
-
-      const product = await Product.create({
-        image: fileName,
         info,
         name,
         price,
         brandId,
         categoryId
+      } = req.body;
+      const { images } = req.files;
+
+      const imagesNames = [];
+
+      if (Array.isArray(images)) {
+        images.forEach((image) => {
+          const fileName = moveFile(image);
+          imagesNames.push(fileName);
+        });
+      }
+      else {
+        const fileName = moveFile(images);
+        imagesNames.push(fileName);
+      }
+
+      const product = await Product.create({
+        images: imagesNames,
+        price: +price,
+        name,
+        brandId,
+        categoryId
       });
+
+      if (info) {
+        const parsedInfo = JSON.parse(info);
+
+        parsedInfo.forEach((item) => ProductInfo.create({
+          title: item.title,
+          description: item.description,
+          productId: product.id
+        }));
+      }
 
       return res.json(product);
     }
@@ -38,11 +56,69 @@ class ProductController {
   }
 
   async getAll(req, res) {
+    const {
+      brandId,
+      categoryId,
+      limit: defLimit,
+      page: defPage
+    } = req.query;
 
+    let products;
+
+    const limit = defLimit > 0 ? defLimit : 20;
+    const page = defPage > 0 ? defPage : 1;
+    const offset = page * limit - limit;
+
+    if (!brandId && !categoryId) {
+      products = await Product.findAll({
+        limit,
+        offset
+      });
+    }
+
+    if (brandId && !categoryId) {
+      products = await Product.findAll({
+        where: {
+          brandId
+        },
+        limit,
+        offset
+      });
+    }
+
+    if (!brandId && categoryId) {
+      products = await Product.findAll({
+        where: {
+          categoryId
+        },
+        limit,
+        offset
+      });
+    }
+
+    if (brandId && categoryId) {
+      products = await Product.findAll({
+        where: {
+          categoryId,
+          brandId
+        },
+        limit,
+        offset
+      });
+    }
+
+    return res.json(products);
   }
 
   async getOne(req, res) {
+    const { id } = req.params;
 
+    const product = await Product.findOne({
+      where: { id },
+      include: [{ model: ProductInfo, as: 'info' }]
+    });
+
+    return res.json(product);
   }
 }
 

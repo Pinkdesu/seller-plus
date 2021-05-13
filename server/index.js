@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 require('dotenv').config();
+require('./src/models');
 
 const SERVER_PORT = process.env.SERVER_PORT || 4000;
 
@@ -7,7 +8,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fileUpload = require('express-fileupload');
-const models = require('./src/models');
 const sequelize = require('./src/database/db');
 const indexRouter = require('./src/routers');
 

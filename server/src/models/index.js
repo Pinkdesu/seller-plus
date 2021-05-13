@@ -29,7 +29,7 @@ const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
-  image: { type: DataTypes.ARRAY(DataTypes.STRING) }
+  images: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });
 
 const ProductInfo = sequelize.define('product_info', {
@@ -68,7 +68,7 @@ Product.belongsTo(Brand);
 Product.hasMany(BasketProduct);
 BasketProduct.belongsTo(Product);
 
-Product.hasMany(ProductInfo);
+Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
 Category.belongsToMany(Brand, { through: CategoryBrand });
