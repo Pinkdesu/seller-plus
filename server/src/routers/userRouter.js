@@ -3,6 +3,7 @@ const Router = require('express');
 const router = new Router();
 const { check } = require('express-validator');
 const userController = require('../controllers/userController');
+const auth = require('../middleware/authMiddleware');
 
 router.post('/register', [
   check('email', 'INCORRECT_EMAIL').normalizeEmail().isEmail(),
@@ -10,6 +11,6 @@ router.post('/register', [
 ], userController.registration);
 router.post('/login', userController.login);
 
-router.get('/auth', userController.checkAuth);
+router.get('/auth', auth, userController.checkAuth);
 
 module.exports = router;

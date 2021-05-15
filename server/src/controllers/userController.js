@@ -50,8 +50,11 @@ class UserController {
     return res.json({ token });
   }
 
-  async checkAuth(req, res, next) {
+  async checkAuth(req, res) {
+    const { id, email, role } = req.user;
+    const token = generateAccessToken({ id, email, role });
 
+    return res.json({ token });
   }
 }
 
