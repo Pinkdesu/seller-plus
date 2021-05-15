@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const path = require('path');
 const ApiError = require('../error/apiError');
-const createFileName = require('../utils/createFileName');
+const moveFile = require('../utils/moveFile');
 const { Category } = require('../models');
 
 class CategoryController {
@@ -12,10 +11,9 @@ class CategoryController {
       const { name } = req.body;
       const { image } = req.files;
 
-      const fileName = createFileName(image);
-      image.mv(path.resolve(__dirname, '../../', 'static', fileName));
-
+      const fileName = moveFile(image);
       const category = await Category.create({ name, image: fileName });
+
       return res.json(category);
     }
     catch (e) {
@@ -32,11 +30,7 @@ class CategoryController {
   async deleteOne(req, res) {
     const { id } = req.query;
 
-    const category = await Category.destroy({
-      where: {
-        id
-      }
-    });
+    const category = await Category.destroy({ where: { id } });
 
     return res.json(category);
   }
