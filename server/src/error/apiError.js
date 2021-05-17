@@ -18,6 +18,10 @@ class ApiError extends Error {
   static forbidden(message) {
     return new ApiError(ERROR_CODES.FORBIDDEN, message);
   }
+
+  static createError(code, message) {
+    return new ApiError(code, message);
+  }
 }
 
 module.exports = ApiError;

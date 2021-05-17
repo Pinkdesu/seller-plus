@@ -7,6 +7,11 @@ const ApiError = require('../error/apiError');
 const { User } = require('../models');
 
 class UserController {
+  async getUserBhyEmail(email) {
+    const user = await User.findOne({ where: { email } });
+    return user;
+  }
+
   async registration(req, res, next) {
     const errors = validationResult(req);
 
@@ -16,7 +21,7 @@ class UserController {
 
     const { email, password, role = 1 } = req.body;
 
-    const candidate = await User.findOne({ where: { email } });
+    const candidate = this.getUserBhyEmail(email);
 
     if (candidate) {
       return next(ApiError.badRequest('The user is already registered'));
@@ -32,7 +37,7 @@ class UserController {
   async login(req, res, next) {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ where: { email } });
+    const user = this.getUserBhyEmail(email);
 
     if (!user) {
       return next(ApiError.badRequest('User not found'));

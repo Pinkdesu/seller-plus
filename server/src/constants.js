@@ -4,6 +4,12 @@ const ROLES = {
   ADMIN: 5
 };
 
+const PASSWORD_VALID = {
+  min: 8,
+  max: 40
+};
+
 module.exports = {
-  ROLES
+  ROLES,
+  PASSWORD_VALID
 };

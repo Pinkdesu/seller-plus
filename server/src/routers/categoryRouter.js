@@ -4,10 +4,11 @@ const router = new Router();
 const categoryController = require('../controllers/categoryController');
 
 const checkRole = require('../middleware/checkRoleMiddleware');
+const decodeToken = require('../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../constants');
 
-router.post('/', checkRole(ROLES.ADMIN), categoryController.create);
+router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], categoryController.create);
 router.get('/', categoryController.getAll);
-router.delete('/', checkRole(ROLES.ADMIN), categoryController.deleteOne);
+router.delete('/', [decodeToken, checkRole(ROLES.ADMIN)], categoryController.deleteOne);
 
 module.exports = router;

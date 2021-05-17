@@ -1,16 +1,17 @@
 const Router = require('express');
 
 const router = new Router();
-const { check } = require('express-validator');
+const { check, oneOf } = require('express-validator');
 const userController = require('../controllers/userController');
-const auth = require('../middleware/authMiddleware');
+const decodeToken = require('../middleware/decodeTokenMiddleware');
+const { PASSWORD_VALID } = require('../constants');
 
-router.post('/register', [
-  check('email', 'INCORRECT_EMAIL').normalizeEmail().isEmail(),
-  check('password', 'INCORRECT_PASSWORD').trim().isLength({ min: 8, max: 40 })
-], userController.registration);
+router.post('/register', oneOf([
+  check('email', 'INCORRECT_EMAIL').trim().isEmail(),
+  check('password', 'INCORRECT_PASSWORD').trim().isLength(PASSWORD_VALID)
+]), userController.registration);
 router.post('/login', userController.login);
 
-router.get('/auth', auth, userController.checkAuth);
+router.get('/auth', decodeToken, userController.checkAuth);
 
 module.exports = router;
