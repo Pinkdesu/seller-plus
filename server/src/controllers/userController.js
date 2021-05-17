@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator');
 const generateAccessToken = require('../utils/generateAccessToken');
 const ApiError = require('../error/apiError');
 const { User } = require('../models');
+const { ROLES } = require('../constants');
 
 class UserController {
   async getUserBhyEmail(email) {
@@ -19,7 +20,7 @@ class UserController {
       return next(ApiError.badRequest(errors));
     }
 
-    const { email, password, role = 1 } = req.body;
+    const { email, password } = req.body;
 
     const candidate = this.getUserBhyEmail(email);
 
@@ -28,10 +29,18 @@ class UserController {
     }
 
     const hashPassword = await bcrypt.hash(password, 5);
-    const user = await User.create({ email, password: hashPassword, role });
-    const token = generateAccessToken({ id: user.id, email, role });
+    const user = await User.create({
+      email,
+      password: hashPassword,
+      role: ROLES.USER
+    });
+    const token = generateAccessToken({
+      id: user.id,
+      role: ROLES.USER,
+      email
+    });
 
-    return res.json({ token });
+    return res.json({ token, isAuth: true });
   }
 
   async login(req, res, next) {
@@ -52,7 +61,7 @@ class UserController {
     const { id, role } = user;
     const token = generateAccessToken({ id, email, role });
 
-    return res.json({ token });
+    return res.json({ token, isAuth: true });
   }
 
   async checkAuth(req, res) {
