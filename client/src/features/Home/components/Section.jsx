@@ -19,6 +19,7 @@ const Section = (props) => {
       <S.SectionHeader>{locale(title)}</S.SectionHeader>
       <S.SectionContent>
         {data.map((card) => {
+          const isEmpty = card?.isEmpty;
           const title = checkLocalization(card?.title);
           const imageAlt = checkLocalization(card?.name ?? card?.title);
           const description = checkLocalization(
@@ -30,6 +31,7 @@ const Section = (props) => {
               key={card.id}
               title={title}
               image={card.image}
+              isEmpty={isEmpty}
               imageAlt={imageAlt}
               description={description}
               className={`${className}__card`}

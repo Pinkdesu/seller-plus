@@ -65,6 +65,11 @@ export const SLIDES_INFO = [
   },
 ];
 
+export const SERVICES = SLIDES_INFO.map((item) => ({
+  id: item.id,
+  isEmpty: true,
+}));
+
 export const ADVANTAGE_CARDS = [
   {
     id: 1,

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const commonTitleStyle = css`
   color: #ffffff;
@@ -8,6 +8,12 @@ const commonTitleStyle = css`
   padding: 0;
   text-align: center;
 `;
+
+const loadCard = keyframes`
+  50% {
+    box-shadow: 0 -200px 100px -100px #eeeeee inset;
+  }
+}`;
 
 export const SliderSection = styled.section`
   position: relative;
@@ -202,8 +208,15 @@ export const Card = styled.article`
   &.services-list__card {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25), 0 5px 7px rgba(0, 0, 0, 0.22);
     min-width: 300px;
+    min-height: 400px;
     cursor: pointer;
     padding: 0;
+
+    ${(props) =>
+      props.isEmpry &&
+      css`
+        animation: background 3s infinite alternate;
+      `}
 
     @media (min-width: 992px) {
       width: 48%;

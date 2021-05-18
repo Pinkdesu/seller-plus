@@ -35,17 +35,17 @@ class ServiceController {
   async getAll(req, res) {
     const services = await Service.findAll();
 
-    return res.json(services);
+    return res.json({ data: services });
   }
 
   async getOne(req, res) {
     const { id } = req.params;
 
-    const services = await Service.findOne({
+    const service = await Service.findOne({
       where: { id }
     });
 
-    return res.json(services);
+    return res.json({ data: service });
   }
 }
 
