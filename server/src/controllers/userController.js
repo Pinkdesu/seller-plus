@@ -8,11 +8,6 @@ const { User } = require('../models');
 const { ROLES } = require('../constants');
 
 class UserController {
-  async getUserBhyEmail(email) {
-    const user = await User.findOne({ where: { email } });
-    return user;
-  }
-
   async registration(req, res, next) {
     const errors = validationResult(req);
 
@@ -20,9 +15,9 @@ class UserController {
       return next(ApiError.badRequest(errors));
     }
 
-    const { email, password } = req.body;
+    const { email, password, role = ROLES.USER } = req.body;
 
-    const candidate = this.getUserBhyEmail(email);
+    const candidate = await User.findOne({ where: { email } });
 
     if (candidate) {
       return next(ApiError.badRequest('The user is already registered'));
@@ -31,12 +26,12 @@ class UserController {
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({
       email,
-      password: hashPassword,
-      role: ROLES.USER
+      role,
+      password: hashPassword
     });
     const token = generateAccessToken({
       id: user.id,
-      role: ROLES.USER,
+      role,
       email
     });
 
@@ -46,7 +41,7 @@ class UserController {
   async login(req, res, next) {
     const { email, password } = req.body;
 
-    const user = this.getUserBhyEmail(email);
+    const user = await User.findOne({ where: { email } });
 
     if (!user) {
       return next(ApiError.badRequest('User not found'));

@@ -7,7 +7,7 @@ module.exports = function checkRoleMiddleware(role) {
     }
 
     try {
-      if (req.user.role !== role) {
+      if (+req.user.role !== role) {
         res.status(ERROR_CODES.FORBIDDEN).json({ message: 'No access' });
       }
 

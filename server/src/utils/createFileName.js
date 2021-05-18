@@ -1,17 +1,10 @@
 const uuid = require('uuid');
 
 const createFileName = (image) => {
-  let fileName = uuid.v4();
+  const fileName = uuid.v4();
+  const fileType = image.mimetype.split('/')[1];
 
-  switch (image.mimetype) {
-    case 'image/png': {
-      fileName += '.png';
-      break;
-    }
-    default: fileName += '.jpg';
-  }
-
-  return fileName;
+  return `${fileName}.${fileType}`;
 };
 
 module.exports = createFileName;

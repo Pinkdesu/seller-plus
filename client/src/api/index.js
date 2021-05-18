@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { BASE_URL } from './constants';
+import { URL } from './constants';
 
 export const api = axios.create({
-  baseURL: BASE_URL || '/',
+  baseURL: URL('/api/'),
 });
 
 export const setToken = (token) => {

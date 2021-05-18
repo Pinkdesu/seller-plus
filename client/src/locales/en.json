@@ -4,6 +4,7 @@
    "personalAccount": "Personal account",
    "name": "Name",
    "login": "Login",
+   "advantages": "Advantages",
    "partners": "Partners",
    "password": "Password",
    "repeatPassword": "Repeat the password",
@@ -29,7 +30,10 @@
    "home.title.fastDelivery": "Fast delivery",
    "home.title.professionalService": "Professional service",
    "home.title.customerReviews": "Customer reviews",
-   "home.description": "Description for this",
+   "home.description.advantage1": "Materials are 20% cheaper. We work with suppliers directly and save your budget",
+   "home.description.advantage2": "Warranty of 1 year, contract, payment by card and fiscal receipt. It's official",
+   "home.description.advantage3": "We will arrive within 24 hours after the request or refund the money",
+   "home.description.advantage4": "We will select materials for your needs, take delivery on ourselves, provide a full video and photo report, and also advise you years after the request",
    "footer.companyDescriprion": "TyumenStroyGaz - sale of thermal equipment in Tyumen",
    "shop.popularProducts": "Popular products"
 }

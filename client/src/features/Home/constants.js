@@ -75,25 +75,25 @@ export const ADVANTAGE_CARDS = [
     id: 1,
     image: winner,
     title: 'home.title.favorablePrices',
-    description: 'home.description',
+    description: 'home.description.advantage1',
   },
   {
     id: 2,
     image: quality,
     title: 'home.title.qualityAssurance',
-    description: 'home.description',
+    description: 'home.description.advantage2',
   },
   {
     id: 3,
     image: delivery,
     title: 'home.title.fastDelivery',
-    description: 'home.description',
+    description: 'home.description.advantage3',
   },
   {
     id: 4,
     image: thumb,
     title: 'home.title.professionalService',
-    description: 'home.description',
+    description: 'home.description.advantage4',
   },
 ];
 

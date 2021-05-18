@@ -4,6 +4,7 @@
    "personalAccount": "Личный кабинет",
    "name": "Имя",
    "login": "Логин",
+   "advantages": "Преимущества",
    "partners": "Партнёры",
    "password": "Пароль",
    "repeatPassword": "Повторите пароль",
@@ -29,7 +30,10 @@
    "home.title.fastDelivery": "Быстрая доставка",
    "home.title.professionalService": "Профессиональный сервис",
    "home.title.customerReviews": "Отзывы клиентов",
-   "home.description": "Тут небольшое описание",
+   "home.description.advantage1": "Материалы дешевле на 20%. Работаем с поставщиками напрямую и экономим ваш бюджет",
+   "home.description.advantage2": "Гарантия от 1 года, договор, оплата по карте и фискальный чек. Всё официально",
+   "home.description.advantage3": "Приедем в течение 24 часов после обращения или вернем деньги",
+   "home.description.advantage4": "Подберем материалы под ваши нужды, возьмем доставку на себя, предоставим полный видео и фото отчет, а также проконсультируем спустя годы после обращения",
    "footer.companyDescriprion": "ТюменьСтройГаз - продажа теплового оборудования в Тюмени",
    "shop.popularProducts": "Популярные товары"
 }

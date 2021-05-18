@@ -1,14 +1,13 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { $servicesList } from '~/features/AppBootstrapp/model/store';
-import { getServices } from '~/features/AppBootstrapp/model/events';
 import SliderSection from './components/SliderSection';
 import Section from './components/Section';
 import { SLIDES_INFO, ADVANTAGE_CARDS, COMPANIES, REVIEWS } from './constants';
 
 const Home = () => {
   const services = useStore($servicesList);
-
+  console.log(services);
   return (
     <main>
       <SliderSection slides={SLIDES_INFO} />
@@ -20,7 +19,7 @@ const Home = () => {
       />
       <Section
         className="advantages-list"
-        title="services"
+        title="advantages"
         data={ADVANTAGE_CARDS}
         localize
       />
