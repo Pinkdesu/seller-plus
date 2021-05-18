@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import {
+  Product,
+  ProductPrice,
+  ProductNameBlock,
+} from '~/features/Product/elements';
 
 const rowContent = css`
   display: flex;
@@ -101,6 +106,18 @@ export const Products = styled.div`
   overflow-x: scroll;
   padding-bottom: 20px;
 
+  & > ${Product} {
+    flex: 1 0 180px;
+
+    & ${ProductNameBlock} {
+      height: 22px;
+    }
+
+    & ${ProductPrice} {
+      height: 20px;
+    }
+  }
+
   &::-webkit-scrollbar-track {
     background-color: #ffffff;
   }
@@ -113,46 +130,4 @@ export const Products = styled.div`
     background-color: #e0e0e0;
     border-radius: 5px;
   }
-`;
-
-export const Product = styled(Link)`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  flex: 0 0 160px;
-  height: 230px;
-
-  @media screen and (max-width: 1366px) {
-    flex: 0 0 140px;
-    height: 200px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    flex: 0 0 120px;
-    height: 180px;
-  }
-`;
-
-export const ProductImageThumb = styled.img`
-  width: 100%;
-  height: 70%;
-  margin-bottom: 10px;
-`;
-
-export const ProductName = styled.span`
-  text-align: center;
-  font-size: 14px;
-
-  & > u {
-    border-bottom: 1px solid #b5c1dc;
-    text-decoration: none;
-  }
-`;
-
-export const ProductPrice = styled.span`
-  font-size: 16px;
-  font-weight: 600;
-  color: #00000099;
 `;

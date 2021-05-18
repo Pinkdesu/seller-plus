@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
-import Product from './Product';
+import Product from '~/features/Product';
 import category1 from '~/assets/images/shop/category1.png';
 
 const PopularProducts = () => {

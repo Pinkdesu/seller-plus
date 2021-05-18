@@ -11,12 +11,7 @@ const Home = () => {
   return (
     <main>
       <SliderSection slides={SLIDES_INFO} />
-      <Section
-        className="services-list"
-        title="services"
-        data={services}
-        localize
-      />
+      <Section className="services-list" title="services" data={services} />
       <Section
         className="advantages-list"
         title="advantages"

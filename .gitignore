@@ -23,6 +23,7 @@
 /client/yarn-debug.log*
 /client/yarn-error.log*
 
+/server/static
 /server/npm-debug.log*
 /server/yarn-debug.log*
 /server/yarn-error.log*

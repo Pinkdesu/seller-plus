@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './elements';
 import SearchBar from '~/features/SearchBar';
 import Filters from '~/features/Filters';
-import Product from '~/features/Shop/components/Product';
+import Product from '~/features/Product';
 import category1 from '~/assets/images/shop/category1.png';
 
 const ShopCategory = () => {
