@@ -98,14 +98,14 @@ export const SliderWrapper = styled.div`
   }
 `;
 
-export const ArrowRight = styled.div`
-  display: inline-block;
+export const ArrowRight = styled.button`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
   right: 0;
+  cursor: pointer;
+  background: none;
   padding: 30px 15px 30px 40px;
+  transform: translateY(-50%);
 
   svg {
     width: 30px;

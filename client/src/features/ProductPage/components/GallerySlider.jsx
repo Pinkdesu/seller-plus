@@ -20,7 +20,7 @@ const GallerySlider = (props) => {
   });
 
   const toggleCurrentSlide = (slideNumber) => {
-    slider.moveToSlide(+slideNumber);
+    slider.moveToSlideRelative(+slideNumber, true);
   };
 
   const moveLeft = () => slider.prev();
