@@ -9,7 +9,7 @@ import 'keen-slider/keen-slider.min.css';
 const SliderSection = (props) => {
   const { slides } = props;
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(SLIDER_CONFIG.initial);
 
   const [sliderRef, slider] = useKeenSlider({
     ...SLIDER_CONFIG,
@@ -48,7 +48,7 @@ const SliderSection = (props) => {
   }, []);
 
   const goToSlide = useCallback(
-    (num) => () => slider.moveToSlideRelative(num),
+    (num) => () => slider.moveToSlideRelative(+num, true),
     [slider],
   );
 

@@ -10,7 +10,7 @@ const ProductPage = () => {
     <S.ProductPage>
       <S.ProductSection>
         <S.ProductLayout>
-          <GallerySlider images={[test, test, test]} />
+          <GallerySlider images={[test, test, test, test]} />
           <LayoutAside />
         </S.ProductLayout>
       </S.ProductSection>
