@@ -40,14 +40,14 @@ export const ProductImageThumb = styled.div`
     display: block;
     width: 100%;
     position: relative;
-    padding-top: 127.7778%;
+    padding-top: 100%;
   }
 `;
 
 export const ProductImage = styled.img`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
   top: 0;
 `;
 

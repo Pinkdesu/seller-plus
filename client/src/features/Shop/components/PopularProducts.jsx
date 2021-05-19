@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 import Product from '~/features/Product';
-import category1 from '~/assets/images/shop/category1.png';
+import product from '~/assets/images/shop/product.jpg';
 
 const PopularProducts = () => {
   const locale = useLocale();
@@ -17,7 +17,7 @@ const PopularProducts = () => {
           <Product
             key={index}
             id={index}
-            image={category1}
+            image={product}
             name="BAXI 100+ ULTRA"
             price="150000"
           />

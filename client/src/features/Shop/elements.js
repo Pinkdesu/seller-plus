@@ -104,17 +104,15 @@ export const Products = styled.div`
   flex-flow: row nowrap;
   gap: 20px;
   overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 20px;
 
   & > ${Product} {
-    flex: 1 0 180px;
+    flex: 1 0 200px;
 
-    & ${ProductNameBlock} {
+    & ${ProductNameBlock}, ${ProductPrice} {
       height: 22px;
-    }
-
-    & ${ProductPrice} {
-      height: 20px;
+      text-align: center;
     }
   }
 
