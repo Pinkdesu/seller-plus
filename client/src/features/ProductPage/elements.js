@@ -213,6 +213,11 @@ export const CountInput = styled.input`
   font-size: 16px;
   line-height: 24px;
   text-align: center;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 `;
 
 export const CountButton = styled.button`
