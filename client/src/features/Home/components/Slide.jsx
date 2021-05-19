@@ -9,10 +9,12 @@ const Slide = (props) => {
 
   return (
     <S.Slide className="keen-slider__slide" image={image}>
-      <S.TitleWrapper>
-        <S.Title>{locale(title)}</S.Title>
-        <S.Subtitle>{locale(subtitle)}</S.Subtitle>
-      </S.TitleWrapper>
+      {(title || subtitle) && (
+        <S.TitleWrapper>
+          <S.Title>{locale(title)}</S.Title>
+          <S.Subtitle>{locale(subtitle)}</S.Subtitle>
+        </S.TitleWrapper>
+      )}
     </S.Slide>
   );
 };

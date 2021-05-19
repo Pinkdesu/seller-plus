@@ -1,15 +1,22 @@
 import React from 'react';
-import ProductGallery from './components/ProductGallery';
 import * as S from './elements';
+import GallerySlider from './components/GallerySlider';
+import LayoutAside from './components/LayoutAside';
+import ProductDetails from './components/ProductDetails';
+import test from '~/assets/images/shop/test-prod.jpg';
 
 const ProductPage = () => {
   return (
     <S.ProductPage>
       <S.ProductSection>
         <S.ProductLayout>
-          <S.GalleryContent>
-            <ProductGallery />
-          </S.GalleryContent>
+          <GallerySlider images={[test, test, test]} />
+          <LayoutAside />
+        </S.ProductLayout>
+      </S.ProductSection>
+      <S.ProductSection>
+        <S.ProductLayout>
+          <ProductDetails />
         </S.ProductLayout>
       </S.ProductSection>
     </S.ProductPage>
