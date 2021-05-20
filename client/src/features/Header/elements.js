@@ -42,8 +42,9 @@ export const TopSideMenu = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 60px;
+  padding: 0 60px;
   width: 100%;
+  height: 74px;
   transform: translateY(${(props) => (props.hidden ? '-100%' : 0)});
 
   @media screen and (max-width: 992px) {
@@ -123,6 +124,17 @@ export const LogoBar = styled.div`
   }
 `;
 
+export const IconLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+export const IconButton = styled.button`
+  position: relative;
+  background: none;
+  padding: 0;
+`;
+
 export const NavBar = styled.nav`
   display: flex;
   flex-flow: column nowrap;
@@ -133,19 +145,26 @@ export const NavBar = styled.nav`
     flex-flow: row nowrap;
     flex-basis: 180px;
     justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+
+    &:last-child {
+      gap: 10px;
+
+      & ${IconLink}, ${IconButton} {
+        height: 100%;
+        width: 58px;
+      }
+    }
   }
 `;
 
-export const IconLink = styled(Link)`
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   position: relative;
-  padding: 0 10px;
-  cursor: pointer;
-  margin-right: 15px;
-  font-size: 0;
-
-  &:last-child {
-    margin-right: 0;
-  }
 
   .icon {
     font-size: 0;
@@ -168,14 +187,257 @@ export const IconLink = styled(Link)`
     position: absolute;
     width: 20px;
     height: 20px;
-    bottom: -10px;
-    right: -2px;
+    bottom: 12px;
+    right: 2px;
     font-size: 12px;
     font-weight: 600;
     border-radius: 50%;
     color: #2f4c78;
     background-color: #ffffff;
   }
+`;
+
+export const CartMenuWrapper = styled.div`
+  position: absolute;
+  overflow: hidden;
+  top: 64px;
+  left: -268px;
+  width: 325px;
+  transition: max-height 0.6s;
+  transition-delay: 0.25s;
+  max-height: ${(props) => (props.open ? '100vh' : 0)};
+
+  &::before {
+    content: '';
+    left: 285px;
+    opacity: ${(props) => (props.open ? 1 : 0)};
+    width: 0;
+    position: absolute;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 11px solid #eee;
+    top: 0;
+    right: 0;
+    transition: opacity 0.6s;
+    transition-delay: 0.25s;
+  }
+`;
+
+export const CartMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  right: 0;
+  top: 10px;
+`;
+
+export const CartMenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 255px;
+  max-height: calc(100vh - 200px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: -2px 2px 4px 0 rgb(45 45 45 / 14%);
+  transform: ${(props) =>
+    props.open ? 'translateY(0)' : 'translateY(calc(-100% - 5px))'};
+  transition: transform 0.6s;
+  transition-delay: 0.25s;
+`;
+
+export const MenuTopSide = styled.div`
+  display: flex;
+  z-index: 1;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: #eeeeee;
+  height: 50px;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const TopSideText = styled.div`
+  font-size: 16px;
+  color: #2d2d2d;
+  flex-direction: column;
+  align-self: center;
+  padding-left: 1em;
+
+  & > span:first-child {
+    font-weight: 900;
+    margin-right: 1ex;
+  }
+`;
+
+export const TopSideCloseButton = styled.button`
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+
+  & > span {
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0 6px;
+
+    svg {
+      fill: #2d2d2d;
+      width: 1em;
+      height: 1em;
+    }
+  }
+`;
+
+export const ProductsList = styled.ul`
+  background-color: #fff;
+  overflow: auto;
+  flex-shrink: 1;
+`;
+
+export const ProductItem = styled.li`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0);
+  transition: transform 0.2s, height 0.2s;
+  transition-delay: 2.3s;
+`;
+
+export const ProductContent = styled.div`
+  position: relative;
+  border-top: none;
+  margin: 0 1em;
+  /*border-top: 1px solid #eee;*/
+`;
+
+export const ProductLink = styled(Link)`
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  flex-direction: row;
+  line-height: 2.14;
+  color: #666;
+  font-size: 0.875rem;
+  letter-spacing: 0.4px;
+
+  & > img {
+    margin-right: 1em;
+    width: 109px;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+`;
+
+export const ProductInfo = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1.2em;
+  width: 100%;
+`;
+
+export const ProductPrice = styled.dd`
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 20px;
+  color: #2d2d2d;
+  margin-bottom: 3px;
+`;
+
+export const ProductName = styled(ProductPrice)`
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25em;
+  color: #666;
+`;
+
+export const ProductCount = styled(ProductName)``;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  right: -0.5rem;
+  border: none;
+  bottom: 0;
+  background: none;
+
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+`;
+
+export const MenuBottomSide = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  flex-shrink: 1;
+  background-color: #eeeeee;
+  font-size: 1rem;
+  width: 100%;
+`;
+
+export const MoneySum = styled.div`
+  background-color: #f8f8f8;
+  box-shadow: 0 -2px 3px 0 hsl(0deg 0% 60% / 20%);
+  box-sizing: border-box;
+  color: #2d2d2d;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  width: 100%;
+  height: 50px;
+
+  h1 {
+    margin: 0;
+    font-size: 1rem;
+  }
+`;
+
+export const MenuLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0;
+  font-size: 0.875rem;
+  border: 2px solid #ddd;
+  box-sizing: border-box;
+  height: 44px;
+  letter-spacing: 0.8px;
+  line-height: 17px;
+  padding: 3px 12px;
+  background-color: #4a6ba0;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-decoration: none;
+
+  span {
+    width: 100%;
+  }
+
+  &:first-child {
+    background-color: #fff;
+    border-color: #ddd;
+    color: #2d2d2d;
+  }
+`;
+
+export const ActionLinks = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center;
+  gap: 10px;
+  color: #2d2d2d;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-top: 1px solid #ddd;
+  height: 70px;
 `;
 
 export const ActiveLink = styled(NavLink)`
