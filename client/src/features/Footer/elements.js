@@ -10,10 +10,14 @@ const flexColumn = css`
 
 export const Footer = styled.footer`
   padding: 40px 30px 30px 30px;
-  background-color: #121b2c;
+  background-color: ${({ theme }) => theme.blue6};
 
   @media (min-width: 992px) {
     padding: 40px 25% 20px 25%;
+  }
+
+  * {
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -52,7 +56,6 @@ export const FooterBottomSide = styled.div`
     font-size: 14px;
     margin: 0;
     margin-bottom: 8px;
-    color: #ffffff;
 
     &:last-child {
       margin-bottom: 0;
@@ -76,7 +79,7 @@ export const SocialNetwor = styled(Link)`
     width: 50px;
     height: 50px;
     height: 100%;
-    fill: #ffffff;
+    fill: ${({ theme }) => theme.white};
   }
 `;
 
@@ -84,7 +87,6 @@ export const Info = styled.div`
   display: flex;
   flex-flow: column nowrap;
   padding: 0 20px;
-  color: #ffffff;
 
   & > p {
     font-size: 20px;
@@ -105,7 +107,6 @@ export const Info = styled.div`
 
     a {
       text-decoration: none;
-      color: #ffffff;
     }
   }
 `;

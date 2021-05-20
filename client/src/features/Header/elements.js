@@ -17,7 +17,7 @@ const lineStyle = css`
   width: 100%;
   height: 3px;
   border-radius: 10px;
-  background-color: #c7cee1;
+  background-color: ${({ theme }) => theme.blue1};
   transition: all 0.35s ease-in-out;
 `;
 
@@ -172,10 +172,10 @@ export const IconWrapper = styled.div`
     svg {
       width: 26px;
       height: 26px;
-      fill: #ffffffd9;
+      fill: ${({ theme }) => theme.white1};
 
       &:hover {
-        fill: #ffffff;
+        fill: ${({ theme }) => theme.white};
       }
     }
   }
@@ -192,8 +192,8 @@ export const IconWrapper = styled.div`
     font-size: 12px;
     font-weight: 600;
     border-radius: 50%;
-    color: #2f4c78;
-    background-color: #ffffff;
+    color: ${({ theme }) => theme.blue4};
+    background-color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -226,12 +226,17 @@ export const CartMenuWrapper = styled.div`
 export const CartMenu = styled.div`
   display: flex;
   flex-direction: column;
-  left: 0;
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
+  left: 0;
   right: 0;
   top: 10px;
+
+  * {
+    font-size: 14px;
+    color: ${({ theme }) => theme.black3};
+  }
 `;
 
 export const CartMenuContent = styled.div`
@@ -239,29 +244,25 @@ export const CartMenuContent = styled.div`
   flex-direction: column;
   min-height: 255px;
   max-height: calc(100vh - 200px);
-  background-color: #fff;
-  border: 1px solid #ddd;
   box-shadow: -2px 2px 4px 0 rgb(45 45 45 / 14%);
   transform: ${(props) =>
     props.open ? 'translateY(0)' : 'translateY(calc(-100% - 5px))'};
   transition: transform 0.6s;
   transition-delay: 0.25s;
+  background-color: ${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.gray2};
 `;
 
 export const MenuTopSide = styled.div`
   display: flex;
-  z-index: 1;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  background-color: #eeeeee;
-  height: 50px;
   justify-content: space-between;
+  background-color: ${({ theme }) => theme.gray1};
+  height: 50px;
   width: 100%;
 `;
 
 export const TopSideText = styled.div`
   font-size: 16px;
-  color: #2d2d2d;
   flex-direction: column;
   align-self: center;
   padding-left: 1em;
@@ -284,7 +285,7 @@ export const TopSideCloseButton = styled.button`
     padding: 0 6px;
 
     svg {
-      fill: #2d2d2d;
+      fill: ${({ theme }) => theme.black3};
       width: 1em;
       height: 1em;
     }
@@ -292,9 +293,8 @@ export const TopSideCloseButton = styled.button`
 `;
 
 export const ProductsList = styled.ul`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.white};
   overflow: auto;
-  flex-shrink: 1;
 `;
 
 export const ProductItem = styled.li`
@@ -319,7 +319,7 @@ export const ProductLink = styled(Link)`
   text-decoration: none;
   flex-direction: row;
   line-height: 2.14;
-  color: #666;
+  color: ${({ theme }) => theme.black2};
   font-size: 0.875rem;
   letter-spacing: 0.4px;
 
@@ -339,20 +339,19 @@ export const ProductInfo = styled.div`
 `;
 
 export const ProductPrice = styled.dd`
+  width: 100%;
   margin: 0;
-  font-size: 14px;
   font-weight: 900;
   line-height: 20px;
-  color: #2d2d2d;
   margin-bottom: 3px;
+  text-align: left;
 `;
 
 export const ProductName = styled(ProductPrice)`
-  width: 100%;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.25em;
-  color: #666;
+  color: ${({ theme }) => theme.black2};
 `;
 
 export const ProductCount = styled(ProductName)``;
@@ -373,17 +372,15 @@ export const DeleteButton = styled.button`
 export const MenuBottomSide = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  flex-shrink: 1;
-  background-color: #eeeeee;
+  background-color: ${({ theme }) => theme.gray1};
   font-size: 1rem;
   width: 100%;
 `;
 
 export const MoneySum = styled.div`
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.gray3};
   box-shadow: 0 -2px 3px 0 hsl(0deg 0% 60% / 20%);
   box-sizing: border-box;
-  color: #2d2d2d;
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -402,26 +399,29 @@ export const MenuLink = styled(Link)`
   align-items: center;
   flex: 1 0;
   font-size: 0.875rem;
-  border: 2px solid #ddd;
+  border: 2px solid ${({ theme }) => theme.gray2};
   box-sizing: border-box;
   height: 44px;
   letter-spacing: 0.8px;
   line-height: 17px;
   padding: 3px 12px;
-  background-color: #4a6ba0;
-  color: #ffffff;
+  background-color: ${({ theme }) => theme.blue3};
   text-transform: uppercase;
   font-weight: 900;
   text-decoration: none;
 
   span {
     width: 100%;
+    color: ${({ theme }) => theme.white};
   }
 
   &:first-child {
-    background-color: #fff;
-    border-color: #ddd;
-    color: #2d2d2d;
+    background-color: ${({ theme }) => theme.white};
+    border-color: ${({ theme }) => theme.gray2};
+
+    span {
+      color: ${({ theme }) => theme.white};
+    }
   }
 `;
 
@@ -431,12 +431,12 @@ export const ActionLinks = styled.div`
   align-self: flex-end;
   justify-content: center;
   gap: 10px;
-  color: #2d2d2d;
+  color: ${({ theme }) => theme.black3};
   text-align: center;
   width: 100%;
   box-sizing: border-box;
   padding: 12px 16px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid ${({ theme }) => theme.gray2};
   height: 70px;
 `;
 
@@ -445,9 +445,9 @@ export const ActiveLink = styled(NavLink)`
   padding: 20px 0;
   font-size: 20px;
   text-align: left;
-  color: #ffffff99;
+  color: ${({ theme }) => theme.white1};
   border-style: solid;
-  border-color: #ffffff99;
+  border-color: ${({ theme }) => theme.white1};
   border-width: 0 0 1px 0;
   text-decoration: none;
   text-transform: uppercase;
@@ -455,7 +455,7 @@ export const ActiveLink = styled(NavLink)`
   white-space: nowrap;
 
   &.active {
-    color: #ffffff;
+    color: ${({ theme }) => theme.white};
   }
 
   &:last-child {

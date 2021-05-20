@@ -20,5 +20,6 @@ export const Shadow = styled.div`
   z-index: 900;
   transition: background-color 0.35s ease-in-out;
   display: ${(props) => (props.visible ? 'block' : 'none')};
-  background-color: ${(props) => (props.visible ? '#00000099' : '#00000000')};
+  background-color: ${({ theme }) => theme.black};
+  opacity: ${(props) => (props.visible ? 0.5 : 0)};
 `;
