@@ -198,15 +198,20 @@ export const LinkAlert = styled.span`
   background-color: ${({ theme }) => theme.white};
 `;
 
+const menuTransitionConfig = css`
+  transition-duration: 0.4s;
+  transition-delay: 0.1s;
+`;
+
 export const CartMenuWrapper = styled.div`
   position: absolute;
   overflow: hidden;
   top: 64px;
   left: -270px;
   width: 325px;
-  transition: max-height 0.6s;
-  transition-delay: 0.25s;
   max-height: ${(props) => (props.open ? '100vh' : 0)};
+  transition-property: max-height;
+  ${menuTransitionConfig}
 
   &::before {
     content: '';
@@ -219,8 +224,8 @@ export const CartMenuWrapper = styled.div`
     border-bottom: 11px solid #eee;
     top: 0;
     right: 0;
-    transition: opacity 0.6s;
-    transition-delay: 0.25s;
+    transition-property: opacity;
+    ${menuTransitionConfig}
   }
 `;
 
@@ -248,10 +253,10 @@ export const CartMenuContent = styled.div`
   box-shadow: -2px 2px 4px 0 rgb(45 45 45 / 14%);
   transform: ${(props) =>
     props.open ? 'translateY(0)' : 'translateY(calc(-100% - 5px))'};
-  transition: transform 0.6s;
-  transition-delay: 0.25s;
   background-color: ${({ theme }) => theme.white};
   border: 1px solid ${({ theme }) => theme.gray2};
+  transition-property: transform;
+  ${menuTransitionConfig}
 `;
 
 export const MenuTopSide = styled.div`

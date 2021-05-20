@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { loadingAnimation } from '~/assets/css/animation';
+import { loadingAnimation } from '~/assets/style/animation';
 
 export const ProductPage = styled.main`
   margin-top: 150px;
