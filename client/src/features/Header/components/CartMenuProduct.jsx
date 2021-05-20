@@ -7,7 +7,7 @@ const CartMenuProduct = () => {
   return (
     <S.ProductItem>
       <S.ProductContent>
-        <S.ProductLink>
+        <S.ProductLink to="/">
           <img src={test} alt="p" />
           <S.ProductInfo>
             <S.ProductPrice>123321 rub</S.ProductPrice>

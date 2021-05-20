@@ -28,23 +28,23 @@ const TopSideMenu = (props) => {
         <NavItem path="/service" text={locale('services')} />
       </S.NavBar>
       <S.NavBar>
-        <S.IconButton onClick={toggleMenu}>
-          <S.IconWrapper>
-            <span className="icon">
+        <S.NavItem>
+          <S.IconButton onClick={toggleMenu}>
+            <S.LinkIcon>
               <CartSVG />
-            </span>
-            <span className="alert">22</span>
-          </S.IconWrapper>
+            </S.LinkIcon>
+            <S.LinkAlert>22</S.LinkAlert>
+          </S.IconButton>
           <CartMenu open={isMenuOpen} closeMenu={toggleMenu} />
-        </S.IconButton>
-        <S.IconLink to="account">
-          <S.IconWrapper>
-            <span className="icon">
+        </S.NavItem>
+        <S.NavItem>
+          <S.IconLink to="/">
+            <S.LinkIcon>
               <UserSVG />
-            </span>
-            <span className="alert">!</span>
-          </S.IconWrapper>
-        </S.IconLink>
+            </S.LinkIcon>
+            <S.LinkAlert>!</S.LinkAlert>
+          </S.IconLink>
+        </S.NavItem>
       </S.NavBar>
     </S.TopSideMenu>
   );

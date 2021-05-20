@@ -124,17 +124,6 @@ export const LogoBar = styled.div`
   }
 `;
 
-export const IconLink = styled(Link)`
-  cursor: pointer;
-  text-decoration: none;
-`;
-
-export const IconButton = styled.button`
-  position: relative;
-  background: none;
-  padding: 0;
-`;
-
 export const NavBar = styled.nav`
   display: flex;
   flex-flow: column nowrap;
@@ -150,58 +139,70 @@ export const NavBar = styled.nav`
 
     &:last-child {
       gap: 10px;
-
-      & ${IconLink}, ${IconButton} {
-        height: 100%;
-        width: 58px;
-      }
     }
   }
 `;
 
-export const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+export const IconLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+export const IconButton = styled.button`
+  background: none;
+  padding: 0;
+`;
+
+export const NavItem = styled.div`
   position: relative;
+  height: 100%;
+  width: 58px;
 
-  .icon {
-    font-size: 0;
+  & ${IconLink}, ${IconButton} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+`;
 
-    svg {
-      width: 26px;
-      height: 26px;
-      fill: ${({ theme }) => theme.white1};
+export const LinkIcon = styled.span`
+  font-size: 0;
 
-      &:hover {
-        fill: ${({ theme }) => theme.white};
-      }
+  svg {
+    width: 26px;
+    height: 26px;
+    fill: ${({ theme }) => theme.white1};
+
+    &:hover {
+      fill: ${({ theme }) => theme.white};
     }
   }
+`;
 
-  .alert {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    bottom: 12px;
-    right: 2px;
-    font-size: 12px;
-    font-weight: 600;
-    border-radius: 50%;
-    color: ${({ theme }) => theme.blue4};
-    background-color: ${({ theme }) => theme.white};
-  }
+export const LinkAlert = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 12px;
+  right: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.blue4};
+  background-color: ${({ theme }) => theme.white};
 `;
 
 export const CartMenuWrapper = styled.div`
   position: absolute;
   overflow: hidden;
   top: 64px;
-  left: -268px;
+  left: -270px;
   width: 325px;
   transition: max-height 0.6s;
   transition-delay: 0.25s;

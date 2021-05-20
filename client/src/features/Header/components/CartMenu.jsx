@@ -30,10 +30,10 @@ const CartMenu = (props) => {
               <span>12323</span>
             </S.MoneySum>
             <S.ActionLinks>
-              <S.MenuLink>
+              <S.MenuLink to="/">
                 <span>Посмотреть корзину</span>
               </S.MenuLink>
-              <S.MenuLink>
+              <S.MenuLink to="/">
                 <span>Оформить заказ</span>
               </S.MenuLink>
             </S.ActionLinks>
