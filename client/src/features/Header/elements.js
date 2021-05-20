@@ -420,7 +420,7 @@ export const MenuLink = styled(Link)`
     border-color: ${({ theme }) => theme.gray2};
 
     span {
-      color: ${({ theme }) => theme.white};
+      color: ${({ theme }) => theme.black3};
     }
   }
 `;
