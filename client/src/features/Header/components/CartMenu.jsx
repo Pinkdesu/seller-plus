@@ -3,7 +3,7 @@ import { useLocale } from '~/utils/useLocale';
 import { useClickOutside } from '~/utils/useClickOutside';
 import pluralize from '~/utils/pluralize';
 import * as S from '../elements';
-import CartMenuProduct from './CartMenuProduct';
+import CartProduct from './CartProduct';
 import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
 const CartMenu = (props) => {
@@ -36,7 +36,8 @@ const CartMenu = (props) => {
             </S.TopSideCloseButton>
           </S.MenuTopSide>
           <S.ProductsList>
-            <CartMenuProduct />
+            <CartProduct />
+            <CartProduct />
           </S.ProductsList>
           <S.MenuBottomSide>
             <S.MoneySum>

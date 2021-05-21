@@ -29,7 +29,7 @@
    "product": "товар",
    "product1": "товара",
    "product2": "товаров",
-   "totalPrice": "Всего",
+   "totalPrice": "Всего: ${sum}",
    "viewShoppingCart": "Посмотреть корзину",
    "placeOrder": "Оформить заказ",
    "addToBasket": "Добавить",

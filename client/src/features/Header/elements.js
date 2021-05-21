@@ -303,6 +303,13 @@ export const ProductsList = styled.ul`
   overflow: auto;
 `;
 
+export const ProductContent = styled.div`
+  position: relative;
+  border-top: none;
+  margin: 0 1em;
+  padding: 1em 0;
+`;
+
 export const ProductItem = styled.li`
   overflow: hidden;
   width: 100%;
@@ -310,13 +317,14 @@ export const ProductItem = styled.li`
   transform: translateY(0);
   transition: transform 0.2s, height 0.2s;
   transition-delay: 2.3s;
-`;
 
-export const ProductContent = styled.div`
-  position: relative;
-  border-top: none;
-  margin: 0 1em;
-  /*border-top: 1px solid #eee;*/
+  & ${ProductContent} {
+    border-top: 1px solid ${({ theme }) => theme.gray1};
+  }
+
+  &:first-child ${ProductContent} {
+    border-top: none;
+  }
 `;
 
 export const ProductLink = styled(Link)`
@@ -366,7 +374,7 @@ export const DeleteButton = styled.button`
   position: absolute;
   right: -0.5rem;
   border: none;
-  bottom: 0;
+  bottom: 1em;
   background: none;
 
   svg {
