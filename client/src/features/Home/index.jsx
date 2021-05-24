@@ -7,7 +7,7 @@ import { SLIDES_INFO, ADVANTAGE_CARDS, COMPANIES, REVIEWS } from './constants';
 
 const Home = () => {
   const services = useStore($servicesList);
-  console.log(services);
+
   return (
     <main>
       <SliderSection slides={SLIDES_INFO} />

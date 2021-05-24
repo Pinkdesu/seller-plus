@@ -8,7 +8,7 @@ const User = sequelize.define('user', {
   secondName: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING },
   phone: { type: DataTypes.STRING },
-  role: { type: DataTypes.STRING, defaultValue: 1 }
+  role: { type: DataTypes.INTEGER, defaultValue: 1 }
 });
 
 const Service = sequelize.define('service', {

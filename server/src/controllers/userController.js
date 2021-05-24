@@ -15,7 +15,9 @@ class UserController {
       return next(ApiError.badRequest(errors));
     }
 
-    const { email, password, role = ROLES.USER } = req.body;
+    const {
+      email, password, firstName, secondName, role = ROLES.USER
+    } = req.body;
 
     const candidate = await User.findOne({ where: { email } });
 
@@ -25,10 +27,13 @@ class UserController {
 
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({
-      email,
       role,
+      email,
+      firstName,
+      secondName,
       password: hashPassword
     });
+
     const token = generateAccessToken({
       id: user.id,
       role,
@@ -39,24 +44,49 @@ class UserController {
   }
 
   async login(req, res, next) {
-    const { email, password } = req.body;
+    try {
+      const errors = validationResult(req);
 
-    const user = await User.findOne({ where: { email } });
+      if (errors.length) {
+        throw new Error(errors);
+      }
 
-    if (!user) {
-      return next(ApiError.badRequest('User not found'));
+      const { email, password } = req.body.data;
+
+      const user = await User.findOne({ where: { email } });
+
+      if (!user) {
+        return next(ApiError.badRequest('User not found'));
+      }
+
+      const validPassword = bcrypt.compareSync(password, user.password);
+
+      if (!validPassword) {
+        return next(ApiError.badRequest('Invalid password'));
+      }
+
+      const {
+        id,
+        role,
+        phone,
+        firstName,
+        secondName
+      } = user;
+
+      const token = generateAccessToken({ id, email, role });
+
+      return res.json({
+        data: {
+          user: {
+            id, role, firstName, secondName, phone
+          },
+          token
+        }
+      });
     }
-
-    const validPassword = bcrypt.compareSync(password, user.password);
-
-    if (!validPassword) {
-      return next(ApiError.badRequest('Invalid password'));
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
     }
-
-    const { id, role } = user;
-    const token = generateAccessToken({ id, email, role });
-
-    return res.json({ token, isAuth: true });
   }
 
   async checkAuth(req, res) {
