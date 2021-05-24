@@ -1,5 +1,7 @@
 import React, { memo, useState } from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useStore } from 'effector-react';
+import { $user } from '~/features/AppBootstrapp/model/store';
 import * as S from '../elements';
 import NavItem from './NavItem';
 import LogoBar from './LogoBar';
@@ -10,6 +12,7 @@ import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.
 
 const TopSideMenu = (props) => {
   const locale = useLocale();
+  const { isAuth } = useStore($user);
 
   const { hidden } = props;
 
@@ -18,6 +21,8 @@ const TopSideMenu = (props) => {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
+  const accountPath = isAuth ? '/account' : '/account/login';
 
   return (
     <S.TopSideMenu hidden={hidden}>
@@ -38,7 +43,7 @@ const TopSideMenu = (props) => {
           <CartMenu open={isMenuOpen} closeMenu={toggleMenu} />
         </S.NavItem>
         <S.NavItem>
-          <S.IconLink to="/">
+          <S.IconLink to={accountPath}>
             <S.LinkIcon>
               <UserSVG />
             </S.LinkIcon>
