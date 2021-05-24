@@ -9,36 +9,49 @@ const { ROLES } = require('../constants');
 
 class UserController {
   async registration(req, res, next) {
-    const errors = validationResult(req);
+    try {
+      const errors = validationResult(req);
 
-    if (errors.length) {
-      return next(ApiError.badRequest(errors));
+      if (errors.length) {
+        return next(ApiError.badRequest(errors));
+      }
+
+      const {
+        email,
+        firstName,
+        secondName,
+        password,
+        repeatPassword
+      } = req.body.data;
+
+      const candidate = await User.findOne({ where: { email } });
+
+      if (candidate) {
+        return next(ApiError.badRequest('The user is already registered'));
+      }
+
+      if (password !== repeatPassword) {
+        return next(ApiError.badRequest('Passwords do not match'));
+      }
+
+      const hashPassword = await bcrypt.hash(password, 5);
+
+      const user = await User.create({
+        email,
+        firstName,
+        secondName,
+        role: ROLES.USER,
+        password: hashPassword
+      });
+
+      const { password: _, ...userData } = user.dataValues;
+      const token = generateAccessToken(userData);
+
+      return res.json({ token });
     }
-
-    const {
-      email, password, firstName, secondName, role = ROLES.USER
-    } = req.body;
-
-    const candidate = await User.findOne({ raw: true, where: { email } });
-
-    if (candidate) {
-      return next(ApiError.badRequest('The user is already registered'));
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
     }
-
-    const hashPassword = await bcrypt.hash(password, 5);
-
-    const user = await User.create({
-      role,
-      email,
-      firstName,
-      secondName,
-      password: hashPassword
-    });
-
-    const { password: _, ...userData } = user.getDataValue();
-    const token = generateAccessToken(userData);
-
-    return res.json({ token });
   }
 
   async login(req, res, next) {

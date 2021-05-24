@@ -8,7 +8,8 @@ const { PASSWORD_VALID } = require('../constants');
 
 router.post('/register', [
   check('email', 'INCORRECT_EMAIL').trim().isEmail(),
-  check('password', 'INCORRECT_PASSWORD').trim().isLength(PASSWORD_VALID)
+  check('password', 'INCORRECT_PASSWORD').trim().isLength(PASSWORD_VALID),
+  check('repeatPassword', 'INCORRECT_PASSWORD').trim().isLength(PASSWORD_VALID)
 ], userController.registration);
 router.post('/login', userController.login);
 

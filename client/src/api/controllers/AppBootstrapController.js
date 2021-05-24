@@ -14,6 +14,11 @@ export class AppBootstrapController {
     return api.get('/user/auth');
   };
 
+  static register = (payload) =>
+    api.post('/user/register', {
+      data: payload,
+    });
+
   static init = () =>
     Promise.all([this.checkAuth(), this.getServices()]).then((data) =>
       data.reduce(

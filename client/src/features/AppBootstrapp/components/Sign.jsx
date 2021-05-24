@@ -2,6 +2,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { $user } from '../model/store';
+import PrivateRoute from './PrivateRoute';
 import DefaultView from '~/features/DefaultView';
 import Home from '~/features/Home';
 import Shop from '~/features/Shop';
@@ -25,14 +26,29 @@ const Sign = () => {
         <Route path="/shop" component={Shop} exact />
         <Route path="/shop/category/:id" component={CategoryPage} exact />
         <Route path="/shop/product/:id" component={ProductPage} exact />
-        {isAuth ? (
-          <Route path="/account" component={Account} exact />
-        ) : (
-          <Route>
-            <Route path="/account/login" component={Login} exact />
-            <Route path="/account/register" component={Register} exact />
-          </Route>
-        )}
+
+        <PrivateRoute
+          path="/account"
+          redirectTo="/account/login"
+          component={Account}
+          authed={isAuth}
+          exact
+        />
+        <PrivateRoute
+          path="/account/login"
+          redirectTo="/account"
+          component={Login}
+          authed={!isAuth}
+          exact
+        />
+        <PrivateRoute
+          path="/account/register"
+          redirectTo="/account"
+          component={Register}
+          authed={!isAuth}
+          exact
+        />
+
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

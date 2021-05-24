@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useLocation } from 'react-router';
 import * as S from '../elements';
@@ -20,4 +20,4 @@ const Options = () => {
   );
 };
 
-export default Options;
+export default memo(Options);

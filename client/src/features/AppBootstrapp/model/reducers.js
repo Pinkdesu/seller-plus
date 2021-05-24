@@ -3,7 +3,8 @@ import jwtDecode from 'jwt-decode';
 import { LOCAL_STORAGE_TOKENS_KEY } from '~/api/constants';
 
 export const setUserData = (_, { result }) => {
-  const { token } = result;
+  const token = result?.token || result.data.token;
+
   const user = jwtDecode(token);
   ls(LOCAL_STORAGE_TOKENS_KEY, token);
 
