@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { getServices } from './model/events';
+import { init } from './model/events';
 import Sign from './components/Sign';
 
 const AppBootstrap = () => {
   useEffect(() => {
-    getServices();
+    init();
   }, []);
 
   return <Sign />;

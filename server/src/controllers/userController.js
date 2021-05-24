@@ -19,13 +19,14 @@ class UserController {
       email, password, firstName, secondName, role = ROLES.USER
     } = req.body;
 
-    const candidate = await User.findOne({ where: { email } });
+    const candidate = await User.findOne({ raw: true, where: { email } });
 
     if (candidate) {
       return next(ApiError.badRequest('The user is already registered'));
     }
 
     const hashPassword = await bcrypt.hash(password, 5);
+
     const user = await User.create({
       role,
       email,
@@ -34,13 +35,10 @@ class UserController {
       password: hashPassword
     });
 
-    const token = generateAccessToken({
-      id: user.id,
-      role,
-      email
-    });
+    const { password: _, ...userData } = user.getDataValue();
+    const token = generateAccessToken(userData);
 
-    return res.json({ token, isAuth: true });
+    return res.json({ token });
   }
 
   async login(req, res, next) {
@@ -53,7 +51,7 @@ class UserController {
 
       const { email, password } = req.body.data;
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ raw: true, where: { email } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
@@ -65,35 +63,25 @@ class UserController {
         return next(ApiError.badRequest('Invalid password'));
       }
 
-      const {
-        id,
-        role,
-        phone,
-        firstName,
-        secondName
-      } = user;
+      const { password: _, ...userData } = user;
+      const token = generateAccessToken(userData);
 
-      const token = generateAccessToken({ id, email, role });
-
-      return res.json({
-        data: {
-          user: {
-            id, role, firstName, secondName, phone
-          },
-          token
-        }
-      });
+      return res.json({ token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
     }
   }
 
-  async checkAuth(req, res) {
-    const { id, email, role } = req.user;
-    const token = generateAccessToken({ id, email, role });
-
-    return res.json({ token });
+  async checkAuth(req, res, next) {
+    try {
+      const { exp, iat, ...userData } = req.user;
+      const token = generateAccessToken(userData);
+      return res.json({ token });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
   }
 }
 

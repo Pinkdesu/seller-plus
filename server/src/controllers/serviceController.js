@@ -17,15 +17,17 @@ class ServiceController {
       const { image } = req.files;
 
       const fileName = moveFile(image);
+      const url = `${req.protocol}://${req.get('host')}/${fileName}`;
+
       const service = await Service.create({
-        image: fileName,
+        image: url,
         name,
         price,
         title,
         description
       });
 
-      return res.json(service);
+      return res.json({ service });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -35,7 +37,7 @@ class ServiceController {
   async getAll(req, res) {
     const services = await Service.findAll();
 
-    return res.json({ data: services });
+    return res.json({ services });
   }
 
   async getOne(req, res) {
@@ -45,7 +47,7 @@ class ServiceController {
       where: { id }
     });
 
-    return res.json({ data: service });
+    return res.json({ service });
   }
 }
 
