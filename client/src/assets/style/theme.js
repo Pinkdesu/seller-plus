@@ -14,8 +14,11 @@ export const THEME = {
   black1: '#2f4c78',
   black2: '#666666',
   black3: '#2d2d2d',
+  black4: '#222222',
 
   gray1: '#eeeeee',
   gray2: '#dddddd',
   gray3: '#f8f8f8',
+  gray4: '#767676',
+  gray5: '#f1f1f1',
 };

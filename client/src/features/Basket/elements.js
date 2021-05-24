@@ -20,6 +20,7 @@ const headerStyle = css`
 `;
 
 export const BasketMain = styled(ProductPage)`
+  min-height: 100vh;
   margin: 0;
   background-color: ${({ theme }) => theme.gray1};
 `;
