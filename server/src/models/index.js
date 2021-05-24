@@ -4,7 +4,10 @@ const sequelize = require('../database/db');
 const User = sequelize.define('user', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   email: { type: DataTypes.STRING, unique: true },
+  firstName: { type: DataTypes.STRING, allowNull: false },
+  secondName: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING },
+  phone: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: 1 }
 });
 
@@ -29,6 +32,7 @@ const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });
 
