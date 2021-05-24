@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as S from './elements';
 
 const TextField = (props) => {
@@ -19,4 +19,4 @@ const TextField = (props) => {
   );
 };
 
-export default TextField;
+export default memo(TextField);

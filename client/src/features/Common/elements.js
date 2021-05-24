@@ -45,4 +45,8 @@ export const Button = styled.button`
   background: ${({ theme }) => theme.blue3};
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
+
+  &:disabled {
+    background: ${({ theme }) => theme.blue1};
+  }
 `;

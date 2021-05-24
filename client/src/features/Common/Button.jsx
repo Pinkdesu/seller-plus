@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as S from './elements';
 
 const Button = (props) => {
-  const { onClick, text } = props;
+  const { onClick, text, disabled } = props;
 
-  return <S.Button onClick={onClick}>{text}</S.Button>;
+  return (
+    <S.Button disabled={disabled} onClick={onClick}>
+      {text}
+    </S.Button>
+  );
 };
 
-export default Button;
+export default memo(Button);
