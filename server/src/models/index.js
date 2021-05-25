@@ -14,9 +14,9 @@ const User = sequelize.define('user', {
 const Service = sequelize.define('service', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  price: { type: DataTypes.REAL, allowNull: false },
-  title: { type: DataTypes.STRING, allowNull: false },
+  price: { type: DataTypes.REAL },
   description: { type: DataTypes.STRING, allowNull: false },
+  fullDescription: { type: DataTypes.STRING },
   image: { type: DataTypes.STRING }
 });
 

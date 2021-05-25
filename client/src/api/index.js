@@ -2,7 +2,7 @@ import axios from 'axios';
 import { URL } from './constants';
 
 export const api = axios.create({
-  baseURL: URL('/api'),
+  baseURL: URL('api'),
 });
 
 export const setToken = (token) => {

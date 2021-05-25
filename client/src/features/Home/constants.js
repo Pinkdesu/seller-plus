@@ -47,8 +47,8 @@ export const SLIDES_INFO = [
   },
 ];
 
-export const SERVICES = SLIDES_INFO.map((item) => ({
-  id: item.id,
+export const SERVICES = [1, 2, 3, 4].map((id) => ({
+  id: id,
   isEmpty: true,
 }));
 

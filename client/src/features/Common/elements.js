@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { spinner } from '~/assets/style/animation';
 
 const textStyle = css`
   font-size: 14px;
@@ -48,5 +49,54 @@ export const Button = styled.button`
 
   &:disabled {
     background: ${({ theme }) => theme.blue1};
+  }
+`;
+
+export const Loader = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.white};
+`;
+
+export const LoaderSpinner = styled.div`
+  position: relative;
+  top: 50%;
+  margin: -25px auto 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right,
+    ${({ theme }) => theme.gray3} 10%,
+    ${({ theme }) => theme.gray4} 50%
+  );
+  animation: ${spinner} 1.5s infinite linear;
+  transform: translateZ(0);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: ${({ theme }) => theme.white};
+  }
+
+  &::before {
+    width: 25px;
+    height: 25px;
+    border-radius: 100% 0 0 0;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
 `;

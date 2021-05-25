@@ -5,7 +5,7 @@ import { API_BASE_URL } from '~/constants';
 export const BASE_URL = API_BASE_URL;
 //process.env.NODE_ENV === 'production' ? API_BASE_URL : '/';
 
-export const URL = (subUrl) => `${BASE_URL}${subUrl}`;
+export const URL = (subUrl) => `${BASE_URL}/${subUrl}`;
 
 // LOCAL STORAGE ---------------------------------------------------------------
 

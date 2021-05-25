@@ -18,6 +18,15 @@ export const loading = keyframes`
    }
 `;
 
+export const spinner = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 export const loadingAnimation = css`
   background-color: #eeeeee;
   animation-name: ${loading};

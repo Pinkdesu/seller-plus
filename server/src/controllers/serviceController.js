@@ -11,20 +11,19 @@ class ServiceController {
       const {
         name,
         price,
-        title,
-        description
+        description,
+        fullDescription
       } = req.body;
       const { image } = req.files;
 
       const fileName = moveFile(image);
-      const url = `${req.protocol}://${req.get('host')}/${fileName}`;
 
       const service = await Service.create({
-        image: url,
+        image: fileName,
         name,
         price,
-        title,
-        description
+        description,
+        fullDescription
       });
 
       return res.json({ service });
