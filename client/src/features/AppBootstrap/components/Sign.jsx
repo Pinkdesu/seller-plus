@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { $user } from '../model/store';
+import { $user } from '../store';
 import PrivateRoute from './PrivateRoute';
 import DefaultView from '~/features/DefaultView';
 import Home from '~/features/Home';

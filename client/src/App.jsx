@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBootstrap from './features/AppBootstrapp';
+import AppBootstrap from './features/AppBootstrap';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './assets/style/global.style';
 import { THEME } from './assets/style/theme';

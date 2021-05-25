@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { init } from './model/events';
+import { init } from './store/events';
 import Sign from './components/Sign';
 
 const AppBootstrap = () => {

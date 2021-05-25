@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $servicesList } from '~/features/AppBootstrapp/model/store';
+import { $servicesList } from '~/features/AppBootstrap/store';
 import SliderSection from './components/SliderSection';
 import Section from './components/Section';
 import { SLIDES_INFO, ADVANTAGE_CARDS, COMPANIES, REVIEWS } from './constants';

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useStore } from 'effector-react';
-import { $user } from '~/features/AppBootstrapp/model/store';
+import { $user } from '~/features/AppBootstrap/store';
 import * as S from '../elements';
 import NavItem from './NavItem';
 import LogoBar from './LogoBar';

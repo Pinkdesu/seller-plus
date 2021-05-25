@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { isEmail, isValidPassword } from '~/utils/validations';
-import { login } from '~/features/AppBootstrapp/model/events';
+import { login } from '~/features/AppBootstrap/store/events';
 import * as S from './elements';
 import Options from './components/Options';
 import TextField from '~/features/Common/TextField';
