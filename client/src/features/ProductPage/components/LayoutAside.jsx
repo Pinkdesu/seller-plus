@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useLocale } from '~/utils/useLocale';
 import { addProduct } from '~/features/Basket/store/events';
 import { useCheckQuantity } from '~/utils/useCheckQuantity';
-import { useLocale } from '~/utils/useLocale';
+import { useStringNumber } from '~/utils/useStringNumber';
 import * as S from '../elements';
 
 const LayoutAside = (props) => {
@@ -12,6 +13,7 @@ const LayoutAside = (props) => {
 
   const [productCount, setProductCount] = useState(1);
 
+  const formatedPrice = useStringNumber(price);
   const hasMore = useCheckQuantity(id, count - productCount + 1);
 
   const changeCount = (value) => {
@@ -50,7 +52,7 @@ const LayoutAside = (props) => {
         <S.ProductHero>
           <S.ProductName>{name}</S.ProductName>
           <S.ProductPrice>
-            <span>{price} rub</span>
+            <span>{locale('priceWithCurrency', { price: formatedPrice })}</span>
           </S.ProductPrice>
           <S.Delivery>
             <span>{locale('freeDelivery')}</span>

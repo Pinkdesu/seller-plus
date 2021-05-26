@@ -21,4 +21,5 @@ export const THEME = {
   gray3: '#f8f8f8',
   gray4: '#767676',
   gray5: '#f1f1f1',
+  gray6: '#999999',
 };

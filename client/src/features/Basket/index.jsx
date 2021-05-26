@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useStore } from 'effector-react';
+import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from './store';
 import * as S from './elements';
 import CartProduct from '~/features/Header/components/CartProduct.jsx';
@@ -9,6 +10,8 @@ const Basket = () => {
   const locale = useLocale();
 
   const { products, totalPrice } = useStore($basket);
+
+  const formatedPrice = useStringNumber(totalPrice);
 
   return (
     <S.BasketMain>
@@ -32,7 +35,10 @@ const Basket = () => {
                 ))}
               </S.BasketProducts>
               <S.MoneySum>
-                <h3>{`${locale('totalPrice')} ${totalPrice}`}</h3>
+                <h3>
+                  {locale('totalPrice')}{' '}
+                  {locale('priceWithCurrency', { price: formatedPrice })}
+                </h3>
               </S.MoneySum>
             </S.ContentHolders>
           </S.BasketContent>
@@ -42,7 +48,9 @@ const Basket = () => {
                 <S.Totalheader>{locale('total')}</S.Totalheader>
                 <S.Cost>
                   <span>{locale('totalPrice')}</span>
-                  <span>{totalPrice}</span>
+                  <span>
+                    {locale('priceWithCurrency', { price: formatedPrice })}
+                  </span>
                 </S.Cost>
                 <S.PayLinkWrapper>
                   <S.PayLink to="/">PAY</S.PayLink>

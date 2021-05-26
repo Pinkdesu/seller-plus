@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { useStore } from 'effector-react';
 import { $basket } from '~/features/Basket/store';
 import { closeMenu } from '~/features/Basket/store/events';
+import { useStringNumber } from '~/utils/useStringNumber';
 import pluralize from '~/utils/pluralize';
 import * as S from '../elements';
 import CartProduct from './CartProduct';
@@ -18,6 +19,8 @@ const CartMenu = (props) => {
   const { products, productsCount, totalPrice } = useStore($basket);
 
   const [hover, setHover] = useState(false);
+
+  const formatedPrice = useStringNumber(totalPrice);
 
   const onMouseOver = () => setHover(true);
   const onMouseLeave = () => setHover(false);
@@ -74,7 +77,9 @@ const CartMenu = (props) => {
           <S.MenuBottomSide>
             <S.MoneySum>
               <h1>{locale('totalPrice')}:</h1>
-              <span>{totalPrice}</span>
+              <span>
+                {locale('priceWithCurrency', { price: formatedPrice })}
+              </span>
             </S.MoneySum>
             <S.ActionLinks>
               <S.MenuLink to="/basket">

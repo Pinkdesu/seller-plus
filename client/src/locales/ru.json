@@ -35,6 +35,8 @@
    "viewShoppingCart": "Посмотреть корзину",
    "placeOrder": "Оформить заказ",
    "addToBasket": "Добавить",
+   "currency": "руб.",
+   "priceWithCurrency": "${price} руб.",
    "home.title.whoAreWe": "Кто мы?",
    "home.subtitle.theTSG": "Компания «ТюменьСтройГаз» занимается поставкой оборудования для систем отопления, водоснабжения и канализации по Тюмени и Тюменской области.",
    "home.title.weOffer": "Мы предлагаем",

@@ -297,7 +297,7 @@ export const DetailDecriptionWrapper = styled.div`
 `;
 
 export const DescriptionTitle = styled.h2`
-  color: #999;
+  color: ${({ theme }) => theme.gray6};
   text-transform: uppercase;
   margin-bottom: 5px;
   margin-top: 20px;
@@ -326,10 +326,14 @@ export const Specification = styled.li`
 
   & > span {
     font-size: 16px;
-    margin-right: 10px;
 
-    &:last-child {
-      margin-right: 0;
+    &:nth-child(1) {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+
+    &:nth-child(2) {
+      margin-right: 5px;
     }
   }
 `;

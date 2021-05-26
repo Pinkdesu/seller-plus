@@ -28,6 +28,8 @@
    "addToBasket": "Add to basket",
    "freeDelivery": "Free delivery in Tyumen",
    "myShoppingCart": "My shopping cart",
+   "currency": "RUB",
+   "priceWithCurrency": "${price} RUB",
    "product": "product",
    "product1": "products",
    "product2": "products",
