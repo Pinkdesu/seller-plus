@@ -6,7 +6,7 @@ import { ReactComponent as DeleteSVG } from '~/assets/images/common/delete.svg';
 
 const CartMenuProduct = (props) => {
   const locale = useLocale();
-  console.log(props);
+
   const { id, name, price, quantity, image } = props;
 
   const handleClick = () => {

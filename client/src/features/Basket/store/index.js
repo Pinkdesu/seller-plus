@@ -1,12 +1,14 @@
 import { BasketDomain } from './domain';
-import { combine } from 'effector';
+import { combine, guard } from 'effector';
 import * as events from './events';
 import * as reducers from './reducers';
 
 const initProducts = [];
 const initlIsMenuOpen = false;
 
-export const $isMenuOpen = BasketDomain.store(initlIsMenuOpen);
+export const $isMenuOpen = BasketDomain.store(initlIsMenuOpen)
+  .on([events.addProduct, events.openMenu], () => true)
+  .on(events.closeMenu, () => false);
 
 export const $products = BasketDomain.store(initProducts)
   .on(events.addProduct, reducers.addProduct)
@@ -33,3 +35,10 @@ export const $basket = combine(
     productsCount,
   }),
 );
+
+guard({
+  clock: events.deleteProduct,
+  source: $productsCount,
+  filter: (count) => count === 0,
+  target: events.closeMenu,
+});

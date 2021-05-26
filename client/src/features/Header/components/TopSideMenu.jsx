@@ -1,9 +1,10 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useHistory } from 'react-router';
 import { useStore } from 'effector-react';
 import { $user } from '~/features/AppBootstrap/store';
-import { $productsCount } from '~/features/Basket/store';
+import { $productsCount, $isMenuOpen } from '~/features/Basket/store';
+import { openMenu } from '~/features/Basket/store/events';
 import * as S from '../elements';
 import NavItem from './NavItem';
 import LogoBar from './LogoBar';
@@ -19,22 +20,17 @@ const TopSideMenu = (props) => {
   const { hidden } = props;
 
   const { isAuth } = useStore($user);
+  const isMenuOpen = useStore($isMenuOpen);
   const productsCount = useStore($productsCount);
 
-  const [isMenuOpen, setMenuOpen] = useState(false);
-
-  const openMenu = () => {
+  const handleMenuClick = () => {
     if (productsCount > 0) {
-      setMenuOpen(true);
+      openMenu();
       return;
     }
 
     history.push('/basket');
   };
-
-  const toggleMenu = useCallback((value) => {
-    setMenuOpen(value);
-  }, []);
 
   const accountPath = isAuth ? '/account' : '/account/login';
 
@@ -48,7 +44,7 @@ const TopSideMenu = (props) => {
       </S.NavBar>
       <S.NavBar>
         <S.NavItem>
-          <S.IconButton onClick={openMenu}>
+          <S.IconButton onClick={handleMenuClick}>
             <S.LinkIcon>
               <CartSVG />
             </S.LinkIcon>
@@ -56,7 +52,7 @@ const TopSideMenu = (props) => {
               <S.LinkAlert>{productsCount}</S.LinkAlert>
             )}
           </S.IconButton>
-          <CartMenu open={isMenuOpen} toggleMenu={toggleMenu} />
+          <CartMenu open={isMenuOpen} />
         </S.NavItem>
         <S.NavItem>
           <S.IconLink to={accountPath}>

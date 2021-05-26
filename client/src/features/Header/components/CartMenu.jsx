@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useLocation } from 'react-router';
 import { useStore } from 'effector-react';
 import { $basket } from '~/features/Basket/store';
+import { closeMenu } from '~/features/Basket/store/events';
 import pluralize from '~/utils/pluralize';
 import * as S from '../elements';
 import CartProduct from './CartProduct';
@@ -9,35 +11,34 @@ import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
 const CartMenu = (props) => {
   const locale = useLocale();
+  const location = useLocation();
 
-  const { toggleMenu, open } = props;
+  const { open } = props;
 
   const { products, productsCount, totalPrice } = useStore($basket);
 
-  // const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState(false);
 
-  const closeMenu = () => {
-    toggleMenu(false);
-  };
+  const onMouseOver = () => setHover(true);
+  const onMouseLeave = () => setHover(false);
 
-  //  useEffect(() => {
-  //    let timer;
+  useEffect(() => {
+    let timer;
 
-  //    if (Boolean(productsCount) ?? !hover) {
-  //      toggleMenu(true);
-  //      timer = setTimeout(() => toggleMenu(false), 2000);
-  //    }
+    if (open && !hover) {
+      timer = setTimeout(() => closeMenu(), 2000);
+    }
 
-  //    return () => {
-  //      clearTimeout(timer);
-  //    };
-  //  }, [productsCount, toggleMenu, hover]);
+    return () => clearTimeout(timer);
+  }, [open, hover, productsCount]);
+
+  useEffect(() => closeMenu(), [location]);
 
   return (
     <S.CartMenuWrapper
       open={open}
-      //onMouseOver={() => setHover(true)}
-      //onMouseLeave={() => setHover(false)}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
     >
       <S.CartMenu>
         <S.CartMenuContent open={open}>
