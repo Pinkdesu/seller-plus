@@ -22,7 +22,8 @@ const headerStyle = css`
 export const BasketMain = styled(ProductPage)`
   min-height: 100vh;
   margin: 0;
-  background-color: ${({ theme }) => theme.gray1};
+  background-color: ${({ theme, isEmpty }) =>
+    isEmpty ? theme.white : theme.gray1};
 `;
 
 export const BasketContentWrapper = styled.div`
@@ -30,6 +31,16 @@ export const BasketContentWrapper = styled.div`
   min-width: 500px;
   padding: 140px 10px 10px 10px;
   margin: 0 auto;
+
+  ${(props) =>
+    props.isEmpty &&
+    css`
+      display: flex;
+      padding-top: 0;
+      justify-content: center;
+      align-items: center;
+      min-height: inherit;
+    `}
 `;
 
 export const Layout = styled.div`
@@ -160,4 +171,48 @@ export const PayLink = styled(Link)`
   padding: 1.0714285714em;
   text-align: center;
   text-transform: uppercase;
+`;
+
+export const EmptyContent = styled.div`
+  max-width: 394px;
+  padding: 20px 25px;
+  width: 100%;
+  color: ${({ theme }) => theme.black3};
+  text-align: center;
+`;
+
+export const EmptyBagTitleWrapper = styled.div`
+  text-align: center;
+`;
+
+export const EmptyBagTitle = styled.h2`
+  font-weight: 700;
+  font-size: 1.3em;
+  line-height: 22px;
+  letter-spacing: 2.5px;
+  padding-top: 24px;
+  margin: 0;
+`;
+
+export const EmptyBagIcon = styled.span`
+  font-size: 0;
+
+  svg {
+    fill: ${({ theme }) => theme.gray2};
+    height: 60px;
+    width: 60px;
+  }
+`;
+
+export const EmptyBagText = styled.p`
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  letter-spacing: 0.4px;
+`;
+
+export const AuthLink = styled(PayLink)`
+  width: 288px;
+  margin: 0 auto;
 `;

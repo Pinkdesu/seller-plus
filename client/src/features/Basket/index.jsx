@@ -5,6 +5,7 @@ import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from './store';
 import * as S from './elements';
 import CartProduct from '~/features/Header/components/CartProduct.jsx';
+import EmptyContent from './components/EmptyContent';
 
 const Basket = () => {
   const locale = useLocale();
@@ -12,6 +13,12 @@ const Basket = () => {
   const { products, totalPrice } = useStore($basket);
 
   const formatedPrice = useStringNumber(totalPrice);
+
+  const isEmpty = !products.length;
+
+  if (isEmpty) {
+    return <EmptyContent />;
+  }
 
   return (
     <S.BasketMain>
