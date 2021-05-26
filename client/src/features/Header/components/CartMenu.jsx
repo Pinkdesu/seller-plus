@@ -10,7 +10,7 @@ const CartMenu = (props) => {
   const menuRef = useRef();
   const locale = useLocale();
 
-  const { closeMenu, open } = props;
+  const { closeMenu, open, products, productsCount } = props;
 
   useClickOutside(menuRef, closeMenu, open);
 
@@ -22,8 +22,8 @@ const CartMenu = (props) => {
             <S.TopSideText>
               <span>{locale('myShoppingCart')}:</span>
               <span>
-                {`10 ${pluralize(
-                  10,
+                {`${productsCount} ${pluralize(
+                  productsCount,
                   ['product', 'product1', 'product2'],
                   locale,
                 )}`}
@@ -36,8 +36,16 @@ const CartMenu = (props) => {
             </S.TopSideCloseButton>
           </S.MenuTopSide>
           <S.ProductsList>
-            <CartProduct />
-            <CartProduct />
+            {products.map((product) => (
+              <CartProduct
+                key={product.id}
+                id={product.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                quantity={product.quantity}
+              />
+            ))}
           </S.ProductsList>
           <S.MenuBottomSide>
             <S.MoneySum>
@@ -45,7 +53,7 @@ const CartMenu = (props) => {
               <span>12323</span>
             </S.MoneySum>
             <S.ActionLinks>
-              <S.MenuLink to="/">
+              <S.MenuLink to="/basket">
                 <span>{locale('viewShoppingCart')}</span>
               </S.MenuLink>
               <S.MenuLink to="/">

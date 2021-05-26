@@ -31,7 +31,7 @@
    "product": "product",
    "product1": "products",
    "product2": "products",
-   "totalPrice": "Total price: ${sum}",
+   "totalPrice": "Total price",
    "viewShoppingCart": "View the shopping cart",
    "placeOrder": "Place an order",
    "home.title.whoAreWe": "Who are we?",

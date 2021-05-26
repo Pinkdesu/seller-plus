@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import { addProduct } from '~/features/Basket/store/events';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 
 const LayoutAside = (props) => {
   const locale = useLocale();
 
-  const { maxCount = 100 } = props;
+  const { product } = props;
+  const { name, count, price, id, image } = product;
 
   const [productCount, setProductCount] = useState(1);
 
   const changeCount = (value) => {
-    if (!isNaN(value) && value < maxCount && value > 0) {
+    if (!isNaN(value) && value < count && value > 0) {
       setProductCount(value);
     }
   };
@@ -28,13 +30,17 @@ const LayoutAside = (props) => {
     changeCount(value);
   };
 
+  const handleClick = () => {
+    addProduct({ id, name, image, price, quantity: productCount });
+  };
+
   return (
     <S.LayoutAside>
       <S.AsideContent>
         <S.ProductHero>
-          <S.ProductName>BAXIIIII 10203TF</S.ProductName>
+          <S.ProductName>{name}</S.ProductName>
           <S.ProductPrice>
-            <span>1000022 rub</span>
+            <span>{price} rub</span>
           </S.ProductPrice>
           <S.Delivery>
             <span>{locale('freeDelivery')}</span>
@@ -57,7 +63,9 @@ const LayoutAside = (props) => {
           </S.ProductCount>
         </S.ProductSettings>
         <S.ButtonWrapper>
-          <S.AddButton>{locale('addToBasket')}</S.AddButton>
+          <S.AddButton onClick={handleClick}>
+            {locale('addToBasket')}
+          </S.AddButton>
         </S.ButtonWrapper>
       </S.AsideContent>
     </S.LayoutAside>

@@ -1,7 +1,9 @@
 import React, { memo, useState } from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useHistory } from 'react-router';
 import { useStore } from 'effector-react';
 import { $user } from '~/features/AppBootstrap/store';
+import { $basket } from '~/features/Basket/store';
 import * as S from '../elements';
 import NavItem from './NavItem';
 import LogoBar from './LogoBar';
@@ -12,14 +14,26 @@ import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.
 
 const TopSideMenu = (props) => {
   const locale = useLocale();
-  const { isAuth } = useStore($user);
+  const history = useHistory();
 
   const { hidden } = props;
 
+  const { isAuth } = useStore($user);
+  const { products, productsCount } = useStore($basket);
+
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
+  const openMenu = () => {
+    if (productsCount > 0) {
+      setMenuOpen(true);
+      return;
+    }
+
+    history.push('/basket');
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   const accountPath = isAuth ? '/account' : '/account/login';
@@ -34,13 +48,20 @@ const TopSideMenu = (props) => {
       </S.NavBar>
       <S.NavBar>
         <S.NavItem>
-          <S.IconButton onClick={toggleMenu}>
+          <S.IconButton onClick={openMenu}>
             <S.LinkIcon>
               <CartSVG />
             </S.LinkIcon>
-            <S.LinkAlert>22</S.LinkAlert>
+            {Boolean(productsCount) && (
+              <S.LinkAlert>{productsCount}</S.LinkAlert>
+            )}
           </S.IconButton>
-          <CartMenu open={isMenuOpen} closeMenu={toggleMenu} />
+          <CartMenu
+            open={isMenuOpen}
+            closeMenu={closeMenu}
+            productsCount={productsCount}
+            products={products}
+          />
         </S.NavItem>
         <S.NavItem>
           <S.IconLink to={accountPath}>

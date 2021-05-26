@@ -1,23 +1,26 @@
 import React from 'react';
 import * as S from './elements';
+import { useStore } from 'effector-react';
+import { $productsList } from '~/features/Shop/store';
 import SearchBar from '~/features/SearchBar';
 import Filters from '~/features/Filters';
 import Product from '~/features/Product';
-import product from '~/assets/images/shop/product.jpg';
 
 const ShopCategory = () => {
+  const products = useStore($productsList);
+
   return (
     <S.ShopCategory>
       <SearchBar />
       <Filters />
       <S.Content>
-        {[...Array(20)].map((_, index) => (
+        {products.map((product) => (
           <Product
-            key={index}
-            id={index}
-            image={product}
-            name="BAXI 100+ ULTRA"
-            price="150000"
+            key={product.id}
+            id={product.id}
+            image={product.image}
+            name={product.name}
+            price={product.price}
           />
         ))}
       </S.Content>

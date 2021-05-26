@@ -1,10 +1,14 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useStore } from 'effector-react';
+import { $basket } from './store';
 import * as S from './elements';
 import CartProduct from '~/features/Header/components/CartProduct.jsx';
 
 const Basket = () => {
   const locale = useLocale();
+
+  const { products } = useStore($basket);
 
   return (
     <S.BasketMain>
@@ -16,9 +20,16 @@ const Basket = () => {
                 <h2>{locale('myShoppingCart')}</h2>
               </S.ContentHeader>
               <S.BasketProducts>
-                <CartProduct />
-                <CartProduct />
-                <CartProduct />
+                {products.map((product) => (
+                  <CartProduct
+                    key={product.id}
+                    id={product.id}
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                    quantity={product.quantity}
+                  />
+                ))}
               </S.BasketProducts>
               <S.MoneySum>
                 <h3>{locale('totalPrice', { sum: 1233123 })}</h3>

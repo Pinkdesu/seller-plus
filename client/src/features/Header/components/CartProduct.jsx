@@ -1,24 +1,32 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { deleteProduct } from '~/features/Basket/store/events';
 import * as S from '../elements';
-import test from '~/assets/images/shop/test-prod.jpg';
 import { ReactComponent as DeleteSVG } from '~/assets/images/common/delete.svg';
 
-const CartMenuProduct = () => {
+const CartMenuProduct = (props) => {
   const locale = useLocale();
+
+  const { id, name, price, quantity, image } = props;
+
+  const handleClick = () => {
+    deleteProduct(id);
+  };
 
   return (
     <S.ProductItem>
       <S.ProductContent>
-        <S.ProductLink to="/">
-          <img src={test} alt="p" />
+        <S.ProductLink to={`/shop/product/${id}`}>
+          <img src={image} alt={name} />
           <S.ProductInfo>
-            <S.ProductPrice>123321 rub</S.ProductPrice>
-            <S.ProductName>BASI 2123 </S.ProductName>
-            <S.ProductCount>{locale('quantity', { sum: 1 })}</S.ProductCount>
+            <S.ProductPrice>{price} rub</S.ProductPrice>
+            <S.ProductName>{name}</S.ProductName>
+            <S.ProductCount>
+              {`${locale('quantity')}: ${quantity}`}
+            </S.ProductCount>
           </S.ProductInfo>
         </S.ProductLink>
-        <S.DeleteButton>
+        <S.DeleteButton onClick={handleClick}>
           <DeleteSVG />
         </S.DeleteButton>
       </S.ProductContent>

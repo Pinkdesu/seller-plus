@@ -1,12 +1,14 @@
 import React from 'react';
 import * as S from './elements';
+import { addProduct } from '~/features/Basket/store/events';
 import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.svg';
 
 const Product = (props) => {
-  const { image, name, price, id } = props;
+  const { image, name, price, id, count } = props;
 
   const handleClick = (e) => {
     e.preventDefault();
+    addProduct({ id, name, price, image, quantity: 1 });
   };
 
   return (
