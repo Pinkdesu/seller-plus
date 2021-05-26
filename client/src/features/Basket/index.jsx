@@ -8,7 +8,7 @@ import CartProduct from '~/features/Header/components/CartProduct.jsx';
 const Basket = () => {
   const locale = useLocale();
 
-  const { products } = useStore($basket);
+  const { products, totalPrice } = useStore($basket);
 
   return (
     <S.BasketMain>
@@ -32,17 +32,17 @@ const Basket = () => {
                 ))}
               </S.BasketProducts>
               <S.MoneySum>
-                <h3>{locale('totalPrice', { sum: 1233123 })}</h3>
+                <h3>{`${locale('totalPrice')} ${totalPrice}`}</h3>
               </S.MoneySum>
             </S.ContentHolders>
           </S.BasketContent>
           <S.LeftSideWrapper>
             <S.LeftSide>
               <S.LeftSideTotal>
-                <S.Totalheader>Итого</S.Totalheader>
+                <S.Totalheader>{locale('total')}</S.Totalheader>
                 <S.Cost>
-                  <span>Всег0:</span>
-                  <span>13123</span>
+                  <span>{locale('totalPrice')}</span>
+                  <span>{totalPrice}</span>
                 </S.Cost>
                 <S.PayLinkWrapper>
                   <S.PayLink to="/">PAY</S.PayLink>

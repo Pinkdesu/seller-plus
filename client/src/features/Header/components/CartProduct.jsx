@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { deleteProduct } from '~/features/Basket/store/events';
 import * as S from '../elements';
@@ -6,7 +6,7 @@ import { ReactComponent as DeleteSVG } from '~/assets/images/common/delete.svg';
 
 const CartMenuProduct = (props) => {
   const locale = useLocale();
-
+  console.log(props);
   const { id, name, price, quantity, image } = props;
 
   const handleClick = () => {
@@ -34,4 +34,4 @@ const CartMenuProduct = (props) => {
   );
 };
 
-export default CartMenuProduct;
+export default memo(CartMenuProduct);

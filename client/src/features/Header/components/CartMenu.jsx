@@ -1,21 +1,44 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocale } from '~/utils/useLocale';
-import { useClickOutside } from '~/utils/useClickOutside';
+import { useStore } from 'effector-react';
+import { $basket } from '~/features/Basket/store';
 import pluralize from '~/utils/pluralize';
 import * as S from '../elements';
 import CartProduct from './CartProduct';
 import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
 const CartMenu = (props) => {
-  const menuRef = useRef();
   const locale = useLocale();
 
-  const { closeMenu, open, products, productsCount } = props;
+  const { toggleMenu, open } = props;
 
-  useClickOutside(menuRef, closeMenu, open);
+  const { products, productsCount, totalPrice } = useStore($basket);
+
+  // const [hover, setHover] = useState(false);
+
+  const closeMenu = () => {
+    toggleMenu(false);
+  };
+
+  //  useEffect(() => {
+  //    let timer;
+
+  //    if (Boolean(productsCount) ?? !hover) {
+  //      toggleMenu(true);
+  //      timer = setTimeout(() => toggleMenu(false), 2000);
+  //    }
+
+  //    return () => {
+  //      clearTimeout(timer);
+  //    };
+  //  }, [productsCount, toggleMenu, hover]);
 
   return (
-    <S.CartMenuWrapper ref={menuRef} open={open}>
+    <S.CartMenuWrapper
+      open={open}
+      //onMouseOver={() => setHover(true)}
+      //onMouseLeave={() => setHover(false)}
+    >
       <S.CartMenu>
         <S.CartMenuContent open={open}>
           <S.MenuTopSide>
@@ -50,7 +73,7 @@ const CartMenu = (props) => {
           <S.MenuBottomSide>
             <S.MoneySum>
               <h1>{locale('totalPrice')}:</h1>
-              <span>12323</span>
+              <span>{totalPrice}</span>
             </S.MoneySum>
             <S.ActionLinks>
               <S.MenuLink to="/basket">
