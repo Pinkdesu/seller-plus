@@ -13,13 +13,17 @@ export const CartButton = styled.button`
   border-radius: 50%;
   text-align: center;
   border: none;
-  background-color: #eeeeee;
+  background-color: ${({ theme }) => theme.gray1};
   padding: 8px;
 
   svg {
-    fill: #2d2d2d;
+    fill: ${({ theme }) => theme.black3};
     height: 20px;
     width: 20px;
+  }
+
+  &:disabled svg {
+    fill: ${({ theme }) => theme.gray4};
   }
 `;
 

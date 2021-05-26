@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addProduct } from '~/features/Basket/store/events';
+import { useCheckQuantity } from '~/utils/useCheckQuantity';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 
@@ -11,8 +12,10 @@ const LayoutAside = (props) => {
 
   const [productCount, setProductCount] = useState(1);
 
+  const hasMore = useCheckQuantity(id, count - productCount + 1);
+
   const changeCount = (value) => {
-    if (!isNaN(value) && value < count && value > 0) {
+    if (!isNaN(value) && value <= count && value > 0) {
       setProductCount(value);
     }
   };
@@ -31,7 +34,14 @@ const LayoutAside = (props) => {
   };
 
   const handleClick = () => {
-    addProduct({ id, name, image, price, quantity: productCount });
+    addProduct({
+      id,
+      name,
+      image,
+      price,
+      quantity: productCount,
+      maxQuantity: count,
+    });
   };
 
   return (
@@ -63,9 +73,11 @@ const LayoutAside = (props) => {
           </S.ProductCount>
         </S.ProductSettings>
         <S.ButtonWrapper>
-          <S.AddButton onClick={handleClick}>
-            {locale('addToBasket')}
-          </S.AddButton>
+          <S.AddButton
+            onClick={handleClick}
+            disabled={!hasMore}
+            text={locale('addToBasket')}
+          />
         </S.ButtonWrapper>
       </S.AsideContent>
     </S.LayoutAside>

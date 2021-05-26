@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '~/features/Common/Button';
 import { loadingAnimation } from '~/assets/style/animation';
 
 export const ProductPage = styled.main`
@@ -237,19 +238,10 @@ export const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
-export const AddButton = styled.button`
+export const AddButton = styled(Button)`
   font-weight: 700;
-  width: 100%;
-  background-color: #4a6ba0;
-  display: table;
-  text-align: center;
-  color: #fff;
   letter-spacing: 2px;
   height: 41px;
-  text-transform: uppercase;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
 `;
 
 export const ProductDetails = styled(ProductSettings)``;

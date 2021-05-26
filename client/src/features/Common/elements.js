@@ -49,6 +49,7 @@ export const Button = styled.button`
 
   &:disabled {
     background: ${({ theme }) => theme.blue1};
+    cursor: default;
   }
 `;
 

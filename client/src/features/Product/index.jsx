@@ -1,14 +1,18 @@
 import React from 'react';
 import * as S from './elements';
+import { useCheckQuantity } from '~/utils/useCheckQuantity';
 import { addProduct } from '~/features/Basket/store/events';
 import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.svg';
 
 const Product = (props) => {
   const { image, name, price, id, count } = props;
 
+  const hasMore = useCheckQuantity(id, count);
+
   const handleClick = (e) => {
     e.preventDefault();
-    addProduct({ id, name, price, image, quantity: 1 });
+
+    addProduct({ id, name, price, image, quantity: 1, maxQuantity: count });
   };
 
   return (
@@ -16,7 +20,7 @@ const Product = (props) => {
       <S.ProductLink to={`/shop/product/${id}`}>
         <S.ProductImageThumb>
           <S.ProductImage src={image} />
-          <S.CartButton onClick={handleClick}>
+          <S.CartButton onClick={handleClick} disabled={!hasMore}>
             <CartSVG />
           </S.CartButton>
         </S.ProductImageThumb>

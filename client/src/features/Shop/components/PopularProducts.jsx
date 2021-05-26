@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 import Product from '~/features/Product';
-import product from '~/assets/images/shop/product.jpg';
+import { PRODUCTS } from '../constants';
 
 const PopularProducts = () => {
   const locale = useLocale();
@@ -13,13 +13,14 @@ const PopularProducts = () => {
         <S.Header>{locale('shop.popularProducts')}</S.Header>
       </S.HeaderWrapper>
       <S.Products>
-        {[...Array(20)].map((_, index) => (
+        {PRODUCTS.map((product) => (
           <Product
-            key={index}
-            id={index}
-            image={product}
-            name="BAXI 100+ ULTRA"
-            price="150000"
+            key={product.id}
+            id={product.id}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            count={product.count}
           />
         ))}
       </S.Products>

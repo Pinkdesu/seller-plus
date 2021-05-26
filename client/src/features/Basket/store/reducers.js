@@ -3,8 +3,14 @@ export const addProduct = (state, payload) => {
   const products = [...state];
 
   const similarProduct = products.find((product) => product.id === id);
+
   if (!similarProduct) products.push(payload);
-  if (similarProduct) similarProduct.quantity += quantity;
+  if (similarProduct) {
+    const { quantity: simQ, maxQuantity: simMaxQ } = similarProduct;
+    if (simQ === simMaxQ) return state;
+
+    similarProduct.quantity += quantity;
+  }
 
   return products;
 };
