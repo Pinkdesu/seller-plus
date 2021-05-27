@@ -11,6 +11,19 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.white};
 `;
 
+export const DefaultMain = styled.main`
+  min-height: 100vh;
+  padding-top: 150px;
+
+  * {
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.4px;
+    color: ${({ theme }) => theme.black3};
+    font-weight: 400;
+  }
+`;
+
 export const Shadow = styled.div`
   position: fixed;
   top: 0;

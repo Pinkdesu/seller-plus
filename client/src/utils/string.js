@@ -10,7 +10,5 @@ export const getStringNumber = (number) => {
   const first = str.length > 3 ? str.substr(0, str.length - 3) : str;
   const second = str.length > 3 ? ' ' + str.slice(str.length - 3) : '';
 
-  console.log(first);
-
   return `${first}${second},${decimal}`;
 };
