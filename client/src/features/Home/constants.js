@@ -15,6 +15,8 @@ import vaillant from '~/assets/images/companies/vaillant.png';
 import viadrus from '~/assets/images/companies/viadrus.png';
 import viessmann from '~/assets/images/companies/viessmann.png';
 import userFace from '~/assets/images/home/face.jpg';
+import userGril from '~/assets/images/home/girl.jpg';
+import userMan from '~/assets/images/home/man.jpg';
 
 export const DELAY = 5000;
 export const PARALLAX_SPEED = 0.7;
@@ -133,7 +135,7 @@ export const REVIEWS = [
     title: 'Анна',
     description:
       'Огромное спасибо за консультацию по газосчетчику. Внимательно выслушали, вежливо и грамотно проконсультировали и даже перезвонили на следующий день, чтобы узнать как решилась проблема. Чему была ОЧЕНЬ приятно удивлена. Молодцы.!!! теперь знаю куда нужно обращаться за помощью.',
-    image: null,
+    image: userGril,
   },
   {
     id: 2,
@@ -147,6 +149,6 @@ export const REVIEWS = [
     title: 'Георгий',
     description:
       'Большое спасибо команде профессионалов. Всё подобрали и установили в срок',
-    image: null,
+    image: userMan,
   },
 ];
