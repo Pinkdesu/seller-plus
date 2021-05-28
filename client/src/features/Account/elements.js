@@ -162,7 +162,7 @@ export const PersonalData = styled.div`
   background-color: ${({ theme }) => theme.white};
 
   & ${FieldWrapper}, ${Button} {
-    max-width: 330px;
+    max-width: 340px;
   }
 `;
 

@@ -4,9 +4,11 @@ import { PAGE_HEADERS } from '../constants';
 import * as S from '../elements';
 import ContentHeader from './ContentHeader';
 import Personal from './Personal';
+import ChangePassword from './ChangePassword';
 
 const VIEWS = {
   account: Personal,
+  'change-password': ChangePassword,
 };
 
 const Content = () => {

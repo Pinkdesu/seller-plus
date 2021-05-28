@@ -21,4 +21,7 @@ router.get('/auth', decodeToken, userController.checkAuth);
 router.put('/',
   [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)], userController.updateUserInfo);
 
+router.put('/password',
+  [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)], userController.changePassword);
+
 module.exports = router;

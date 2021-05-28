@@ -29,12 +29,13 @@ const Sign = () => {
         <Route path="/shop/product/:id" component={ProductPage} exact />
 
         <PrivateRoute
-          path="/account"
+          path={['/account', '/account/change-password']}
           redirectTo="/account/login"
           component={Account}
           authed={isAuth}
           exact
         />
+
         <PrivateRoute
           path="/account/login"
           redirectTo="/account"
@@ -42,6 +43,7 @@ const Sign = () => {
           authed={!isAuth}
           exact
         />
+
         <PrivateRoute
           path="/account/register"
           redirectTo="/account"
@@ -49,9 +51,10 @@ const Sign = () => {
           authed={!isAuth}
           exact
         />
+
         <PrivateRoute
           path="/account/log-out"
-          redirectTo="/account"
+          redirectTo="/account/login"
           authed={isAuth}
           component={LogOut}
           exact

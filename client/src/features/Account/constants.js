@@ -44,11 +44,11 @@ export const PAGE_HEADERS = {
     image: user,
     text: 'account.header.youCanUpdate',
   },
-  //  {
-  //    text: 'account.myOrders',
-  //    image: shoppingBag,
-  //    path: '/account/orders',
-  //  },
+  'change-password': {
+    title: 'account.changePassword',
+    image: padlock,
+    text: 'account.personal.savePassword',
+  },
   //  {
   //    text: 'account.myApplications',
   //    image: clipboard,

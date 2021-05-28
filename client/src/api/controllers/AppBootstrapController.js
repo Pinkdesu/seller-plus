@@ -10,7 +10,6 @@ export class AppBootstrapController {
     api.post('/user/login', { data: { email, password } });
 
   static checkAuth = () => {
-    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
     return api.get('/user/auth');
   };
 
@@ -19,15 +18,19 @@ export class AppBootstrapController {
       data: payload,
     });
 
-  static updateUser = (payload) => {
-    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
-    return api.put('/user', {
+  static updateUser = (payload) =>
+    api.put('/user', {
       data: payload,
     });
-  };
 
-  static init = () =>
-    Promise.all([this.checkAuth(), this.getServices()]).then((data) =>
+  static changePassword = (payload) =>
+    api.put('/user/password', {
+      data: payload,
+    });
+
+  static init = () => {
+    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
+    return Promise.all([this.checkAuth(), this.getServices()]).then((data) =>
       data.reduce(
         (result, current) => ({
           ...result,
@@ -36,4 +39,5 @@ export class AppBootstrapController {
         {},
       ),
     );
+  };
 }

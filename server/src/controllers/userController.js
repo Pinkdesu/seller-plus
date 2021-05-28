@@ -130,6 +130,42 @@ class UserController {
       return next(ApiError.badRequest(e.message));
     }
   }
+
+  async changePassword(req, res, next) {
+    try {
+      const { id } = req.user;
+      const {
+        currentPassword, newPassword, repeatNewPassword
+      } = req.body.data;
+
+      if (newPassword !== repeatNewPassword) {
+        return next(ApiError.badRequest("The password doesn't match"));
+      }
+
+      const user = await User.findOne({ where: { id } });
+
+      const validPassword = bcrypt.compareSync(currentPassword, user.password);
+
+      if (!validPassword) {
+        return next(ApiError.badRequest('Invalid password'));
+      }
+
+      const hashNewPassword = await bcrypt.hash(newPassword, 5);
+
+      user.password = hashNewPassword;
+
+      const updatedUser = await user.save();
+
+      const { password: _, ...userData } = updatedUser.dataValues;
+
+      const token = generateAccessToken(userData);
+
+      return res.json({ token });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 module.exports = new UserController();

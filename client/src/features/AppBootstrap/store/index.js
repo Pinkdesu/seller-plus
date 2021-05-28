@@ -13,6 +13,7 @@ export const $user = AppBootstrapDomain.store(initialUser)
       events.login.done,
       events.register.done,
       events.updateUser.done,
+      events.changePassword.done,
     ],
     reducers.setUserData,
   )

@@ -23,6 +23,10 @@ export const updateUser = AppBootstrapDomain.effect().use(
   AppBootstrapController.updateUser,
 );
 
+export const changePassword = AppBootstrapDomain.effect().use(
+  AppBootstrapController.changePassword,
+);
+
 export const getServices = AppBootstrapDomain.effect().use(
   AppBootstrapController.getServices,
 );
