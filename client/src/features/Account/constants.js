@@ -47,7 +47,7 @@ export const PAGE_HEADERS = {
   'change-password': {
     title: 'account.changePassword',
     image: padlock,
-    text: 'account.personal.savePassword',
+    text: 'account.header.youCanChange',
   },
   //  {
   //    text: 'account.myApplications',
