@@ -62,5 +62,11 @@
    "account.myApplications": "My applications",
    "account.addressBook": "Address book",
    "account.changePassword": "Сhange password",
-   "account.logOut": "Log out"
+   "account.logOut": "Log out",
+   "account.header.youCanUpdate": "You can update your account at any time and make any changes to the data below.",
+   "account.personal.saveChanges": "Save changes",
+   "error.passwordLength": "The password must contain between 8 and 40 characters",
+   "error.enterCorrectEmail": "Email address entered incorrectly",
+   "error.enterCorrectPhone": "Phoneentered incorrectly",
+   "error.onlyLetters": "The name must consist only of letters"
 }

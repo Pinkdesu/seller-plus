@@ -6,11 +6,16 @@ import { URL } from '~/api/constants';
 export const setUserData = (_, { result }) => {
   const token = result?.token || result.data.token;
 
-  const user = jwtDecode(token);
+  const { firstName, secondName, email, phone } = jwtDecode(token);
   ls(LOCAL_STORAGE_TOKENS_KEY, token);
 
   return {
-    user,
+    user: {
+      firstName,
+      secondName,
+      email,
+      phone,
+    },
     isAuth: true,
   };
 };

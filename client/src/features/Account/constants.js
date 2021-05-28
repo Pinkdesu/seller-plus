@@ -37,3 +37,36 @@ export const ACCOUNT_NAV = [
     path: '/account/log-out',
   },
 ];
+
+export const PAGE_HEADERS = {
+  account: {
+    title: 'account.personalInformation',
+    image: user,
+    text: 'account.header.youCanUpdate',
+  },
+  //  {
+  //    text: 'account.myOrders',
+  //    image: shoppingBag,
+  //    path: '/account/orders',
+  //  },
+  //  {
+  //    text: 'account.myApplications',
+  //    image: clipboard,
+  //    path: '/account/applications',
+  //  },
+  //  {
+  //    text: 'account.addressBook',
+  //    image: home,
+  //    path: '/account/address',
+  //  },
+  //  {
+  //    text: 'account.changePassword',
+  //    image: padlock,
+  //    path: '/account/change-password',
+  //  },
+  //  {
+  //    text: 'account.logOut',
+  //    image: exit,
+  //    path: '/account/log-out',
+  //  },
+};

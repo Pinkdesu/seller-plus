@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const DefaultMain = styled.main`
   min-height: 100vh;
   padding-top: 150px;
+  padding-bottom: 100px;
 
   * {
     font-size: 14px;

@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { DefaultMain } from '~/features/DefaultView/elements';
 import { NavLink } from 'react-router-dom';
+import { FieldWrapper, Button } from '~/features/Common/elements';
 
 export const AccountMain = styled(DefaultMain)`
   background-color: ${({ theme }) => theme.gray1};
 `;
 
 export const AccountContentWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
   min-width: 320px;
   max-width: calc(960px - 20px);
   margin: 0 auto;
@@ -14,7 +17,7 @@ export const AccountContentWrapper = styled.div`
 `;
 
 export const LeftSide = styled.section`
-  width: calc(100% / 3);
+  flex: 1 0 calc(100% / 3);
   padding: 0 10px;
 `;
 
@@ -105,7 +108,7 @@ export const Text = styled.span`
 `;
 
 export const Content = styled(LeftSide)`
-  width: calc((100% / 3) * 2);
+  flex: 2 0 calc(100% * 2 / 3);
 `;
 
 export const ContentLayout = styled.div`
@@ -115,4 +118,61 @@ export const ContentLayout = styled.div`
   flex-shrink: 1;
 `;
 
-export const ContentHeaderWrapper = styled.div``;
+export const ContentHeaderWrapper = styled.div`
+  background-color: ${({ theme }) => theme.white};
+`;
+
+export const ContentHeader = styled.div`
+  padding: 32px 32px 0;
+  text-align: left;
+`;
+
+export const ImageThumb = styled.div`
+  font-size: 0;
+  margin-bottom: calc(3 * 4px);
+`;
+
+export const PageImage = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+export const PageHeader = styled(Header)`
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  margin-bottom: calc(2 * 4px);
+`;
+
+export const PageText = styled.p`
+  display: block;
+  line-height: 1.5rem;
+  max-width: 550px;
+  text-align: left;
+  letter-spacing: 0.05rem;
+`;
+
+export const PageContainer = styled.div`
+  position: relative;
+  min-height: 500px;
+`;
+
+export const PersonalData = styled.div`
+  background-color: ${({ theme }) => theme.white};
+
+  & ${FieldWrapper}, ${Button} {
+    max-width: 330px;
+  }
+`;
+
+export const PersonalDataEdit = styled(ContentHeader)`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 25px;
+`;
+
+export const SubmitButtonWrapper = styled(ContentHeader)`
+  padding-top: 40px;
+  padding-bottom: 32px;
+`;

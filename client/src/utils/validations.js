@@ -17,3 +17,9 @@ export const isLetters = (value) => {
 export const isValidPassword = (password) => {
   return password.length >= MIN_PASSWORD && password.length <= MAX_PASSWORD;
 };
+
+export const isPhone = (phone) => {
+  const reg = new RegExp(/^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/);
+
+  return reg.test(phone);
+};

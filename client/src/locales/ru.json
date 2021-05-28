@@ -62,5 +62,11 @@
    "account.myApplications": "Мои заявки",
    "account.addressBook": "Адресная книга",
    "account.changePassword": "Изменить пароль",
-   "account.logOut": "Выйти"
+   "account.logOut": "Выйти",
+   "account.header.youCanUpdate": "Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведенные ниже данные.",
+   "account.personal.saveChanges": "Сохранить изменения",
+   "error.passwordLength": "The password must contain between 8 and 40 characters",
+   "error.enterCorrectEmail": "Email введён некорректно",
+   "error.enterCorrectPhone": "Телефон введён некорректно",
+   "error.onlyLetters": "Имя должно состоять только из букв"
 }
