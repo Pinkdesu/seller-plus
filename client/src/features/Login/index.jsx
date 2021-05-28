@@ -1,33 +1,28 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { useLocale } from '~/utils/useLocale';
-import { isEmail, isValidPassword } from '~/utils/validations';
 import { login } from '~/features/AppBootstrap/store/events';
+import { useField, useEmailError, usePasswordError } from '~/utils/fields';
 import * as S from './elements';
 import Options from './components/Options';
 import TextField from '~/features/Common/TextField';
+import PasswordField from '~/features/Common/PasswordField';
 import Button from '~/features/Common/Button';
 
 const Login = () => {
   const locale = useLocale();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, onEmail] = useField('');
+  const [password, onPassword] = useField('');
 
-  const handleEmailChange = useCallback((e) => {
-    const value = e.target.value;
-    setEmail(value.trim().toLowerCase());
-  }, []);
+  const [emailError, onEmailBlur] = useEmailError(email);
+  const [passwordError, onPasswordBlur] = usePasswordError(email);
 
-  const handlePasswordChange = useCallback((e) => {
-    const value = e.target.value;
-    setPassword(value.trim());
-  }, []);
-
-  const onLogin = () => {
+  const onLogin = (e) => {
+    e.preventDefault();
     login({ email, password });
   };
 
-  const disabled = !isEmail(email) || !isValidPassword(password);
+  const disabled = emailError || passwordError;
 
   return (
     <S.LoginMain>
@@ -38,15 +33,16 @@ const Login = () => {
             <TextField
               label={locale('login')}
               value={email}
-              onChange={handleEmailChange}
-              placeholder="user@gmail.com"
+              error={emailError}
+              onChange={onEmail}
+              onBlur={onEmailBlur}
             />
-            <TextField
-              type="password"
+            <PasswordField
               value={password}
               label={locale('password')}
-              onChange={handlePasswordChange}
-              placeholder="********"
+              error={passwordError}
+              onChange={onPassword}
+              onBlur={onPasswordBlur}
             />
           </div>
           <S.ButtonWrapper>

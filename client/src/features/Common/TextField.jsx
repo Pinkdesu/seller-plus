@@ -6,12 +6,11 @@ const TextField = (props) => {
 
   return (
     <S.FieldWrapper>
-      <S.FieldLabel>{`${label}:`}</S.FieldLabel>
-      <S.InputWrapper>
+      <S.FieldLabel>{label}:</S.FieldLabel>
+      <S.InputWrapper isError={error}>
         <S.Input
           type={type}
           value={value}
-          isError={error}
           onChange={onChange}
           {...otherProps}
         />

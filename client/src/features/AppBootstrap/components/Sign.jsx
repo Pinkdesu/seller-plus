@@ -12,6 +12,7 @@ import Basket from '~/features/Basket';
 import Login from '~/features/Login';
 import Register from '~/features/Register';
 import Account from '~/features/Account';
+import LogOut from '~/features/LogOut';
 
 const Sign = () => {
   const user = useStore($user);
@@ -48,7 +49,15 @@ const Sign = () => {
           authed={!isAuth}
           exact
         />
+        <PrivateRoute
+          path="/account/log-out"
+          redirectTo="/account"
+          authed={isAuth}
+          component={LogOut}
+          exact
+        />
 
+        <Redirect from="/account" to="/account" />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

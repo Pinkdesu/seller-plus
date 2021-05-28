@@ -23,7 +23,11 @@ export const FieldLabel = styled.label`
 `;
 
 export const InputWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
   width: 100%;
+  border: 1px solid
+    ${({ theme, isError }) => (!isError ? theme.gray4 : theme.red1)};
 `;
 
 export const Input = styled.input`
@@ -32,9 +36,25 @@ export const Input = styled.input`
   letter-spacing: 0.4px;
   width: 100%;
   outline: 0;
-  border: 1px solid
-    ${({ theme, isError }) => (!isError ? theme.gray4 : theme.red1)};
   ${textStyle}
+`;
+
+export const Hidden = styled.span`
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+`;
+
+export const HiddenButton = styled.button`
+  display: block;
+  background: none;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  height: 100%;
+  letter-spacing: 0.15rem;
+  padding: 0;
+  text-transform: uppercase;
 `;
 
 export const Button = styled.button`
