@@ -40,7 +40,7 @@ export const usePasswordError = (password) => {
   const handleBlur = useCallback((e) => {
     const value = e.target.value;
 
-    if (value && !isValidPassword(value)) {
+    if (!value || !isValidPassword(value)) {
       setError('error.passwordLength');
       return;
     }
@@ -58,7 +58,7 @@ export const useEmailError = (email) => {
   const handleBlur = useCallback((e) => {
     const value = e.target.value;
 
-    if (value && !isEmail(value)) {
+    if (!value || !isEmail(value)) {
       setError('error.enterCorrectEmail');
       return;
     }
@@ -76,7 +76,7 @@ export const useNameError = (name) => {
   const handleBlur = useCallback((e) => {
     const value = e.target.value;
 
-    if (value && !isLetters(value)) {
+    if (!value || !isLetters(value)) {
       setError('error.onlyLetters');
       return;
     }

@@ -17,6 +17,10 @@ export const checkAuth = AppBootstrapDomain.effect().use(
   AppBootstrapController.checkAuth,
 );
 
+export const updateUser = AppBootstrapDomain.effect().use(
+  AppBootstrapController.updateUser,
+);
+
 export const getServices = AppBootstrapDomain.effect().use(
   AppBootstrapController.getServices,
 );

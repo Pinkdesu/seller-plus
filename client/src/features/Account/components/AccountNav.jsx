@@ -1,14 +1,20 @@
 import React, { memo } from 'react';
-import * as S from '../elements';
+import { useStore } from 'effector-react';
+import { $user } from '~/features/AppBootstrap/store';
 import { ACCOUNT_NAV } from '../constants';
+import * as S from '../elements';
 import NavItem from './NavItem';
 
 const AccountNav = () => {
+  const {
+    user: { firstName, secondName },
+  } = useStore($user);
+
   return (
     <S.LeftSide>
       <S.LeftSideHeader>
         <S.HeaderContent>
-          <S.Header>Тимур Рожков</S.Header>
+          <S.Header>{`${firstName} ${secondName}`}</S.Header>
         </S.HeaderContent>
       </S.LeftSideHeader>
       <S.LeftSideNav>

@@ -1,7 +1,7 @@
 const ROLES = {
-  VISITOR: 1,
-  USER: 3,
-  ADMIN: 5
+  VISITOR: 'VISITOR',
+  USER: 'USER',
+  ADMIN: 'ADMIN'
 };
 
 const PASSWORD_VALID = {

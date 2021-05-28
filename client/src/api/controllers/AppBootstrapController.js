@@ -19,6 +19,13 @@ export class AppBootstrapController {
       data: payload,
     });
 
+  static updateUser = (payload) => {
+    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
+    return api.put('/user', {
+      data: payload,
+    });
+  };
+
   static init = () =>
     Promise.all([this.checkAuth(), this.getServices()]).then((data) =>
       data.reduce(

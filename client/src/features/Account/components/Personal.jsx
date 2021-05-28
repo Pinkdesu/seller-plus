@@ -2,6 +2,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { $user } from '~/features/AppBootstrap/store';
 import { useLocale } from '~/utils/useLocale';
+import { updateUser } from '~/features/AppBootstrap/store/events';
 import {
   useName,
   useField,
@@ -20,13 +21,13 @@ const Personal = () => {
 
   const {
     email: curEmail,
-    phone: curPhone = '',
+    phone: curPhone,
     firstName: curFirstName,
     secondName: curSecName,
   } = user;
 
   const [email, onEmail] = useField(curEmail);
-  const [phone, onPhone] = useField(curPhone);
+  const [phone, onPhone] = useField(curPhone ?? '');
   const [firstName, onFirstName] = useName(curFirstName);
   const [secondName, onSecondName] = useName(curSecName);
 
@@ -44,54 +45,64 @@ const Personal = () => {
     secondName !== curSecName ||
     phone !== curPhone;
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
     if (!hasError && hasChange) {
+      updateUser({
+        email,
+        phone,
+        firstName,
+        secondName,
+      });
     }
   };
 
   return (
     <S.PageContainer>
       <S.PersonalData>
-        <form>
-          <S.PersonalDataEdit>
-            <TextField
-              value={firstName}
-              onBlur={onFirstNameBlur}
-              onChange={onFirstName}
-              label={locale('firstName')}
-              required
-            />
-            <TextField
-              value={secondName}
-              onChange={onSecondName}
-              onBlur={onSecondNameBlur}
-              label={locale('secondName')}
-              required
-            />
-            <TextField
-              type="email"
-              value={email}
-              onBlur={onEmailBlur}
-              onChange={onEmail}
-              label={locale('email')}
-              required
-            />
-            <TextField
-              type="tel"
-              value={phone}
-              onChange={onPhone}
-              onBlur={onPhoneBlur}
-              label={locale('telephone')}
-            />
-          </S.PersonalDataEdit>
-          <S.SubmitButtonWrapper>
-            <Button
-              onClick={handleClick}
-              disabled={hasError || !hasChange}
-              text={locale('account.personal.saveChanges')}
-            />
-          </S.SubmitButtonWrapper>
-        </form>
+        <S.PersonalDataEdit>
+          <TextField
+            value={firstName}
+            onBlur={onFirstNameBlur}
+            onChange={onFirstName}
+            label={locale('firstName')}
+            error={firstNameError}
+            required
+          />
+          <TextField
+            value={secondName}
+            onChange={onSecondName}
+            onBlur={onSecondNameBlur}
+            label={locale('secondName')}
+            error={secondNameError}
+            required
+          />
+          <TextField
+            type="email"
+            value={email}
+            onBlur={onEmailBlur}
+            onChange={onEmail}
+            label={locale('email')}
+            error={emailError}
+            required
+          />
+          <TextField
+            type="tel"
+            value={phone}
+            onChange={onPhone}
+            onBlur={onPhoneBlur}
+            error={phoneError}
+            label={locale('telephone')}
+          />
+        </S.PersonalDataEdit>
+        <S.SubmitButtonWrapper>
+          <Button
+            onClick={handleClick}
+            disabled={hasError || !hasChange}
+            text={locale('account.personal.saveChanges')}
+          />
+        </S.SubmitButtonWrapper>
       </S.PersonalData>
     </S.PageContainer>
   );

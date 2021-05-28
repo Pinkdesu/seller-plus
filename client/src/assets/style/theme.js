@@ -22,4 +22,6 @@ export const THEME = {
   gray4: '#767676',
   gray5: '#f1f1f1',
   gray6: '#999999',
+
+  red1: '#d01345',
 };

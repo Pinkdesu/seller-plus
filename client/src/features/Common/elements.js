@@ -32,7 +32,8 @@ export const Input = styled.input`
   letter-spacing: 0.4px;
   width: 100%;
   outline: 0;
-  border: 1px solid ${({ theme }) => theme.gray4};
+  border: 1px solid
+    ${({ theme, isError }) => (!isError ? theme.gray4 : theme.red1)};
   ${textStyle}
 `;
 

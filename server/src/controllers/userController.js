@@ -88,8 +88,42 @@ class UserController {
 
   async checkAuth(req, res, next) {
     try {
-      const { exp, iat, ...userData } = req.user;
+      const { id } = req.user;
+
+      const user = await User.findOne({ raw: true, where: { id } });
+
+      if (!user) {
+        return next(ApiError.badRequest('User not found'));
+      }
+
+      const token = generateAccessToken(user);
+
+      return res.json({ token });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async updateUserInfo(req, res, next) {
+    try {
+      const { id } = req.user;
+      const {
+        firstName, secondName, email, phone
+      } = req.body.data;
+
+      const updatedUser = await User.update(
+        {
+          firstName, secondName, email, phone
+        },
+        {
+          where: { id }, returning: true, plain: true
+        }
+      );
+
+      const { password: _, ...userData } = updatedUser[1].dataValues;
       const token = generateAccessToken(userData);
+
       return res.json({ token });
     }
     catch (e) {
