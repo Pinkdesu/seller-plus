@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const generateAccessToken = require('../utils/generateAccessToken');
 const ApiError = require('../error/apiError');
-const { User } = require('../models');
+const { User, Basket, BasketProduct } = require('../models');
 const { ROLES } = require('../constants');
 
 class UserController {
@@ -21,7 +21,8 @@ class UserController {
         firstName,
         secondName,
         password,
-        repeatPassword
+        repeatPassword,
+        products
       } = req.body.data;
 
       const candidate = await User.findOne({ where: { email } });
@@ -46,6 +47,17 @@ class UserController {
 
       const { password: _, ...userData } = user.dataValues;
       const token = generateAccessToken(userData);
+
+      const basket = await Basket.create({ userId: user.id });
+
+      if (products) {
+        const parsedProducts = JSON.parse(products);
+
+        parsedProducts.forEach((id) => BasketProduct.Create({
+          basketId: basket.id,
+          productId: id
+        }));
+      }
 
       return res.json({ token });
     }

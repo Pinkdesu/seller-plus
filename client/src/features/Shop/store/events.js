@@ -4,3 +4,7 @@ import { ShopController } from '~/api/controllers/ShopController';
 export const getCategories = ShopDomain.effect().use(
   ShopController.getCategories,
 );
+
+export const getProductsByCategory = ShopDomain.effect().use(
+  ShopController.getProductsByCategory,
+);

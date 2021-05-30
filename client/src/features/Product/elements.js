@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Product = styled.article`
   position: relative;
-  flex: 1 0 calc((100% / 4) - 20px);
+  flex: 0 0 calc((100% / 4) - 20px);
 `;
 
 export const CartButton = styled.button`
@@ -51,7 +51,7 @@ export const ProductImageThumb = styled.div`
 export const ProductImage = styled.img`
   position: absolute;
   width: 100%;
-  height: auto;
+  height: 100%;
   top: 0;
 `;
 

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useStore } from 'effector-react';
+import { $popularProductsList } from '../store';
 import * as S from '../elements';
 import Product from '~/features/Product';
-import { PRODUCTS } from '../constants';
 
 const PopularProducts = () => {
   const locale = useLocale();
+
+  const popularProducts = useStore($popularProductsList);
 
   return (
     <S.PopularProducts>
@@ -13,7 +16,7 @@ const PopularProducts = () => {
         <S.Header>{locale('shop.popularProducts')}</S.Header>
       </S.HeaderWrapper>
       <S.Products>
-        {PRODUCTS.map((product) => (
+        {popularProducts.map((product) => (
           <Product
             key={product.id}
             id={product.id}

@@ -15,4 +15,9 @@ export const $categoriesList = ShopDomain.store(initialCategories).on(
 
 export const $brandsList = ShopDomain.store(initialBrands);
 
-export const $productsList = ShopDomain.store(initialProducts);
+export const $popularProductsList = ShopDomain.store(initialProducts);
+
+export const $productsList = ShopDomain.store(initialProducts).on(
+  events.getProductsByCategory.done,
+  reducers.setProducts,
+);

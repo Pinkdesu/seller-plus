@@ -12,6 +12,8 @@ class ProductController {
         info,
         name,
         price,
+        count,
+        description,
         brandId,
         categoryId
       } = req.body;
@@ -34,6 +36,8 @@ class ProductController {
         images: imagesNames,
         price: +price,
         name,
+        count,
+        description,
         brandId,
         categoryId
       });

@@ -25,12 +25,14 @@ const Basket = sequelize.define('basket', {
 });
 
 const BasketProduct = sequelize.define('basket_product', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
 });
 
 const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  description: { type: DataTypes.STRING, allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
@@ -39,7 +41,8 @@ const Product = sequelize.define('product', {
 const ProductInfo = sequelize.define('product_info', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false }
+  description: { type: DataTypes.STRING, allowNull: false },
+  unit: { type: DataTypes.STRING }
 });
 
 const Category = sequelize.define('category', {
