@@ -42,7 +42,6 @@ const LayoutAside = (props) => {
       image,
       price,
       quantity: productCount,
-      maxQuantity: count,
     });
   };
 

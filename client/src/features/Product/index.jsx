@@ -17,7 +17,7 @@ const Product = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    addProduct({ id, name, price, image, quantity: 1, maxQuantity: count });
+    addProduct({ id, name, price, image, quantity: 1 });
   };
 
   return (

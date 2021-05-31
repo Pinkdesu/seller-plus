@@ -9,6 +9,9 @@ export class BasketController {
       quantity,
     });
 
+  static deleteProduct = (productId) =>
+    api.delete('/basket/product', { params: { productId } });
+
   static fillBasket = (products) =>
     api.post('/basket/products', {
       products,

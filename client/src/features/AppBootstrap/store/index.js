@@ -9,11 +9,11 @@ const initialUserData = {};
 const initialServices = [...SERVICES];
 
 export const $isAuth = AppBootstrapDomain.store(initialIsAuth)
-  .on(events.setUserData, () => true)
+  .on(events.auth, () => true)
   .reset(events.logOut);
 
 export const $userData = AppBootstrapDomain.store(initialUserData)
-  .on(events.setUserData, reducers.setUserData)
+  .on([events.auth, events.changeUserData], reducers.setUserData)
   .reset(events.logOut);
 
 export const $user = combine($isAuth, $userData, (isAuth, user) => ({

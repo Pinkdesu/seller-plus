@@ -13,7 +13,14 @@ class BasketController {
       const basket = await Basket.findOne({ where: { userId: id } });
 
       const currentBasket = await BasketProduct.findAll(
-        { where: { basketId: basket.id }, include: [{ model: Product }] }
+        {
+          where: { basketId: basket.id },
+          attributes: [['count', 'quantity']],
+          include: [{
+            model: Product,
+            attributes: ['id', 'name', 'price', 'images']
+          }]
+        }
       );
 
       return res.json({ basket: currentBasket });
@@ -56,7 +63,7 @@ class BasketController {
   async deleteProduct(req, res, next) {
     try {
       const { id } = req.user;
-      const { productId } = req.body;
+      const { productId } = req.query;
 
       const basket = await Basket.findOne({ where: { userId: id } });
       const basketProduct = await BasketProduct.findOne({
@@ -84,17 +91,16 @@ class BasketController {
       const { products } = req.body;
 
       const userBasket = await Basket.findOne({ where: { userId: id } });
-
-      const correctProducts = JSON.parse(products).map((product) => ({
+      const values = JSON.parse(products).map((product) => ({
         basketId: userBasket.id,
         productId: product.id,
         count: product.count
       }));
 
       await BasketProduct.destroy({ where: { basketId: userBasket.id } });
-      await BasketProduct.bulkCreate({ ...correctProducts });
+      await BasketProduct.bulkCreate(values);
 
-      return res.json();
+      return res.json({ success: true });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

@@ -28,10 +28,13 @@ export const getServices = AppBootstrapDomain.effect().use(
   AppBootstrapController.getServices,
 );
 
-export const setUserData = merge([
+export const auth = merge([
   login.doneData,
   register.doneData,
   checkAuth.doneData,
+]);
+
+export const changeUserData = merge([
   updateUser.doneData,
   changePassword.doneData,
 ]);

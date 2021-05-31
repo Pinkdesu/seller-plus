@@ -1,6 +1,6 @@
 import { BasketDomain } from './domain';
-import { combine, guard, sample, split } from 'effector';
-import { login, register } from '~/features/AppBootstrap/store/events';
+import { combine, guard, split } from 'effector';
+import { auth, logOut } from '~/features/AppBootstrap/store/events';
 import { $isAuth } from '~/features/AppBootstrap/store';
 import * as events from './events';
 import * as reducers from './reducers';
@@ -20,8 +20,12 @@ export const $products = BasketDomain.store(initProducts)
     [events.noAuthAddProduct, events.authAddProduct.done],
     reducers.addProduct,
   )
-  .on(events.deleteProduct, reducers.deleteProduct)
-  .on(events.fillBasket, reducers.setBasket);
+  .on(
+    [events.noAuthDeleteProduct, events.authDeleteProduct.done],
+    reducers.deleteProduct,
+  )
+  .on(events.getBasket.done, reducers.setBasket)
+  .reset(logOut);
 
 export const $totalPrice = $products.map((state) =>
   state.reduce(
@@ -46,24 +50,24 @@ export const $basket = combine(
 );
 
 guard({
-  clock: events.deleteProduct,
+  clock: [events.noAuthDeleteProduct, events.authDeleteProduct.done],
   source: $productsCount,
   filter: (count) => count === 0,
   target: events.closeMenu,
 });
 
-sample({
-  clock: [login.done, register.done],
+guard({
+  clock: auth,
   source: $products,
-  fn: (products) => {
-    if (!products.length) return;
-
-    return products.map((product) => ({
-      id: product.id,
-      count: product.count,
-    }));
-  },
+  filter: (products) => products.length > 0,
   target: events.fillBasket,
+});
+
+guard({
+  clock: auth,
+  source: $products,
+  filter: (products) => products.length === 0,
+  target: events.getBasket,
 });
 
 split({
@@ -75,5 +79,17 @@ split({
   cases: {
     isAuth: events.authAddProduct,
     noAuth: events.noAuthAddProduct,
+  },
+});
+
+split({
+  source: events.deleteProduct,
+  match: {
+    isAuth: $isAuth,
+    noAuth: () => true,
+  },
+  cases: {
+    isAuth: events.authDeleteProduct,
+    noAuth: events.noAuthDeleteProduct,
   },
 });
