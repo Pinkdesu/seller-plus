@@ -28,7 +28,7 @@ const RightSideMenu = (props) => {
           onClick={toggleMenu}
         />
         <NavItem
-          path="/service"
+          path="/services"
           text={locale('services')}
           onClick={toggleMenu}
         />

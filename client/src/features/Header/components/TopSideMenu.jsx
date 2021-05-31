@@ -40,7 +40,7 @@ const TopSideMenu = (props) => {
       <S.NavBar>
         <NavItem path="/" text={locale('home')} exact />
         <NavItem path="/shop" text={locale('shop')} />
-        <NavItem path="/service" text={locale('services')} />
+        <NavItem path="/services" text={locale('services')} />
       </S.NavBar>
       <S.NavBar>
         <S.NavItem>

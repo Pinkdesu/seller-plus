@@ -13,6 +13,7 @@ import Login from '~/features/Login';
 import Register from '~/features/Register';
 import Account from '~/features/Account';
 import LogOut from '~/features/LogOut';
+import ServicesPage from '~/features/ServicesPage';
 
 const Sign = () => {
   const user = useStore($user);
@@ -25,6 +26,7 @@ const Sign = () => {
         <Route path="/" component={Home} exact />
         <Route path="/basket" component={Basket} exact />
         <Route path="/shop" component={Shop} exact />
+        <Route path="/services" component={ServicesPage} exact />
         <Route path="/shop/category/:id" component={CategoryPage} exact />
         <Route path="/shop/product/:id" component={ProductPage} exact />
 
