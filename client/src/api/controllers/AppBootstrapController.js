@@ -7,37 +7,17 @@ export class AppBootstrapController {
   static getServices = () => api.get('/service');
 
   static login = ({ email, password }) =>
-    api.post('/user/login', { data: { email, password } });
+    api.post('/user/login', { email, password });
 
   static checkAuth = () => {
+    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
+
     return api.get('/user/auth');
   };
 
-  static register = (payload) =>
-    api.post('/user/register', {
-      data: payload,
-    });
+  static register = (payload) => api.post('/user/register', payload);
 
-  static updateUser = (payload) =>
-    api.put('/user', {
-      data: payload,
-    });
+  static updateUser = (payload) => api.put('/user', payload);
 
-  static changePassword = (payload) =>
-    api.put('/user/password', {
-      data: payload,
-    });
-
-  static init = () => {
-    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
-    return Promise.all([this.checkAuth(), this.getServices()]).then((data) =>
-      data.reduce(
-        (result, current) => ({
-          ...result,
-          ...current.data,
-        }),
-        {},
-      ),
-    );
-  };
+  static changePassword = (payload) => api.put('/user/password', payload);
 }

@@ -28,6 +28,7 @@ const ShopCategory = () => {
             image={product.image}
             name={product.name}
             price={product.price}
+            count={product.count}
           />
         ))}
       </S.Content>

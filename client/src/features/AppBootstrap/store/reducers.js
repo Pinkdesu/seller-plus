@@ -3,25 +3,22 @@ import jwtDecode from 'jwt-decode';
 import { LOCAL_STORAGE_TOKENS_KEY } from '~/api/constants';
 import { URL } from '~/api/constants';
 
-export const setUserData = (_, { result }) => {
-  const token = result?.token || result.data.token;
+export const setUserData = (_, result) => {
+  const { token } = result.data;
 
   const { firstName, secondName, email, phone } = jwtDecode(token);
   ls(LOCAL_STORAGE_TOKENS_KEY, token);
 
   return {
-    user: {
-      firstName,
-      secondName,
-      email,
-      phone,
-    },
-    isAuth: true,
+    firstName,
+    secondName,
+    email,
+    phone,
   };
 };
 
-export const getServicesDone = (state, { result }) => {
-  const { services } = result;
+export const setServices = (state, result) => {
+  const { services } = result.data;
 
   if (!services.length) return state;
 

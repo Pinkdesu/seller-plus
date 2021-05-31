@@ -1,11 +1,8 @@
+import ls from 'store2';
 import { AppBootstrapDomain } from './domain';
 import { AppBootstrapController } from '~/api/controllers/AppBootstrapController';
-import ls from 'store2';
+import { merge } from 'effector';
 import { LOCAL_STORAGE_TOKENS_KEY } from '~/api/constants';
-
-export const init = AppBootstrapDomain.effect().use(
-  AppBootstrapController.init,
-);
 
 export const login = AppBootstrapDomain.effect().use(
   AppBootstrapController.login,
@@ -30,6 +27,14 @@ export const changePassword = AppBootstrapDomain.effect().use(
 export const getServices = AppBootstrapDomain.effect().use(
   AppBootstrapController.getServices,
 );
+
+export const setUserData = merge([
+  login.doneData,
+  register.doneData,
+  checkAuth.doneData,
+  updateUser.doneData,
+  changePassword.doneData,
+]);
 
 export const logOut = AppBootstrapDomain.event();
 

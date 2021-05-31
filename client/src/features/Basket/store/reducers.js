@@ -1,16 +1,14 @@
 export const addProduct = (state, payload) => {
-  const { id, quantity = 1 } = payload;
+  console.log(payload);
+  const data = payload?.params ?? payload;
+  const { id, quantity = 1 } = data;
+
   const products = [...state];
 
   const similarProduct = products.find((product) => product.id === id);
 
-  if (!similarProduct) products.push(payload);
-  if (similarProduct) {
-    const { quantity: simQ, maxQuantity: simMaxQ } = similarProduct;
-    if (simQ === simMaxQ) return state;
-
-    similarProduct.quantity += quantity;
-  }
+  if (!similarProduct) products.push(data);
+  if (similarProduct) similarProduct.quantity += quantity;
 
   return products;
 };
@@ -27,4 +25,8 @@ export const deleteProduct = (state, id) => {
   }, []);
 
   return products;
+};
+
+export const setBasket = (_, { result }) => {
+  console.log(result);
 };

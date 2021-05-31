@@ -13,7 +13,6 @@ export const setCategories = (state, { result }) => {
 
 export const setProducts = (_, { result }) => {
   const { data } = result;
-  console.log(data);
 
   return data.map((product) => ({
     ...product,

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const generateAccessToken = require('../utils/generateAccessToken');
 const ApiError = require('../error/apiError');
-const { User, Basket, BasketProduct } = require('../models');
+const { User, Basket } = require('../models');
 const { ROLES } = require('../constants');
 
 class UserController {
@@ -21,9 +21,8 @@ class UserController {
         firstName,
         secondName,
         password,
-        repeatPassword,
-        products
-      } = req.body.data;
+        repeatPassword
+      } = req.body;
 
       const candidate = await User.findOne({ where: { email } });
 
@@ -44,20 +43,10 @@ class UserController {
         role: ROLES.USER,
         password: hashPassword
       });
+      await Basket.create({ userId: user.id });
 
       const { password: _, ...userData } = user.dataValues;
       const token = generateAccessToken(userData);
-
-      const basket = await Basket.create({ userId: user.id });
-
-      if (products) {
-        const parsedProducts = JSON.parse(products);
-
-        parsedProducts.forEach((id) => BasketProduct.Create({
-          basketId: basket.id,
-          productId: id
-        }));
-      }
 
       return res.json({ token });
     }
@@ -74,7 +63,7 @@ class UserController {
         throw new Error(errors);
       }
 
-      const { email, password } = req.body.data;
+      const { email, password } = req.body;
 
       const user = await User.findOne({ raw: true, where: { email } });
 
@@ -122,7 +111,7 @@ class UserController {
       const { id } = req.user;
       const {
         firstName, secondName, email, phone
-      } = req.body.data;
+      } = req.body;
 
       const updatedUser = await User.update(
         {
@@ -148,7 +137,7 @@ class UserController {
       const { id } = req.user;
       const {
         currentPassword, newPassword, repeatNewPassword
-      } = req.body.data;
+      } = req.body;
 
       if (newPassword !== repeatNewPassword) {
         return next(ApiError.badRequest("The password doesn't match"));

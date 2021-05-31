@@ -1,25 +1,27 @@
 import { AppBootstrapDomain } from './domain';
 import { SERVICES } from '~/features/Home/constants';
+import { combine } from 'effector';
 import * as events from './events';
 import * as reducers from './reducers';
 
+const initialIsAuth = false;
+const initialUserData = {};
 const initialServices = [...SERVICES];
-const initialUser = { user: {}, isAuth: false };
 
-export const $user = AppBootstrapDomain.store(initialUser)
-  .on(
-    [
-      events.init.done,
-      events.login.done,
-      events.register.done,
-      events.updateUser.done,
-      events.changePassword.done,
-    ],
-    reducers.setUserData,
-  )
+export const $isAuth = AppBootstrapDomain.store(initialIsAuth)
+  .on(events.setUserData, () => true)
   .reset(events.logOut);
 
+export const $userData = AppBootstrapDomain.store(initialUserData)
+  .on(events.setUserData, reducers.setUserData)
+  .reset(events.logOut);
+
+export const $user = combine($isAuth, $userData, (isAuth, user) => ({
+  isAuth,
+  user,
+}));
+
 export const $servicesList = AppBootstrapDomain.store(initialServices).on(
-  events.init.done,
-  reducers.getServicesDone,
+  events.getServices.doneData,
+  reducers.setServices,
 );
