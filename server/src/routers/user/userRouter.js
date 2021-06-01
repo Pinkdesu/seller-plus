@@ -2,7 +2,7 @@ const Router = require('express');
 
 const router = new Router();
 const { check } = require('express-validator');
-const userController = require('../../controllers/userController');
+const userController = require('../../controllers/user/userController');
 const checkRole = require('../../middleware/checkRoleMiddleware');
 const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { PASSWORD_VALID } = require('../../constants');

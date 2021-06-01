@@ -1,7 +1,7 @@
 const Router = require('express');
 
 const router = new Router();
-const serviceController = require('../../controllers/serviceController');
+const serviceController = require('../../controllers/user/serviceController');
 
 const checkRole = require('../../middleware/checkRoleMiddleware');
 const decodeToken = require('../../middleware/decodeTokenMiddleware');
