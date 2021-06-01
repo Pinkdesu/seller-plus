@@ -1,8 +1,8 @@
 import React from 'react';
-import {} from 'react-admin';
+import AppBootstrap from './features/AppBootstrap';
 
 const App = () => {
-  return <div className="App"></div>;
+  return <AppBootstrap />;
 };
 
 export default App;
