@@ -21,7 +21,7 @@ export const usePasswordError = (password) => {
   const handleBlur = useCallback((e) => {
     const value = e.target.value;
 
-    if (!value || !isValidPassword(value)) {
+    if (value && !isValidPassword(value)) {
       setError('Длина пароля не меньше 8 и не больше 40 символов');
       return;
     }
@@ -39,7 +39,7 @@ export const useEmailError = (email) => {
   const handleBlur = useCallback((e) => {
     const value = e.target.value;
 
-    if (!value || !isEmail(value)) {
+    if (value && !isEmail(value)) {
       setError('Некорректный емайл');
       return;
     }

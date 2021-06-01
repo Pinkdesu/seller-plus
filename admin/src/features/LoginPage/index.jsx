@@ -1,6 +1,6 @@
 import React from 'react';
 import { useField, useEmailError, usePasswordError } from '~/utils/fields';
-import { useStyles } from './style';
+import { makeStyles } from '@material-ui/core/styles';
 import { login } from '~/features/AppBootstrap/store/events';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,26 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: `${theme.spacing(3, 0, 2)} !important`,
+  },
+}));
 
 const LoginPage = () => {
   const classes = useStyles();
@@ -28,7 +48,7 @@ const LoginPage = () => {
     });
   };
 
-  const disabled = emailError || passwordError || !email || !password;
+  const disabled = Boolean(emailError || passwordError || !email || !password);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,6 +62,8 @@ const LoginPage = () => {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            error={Boolean(emailError)}
+            helperText={emailError}
             variant="outlined"
             margin="normal"
             required
@@ -53,6 +75,8 @@ const LoginPage = () => {
             autoFocus
           />
           <TextField
+            error={Boolean(passwordError)}
+            helperText={passwordError}
             onChange={onPassword}
             onBlur={onpasswordBlur}
             fullWidth
@@ -64,7 +88,6 @@ const LoginPage = () => {
             autoComplete="current-password"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"

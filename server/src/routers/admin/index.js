@@ -3,6 +3,6 @@ const Router = require('express');
 const router = new Router();
 const userRouter = require('./adminRouter');
 
-router.use('/admin', userRouter);
+router.use('/', userRouter);
 
 module.exports = router;
