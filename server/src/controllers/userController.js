@@ -57,18 +57,41 @@ class UserController {
 
   async login(req, res, next) {
     try {
-      const errors = validationResult(req);
-
-      if (errors.length) {
-        throw new Error(errors);
-      }
-
       const { email, password } = req.body;
 
       const user = await User.findOne({ raw: true, where: { email } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
+      }
+
+      const validPassword = bcrypt.compareSync(password, user.password);
+
+      if (!validPassword) {
+        return next(ApiError.badRequest('Invalid password'));
+      }
+
+      const { password: _, ...userData } = user;
+      const token = generateAccessToken(userData);
+
+      return res.json({ token });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async adminLogin(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ raw: true, where: { email } });
+
+      if (!user) {
+        return next(ApiError.badRequest('User not found'));
+      }
+
+      if (user.role !== ROLES.ADMIN) {
+        return next(ApiError.forbidden('No access'));
       }
 
       const validPassword = bcrypt.compareSync(password, user.password);

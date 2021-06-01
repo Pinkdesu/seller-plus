@@ -2,11 +2,11 @@ const Router = require('express');
 
 const router = new Router();
 const { check } = require('express-validator');
-const userController = require('../controllers/userController');
-const checkRole = require('../middleware/checkRoleMiddleware');
-const decodeToken = require('../middleware/decodeTokenMiddleware');
-const { PASSWORD_VALID } = require('../constants');
-const { ROLES } = require('../constants');
+const userController = require('../../controllers/userController');
+const checkRole = require('../../middleware/checkRoleMiddleware');
+const decodeToken = require('../../middleware/decodeTokenMiddleware');
+const { PASSWORD_VALID } = require('../../constants');
+const { ROLES } = require('../../constants');
 
 router.post('/register', [
   check('email', 'INCORRECT_EMAIL').trim().isEmail(),
