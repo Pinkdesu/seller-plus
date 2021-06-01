@@ -1,0 +1,8 @@
+!.eslintrc.js
+!.prettierrc.js
+
+!**/.babelrc.js
+
+**/node_modules
+
+**/build
