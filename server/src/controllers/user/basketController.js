@@ -2,8 +2,8 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const { Op } = require('sequelize');
-const ApiError = require('../error/apiError');
-const { Basket, BasketProduct, Product } = require('../models');
+const ApiError = require('../../error/apiError');
+const { Basket, BasketProduct, Product } = require('../../models');
 
 class BasketController {
   async getBasket(req, res, next) {

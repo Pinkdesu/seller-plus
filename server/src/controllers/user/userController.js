@@ -2,10 +2,10 @@
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const generateAccessToken = require('../utils/generateAccessToken');
-const ApiError = require('../error/apiError');
-const { User, Basket } = require('../models');
-const { ROLES } = require('../constants');
+const generateAccessToken = require('../../utils/generateAccessToken');
+const ApiError = require('../../error/apiError');
+const { User, Basket } = require('../../models');
+const { ROLES } = require('../../constants');
 
 class UserController {
   async registration(req, res, next) {

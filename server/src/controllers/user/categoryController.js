@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const ApiError = require('../error/apiError');
-const moveFile = require('../utils/moveFile');
-const { Category } = require('../models');
+const ApiError = require('../../error/apiError');
+const moveFile = require('../../utils/moveFile');
+const { Category } = require('../../models');
 
 class CategoryController {
   async create(req, res, next) {

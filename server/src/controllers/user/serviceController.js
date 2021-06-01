@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const ApiError = require('../error/apiError');
-const moveFile = require('../utils/moveFile');
-const { Service } = require('../models');
+const ApiError = require('../../error/apiError');
+const moveFile = require('../../utils/moveFile');
+const { Service } = require('../../models');
 
 class ServiceController {
   async create(req, res, next) {

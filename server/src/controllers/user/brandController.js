@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const ApiError = require('../error/apiError');
-const { Brand } = require('../models');
+const ApiError = require('../../error/apiError');
+const { Brand } = require('../../models');
 
 class BrandController {
   async create(req, res) {
