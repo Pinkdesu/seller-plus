@@ -5,20 +5,19 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DataSelect from '~/features/Common/DataSelect';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
-const AddApplication = () => {
+const AddAct = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить заявку
+          Добавить акт
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>
@@ -27,36 +26,24 @@ const AddApplication = () => {
             <div className={classes.fieldsWrapper}>
               <DataSelect
                 defaultValue="-"
-                label="Заказчик"
-                data={[[1, 'Иван Иванов']]}
+                label="Заявка"
+                data={[[1, '1']]}
                 value={1}
               />
-              <DataSelect
-                defaultValue="-"
-                label="Статус"
-                data={[[1, 'В работе']]}
-                value={1}
-              />
-              <DataSelect
-                defaultValue="-"
-                label="Тема обращения"
-                data={[[1, 'Газификация дома']]}
-                value={1}
-              />
-            </div>
-            <div className={classes.fieldsWrapper}>
               <TextField
                 fullWidth
                 variant="outlined"
                 required
-                label="Район города"
-                autoComplete="current-password"
+                label="Номер акта"
               />
+            </div>
+            <div className={classes.fieldsWrapper}>
               <TextField
                 type="date"
                 label="Дата"
                 variant="outlined"
                 defaultValue="2021-06-01"
+                required
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -70,8 +57,7 @@ const AddApplication = () => {
               rows={10}
               placeholder="Опишите..."
               fullWidth
-              defaultValue=""
-              value=""
+              value="Сантиарно-эпидемологическое обследование прошло успешно"
               variant="outlined"
             />
           </div>
@@ -79,18 +65,10 @@ const AddApplication = () => {
             <Button
               variant="contained"
               component="label"
-              startIcon={<AttachFileIcon />}
-            >
-              Загрузить файл
-              <input type="file" hidden />
-            </Button>
-            <Button
-              variant="contained"
-              component="label"
               color="primary"
               startIcon={<PostAddIcon />}
             >
-              Создать заявку
+              Создать акт
             </Button>
           </div>
         </form>
@@ -99,4 +77,4 @@ const AddApplication = () => {
   );
 };
 
-export default AddApplication;
+export default AddAct;

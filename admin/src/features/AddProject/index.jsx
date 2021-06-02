@@ -5,20 +5,20 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DataSelect from '~/features/Common/DataSelect';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Typography from '@material-ui/core/Typography';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
-const AddApplication = () => {
+const AddProject = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить заявку
+          Добавить проект
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>
@@ -27,36 +27,30 @@ const AddApplication = () => {
             <div className={classes.fieldsWrapper}>
               <DataSelect
                 defaultValue="-"
-                label="Заказчик"
-                data={[[1, 'Иван Иванов']]}
+                label="Разрешение"
+                data={[[1, '1']]}
                 value={1}
               />
-              <DataSelect
-                defaultValue="-"
-                label="Статус"
-                data={[[1, 'В работе']]}
-                value={1}
-              />
-              <DataSelect
-                defaultValue="-"
-                label="Тема обращения"
-                data={[[1, 'Газификация дома']]}
-                value={1}
-              />
-            </div>
-            <div className={classes.fieldsWrapper}>
               <TextField
                 fullWidth
                 variant="outlined"
                 required
-                label="Район города"
-                autoComplete="current-password"
+                label="Номер проекта"
+              />
+            </div>
+            <div className={classes.fieldsWrapper}>
+              <DataSelect
+                defaultValue="-"
+                label="Акт"
+                data={[[1, '1']]}
+                value={1}
               />
               <TextField
                 type="date"
                 label="Дата"
                 variant="outlined"
                 defaultValue="2021-06-01"
+                required
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -70,8 +64,7 @@ const AddApplication = () => {
               rows={10}
               placeholder="Опишите..."
               fullWidth
-              defaultValue=""
-              value=""
+              value="Разрешение на запуск газа подписано"
               variant="outlined"
             />
           </div>
@@ -81,7 +74,7 @@ const AddApplication = () => {
               component="label"
               startIcon={<AttachFileIcon />}
             >
-              Загрузить файл
+              Загрузить файлы
               <input type="file" hidden />
             </Button>
             <Button
@@ -90,7 +83,7 @@ const AddApplication = () => {
               color="primary"
               startIcon={<PostAddIcon />}
             >
-              Создать заявку
+              Создать проект
             </Button>
           </div>
         </form>
@@ -99,4 +92,4 @@ const AddApplication = () => {
   );
 };
 
-export default AddApplication;
+export default AddProject;

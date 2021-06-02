@@ -3,6 +3,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import Dashboard from '@material-ui/icons/Dashboard';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
 
 export const NAV_ITEMS = [
   {
@@ -14,6 +16,16 @@ export const NAV_ITEMS = [
     primary: 'Заявки',
     icon: <AllInboxIcon />,
     path: '/applications',
+  },
+  {
+    primary: 'Акты',
+    icon: <InsertDriveFileIcon />,
+    path: '/acts',
+  },
+  {
+    primary: 'Проекты',
+    icon: <AssistantPhotoIcon />,
+    path: '/projects',
   },
   {
     primary: 'Заказы',
