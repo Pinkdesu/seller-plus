@@ -5,6 +5,7 @@ import Applications from '~/features/Applications';
 import AddApplication from '~/features/AddApplication';
 import AddAct from '~/features/AddAct';
 import AddProject from '~/features/AddProject';
+import AddPermission from '~/features/AddPermission';
 
 const RenderAuthorized = () => {
   return (
@@ -13,6 +14,7 @@ const RenderAuthorized = () => {
         <Route path="/" component={Applications} exact />
         <Route path="/act" component={AddAct} exact />
         <Route path="/project" component={AddProject} exact />
+        <Route path="/permission" component={AddPermission} exact />
         <Route path="/application" component={AddApplication} exact />
         <Redirect from="*" to="/" />
       </Switch>
