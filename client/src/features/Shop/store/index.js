@@ -7,6 +7,14 @@ import { PRODUCTS } from '../constants';
 const initialCategories = [];
 const initialBrands = [];
 const initialProducts = [...PRODUCTS];
+const initialProduct = {
+  images: [],
+  info: [],
+};
+
+export const $product = ShopDomain.store(initialProduct)
+  .on(events.getProductById.doneData, reducers.setProduct)
+  .reset(events.resetProduct);
 
 export const $categoriesList = ShopDomain.store(initialCategories).on(
   events.getCategories.done,

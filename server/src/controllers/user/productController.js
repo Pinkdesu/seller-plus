@@ -119,10 +119,14 @@ class ProductController {
 
     const product = await Product.findOne({
       where: { id },
-      include: [{ model: ProductInfo, as: 'info' }]
+      include: [{
+        model: ProductInfo,
+        as: 'info'
+      }],
+      attributes: ['name', 'description', 'count', 'price', 'images']
     });
 
-    return res.json(product);
+    return res.json({ product });
   }
 }
 

@@ -19,3 +19,14 @@ export const setProducts = (_, { result }) => {
     image: URL(product.images[0]),
   }));
 };
+
+export const setProduct = (_, { data }) => {
+  const { product } = data;
+
+  const imagesWithUrl = product.images.map((image) => URL(image));
+
+  return {
+    ...product,
+    images: imagesWithUrl,
+  };
+};

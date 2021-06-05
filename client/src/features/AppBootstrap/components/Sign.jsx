@@ -14,6 +14,7 @@ import Register from '~/features/Register';
 import Account from '~/features/Account';
 import LogOut from '~/features/LogOut';
 import ServicesPage from '~/features/ServicesPage';
+import PaymentPage from '~/features/PaymentPage';
 
 const Sign = () => {
   const user = useStore($user);
@@ -59,6 +60,14 @@ const Sign = () => {
           redirectTo="/account/login"
           authed={isAuth}
           component={LogOut}
+          exact
+        />
+
+        <PrivateRoute
+          path="/payment"
+          redirectTo="/account/login"
+          authed={isAuth}
+          component={PaymentPage}
           exact
         />
 

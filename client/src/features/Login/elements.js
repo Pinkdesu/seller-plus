@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { BasketMain } from '~/features/Basket/elements';
+import { PageMain } from '~/features/Basket/elements';
 import { Link } from 'react-router-dom';
 import { FieldWrapper, Button } from '~/features/Common/elements';
 
-export const LoginMain = styled(BasketMain)`
+export const LoginMain = styled(PageMain)`
   padding: 140px 0;
 `;
 

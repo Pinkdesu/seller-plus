@@ -21,14 +21,14 @@ const Basket = () => {
   }
 
   return (
-    <S.BasketMain>
-      <S.BasketContentWrapper>
+    <S.PageMain>
+      <S.PageContentWrapper>
         <S.Layout>
-          <S.BasketContent>
+          <S.PageContent>
             <S.ContentHolders>
-              <S.ContentHeader>
-                <h2>{locale('myShoppingCart')}</h2>
-              </S.ContentHeader>
+              <S.LeftSideBlockWrapper>
+                <S.ContentHeader>{locale('myShoppingCart')}</S.ContentHeader>
+              </S.LeftSideBlockWrapper>
               <S.BasketProducts>
                 {products.map((product) => (
                   <CartProduct
@@ -42,16 +42,16 @@ const Basket = () => {
                 ))}
               </S.BasketProducts>
               <S.MoneySum>
-                <h3>
+                <S.MoneyHeader>
                   {locale('totalPrice')}{' '}
                   {locale('priceWithCurrency', { price: formatedPrice })}
-                </h3>
+                </S.MoneyHeader>
               </S.MoneySum>
             </S.ContentHolders>
-          </S.BasketContent>
-          <S.LeftSideWrapper>
-            <S.LeftSide>
-              <S.LeftSideTotal>
+          </S.PageContent>
+          <S.RightSideWrapper>
+            <S.RightSide>
+              <S.RightSideTotal>
                 <S.Totalheader>{locale('total')}</S.Totalheader>
                 <S.Cost>
                   <span>{locale('totalPrice')}</span>
@@ -60,14 +60,14 @@ const Basket = () => {
                   </span>
                 </S.Cost>
                 <S.PayLinkWrapper>
-                  <S.PayLink to="/">PAY</S.PayLink>
+                  <S.PayLink to="/payment">PAY</S.PayLink>
                 </S.PayLinkWrapper>
-              </S.LeftSideTotal>
-            </S.LeftSide>
-          </S.LeftSideWrapper>
+              </S.RightSideTotal>
+            </S.RightSide>
+          </S.RightSideWrapper>
         </S.Layout>
-      </S.BasketContentWrapper>
-    </S.BasketMain>
+      </S.PageContentWrapper>
+    </S.PageMain>
   );
 };
 

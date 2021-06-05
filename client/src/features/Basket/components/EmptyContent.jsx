@@ -15,8 +15,8 @@ const EmptyContent = () => {
   const linkPath = isAuth ? '/shop' : '/account/login';
 
   return (
-    <S.BasketMain isEmpty>
-      <S.BasketContentWrapper isEmpty>
+    <S.PageMain isEmpty>
+      <S.PageContentWrapper isEmpty>
         <S.EmptyContent>
           <S.EmptyBagTitleWrapper>
             <S.EmptyBagIcon>
@@ -27,8 +27,8 @@ const EmptyContent = () => {
           <S.EmptyBagText>{locale(textLocale)}</S.EmptyBagText>
           <S.AuthLink to={linkPath}>{locale(linkLocale)}</S.AuthLink>
         </S.EmptyContent>
-      </S.BasketContentWrapper>
-    </S.BasketMain>
+      </S.PageContentWrapper>
+    </S.PageMain>
   );
 };
 

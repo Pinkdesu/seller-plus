@@ -85,7 +85,7 @@ const CartMenu = (props) => {
               <S.MenuLink to="/basket">
                 <span>{locale('viewShoppingCart')}</span>
               </S.MenuLink>
-              <S.MenuLink to="/">
+              <S.MenuLink to="/payment">
                 <span>{locale('placeOrder')}</span>
               </S.MenuLink>
             </S.ActionLinks>

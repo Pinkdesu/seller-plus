@@ -8,3 +8,9 @@ export const getCategories = ShopDomain.effect().use(
 export const getProductsByCategory = ShopDomain.effect().use(
   ShopController.getProductsByCategory,
 );
+
+export const getProductById = ShopDomain.effect().use(
+  ShopController.getProductById,
+);
+
+export const resetProduct = ShopDomain.event();

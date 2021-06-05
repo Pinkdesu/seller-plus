@@ -19,14 +19,14 @@ const headerStyle = css`
   line-height: 22px;
 `;
 
-export const BasketMain = styled(ProductPage)`
+export const PageMain = styled(ProductPage)`
   min-height: 100vh;
   margin: 0;
   background-color: ${({ theme, isEmpty }) =>
     isEmpty ? theme.white : theme.gray1};
 `;
 
-export const BasketContentWrapper = styled.div`
+export const PageContentWrapper = styled.div`
   max-width: 960px;
   min-width: 500px;
   padding: 140px 10px 10px 10px;
@@ -47,7 +47,7 @@ export const Layout = styled.div`
   position: relative;
 `;
 
-export const BasketContent = styled.div`
+export const PageContent = styled.div`
   display: inline-block;
   vertical-align: top;
   width: 60%;
@@ -65,13 +65,13 @@ export const ContentHolders = styled.div`
   }
 `;
 
-export const ContentHeader = styled.div`
+export const LeftSideBlockWrapper = styled.div`
   padding: 24px 30px;
   background-color: ${({ theme }) => theme.white};
+`;
 
-  h2 {
-    ${headerStyle}
-  }
+export const ContentHeader = styled.h2`
+  ${headerStyle}
 `;
 
 export const BasketProducts = styled(ProductsList)`
@@ -103,30 +103,30 @@ export const BasketProducts = styled(ProductsList)`
   }
 `;
 
-export const MoneySum = styled(ContentHeader)`
+export const MoneySum = styled(LeftSideBlockWrapper)`
   text-align: right;
-
-  h3 {
-    ${headerStyle}
-    font-size: 1em;
-    letter-spacing: 2px;
-    line-height: 1.375em;
-  }
 `;
 
-export const LeftSideWrapper = styled(BasketContent)`
-  top: 0;
+export const MoneyHeader = styled(ContentHeader)`
+  font-size: 1em;
+  letter-spacing: 2px;
+  line-height: 1.375em;
+`;
+
+export const RightSideWrapper = styled(PageContent)`
+  position: sticky;
+  top: 94px;
   max-width: 370px;
   padding-left: 10px;
   transform: translate3d(0, 0, 0);
   width: 40%;
 `;
 
-export const LeftSide = styled.div`
+export const RightSide = styled.div`
   background-color: ${({ theme }) => theme.white};
 `;
 
-export const LeftSideTotal = styled.div`
+export const RightSideTotal = styled.div`
   padding: 24px 30px 16px 30px;
 `;
 
