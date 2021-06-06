@@ -8,6 +8,9 @@ const User = sequelize.define('user', {
   secondName: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING },
   phone: { type: DataTypes.STRING },
+  region: { type: DataTypes.STRING },
+  city: { type: DataTypes.STRING },
+  otherAddress: { type: DataTypes.STRING },
   role: { type: DataTypes.INTEGER, defaultValue: 1 }
 });
 

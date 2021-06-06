@@ -46,9 +46,7 @@
    "placeOrder": "Place an order",
    "region": "Region",
    "city": "City",
-   "street": "Street",
-   "house": "House",
-   "flat": "Flat",
+   "address": "Address",
    "basket.yourBagIsEmpty": "Your shopping cart is empty",
    "basket.logInToView": "Log in to view your shopping cart and make purchases!",
    "basket.addProductsToBag": "Add products to your shopping cart to make purchases.",
@@ -82,5 +80,5 @@
    "error.passwordLength": "The password must contain between 8 and 40 characters",
    "error.enterCorrectEmail": "Email address entered incorrectly",
    "error.enterCorrectPhone": "Phoneentered incorrectly",
-   "error.onlyLetters": "The name must consist only of letters"
+   "error.empty": "It should not be empty"
 }

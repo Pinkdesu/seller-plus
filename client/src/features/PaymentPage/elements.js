@@ -37,7 +37,6 @@ export const AddressValue = styled.div`
 
   & ${Button} {
     margin-top: 20px;
-    background-color: ${({ theme }) => theme.black3};
   }
 `;
 

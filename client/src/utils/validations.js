@@ -23,3 +23,12 @@ export const isPhone = (phone) => {
 
   return reg.test(phone);
 };
+
+export const isAddress = (address) => {
+  const reg = new RegExp(
+    /^[ул|пер|пр|б-р]*\.{1}\s{1}[А-Яа-я0-9\-\s]{2,},{1}\s{1}дом\s{1}[А-Яа-я0-9/]{1,},{1}\s{1}кв\.{1}\s{1}[А-Яа-я0-9]{1,}$/,
+    'gmi',
+  );
+
+  return reg.test(address);
+};

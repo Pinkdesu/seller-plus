@@ -60,7 +60,7 @@ const Basket = () => {
                   </span>
                 </S.Cost>
                 <S.PayLinkWrapper>
-                  <S.PayLink to="/payment">PAY</S.PayLink>
+                  <S.PayLink to="/payment">{locale('placeOrder')}</S.PayLink>
                 </S.PayLinkWrapper>
               </S.RightSideTotal>
             </S.RightSide>

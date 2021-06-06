@@ -3,6 +3,7 @@
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const generateAccessToken = require('../../utils/generateAccessToken');
+const createUserResponse = require('../../utils/createUserResponse');
 const ApiError = require('../../error/apiError');
 const { User, Basket } = require('../../models');
 const { ROLES } = require('../../constants');
@@ -45,10 +46,10 @@ class UserController {
       });
       await Basket.create({ userId: user.id });
 
-      const { password: _, ...userData } = user.dataValues;
+      const userData = createUserResponse(user.dataValues);
       const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -59,7 +60,7 @@ class UserController {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ raw: true, where: { email } });
+      const user = await User.findOne({ where: { email } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
@@ -71,10 +72,10 @@ class UserController {
         return next(ApiError.badRequest('Invalid password'));
       }
 
-      const { password: _, ...userData } = user;
+      const userData = createUserResponse(user.dataValues);
       const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -84,7 +85,7 @@ class UserController {
   async adminLogin(req, res, next) {
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ raw: true, where: { email } });
+      const user = await User.findOne({ where: { email } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
@@ -100,10 +101,10 @@ class UserController {
         return next(ApiError.badRequest('Invalid password'));
       }
 
-      const { password: _, ...userData } = user;
+      const userData = createUserResponse(user.dataValues);
       const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -114,15 +115,16 @@ class UserController {
     try {
       const { id } = req.user;
 
-      const user = await User.findOne({ raw: true, where: { id } });
+      const user = await User.findOne({ where: { id } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
       }
 
-      const token = generateAccessToken(user);
+      const userData = createUserResponse(user.dataValues);
+      const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -133,22 +135,34 @@ class UserController {
     try {
       const { id } = req.user;
       const {
-        firstName, secondName, email, phone
+        firstName,
+        secondName,
+        email,
+        phone,
+        region,
+        city,
+        otherAddress
       } = req.body;
 
       const updatedUser = await User.update(
         {
-          firstName, secondName, email, phone
+          firstName,
+          secondName,
+          email,
+          phone,
+          region,
+          city,
+          otherAddress
         },
         {
           where: { id }, returning: true, plain: true
         }
       );
 
-      const { password: _, ...userData } = updatedUser[1].dataValues;
+      const userData = createUserResponse(updatedUser[1].dataValues);
       const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -180,11 +194,10 @@ class UserController {
 
       const updatedUser = await user.save();
 
-      const { password: _, ...userData } = updatedUser.dataValues;
-
+      const userData = createUserResponse(updatedUser.dataValues);
       const token = generateAccessToken(userData);
 
-      return res.json({ token });
+      return res.json({ user: userData, token });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

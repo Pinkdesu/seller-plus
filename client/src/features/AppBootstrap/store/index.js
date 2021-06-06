@@ -16,6 +16,13 @@ export const $userData = AppBootstrapDomain.store(initialUserData)
   .on([events.auth, events.changeUserData], reducers.setUserData)
   .reset(events.logOut);
 
+export const $isAddress = $userData.map(
+  (state) =>
+    Boolean(state?.address?.region) &&
+    Boolean(state?.address?.city) &&
+    Boolean(state?.address?.otherAddress),
+);
+
 export const $user = combine($isAuth, $userData, (isAuth, user) => ({
   isAuth,
   user,

@@ -45,9 +45,7 @@
    "currency": "руб.",
    "region": "Регион",
    "city": "Город",
-   "street": "Улица",
-   "house": "Дом",
-   "flat": "Квартира",
+   "address": "Адрес",
    "priceWithCurrency": "${price} руб.",
    "basket.yourBagIsEmpty": "Ваша корзина пуста",
    "basket.logInToView": "Войдите, чтобы просмотреть Вашу корзину и совершать покупки!",
@@ -82,5 +80,5 @@
    "error.passwordLength": "The password must contain between 8 and 40 characters",
    "error.enterCorrectEmail": "Email введён некорректно",
    "error.enterCorrectPhone": "Телефон введён некорректно",
-   "error.onlyLetters": "Имя должно состоять только из букв"
+   "error.empty": "Не должно быть пустым"
 }
