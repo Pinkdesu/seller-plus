@@ -5,6 +5,7 @@ import { $userData } from '~/features/AppBootstrap/store';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
+import CardDetails from './components/CardDetails';
 
 const PaymentPage = () => {
   const locale = useLocale();
@@ -27,7 +28,7 @@ const PaymentPage = () => {
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
                 <SF.ContentHeader>Способ оплаты</SF.ContentHeader>
-                <Address />
+                <CardDetails />
               </SF.LeftSideBlockWrapper>
             </SF.ContentHolders>
           </SF.PageContent>

@@ -122,13 +122,11 @@ const Address = () => {
 
   return (
     <S.AddressPanel>
-      <S.CurrentAddress>
-        <S.AddressValue>
-          {isAddress && !edit && <CurrentAdress address={address} />}
-          {(!isAddress || edit) && <EditForm address={address} />}
-        </S.AddressValue>
-        {isAddress && <EditButtin toggleEdit={toggleEdit} edit={edit} />}
-      </S.CurrentAddress>
+      <S.AddressValue>
+        {isAddress && !edit && <CurrentAdress address={address} />}
+        {(!isAddress || edit) && <EditForm address={address} />}
+      </S.AddressValue>
+      {isAddress && <EditButtin toggleEdit={toggleEdit} edit={edit} />}
     </S.AddressPanel>
   );
 };

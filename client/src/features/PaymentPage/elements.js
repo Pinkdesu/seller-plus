@@ -6,11 +6,10 @@ export const Text = styled.p`
   margin-bottom: 0;
 `;
 
-export const AddressPanel = styled.div``;
-
-export const CurrentAddress = styled.div`
+export const AddressPanel = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  width: 100%;
   gap: 30px;
 `;
 
@@ -40,4 +39,25 @@ export const AddressValue = styled.div`
   }
 `;
 
-export const EditAddressForm = styled.div``;
+export const CardDetails = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  width: 60%;
+`;
+
+export const CardForm = styled(AddressValue)``;
+
+export const CardRow = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  gap: 20px;
+
+  & ${FieldWrapper} {
+    flex: 1 1 60%;
+
+    &:nth-child(2) {
+      flex: 1 1 30%;
+    }
+  }
+`;
