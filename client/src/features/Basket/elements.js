@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import { ProductPage } from '~/features/ProductPage/elements';
+import { ProductsList } from '~/features/Header/elements';
 import {
-  ProductsList,
   ProductContent,
   DeleteButton,
   ProductPrice,
   ProductName,
-} from '~/features/Header/elements';
+  PayLink,
+} from '~/features/Common/elements';
 
 const headerStyle = css`
   display: inline-block;
@@ -111,66 +111,6 @@ export const MoneyHeader = styled(ContentHeader)`
   font-size: 1em;
   letter-spacing: 2px;
   line-height: 1.375em;
-`;
-
-export const RightSideWrapper = styled(PageContent)`
-  position: sticky;
-  top: 94px;
-  max-width: 370px;
-  padding-left: 10px;
-  transform: translate3d(0, 0, 0);
-  width: 40%;
-`;
-
-export const RightSide = styled.div`
-  background-color: ${({ theme }) => theme.white};
-`;
-
-export const RightSideTotal = styled.div`
-  padding: 24px 30px 16px 30px;
-`;
-
-export const Totalheader = styled.h2`
-  border-bottom: 1px solid ${({ theme }) => theme.gray1};
-  padding-bottom: 24px;
-  margin-bottom: 14px;
-  width: 100%;
-  ${headerStyle}
-`;
-
-export const Cost = styled.p`
-  margin: 15px 0;
-
-  & span {
-    font-weight: 700;
-    letter-spacing: 2px;
-
-    &:last-child {
-      float: right;
-      font-weight: 400;
-    }
-  }
-`;
-
-export const PayLinkWrapper = styled.div`
-  margin-top: 25px;
-`;
-
-export const PayLink = styled(Link)`
-  text-decoration: none;
-  width: 100%;
-  letter-spacing: 1.9px;
-  color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.blue3};
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  display: block;
-  font-size: 1em;
-  line-height: 1.2em;
-  padding: 1.0714285714em;
-  text-align: center;
-  text-transform: uppercase;
 `;
 
 export const EmptyContent = styled.div`

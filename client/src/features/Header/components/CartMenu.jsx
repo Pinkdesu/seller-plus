@@ -7,7 +7,7 @@ import { closeMenu } from '~/features/Basket/store/events';
 import { useStringNumber } from '~/utils/useStringNumber';
 import pluralize from '~/utils/pluralize';
 import * as S from '../elements';
-import CartProduct from './CartProduct';
+import CartProduct from '~/features/Common/CartProduct';
 import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
 const CartMenu = (props) => {
@@ -71,7 +71,9 @@ const CartMenu = (props) => {
                 name={product.name}
                 price={product.price}
                 quantity={product.quantity}
-              />
+              >
+                <CartProduct.DeleteOneButton id={product.id} />
+              </CartProduct>
             ))}
           </S.ProductsList>
           <S.MenuBottomSide>

@@ -32,6 +32,22 @@ const BasketProduct = sequelize.define('basket_product', {
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
 });
 
+const Order = sequelize.define('order', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  totalPrice: { type: DataTypes.REAL, allowNull: false },
+  doneDate: { type: DataTypes.DATE }
+});
+
+const OrderProduct = sequelize.define('order_product', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
+});
+
+const OrderStatus = sequelize.define('order_status', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false }
+});
+
 const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
@@ -46,6 +62,11 @@ const ProductInfo = sequelize.define('product_info', {
   title: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
   unit: { type: DataTypes.STRING }
+});
+
+const Unit = sequelize.define('unit', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false }
 });
 
 const Category = sequelize.define('category', {
@@ -69,6 +90,12 @@ Basket.belongsTo(User);
 Basket.hasMany(BasketProduct);
 BasketProduct.belongsTo(Basket);
 
+Order.hasMany(OrderProduct);
+OrderProduct.belongsTo(Order);
+
+Order.hasMany(OrderStatus);
+OrderStatus.belongsTo(Order);
+
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
@@ -78,14 +105,24 @@ Product.belongsTo(Brand);
 Product.hasMany(BasketProduct);
 BasketProduct.belongsTo(Product);
 
+Product.hasMany(OrderProduct);
+OrderProduct.belongsTo(Product);
+
 Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
+
+ProductInfo.hasMany(Unit);
+Unit.belongsTo(ProductInfo);
 
 Category.belongsToMany(Brand, { through: CategoryBrand });
 Brand.belongsToMany(Category, { through: CategoryBrand });
 
 module.exports = {
   User,
+  Order,
+  Unit,
+  OrderProduct,
+  OrderStatus,
   Service,
   Basket,
   BasketProduct,

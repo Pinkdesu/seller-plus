@@ -4,8 +4,9 @@ import { useStore } from 'effector-react';
 import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from './store';
 import * as S from './elements';
-import CartProduct from '~/features/Header/components/CartProduct.jsx';
+import CartProduct from '~/features/Common/CartProduct.jsx';
 import EmptyContent from './components/EmptyContent';
+import RightSide from '~/features/Common/RightSide';
 
 const Basket = () => {
   const locale = useLocale();
@@ -38,7 +39,9 @@ const Basket = () => {
                     name={product.name}
                     price={product.price}
                     quantity={product.quantity}
-                  />
+                  >
+                    <CartProduct.DeleteOneButton id={product.id} />
+                  </CartProduct>
                 ))}
               </S.BasketProducts>
               <S.MoneySum>
@@ -49,22 +52,14 @@ const Basket = () => {
               </S.MoneySum>
             </S.ContentHolders>
           </S.PageContent>
-          <S.RightSideWrapper>
-            <S.RightSide>
-              <S.RightSideTotal>
-                <S.Totalheader>{locale('total')}</S.Totalheader>
-                <S.Cost>
-                  <span>{locale('totalPrice')}</span>
-                  <span>
-                    {locale('priceWithCurrency', { price: formatedPrice })}
-                  </span>
-                </S.Cost>
-                <S.PayLinkWrapper>
-                  <S.PayLink to="/payment">{locale('placeOrder')}</S.PayLink>
-                </S.PayLinkWrapper>
-              </S.RightSideTotal>
-            </S.RightSide>
-          </S.RightSideWrapper>
+          <RightSide>
+            <RightSide.Header localeText="total" />
+            <RightSide.Line />
+            <RightSide.Footer>
+              <RightSide.Cost />
+            </RightSide.Footer>
+            <RightSide.PayLink />
+          </RightSide>
         </S.Layout>
       </S.PageContentWrapper>
     </S.PageMain>

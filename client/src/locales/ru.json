@@ -39,6 +39,8 @@
    "product2": "товаров",
    "total": "Игото",
    "totalPrice": "Всего",
+   "totalToPay": "Всего к оплате",
+   "delivery": "Доставка",
    "viewShoppingCart": "Посмотреть корзину",
    "placeOrder": "Оформить заказ",
    "addToBasket": "Добавить",

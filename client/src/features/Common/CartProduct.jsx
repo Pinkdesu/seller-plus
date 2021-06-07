@@ -2,25 +2,35 @@ import React, { memo } from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useStringNumber } from '~/utils/useStringNumber';
 import { deleteProduct } from '~/features/Basket/store/events';
-import * as S from '../elements';
+import * as S from './elements';
 import { ReactComponent as DeleteSVG } from '~/assets/images/common/delete.svg';
 
-const CartMenuProduct = (props) => {
-  const locale = useLocale();
-
-  const { id, name, price, quantity, image } = props;
-
-  const formatedPrice = useStringNumber(price);
+const DeleteOneButton = (props) => {
+  const { id } = props;
 
   const handleClick = () => {
     deleteProduct(id);
   };
 
   return (
+    <S.DeleteButton onClick={handleClick}>
+      <DeleteSVG />
+    </S.DeleteButton>
+  );
+};
+
+const CartProduct = memo((props) => {
+  const locale = useLocale();
+
+  const { id, name, price, quantity, image, children } = props;
+
+  const formatedPrice = useStringNumber(price);
+
+  return (
     <S.ProductItem>
       <S.ProductContent>
         <S.ProductLink to={`/shop/product/${id}`}>
-          <img src={image} alt={name} />
+          <S.ProductImage src={image} alt={name} />
           <S.ProductInfo>
             <S.ProductPrice>
               {locale('priceWithCurrency', { price: formatedPrice })}
@@ -31,12 +41,12 @@ const CartMenuProduct = (props) => {
             </S.ProductCount>
           </S.ProductInfo>
         </S.ProductLink>
-        <S.DeleteButton onClick={handleClick}>
-          <DeleteSVG />
-        </S.DeleteButton>
+        {children}
       </S.ProductContent>
     </S.ProductItem>
   );
-};
+});
 
-export default memo(CartMenuProduct);
+CartProduct.DeleteOneButton = DeleteOneButton;
+
+export default CartProduct;

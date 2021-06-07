@@ -6,6 +6,7 @@ import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
 import CardDetails from './components/CardDetails';
+import RightSide from '~/features/Common/RightSide';
 
 const PaymentPage = () => {
   const locale = useLocale();
@@ -32,9 +33,17 @@ const PaymentPage = () => {
               </SF.LeftSideBlockWrapper>
             </SF.ContentHolders>
           </SF.PageContent>
-          <SF.RightSideWrapper>
-            <SF.RightSide></SF.RightSide>
-          </SF.RightSideWrapper>
+          <RightSide>
+            <RightSide.Header localeText="total" />
+            <RightSide.Line />
+            <RightSide.Products />
+            <RightSide.Line />
+            <RightSide.Footer>
+              <RightSide.CurrentPrice />
+              <RightSide.DeliveryPrice />
+              <RightSide.TotalPrice />
+            </RightSide.Footer>
+          </RightSide>
         </SF.Layout>
       </SF.PageContentWrapper>
     </SF.PageMain>
