@@ -5,7 +5,7 @@ import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from '~/features/Basket/store';
 import { useSideContext, CounterProvider } from './useSideContext';
 import CartProduct from '~/features/Common/CartProduct';
-import * as S from '../elements';
+import * as S from './elements';
 
 const Header = (props) => {
   const { localeText } = props;

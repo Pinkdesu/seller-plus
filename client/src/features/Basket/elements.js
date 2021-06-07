@@ -6,8 +6,8 @@ import {
   DeleteButton,
   ProductPrice,
   ProductName,
-  PayLink,
 } from '~/features/Common/elements';
+import { PayLink } from '~/features/Common/RightSide/elements';
 
 const headerStyle = css`
   display: inline-block;
