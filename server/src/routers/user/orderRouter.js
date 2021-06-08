@@ -8,7 +8,7 @@ const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../../constants');
 
 router.post('/',
-  [decodeToken, checkRole([ROLES.USER, ROLES.ADMIN])], orderController.create);
+  [decodeToken, checkRole(ROLES.USER)], orderController.create);
 router.get('/',
   [decodeToken, checkRole(ROLES.USER)], orderController.getAll);
 router.get('/:id',

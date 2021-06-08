@@ -8,8 +8,7 @@ import * as S from '../elements';
 const LayoutAside = (props) => {
   const locale = useLocale();
 
-  const { product } = props;
-  const { name, count, price, id, image } = product;
+  const { name, count, price, id, image } = props;
 
   const [productCount, setProductCount] = useState(1);
 

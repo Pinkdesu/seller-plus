@@ -9,22 +9,46 @@ const {
 class ProductController {
   async create(req, res, next) {
     try {
-      const { id } = req.user;
+      const { id: userId } = req.user;
       const { region, city, otherAddress } = req.body;
 
-      const basket = await Basket.findOne({ where: { userId: id } });
-      const products = await BasketProduct.findAll({
+      const basket = await Basket.findOne({ where: { userId } });
+      const basketProducts = await BasketProduct.findAll({
         where: { basketId: basket.id },
         attributes: ['count'],
         include: {
           model: Product,
-          attributes: ['id', 'price']
+          as: 'product'
         }
       });
 
-      console.log(products);
+      const totalPrice = basketProducts.reduce((sum, basketProduct) => {
+        const { count, product } = basketProduct.dataValues;
+        return sum + count * product.price;
+      }, 0);
 
-      return res.json();
+      const order = await Order.create({
+        userId,
+        region,
+        city,
+        otherAddress,
+        totalPrice,
+        orderStatusId: 1
+      });
+
+      basketProducts.forEach((basketProduct) => {
+        const { count, product } = basketProduct.dataValues;
+        const { id: productId, count: currentCount } = product.dataValues;
+
+        const remainingProduct = currentCount - count;
+
+        OrderProduct.create({ orderId: order.id, productId, count });
+        Product.update({ count: remainingProduct }, { where: { id: productId } });
+      });
+
+      BasketProduct.destroy({ where: { basketId: basket.id } });
+
+      return res.json({ status: 'success' });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

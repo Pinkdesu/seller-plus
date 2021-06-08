@@ -13,8 +13,7 @@ const ProductPage = () => {
   const { id } = useParams();
 
   const product = useStore($product);
-  const { images, description, info } = product;
-  console.log(product);
+  const { images, description, info, name, count, price } = product;
 
   useEffect(() => {
     getProductById(id);
@@ -27,7 +26,13 @@ const ProductPage = () => {
       <S.ProductSection>
         <S.ProductLayout>
           <GallerySlider images={images} />
-          <LayoutAside product={product} />
+          <LayoutAside
+            id={id}
+            name={name}
+            count={count}
+            price={price}
+            image={images[0]}
+          />
         </S.ProductLayout>
       </S.ProductSection>
       <S.ProductSection>

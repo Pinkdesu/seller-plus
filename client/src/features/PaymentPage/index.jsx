@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useStore } from 'effector-react';
-import { $userData } from '~/features/AppBootstrap/store';
+import { $userData, $isAddress } from '~/features/AppBootstrap/store';
+import { addOrder } from './store/events';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
@@ -12,7 +13,15 @@ import Button from '~/features/Common/Button';
 const PaymentPage = () => {
   const locale = useLocale();
 
-  const { email } = useStore($userData);
+  const { email, address } = useStore($userData);
+  const isAddress = useStore($isAddress);
+
+  const handleClick = () => {
+    isAddress &&
+      addOrder({
+        ...address,
+      });
+  };
 
   return (
     <SF.PageMain>
@@ -26,7 +35,7 @@ const PaymentPage = () => {
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
                 <SF.ContentHeader>{locale('address')}</SF.ContentHeader>
-                <Address />
+                <Address address={address} isAddress={isAddress} />
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
                 <SF.ContentHeader>Способ оплаты</SF.ContentHeader>
@@ -34,7 +43,11 @@ const PaymentPage = () => {
               </SF.LeftSideBlockWrapper>
             </SF.ContentHolders>
             <S.Footer>
-              <Button text="Заказать" />
+              <Button
+                text="Заказать"
+                onClick={handleClick}
+                disabled={!isAddress}
+              />
             </S.Footer>
           </SF.PageContent>
           <RightSide>

@@ -7,7 +7,6 @@ import {
   useNameError,
   useAddressError,
 } from '~/utils/fields';
-import { $userData, $isAddress } from '~/features/AppBootstrap/store';
 import { updateUser } from '~/features/AppBootstrap/store/events';
 import Button from '~/features/Common/Button';
 import TextField from '~/features/Common/TextField';
@@ -106,9 +105,8 @@ const EditForm = (props) => {
   );
 };
 
-const Address = () => {
-  const { address } = useStore($userData);
-  const isAddress = useStore($isAddress);
+const Address = (props) => {
+  const { address = {}, isAddress } = props;
 
   const [edit, setEdit] = useState(false);
 
