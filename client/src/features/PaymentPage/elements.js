@@ -61,3 +61,13 @@ export const CardRow = styled.div`
     }
   }
 `;
+
+export const Footer = styled.div`
+  padding: 22px 20px;
+
+  & ${Button} {
+    padding: 12px;
+    font-size: 18px;
+    height: auto;
+  }
+`;

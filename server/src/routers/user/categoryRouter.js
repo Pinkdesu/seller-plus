@@ -9,6 +9,7 @@ const { ROLES } = require('../../constants');
 
 router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], categoryController.create);
 router.get('/', categoryController.getAll);
-router.delete('/', [decodeToken, checkRole(ROLES.ADMIN)], categoryController.deleteOne);
+router.delete('/',
+  [decodeToken, checkRole(ROLES.ADMIN)], categoryController.deleteOne);
 
 module.exports = router;

@@ -35,7 +35,10 @@ const BasketProduct = sequelize.define('basket_product', {
 const Order = sequelize.define('order', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   totalPrice: { type: DataTypes.REAL, allowNull: false },
-  doneDate: { type: DataTypes.DATE }
+  doneDate: { type: DataTypes.DATE },
+  region: { type: DataTypes.STRING, allowNull: false },
+  city: { type: DataTypes.STRING, allowNull: false },
+  otherAddress: { type: DataTypes.STRING, allowNull: false }
 });
 
 const OrderProduct = sequelize.define('order_product', {
@@ -60,8 +63,7 @@ const Product = sequelize.define('product', {
 const ProductInfo = sequelize.define('product_info', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
-  unit: { type: DataTypes.STRING }
+  description: { type: DataTypes.STRING, allowNull: false }
 });
 
 const Unit = sequelize.define('unit', {
@@ -87,14 +89,17 @@ const CategoryBrand = sequelize.define('category_brand', {
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
+User.hasMany(Order);
+Order.belongsTo(User);
+
 Basket.hasMany(BasketProduct);
 BasketProduct.belongsTo(Basket);
 
 Order.hasMany(OrderProduct);
 OrderProduct.belongsTo(Order);
 
-Order.hasMany(OrderStatus);
-OrderStatus.belongsTo(Order);
+OrderStatus.hasMany(Order);
+Order.belongsTo(OrderStatus);
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -111,8 +116,8 @@ OrderProduct.belongsTo(Product);
 Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
-ProductInfo.hasMany(Unit);
-Unit.belongsTo(ProductInfo);
+Unit.hasMany(ProductInfo);
+ProductInfo.belongsTo(Unit);
 
 Category.belongsToMany(Brand, { through: CategoryBrand });
 Brand.belongsToMany(Category, { through: CategoryBrand });
