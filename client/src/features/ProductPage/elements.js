@@ -80,7 +80,7 @@ export const SliderWrapper = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.white};
-  ${(props) => props.loading && loadingAnimation}
+  ${(props) => props.isLoading && loadingAnimation}
 
   .keen-slider {
     height: 650px;

@@ -8,7 +8,7 @@ import { SLIDER_CONFIG } from '../constants';
 import 'keen-slider/keen-slider.min.css';
 
 const GallerySlider = (props) => {
-  const { images, loading } = props;
+  const { images, isLoading } = props;
 
   const [currrentSlide, setCurrentSlide] = useState(SLIDER_CONFIG.initial);
 
@@ -31,12 +31,11 @@ const GallerySlider = (props) => {
     <S.GalleryContent>
       <S.ProductGallery>
         <GalleryAside
-          loading={loading}
           currentImage={currrentSlide}
           toggleCurrentSlide={toggleCurrentSlide}
           images={images}
         />
-        <S.SliderWrapper loading={loading}>
+        <S.SliderWrapper isLoading={isLoading}>
           <div ref={sliderRef} className="keen-slider">
             {images.map((image, index) => (
               <Slide key={index} image={image} />

@@ -3,11 +3,11 @@ import * as S from '../elements';
 import ThumbnailsItem from './ThumbnailsItem';
 
 const GalleryAside = (props) => {
-  const { images, toggleCurrentSlide, currentImage, loading } = props;
+  const { images, toggleCurrentSlide, currentImage } = props;
 
   return (
     <S.GalleryAsideWrapper>
-      <S.Thumbnails loading={loading}>
+      <S.Thumbnails>
         {images.map((image, index) => (
           <ThumbnailsItem
             key={index}

@@ -127,12 +127,6 @@ class ProductController {
         attributes: ['name', 'description', 'count', 'price', 'images']
       });
 
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('foo');
-        }, 5000);
-      });
-
       return res.json({ product });
     }
     catch (e) {
