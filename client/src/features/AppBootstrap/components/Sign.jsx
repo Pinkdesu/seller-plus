@@ -32,7 +32,7 @@ const Sign = () => {
         <Route path="/shop/product/:id" component={ProductPage} exact />
 
         <PrivateRoute
-          path={['/account', '/account/change-password']}
+          path={['/account', '/account/change-password', '/account/orders']}
           redirectTo="/account/login"
           component={Account}
           authed={isAuth}

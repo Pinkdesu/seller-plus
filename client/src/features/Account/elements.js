@@ -123,7 +123,7 @@ export const ContentHeaderWrapper = styled.div`
 `;
 
 export const ContentHeader = styled.div`
-  padding: 32px 32px 0;
+  padding: 32px;
   text-align: left;
 `;
 
@@ -151,6 +151,7 @@ export const PageText = styled.p`
   max-width: 550px;
   text-align: left;
   letter-spacing: 0.05rem;
+  margin-bottom: 0;
 `;
 
 export const PageContainer = styled.div`

@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocale } from '~/utils/useLocale';
 import { useStore } from 'effector-react';
 import { $userData, $isAddress } from '~/features/AppBootstrap/store';
-import { addOrder } from './store/events';
+import { addOrder } from '~/features/Account/store/events';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
@@ -13,8 +13,9 @@ import Button from '~/features/Common/Button';
 const PaymentPage = () => {
   const locale = useLocale();
 
-  const { email, address } = useStore($userData);
   const isAddress = useStore($isAddress);
+  const { email, address } = useStore($userData);
+  const pending = useStore(addOrder.pending);
 
   const handleClick = () => {
     isAddress &&
@@ -46,7 +47,7 @@ const PaymentPage = () => {
               <Button
                 text="Заказать"
                 onClick={handleClick}
-                disabled={!isAddress}
+                disabled={!isAddress || pending}
               />
             </S.Footer>
           </SF.PageContent>

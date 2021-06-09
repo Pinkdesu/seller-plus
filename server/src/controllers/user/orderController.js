@@ -57,6 +57,10 @@ class ProductController {
 
   async getAll(req, res, next) {
     try {
+      const { id: userId } = req.user;
+
+      const orders = Order.findAll({ where: { userId } });
+
       return res.json();
     }
     catch (e) {

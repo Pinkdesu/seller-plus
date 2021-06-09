@@ -1,7 +1,6 @@
 import user from '~/assets/images/account/user.png';
 import home from '~/assets/images/account/home.png';
 import padlock from '~/assets/images/account/padlock.png';
-import clipboard from '~/assets/images/account/clipboard.png';
 import shoppingBag from '~/assets/images/account/shopping-bag.png';
 import exit from '~/assets/images/account/exit.png';
 
@@ -15,11 +14,6 @@ export const ACCOUNT_NAV = [
     text: 'account.myOrders',
     image: shoppingBag,
     path: '/account/orders',
-  },
-  {
-    text: 'account.myApplications',
-    image: clipboard,
-    path: '/account/applications',
   },
   {
     text: 'account.addressBook',
@@ -48,6 +42,10 @@ export const PAGE_HEADERS = {
     title: 'account.changePassword',
     image: padlock,
     text: 'account.header.youCanChange',
+  },
+  orders: {
+    title: 'account.myOrders',
+    image: shoppingBag,
   },
   //  {
   //    text: 'account.myApplications',

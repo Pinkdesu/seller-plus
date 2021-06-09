@@ -5,10 +5,12 @@ import * as S from '../elements';
 import ContentHeader from './ContentHeader';
 import Personal from './Personal';
 import ChangePassword from './ChangePassword';
+import Orders from './Orders';
 
 const VIEWS = {
   account: Personal,
   'change-password': ChangePassword,
+  orders: Orders,
 };
 
 const Content = () => {
@@ -24,9 +26,9 @@ const Content = () => {
     <S.Content>
       <S.ContentLayout>
         <ContentHeader
-          title={header.title}
-          text={header.text}
-          image={header.image}
+          title={header?.title}
+          text={header?.text}
+          image={header?.image}
         />
         <PageContent />
       </S.ContentLayout>
