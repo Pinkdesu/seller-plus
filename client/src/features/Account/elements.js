@@ -181,7 +181,7 @@ export const OrdersWrapper = styled.div`
 `;
 
 export const OrderWrapper = styled.section`
-  padding: 20px 10px;
+  padding: 20px 15px;
   background-color: ${({ theme }) => theme.white};
 `;
 
@@ -189,30 +189,55 @@ export const OrderStatus = styled.h2`
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 700;
-  padding: 0 10px;
+  padding: 0 5px;
 `;
 
 export const OrderMain = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  gap: 30px;
-  padding: 0 10px;
+  gap: 20px;
+  padding: 20px 5px;
 `;
 
 export const OrderProducts = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  gap: 15px;
+  gap: 10px;
   flex: 1 1 55%;
   max-width: 55%;
 `;
 
 export const ProductItem = styled.div`
+  position: relative;
   width: 100%;
 
   & ${ImageWrapper} {
     padding-top: 100%;
   }
+`;
+
+export const OtherCountWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  background: rgba(33, 33, 33, 0.5);
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 1;
+`;
+
+export const OtherCount = styled.span`
+  position: absolute;
+  color: ${({ theme }) => theme.white};
+  letter-spacing: 0.3rem;
+  line-height: 125px;
+  font-size: 2.6rem;
+  font-weight: 700;
+  right: 0;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 export const OrderProductLink = styled(Link)`
@@ -238,4 +263,8 @@ export const OrderLink = styled(Link)`
   &:hover {
     background-color: ${({ theme }) => theme.gray1};
   }
+`;
+
+export const OrderFooter = styled.div`
+  padding: 0 5px;
 `;

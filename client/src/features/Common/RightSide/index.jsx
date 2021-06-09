@@ -5,6 +5,7 @@ import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from '~/features/Basket/store';
 import { useSideContext, CounterProvider } from './useSideContext';
 import CartProduct from '~/features/Common/CartProduct';
+import Division from '../Division';
 import * as S from './elements';
 
 const Header = (props) => {
@@ -19,8 +20,6 @@ const Footer = (props) => {
 
   return <S.Footer>{children}</S.Footer>;
 };
-
-const Line = () => <S.SideLine />;
 
 const Cost = () => {
   const { locale, totalPrice } = useSideContext();
@@ -131,7 +130,7 @@ const RightSide = (props) => {
 
 RightSide.Header = Header;
 RightSide.Footer = Footer;
-RightSide.Line = Line;
+RightSide.Line = Division;
 RightSide.Cost = Cost;
 RightSide.TotalPrice = TotalPrice;
 RightSide.CurrentPrice = CurrentPrice;

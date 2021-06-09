@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ImageWrapper } from '~/features/Common/elements';
 
 export const Product = styled.article`
   position: relative;
@@ -30,29 +31,12 @@ export const CartButton = styled.button`
 export const ProductLink = styled(Link)`
   display: block;
   text-decoration: none;
-`;
 
-export const ProductImageThumb = styled.div`
-  position: relative;
-  font-size: 0;
-  margin-bottom: 9px;
-  background-color: #eee;
-  display: block;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 100%;
-    position: relative;
+  & ${ImageWrapper} {
     padding-top: 100%;
+    margin-bottom: 9px;
+    background-color: ${({ theme }) => theme.white};
   }
-`;
-
-export const ProductImage = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
 `;
 
 export const ProductNameBlock = styled.div`

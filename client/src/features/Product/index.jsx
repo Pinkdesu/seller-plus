@@ -4,6 +4,7 @@ import { useLocale } from '~/utils/useLocale';
 import { useCheckQuantity } from '~/utils/useCheckQuantity';
 import { useStringNumber } from '~/utils/useStringNumber';
 import { addProduct } from '~/features/Basket/store/events';
+import ImageThumb from '~/features/Common/ImageThumb';
 import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.svg';
 
 const Product = (props) => {
@@ -23,12 +24,11 @@ const Product = (props) => {
   return (
     <S.Product>
       <S.ProductLink to={`/shop/product/${id}`}>
-        <S.ProductImageThumb>
-          <S.ProductImage src={image} />
+        <ImageThumb image={image}>
           <S.CartButton onClick={handleClick} disabled={!hasMore}>
             <CartSVG />
           </S.CartButton>
-        </S.ProductImageThumb>
+        </ImageThumb>
         <S.ProductNameBlock>
           <S.ProductName>{name}</S.ProductName>
         </S.ProductNameBlock>

@@ -217,3 +217,9 @@ export const Image = styled.img`
   max-width: 100%;
   max-height: 100%;
 `;
+
+export const Division = styled.hr`
+  background-color: ${({ theme }) => theme.gray1};
+  border: none;
+  height: 1px;
+`;

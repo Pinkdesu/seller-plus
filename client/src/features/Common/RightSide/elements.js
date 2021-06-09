@@ -50,12 +50,6 @@ export const Footer = styled.div`
   margin: 25px 0;
 `;
 
-export const SideLine = styled.hr`
-  background-color: ${({ theme }) => theme.gray1};
-  border: none;
-  height: 1px;
-`;
-
 export const ItemTitle = styled.span`
   letter-spacing: 2px;
 `;

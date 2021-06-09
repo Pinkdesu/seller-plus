@@ -2,11 +2,12 @@ import React, { memo } from 'react';
 import * as S from './elements';
 
 const ImageThumb = (props) => {
-  const { image } = props;
+  const { image, children } = props;
 
   return (
     <S.ImageWrapper>
       <S.Image src={image} />
+      {children}
     </S.ImageWrapper>
   );
 };
