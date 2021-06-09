@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React from 'react';
+import ImageThumb from '~/features/Common/ImageThumb';
 import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 
@@ -11,9 +12,7 @@ const NavItem = (props) => {
     <S.ListItem>
       <S.ItemLink to={path} exact>
         <S.LinkIconWrapper>
-          <S.IconWrap>
-            <S.Icon src={image} />
-          </S.IconWrap>
+          <ImageThumb image={image} />
         </S.LinkIconWrapper>
         <S.LinkTextWrapper>
           <S.Text>{locale(text)}</S.Text>
@@ -23,4 +22,4 @@ const NavItem = (props) => {
   );
 };
 
-export default memo(NavItem);
+export default NavItem;

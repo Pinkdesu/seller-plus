@@ -6,5 +6,5 @@ const initialOrders = [];
 
 export const $orders = AccountDomain.store(initialOrders).on(
   events.getOrders.doneData,
-  (_, payload) => console.log(payload),
+  reducers.setOrders,
 );

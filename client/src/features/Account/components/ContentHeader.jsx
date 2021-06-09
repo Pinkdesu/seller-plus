@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocale } from '~/utils/useLocale';
+import ImageThumb from '~/features/Common/ImageThumb';
 import * as S from '../elements';
 
 const ContentHeader = (props) => {
@@ -10,9 +11,7 @@ const ContentHeader = (props) => {
   return (
     <S.ContentHeaderWrapper>
       <S.ContentHeader>
-        <S.ImageThumb>
-          <S.PageImage src={image} />
-        </S.ImageThumb>
+        <ImageThumb image={image} />
         <S.PageHeader>{locale(title)}</S.PageHeader>
         {text && <S.PageText>{locale(text)}</S.PageText>}
       </S.ContentHeader>

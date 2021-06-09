@@ -9,7 +9,12 @@ const PASSWORD_VALID = {
   max: 40
 };
 
+const API_BASE_URL = process.env.API_URL;
+
+const URL = (fileName) => `${API_BASE_URL}/${fileName}`;
+
 module.exports = {
   ROLES,
-  PASSWORD_VALID
+  PASSWORD_VALID,
+  URL
 };

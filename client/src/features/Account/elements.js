@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { DefaultMain } from '~/features/DefaultView/elements';
-import { NavLink } from 'react-router-dom';
-import { FieldWrapper, Button } from '~/features/Common/elements';
+import { NavLink, Link } from 'react-router-dom';
+import { FieldWrapper, Button, ImageWrapper } from '~/features/Common/elements';
 
 export const AccountMain = styled(DefaultMain)`
   background-color: ${({ theme }) => theme.gray1};
@@ -88,17 +88,12 @@ export const LinkIconWrapper = styled.div`
   top: 50%;
   transform: translateY(-50%);
   width: 68px;
-`;
 
-export const IconWrap = styled.div`
-  display: inline-block;
-  position: relative;
-  font-size: 0;
-`;
-
-export const Icon = styled.img`
-  width: auto;
-  height: auto;
+  & ${ImageWrapper} {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const LinkTextWrapper = styled.div``;
@@ -125,16 +120,12 @@ export const ContentHeaderWrapper = styled.div`
 export const ContentHeader = styled.div`
   padding: 32px;
   text-align: left;
-`;
 
-export const ImageThumb = styled.div`
-  font-size: 0;
-  margin-bottom: calc(3 * 4px);
-`;
-
-export const PageImage = styled.img`
-  width: 30px;
-  height: 30px;
+  & ${ImageWrapper} {
+    margin-bottom: calc(3 * 4px);
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const PageHeader = styled(Header)`
@@ -176,4 +167,75 @@ export const PersonalDataEdit = styled(ContentHeader)`
 export const SubmitButtonWrapper = styled(ContentHeader)`
   padding-top: 40px;
   padding-bottom: 32px;
+`;
+
+export const OrdersCount = styled.p`
+  padding: 20px;
+  margin: 0;
+`;
+
+export const OrdersWrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+`;
+
+export const OrderWrapper = styled.section`
+  padding: 20px 10px;
+  background-color: ${({ theme }) => theme.white};
+`;
+
+export const OrderStatus = styled.h2`
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0 10px;
+`;
+
+export const OrderMain = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
+  padding: 0 10px;
+`;
+
+export const OrderProducts = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 15px;
+  flex: 1 1 55%;
+  max-width: 55%;
+`;
+
+export const ProductItem = styled.div`
+  width: 100%;
+
+  & ${ImageWrapper} {
+    padding-top: 100%;
+  }
+`;
+
+export const OrderProductLink = styled(Link)`
+  text-decoration: none;
+`;
+
+export const OrderLinkWrapper = styled.div`
+  flex: 1 1 45%;
+`;
+
+export const OrderLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 25px 12px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.gray2};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.gray1};
+  }
 `;

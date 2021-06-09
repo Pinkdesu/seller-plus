@@ -203,3 +203,17 @@ export const DeleteButton = styled.button`
     height: 1.2rem;
   }
 `;
+
+export const ImageWrapper = styled.div`
+  position: relative;
+`;
+
+export const Image = styled.img`
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+`;

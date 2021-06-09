@@ -1,12 +1,16 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
+const { URL } = require('../../constants');
 const ApiError = require('../../error/apiError');
 const {
-  Order, OrderProduct, BasketProduct, Basket, Product
+  Order, OrderProduct, BasketProduct, Basket, Product, OrderStatus
 } = require('../../models');
 
-class ProductController {
+class OrderController {
   async create(req, res, next) {
     try {
       const { id: userId } = req.user;
@@ -59,9 +63,49 @@ class ProductController {
     try {
       const { id: userId } = req.user;
 
-      const orders = Order.findAll({ where: { userId } });
+      const orders = await Order.findAll({
+        where: { userId },
+        attributes: ['id', 'createdAt', 'doneDate', ['orderStatusId', 'status']],
+        order: [['createdAt', 'DESC']],
+        raw: true
+      });
 
-      return res.json();
+      const ordersProduct = await OrderProduct.findAll({
+        attributes: [
+          'orderId',
+          'productId',
+          [sequelize.col('product.images'), 'images']
+        ],
+        where: {
+          orderId: {
+            [Op.or]: orders.map((order) => order.id)
+          }
+        },
+        include: {
+          model: Product,
+          attributes: []
+        },
+        raw: true
+      });
+
+      const correctOrders = orders.reduce((result, current) => {
+        const products = [];
+
+        for (let i = 0; i < ordersProduct.length; i++) {
+          const { orderId, productId, images } = ordersProduct[i];
+
+          if (orderId === current.id) {
+            products.push({
+              productId,
+              image: URL(images[0])
+            });
+          }
+        }
+
+        return [...result, { ...current, products }];
+      }, []);
+
+      return res.json({ orders: correctOrders });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -78,4 +122,4 @@ class ProductController {
   }
 }
 
-module.exports = new ProductController();
+module.exports = new OrderController();
