@@ -28,10 +28,10 @@ export const spinner = keyframes`
 `;
 
 export const loadingAnimation = css`
-  background-color: #eeeeee;
+  background-color: ${({ theme }) => theme.gray1};
   animation-name: ${loading};
   animation-duration: 1.5s;
   animation-timing-function: linear;
   animation-delay: 1s;
-  animation-iteration-count: 13;
+  animation-iteration-count: infinite;
 `;

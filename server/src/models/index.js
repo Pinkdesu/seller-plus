@@ -113,7 +113,7 @@ BasketProduct.belongsTo(Product);
 Product.hasMany(OrderProduct);
 OrderProduct.belongsTo(Product);
 
-Product.hasMany(ProductInfo);
+Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
 Unit.hasMany(ProductInfo);

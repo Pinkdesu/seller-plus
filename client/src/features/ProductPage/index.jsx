@@ -13,6 +13,7 @@ const ProductPage = () => {
   const { id } = useParams();
 
   const product = useStore($product);
+  const loading = useStore(getProductById.pending);
   const { images, description, info, name, count, price } = product;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const ProductPage = () => {
     <S.ProductPage>
       <S.ProductSection>
         <S.ProductLayout>
-          <GallerySlider images={images} />
+          <GallerySlider images={images} loading={loading} />
           <LayoutAside
             id={id}
             name={name}

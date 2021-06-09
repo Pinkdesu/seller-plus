@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import * as S from '../elements';
-import Slide from '../../Home/components/Slide';
+import Slide from '~/features/Home/components/Slide';
 import GalleryAside from './GalleryAside';
 import { ReactComponent as ArrowSVG } from '~/assets/images/shop/right-arrow.svg';
 import { SLIDER_CONFIG } from '../constants';
 import 'keen-slider/keen-slider.min.css';
 
 const GallerySlider = (props) => {
-  const { images } = props;
+  const { images, loading } = props;
 
   const [currrentSlide, setCurrentSlide] = useState(SLIDER_CONFIG.initial);
 
@@ -31,11 +31,12 @@ const GallerySlider = (props) => {
     <S.GalleryContent>
       <S.ProductGallery>
         <GalleryAside
+          loading={loading}
           currentImage={currrentSlide}
           toggleCurrentSlide={toggleCurrentSlide}
           images={images}
         />
-        <S.SliderWrapper>
+        <S.SliderWrapper loading={loading}>
           <div ref={sliderRef} className="keen-slider">
             {images.map((image, index) => (
               <Slide key={index} image={image} />

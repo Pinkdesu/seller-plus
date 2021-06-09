@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from '../elements';
+import ImageThumb from '~/features/Common/ImageThumb';
 
 const ThumbnailsItem = (props) => {
   const { id, image, active, toggleCurrentSlide } = props;
@@ -11,7 +12,7 @@ const ThumbnailsItem = (props) => {
   return (
     <S.ThumbnailsItem>
       <S.ThumbnailsItemButton onClick={handleClick} active={active}>
-        <S.ThumbnailsItemImage src={image} />
+        <ImageThumb image={image} />
       </S.ThumbnailsItemButton>
     </S.ThumbnailsItem>
   );

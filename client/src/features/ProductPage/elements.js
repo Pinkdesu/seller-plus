@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from '~/features/Common/Button';
 import { loadingAnimation } from '~/assets/style/animation';
+import { Slide } from '~/features/Home/elements';
+import { ImageWrapper } from '~/features/Common/elements';
 
 export const ProductPage = styled.main`
   margin-top: 150px;
@@ -60,30 +62,15 @@ export const ThumbnailsItemButton = styled.button`
   border: none;
   cursor: pointer;
   box-shadow: ${(props) => (props.active ? '0 0 3px 1px #0770cf' : 'none')};
-  ${loadingAnimation}
+  background-color: ${({ theme }) => theme.white};
 
-  &::before {
-    content: '';
-    width: 1px;
-    margin-left: -1px;
-    float: left;
-    height: 0;
-    padding-top: 127.2%;
+  & ${ImageWrapper} {
+    border: 2px solid ${({ theme }) => theme.white};
+    height: 52px;
+    width: 40px;
+    max-width: 40px;
+    padding-top: 100%;
   }
-
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-`;
-
-export const ThumbnailsItemImage = styled.img`
-  display: block;
-  border: solid 2px #ffffff;
-  height: 52px;
-  width: 40px;
-  max-width: 40px;
 `;
 
 export const SliderWrapper = styled.div`
@@ -92,10 +79,15 @@ export const SliderWrapper = styled.div`
   flex: 1 0 82.6%;
   overflow: hidden;
   box-sizing: border-box;
-  ${loadingAnimation}
+  background-color: ${({ theme }) => theme.white};
+  ${(props) => props.loading && loadingAnimation}
 
   .keen-slider {
     height: 650px;
+  }
+
+  & ${Slide} {
+    background-size: contain;
   }
 `;
 

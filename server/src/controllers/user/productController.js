@@ -114,19 +114,30 @@ class ProductController {
     return res.json(products);
   }
 
-  async getOne(req, res) {
-    const { id } = req.params;
+  async getOne(req, res, next) {
+    try {
+      const { id } = req.params;
 
-    const product = await Product.findOne({
-      where: { id },
-      include: [{
-        model: ProductInfo,
-        as: 'info'
-      }],
-      attributes: ['name', 'description', 'count', 'price', 'images']
-    });
+      const product = await Product.findOne({
+        where: { id },
+        include: {
+          model: ProductInfo,
+          as: 'info'
+        },
+        attributes: ['name', 'description', 'count', 'price', 'images']
+      });
 
-    return res.json({ product });
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('foo');
+        }, 5000);
+      });
+
+      return res.json({ product });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
   }
 }
 
