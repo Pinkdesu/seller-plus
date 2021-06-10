@@ -6,18 +6,20 @@ import ContentHeader from './ContentHeader';
 import Personal from './Personal';
 import ChangePassword from './ChangePassword';
 import Orders from './Orders';
+import Order from './Order';
 
 const VIEWS = {
   account: Personal,
   'change-password': ChangePassword,
   orders: Orders,
+  order: Order,
 };
 
 const Content = () => {
   const { pathname } = useLocation();
 
-  const index = pathname.lastIndexOf('/');
-  const pageName = pathname.substring(index + 1);
+  const paths = pathname.split('/');
+  const pageName = paths.length === 2 ? paths[1] : paths[2];
 
   const header = PAGE_HEADERS[pageName];
   const PageContent = VIEWS[pageName];

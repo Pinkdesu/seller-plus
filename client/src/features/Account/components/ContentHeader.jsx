@@ -11,7 +11,7 @@ const ContentHeader = (props) => {
   return (
     <S.ContentHeaderWrapper>
       <S.ContentHeader>
-        <ImageThumb image={image} />
+        {image && <ImageThumb image={image} />}
         <S.PageHeader>{locale(title)}</S.PageHeader>
         {text && <S.PageText>{locale(text)}</S.PageText>}
       </S.ContentHeader>

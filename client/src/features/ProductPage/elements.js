@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Button from '~/features/Common/Button';
 import { loadingAnimation } from '~/assets/style/animation';
 import { Slide } from '~/features/Home/elements';

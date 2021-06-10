@@ -12,6 +12,6 @@ router.post('/',
 router.get('/',
   [decodeToken, checkRole(ROLES.USER)], orderController.getAll);
 router.get('/:id',
-  [decodeToken, checkRole([ROLES.USER, ROLES.ADMIN])], orderController.getOne);
+  [decodeToken, checkRole(ROLES.USER)], orderController.getOne);
 
 module.exports = router;

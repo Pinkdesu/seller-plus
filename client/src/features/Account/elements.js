@@ -145,7 +145,7 @@ export const PageText = styled.p`
   margin-bottom: 0;
 `;
 
-export const PageContainer = styled.div`
+export const PageContainer = styled.section`
   position: relative;
   min-height: 500px;
 `;
@@ -170,7 +170,7 @@ export const SubmitButtonWrapper = styled(ContentHeader)`
 `;
 
 export const OrdersCount = styled.p`
-  padding: 20px;
+  padding: 20px 32px;
   margin: 0;
 `;
 
@@ -180,8 +180,8 @@ export const OrdersWrapper = styled.div`
   gap: 10px;
 `;
 
-export const OrderWrapper = styled.section`
-  padding: 20px 15px;
+export const OrderWrapper = styled.article`
+  padding: 20px 24px;
   background-color: ${({ theme }) => theme.white};
 `;
 
@@ -189,14 +189,14 @@ export const OrderStatus = styled.h2`
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 700;
-  padding: 0 5px;
+  padding: 0 8px;
 `;
 
 export const OrderMain = styled.div`
   display: flex;
   flex-flow: row nowrap;
   gap: 20px;
-  padding: 20px 5px;
+  padding: 20px 8px;
 `;
 
 export const OrderProducts = styled.div`
@@ -266,5 +266,27 @@ export const OrderLink = styled(Link)`
 `;
 
 export const OrderFooter = styled.div`
-  padding: 0 5px;
+  margin-top: 20px;
+  padding: 0 8px;
+`;
+
+export const TextItem = styled.p`
+  margin: 0;
+  margin-bottom: 8px;
+`;
+
+export const ItemTitle = styled.span`
+  font-weight: 700;
+`;
+
+export const ItemValue = styled.span`
+  margin-left: 6px;
+`;
+
+export const OrderPage = styled(OrdersWrapper)`
+  margin-top: 14px;
+`;
+
+export const OrderInfoWrapper = styled(OrderWrapper)`
+  padding: 20px 32px;
 `;

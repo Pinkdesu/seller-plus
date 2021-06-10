@@ -3,3 +3,9 @@ export const setOrders = (_, payload) => {
 
   return orders;
 };
+
+export const setOrder = (_, payload) => {
+  const { order } = payload.data;
+
+  return order;
+};

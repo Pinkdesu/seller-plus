@@ -35,7 +35,9 @@ const BasketProduct = sequelize.define('basket_product', {
 const Order = sequelize.define('order', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   totalPrice: { type: DataTypes.REAL, allowNull: false },
-  doneDate: { type: DataTypes.DATE },
+  deliveryPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
+  sentAt: { type: DataTypes.DATE },
+  doneAt: { type: DataTypes.DATE },
   region: { type: DataTypes.STRING, allowNull: false },
   city: { type: DataTypes.STRING, allowNull: false },
   otherAddress: { type: DataTypes.STRING, allowNull: false }
@@ -43,7 +45,8 @@ const Order = sequelize.define('order', {
 
 const OrderProduct = sequelize.define('order_product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  purchasePrice: { type: DataTypes.REAL, allowNull: false }
 });
 
 const OrderStatus = sequelize.define('order_status', {
@@ -56,6 +59,7 @@ const Product = sequelize.define('product', {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
+  //  supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });

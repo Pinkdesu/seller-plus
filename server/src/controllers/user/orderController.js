@@ -7,7 +7,7 @@ const { Op } = require('sequelize');
 const { URL } = require('../../constants');
 const ApiError = require('../../error/apiError');
 const {
-  Order, OrderProduct, BasketProduct, Basket, Product, OrderStatus
+  Order, OrderProduct, BasketProduct, Basket, Product, Brand
 } = require('../../models');
 
 class OrderController {
@@ -42,11 +42,13 @@ class OrderController {
 
       basketProducts.forEach((basketProduct) => {
         const { count, product } = basketProduct.dataValues;
-        const { id: productId, count: currentCount } = product.dataValues;
+        const { id: productId, count: currentCount, price } = product.dataValues;
 
         const remainingProduct = currentCount - count;
 
-        OrderProduct.create({ orderId: order.id, productId, count });
+        OrderProduct.create({
+          orderId: order.id, productId, count, purchasePrice: price
+        });
         Product.update({ count: remainingProduct }, { where: { id: productId } });
       });
 
@@ -65,7 +67,10 @@ class OrderController {
 
       const orders = await Order.findAll({
         where: { userId },
-        attributes: ['id', 'createdAt', 'doneDate', ['orderStatusId', 'status']],
+        attributes: [
+          'id', 'createdAt', 'doneAt', 'sentAt',
+          ['orderStatusId', 'status']
+        ],
         order: [['createdAt', 'DESC']],
         raw: true
       });
@@ -114,7 +119,51 @@ class OrderController {
 
   async getOne(req, res, next) {
     try {
-      return res.json();
+      const { id: orderId } = req.params;
+      const { id: userId } = req.user;
+
+      const order = await Order.findOne({
+        attributes: {
+          include: [['orderStatusId', 'status']],
+          exclude: ['orderStatusId', 'userId', 'updatedAt']
+        },
+        where: {
+          [Op.and]: {
+            id: orderId,
+            userId
+          }
+        },
+        raw: true
+      });
+
+      const ordersProduct = await OrderProduct.findAll({
+        attributes: ['count', 'purchasePrice'],
+        where: { orderId },
+        include: {
+          model: Product,
+          attributes: ['id', 'name', 'images'],
+
+          include: Brand
+        }
+      });
+
+      const products = ordersProduct.map((orderProduct) => {
+        const { count, purchasePrice, product } = orderProduct.dataValues;
+        const {
+          id, name, images, brand
+        } = product.dataValues;
+
+        return {
+          id,
+          name,
+          purchasePrice,
+          brand: brand.name,
+          purchaseCount: count,
+          image: URL(images[0])
+        };
+      });
+
+      return res.json({ order: { ...order, products } });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
