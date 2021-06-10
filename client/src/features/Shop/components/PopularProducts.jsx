@@ -17,14 +17,11 @@ const PopularProducts = () => {
       </S.HeaderWrapper>
       <S.Products>
         {popularProducts.map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-            count={product.count}
-          />
+          <Product key={product.id} {...product}>
+            <Product.Brand />
+            <Product.Name />
+            <Product.Price />
+          </Product>
         ))}
       </S.Products>
     </S.PopularProducts>

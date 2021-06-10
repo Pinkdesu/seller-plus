@@ -89,11 +89,3 @@ export const ORDER_STATUSES = {
     dateTitle: 'account.orders.deliveryDate',
   },
 };
-
-export const DATE_OPTIONS = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  weekday: 'long',
-  timezone: 'UTC',
-};

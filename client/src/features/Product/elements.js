@@ -34,38 +34,40 @@ export const ProductLink = styled(Link)`
 
   & ${ImageWrapper} {
     padding-top: 100%;
-    margin-bottom: 9px;
+    margin-bottom: 15px;
     background-color: ${({ theme }) => theme.white};
   }
 `;
 
-export const ProductNameBlock = styled.div`
-  display: block;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: #2d2d2d;
+export const ProductInfoBlock = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 6px;
   width: 100%;
-  height: 44px;
-  margin-bottom: 12px;
-  line-height: 22px;
-  word-wrap: break-word;
   overflow: hidden;
 `;
 
-export const ProductName = styled.p`
+export const ProductBrand = styled.p`
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  color: ${({ theme }) => theme.black2};
   margin: 0;
 `;
 
-export const ProductPrice = styled.p`
-  height: 60px;
-  margin: 0;
+export const ProductName = styled(ProductBrand)`
+  word-wrap: break-word;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: ${({ theme }) => theme.black3};
+`;
 
-  span {
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.8px;
-    line-height: 20px;
-    color: #666;
-    white-space: nowrap;
-  }
+export const ProductPrice = styled(ProductBrand)`
+  white-space: nowrap;
+`;
+
+export const ProductCount = styled(ProductName)`
+  font-weight: 700;
 `;

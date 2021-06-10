@@ -26,24 +26,22 @@ const EditButtin = (props) => {
   );
 };
 
-const CurrentAdress = (props) => {
-  const { address } = props;
-  const { region, city, otherAddress } = address;
+export const CurrentAdress = (props) => {
+  const { region, city, otherAddress } = props;
 
   return (
-    <>
+    <S.AddressValue>
       <S.Text>{region}</S.Text>
       <S.Text>{city}</S.Text>
       <S.Text>{otherAddress}</S.Text>
-    </>
+    </S.AddressValue>
   );
 };
 
 const EditForm = (props) => {
   const locale = useLocale();
 
-  const { address } = props;
-  const { region = '', city = '', otherAddress = '' } = address;
+  const { region, city, otherAddress } = props;
 
   const pending = useStore(updateUser.pending);
 
@@ -77,7 +75,7 @@ const EditForm = (props) => {
   };
 
   return (
-    <>
+    <S.AddressValue>
       <TextField
         value={currentRegion}
         onChange={onCurrentRegion}
@@ -101,12 +99,13 @@ const EditForm = (props) => {
         placeholder="ул. Пушкина, дом 1, кв. 1"
       />
       <Button text={locale('save')} disabled={disabled} onClick={handleClick} />
-    </>
+    </S.AddressValue>
   );
 };
 
 const Address = (props) => {
   const { address = {}, isAddress } = props;
+  const { region = '', city = '', otherAddress = '' } = address;
 
   const [edit, setEdit] = useState(false);
 
@@ -120,10 +119,16 @@ const Address = (props) => {
 
   return (
     <S.AddressPanel>
-      <S.AddressValue>
-        {isAddress && !edit && <CurrentAdress address={address} />}
-        {(!isAddress || edit) && <EditForm address={address} />}
-      </S.AddressValue>
+      {isAddress && !edit && (
+        <CurrentAdress
+          region={region}
+          city={city}
+          otherAddress={otherAddress}
+        />
+      )}
+      {(!isAddress || edit) && (
+        <EditForm egion={region} city={city} otherAddress={otherAddress} />
+      )}
       {isAddress && <EditButtin toggleEdit={toggleEdit} edit={edit} />}
     </S.AddressPanel>
   );

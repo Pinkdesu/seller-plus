@@ -5,8 +5,8 @@ import * as S from '../elements';
 import ContentHeader from './ContentHeader';
 import Personal from './Personal';
 import ChangePassword from './ChangePassword';
-import Orders from './Orders';
-import Order from './Order';
+import Orders from './OrdersPage';
+import Order from './OrderPage';
 
 const VIEWS = {
   account: Personal,

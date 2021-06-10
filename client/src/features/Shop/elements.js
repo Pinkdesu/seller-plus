@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import {
-  Product,
-  ProductPrice,
-  ProductNameBlock,
-} from '~/features/Product/elements';
+import { Product, ProductInfoBlock } from '~/features/Product/elements';
 
 const rowContent = css`
   display: flex;
@@ -110,8 +106,7 @@ export const Products = styled.div`
   & > ${Product} {
     flex: 1 0 200px;
 
-    & ${ProductNameBlock}, ${ProductPrice} {
-      height: 22px;
+    & ${ProductInfoBlock} {
       text-align: center;
     }
   }

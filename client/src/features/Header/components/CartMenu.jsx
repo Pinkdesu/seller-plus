@@ -49,11 +49,11 @@ const CartMenu = (props) => {
             <S.TopSideText>
               <span>{locale('myShoppingCart')}:</span>
               <span>
-                {`${productsCount} ${pluralize(
+                {pluralize(
                   productsCount,
                   ['product', 'product1', 'product2'],
                   locale,
-                )}`}
+                )}
               </span>
             </S.TopSideText>
             <S.TopSideCloseButton onClick={closeMenu}>

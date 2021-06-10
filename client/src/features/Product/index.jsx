@@ -1,19 +1,31 @@
 import React from 'react';
 import * as S from './elements';
-import { useLocale } from '~/utils/useLocale';
 import { useCheckQuantity } from '~/utils/useCheckQuantity';
-import { useStringNumber } from '~/utils/useStringNumber';
 import { addProduct } from '~/features/Basket/store/events';
+import { useLocale } from '~/utils/useLocale';
+import { CounterProvider } from './useProductContext';
 import ImageThumb from '~/features/Common/ImageThumb';
+import ProductBrand from './components/ProductBrand';
+import ProductName from './components/ProductName';
+import ProductPrice from './components/ProductPrice';
+import ProductCount from './components/ProductCount';
 import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.svg';
 
 const Product = (props) => {
   const locale = useLocale();
 
-  const { image, name, price, id, count } = props;
+  const {
+    image,
+    name,
+    price,
+    id,
+    count,
+    brand = '',
+    children,
+    withButton = true,
+  } = props;
 
   const hasMore = useCheckQuantity(id, count);
-  const formatedPrice = useStringNumber(price);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -22,22 +34,26 @@ const Product = (props) => {
   };
 
   return (
-    <S.Product>
-      <S.ProductLink to={`/shop/product/${id}`}>
-        <ImageThumb image={image}>
-          <S.CartButton onClick={handleClick} disabled={!hasMore}>
-            <CartSVG />
-          </S.CartButton>
-        </ImageThumb>
-        <S.ProductNameBlock>
-          <S.ProductName>{name}</S.ProductName>
-        </S.ProductNameBlock>
-        <S.ProductPrice>
-          <span>{locale('priceWithCurrency', { price: formatedPrice })}</span>
-        </S.ProductPrice>
-      </S.ProductLink>
-    </S.Product>
+    <CounterProvider value={{ image, name, price, brand, locale, count }}>
+      <S.Product>
+        <S.ProductLink to={`/shop/product/${id}`}>
+          <ImageThumb image={image}>
+            {withButton && (
+              <S.CartButton onClick={handleClick} disabled={!hasMore}>
+                <CartSVG />
+              </S.CartButton>
+            )}
+          </ImageThumb>
+          <S.ProductInfoBlock>{children}</S.ProductInfoBlock>
+        </S.ProductLink>
+      </S.Product>
+    </CounterProvider>
   );
 };
+
+Product.Brand = ProductBrand;
+Product.Name = ProductName;
+Product.Price = ProductPrice;
+Product.Count = ProductCount;
 
 export default Product;

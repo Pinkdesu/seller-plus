@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { DefaultMain } from '~/features/DefaultView/elements';
 import { NavLink, Link } from 'react-router-dom';
 import { FieldWrapper, Button, ImageWrapper } from '~/features/Common/elements';
+import { AddressValue } from '~/features/PaymentPage/elements';
+import { Product } from '~/features/Product/elements';
 
 export const AccountMain = styled(DefaultMain)`
   background-color: ${({ theme }) => theme.gray1};
@@ -180,16 +182,20 @@ export const OrdersWrapper = styled.div`
   gap: 10px;
 `;
 
-export const OrderWrapper = styled.article`
-  padding: 20px 24px;
+export const ArticleWrapper = styled.article`
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 32px 24px;
   background-color: ${({ theme }) => theme.white};
 `;
 
-export const OrderStatus = styled.h2`
+export const ArticleHeader = styled.h2`
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 700;
   padding: 0 8px;
+  margin: 0;
 `;
 
 export const OrderMain = styled.div`
@@ -266,7 +272,6 @@ export const OrderLink = styled(Link)`
 `;
 
 export const OrderFooter = styled.div`
-  margin-top: 20px;
   padding: 0 8px;
 `;
 
@@ -287,6 +292,36 @@ export const OrderPage = styled(OrdersWrapper)`
   margin-top: 14px;
 `;
 
-export const OrderInfoWrapper = styled(OrderWrapper)`
-  padding: 20px 32px;
+export const OrderInfoWrapper = styled(ArticleWrapper)`
+  padding: 32px;
+  gap: 0;
+`;
+
+export const OrderAddress = styled(ArticleWrapper)`
+  & ${AddressValue} {
+    padding: 0 8px;
+  }
+`;
+
+export const ArticleHeaderWrapper = styled.div`
+  display: flex;
+  flex-flow: rownowrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const OrderProductsWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 30px;
+  padding: 10px 8px;
+
+  & ${ImageWrapper} {
+    padding-top: 100%;
+  }
+
+  & ${Product} {
+    flex: 0 0 calc(100% / 3 - 30px);
+  }
 `;
