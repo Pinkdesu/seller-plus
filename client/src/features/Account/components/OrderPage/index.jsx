@@ -10,6 +10,7 @@ import { CurrentAdress } from '~/features/PaymentPage/components/Address';
 import { ORDER_STATUSES } from '../../constants';
 import Division from '~/features/Common/Division';
 import Product from '~/features/Product';
+import PriceInfo from './PriceInfo';
 import * as S from '../../elements';
 
 const OrderPage = () => {
@@ -25,6 +26,8 @@ const OrderPage = () => {
     doneAt,
     sentAt,
     products,
+    deliveryPrice,
+    totalPrice,
   } = useStore($order);
   const productsCount = useStore($orderProductsCount);
 
@@ -32,7 +35,7 @@ const OrderPage = () => {
     getOrderById(id);
   }, [id]);
 
-  const orderStatus = ORDER_STATUSES[status];
+  const orderStatus = ORDER_STATUSES?.[status];
   const currentDate = convertDate(doneAt || sentAt || createdAt);
 
   return (
@@ -49,7 +52,7 @@ const OrderPage = () => {
           </S.TextItem>
         </S.OrderInfoWrapper>
         <S.OrderAddress>
-          <S.ArticleHeader>АДрес доставки</S.ArticleHeader>
+          <S.ArticleHeader>{locale('deliveryAddress')}</S.ArticleHeader>
           <Division />
           <CurrentAdress
             region={region}
@@ -83,25 +86,20 @@ const OrderPage = () => {
               >
                 <Product.Brand />
                 <Product.Name />
-                <Product.Price />
                 <Product.Count />
+                <Product.Price />
               </Product>
             ))}
           </S.OrderProductsWrap>
           <Division />
           <S.OrderFooter>
             <S.TextItem>
-              <S.ItemTitle>{locale(orderStatus.dateTitle)}:</S.ItemTitle>
+              <S.ItemTitle>{locale(orderStatus?.dateTitle)}:</S.ItemTitle>
               <S.ItemValue>{currentDate}</S.ItemValue>
             </S.TextItem>
           </S.OrderFooter>
         </S.ArticleWrapper>
-        <S.ArticleWrapper>
-          <S.ArticleHeaderWrapper>
-            <S.ArticleHeader>{locale('totalOrderAmount')}</S.ArticleHeader>
-          </S.ArticleHeaderWrapper>
-          <Division />
-        </S.ArticleWrapper>
+        <PriceInfo deliveryPrice={deliveryPrice} totalPrice={totalPrice} />
       </S.OrderPage>
     </S.PageContainer>
   );

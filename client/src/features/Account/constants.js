@@ -51,26 +51,11 @@ export const PAGE_HEADERS = {
     title: 'account.order.orderInformation',
     text: 'account.order.thankYou',
   },
-  //  {
-  //    text: 'account.myApplications',
-  //    image: clipboard,
-  //    path: '/account/applications',
-  //  },
-  //  {
-  //    text: 'account.addressBook',
-  //    image: home,
-  //    path: '/account/address',
-  //  },
-  //  {
-  //    text: 'account.changePassword',
-  //    image: padlock,
-  //    path: '/account/change-password',
-  //  },
-  //  {
-  //    text: 'account.logOut',
-  //    image: exit,
-  //    path: '/account/log-out',
-  //  },
+  address: {
+    title: 'account.addressBook',
+    image: home,
+    text: 'account.address.thisYourAddress',
+  },
 };
 
 export const DISPLAYED_COUNT = 3;

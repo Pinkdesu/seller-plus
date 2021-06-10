@@ -34,6 +34,7 @@ const Sign = () => {
         <PrivateRoute
           path={[
             '/account',
+            '/account/address',
             '/account/change-password',
             '/account/orders',
             '/account/order/:id',

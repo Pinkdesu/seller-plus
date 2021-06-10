@@ -5,14 +5,16 @@ import * as S from '../elements';
 import ContentHeader from './ContentHeader';
 import Personal from './Personal';
 import ChangePassword from './ChangePassword';
-import Orders from './OrdersPage';
-import Order from './OrderPage';
+import OrdersPage from './OrdersPage';
+import OrderPage from './OrderPage';
+import AddressPage from './AddressPage';
 
 const VIEWS = {
   account: Personal,
+  address: AddressPage,
   'change-password': ChangePassword,
-  orders: Orders,
-  order: Order,
+  orders: OrdersPage,
+  order: OrderPage,
 };
 
 const Content = () => {

@@ -293,8 +293,8 @@ export const OrderPage = styled(OrdersWrapper)`
 `;
 
 export const OrderInfoWrapper = styled(ArticleWrapper)`
-  padding: 32px;
   gap: 0;
+  padding: 32px;
 `;
 
 export const OrderAddress = styled(ArticleWrapper)`
@@ -324,4 +324,24 @@ export const OrderProductsWrap = styled.div`
   & ${Product} {
     flex: 0 0 calc(100% / 3 - 30px);
   }
+`;
+
+export const PriceInfo = styled(TextItem)`
+  padding: 0 8px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  & ${ItemTitle}, ${ItemValue} {
+    color: ${({ theme }) => theme.black2};
+    font-size: 16px;
+  }
+
+  & ${ItemTitle} {
+    text-transform: uppercase;
+  }
+`;
+
+export const TotalPrice = styled(ArticleHeader)`
+  padding: 0;
 `;
