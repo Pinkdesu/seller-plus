@@ -72,7 +72,7 @@ class ProductController {
 
     const productsWithUrl = products.map((product) => ({
       ...product,
-      imageMain: URL(product.imageMain)
+      imageMain: URL(product.imageMain, 'products')
     }));
 
     return res.json({ products: productsWithUrl });

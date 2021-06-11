@@ -1,23 +1,17 @@
 import { URL } from '~/api/constants';
 
-export const setCategories = (state, { result }) => {
-  const { data } = result;
+export const setCategories = (state, payload) => {
+  const { categories } = payload.data;
 
-  if (!data.length) return state;
+  if (!categories.length) return state;
 
-  return data.map((category) => ({
-    ...category,
-    image: URL(category.image),
-  }));
+  return categories;
 };
 
-export const setProducts = (_, { result }) => {
-  const { data } = result;
+export const setProducts = (_, payload) => {
+  const { products } = payload.data;
 
-  return data.map((product) => ({
-    ...product,
-    image: URL(product.images[0]),
-  }));
+  return products;
 };
 
 export const setProduct = (_, { data }) => {

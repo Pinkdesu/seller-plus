@@ -32,7 +32,7 @@ const ProductPage = () => {
             name={name}
             count={count}
             price={price}
-            image={images[0]}
+            imageMain={images[0]}
           />
         </S.ProductLayout>
       </S.ProductSection>

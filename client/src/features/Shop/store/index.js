@@ -17,7 +17,7 @@ export const $product = ShopDomain.store(initialProduct)
   .reset(events.resetProduct);
 
 export const $categoriesList = ShopDomain.store(initialCategories).on(
-  events.getCategories.done,
+  events.getCategories.doneData,
   reducers.setCategories,
 );
 
@@ -26,6 +26,6 @@ export const $brandsList = ShopDomain.store(initialBrands);
 export const $popularProductsList = ShopDomain.store(initialProducts);
 
 export const $productsList = ShopDomain.store(initialProducts).on(
-  events.getProductsByCategory.done,
+  events.getProductsByCategory.doneData,
   reducers.setProducts,
 );

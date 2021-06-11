@@ -4,6 +4,7 @@
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
 const { Category } = require('../../models');
+const { URL } = require('../../constants');
 
 class CategoryController {
   async create(req, res, next) {
@@ -25,7 +26,12 @@ class CategoryController {
     try {
       const categories = await Category.findAll({ raw: true });
 
-      return res.json({ categories });
+      const categoriesWithUrl = categories.map((category) => ({
+        ...category,
+        image: URL(category.image)
+      }));
+
+      return res.json({ categories: categoriesWithUrl });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

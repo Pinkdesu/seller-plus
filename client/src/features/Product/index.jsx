@@ -15,13 +15,13 @@ const Product = (props) => {
   const locale = useLocale();
 
   const {
-    image,
     name,
     price,
     id,
     count,
     brand = '',
     children,
+    imageMain,
     withButton = true,
   } = props;
 
@@ -30,14 +30,14 @@ const Product = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    addProduct({ id, name, price, image, quantity: 1 });
+    addProduct({ id, name, price, imageMain, quantity: 1 });
   };
 
   return (
-    <CounterProvider value={{ image, name, price, brand, locale, count }}>
+    <CounterProvider value={{ name, price, brand, locale, count }}>
       <S.Product>
         <S.ProductLink to={`/shop/product/${id}`}>
-          <ImageThumb image={image}>
+          <ImageThumb image={imageMain}>
             {withButton && (
               <S.CartButton onClick={handleClick} disabled={!hasMore}>
                 <CartSVG />

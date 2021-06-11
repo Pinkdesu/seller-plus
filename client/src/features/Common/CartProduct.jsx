@@ -22,7 +22,7 @@ const DeleteOneButton = (props) => {
 const CartProduct = memo((props) => {
   const locale = useLocale();
 
-  const { id, name, price, quantity, image, children } = props;
+  const { id, name, price, quantity, imageMain, children } = props;
 
   const formatedPrice = useStringNumber(price);
 
@@ -30,7 +30,7 @@ const CartProduct = memo((props) => {
     <S.ProductItem>
       <S.ProductContent>
         <S.ProductLink to={`/shop/product/${id}`}>
-          <S.ProductImage src={image} alt={name} />
+          <S.ProductImage src={imageMain} alt={name} />
           <S.ProductInfo>
             <S.ProductPrice>
               {locale('priceWithCurrency', { price: formatedPrice })}

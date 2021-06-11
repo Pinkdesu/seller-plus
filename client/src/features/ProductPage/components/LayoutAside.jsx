@@ -8,7 +8,7 @@ import * as S from '../elements';
 const LayoutAside = (props) => {
   const locale = useLocale();
 
-  const { name, count, price, id, image } = props;
+  const { name, count, price, id, imageMain } = props;
 
   const [productCount, setProductCount] = useState(1);
 
@@ -38,8 +38,8 @@ const LayoutAside = (props) => {
     addProduct({
       id,
       name,
-      image,
       price,
+      imageMain,
       quantity: productCount,
     });
   };

@@ -67,10 +67,10 @@ const CartMenu = (props) => {
               <CartProduct
                 key={product.id}
                 id={product.id}
-                image={product.image}
                 name={product.name}
                 price={product.price}
                 quantity={product.quantity}
+                imageMain={product.imageMain}
               >
                 <CartProduct.DeleteOneButton id={product.id} />
               </CartProduct>

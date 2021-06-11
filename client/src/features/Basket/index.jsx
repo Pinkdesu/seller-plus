@@ -32,14 +32,7 @@ const Basket = () => {
               </S.LeftSideBlockWrapper>
               <S.BasketProducts>
                 {products.map((product) => (
-                  <CartProduct
-                    key={product.id}
-                    id={product.id}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                    quantity={product.quantity}
-                  >
+                  <CartProduct key={product.id} {...product}>
                     <CartProduct.DeleteOneButton id={product.id} />
                   </CartProduct>
                 ))}
