@@ -21,10 +21,15 @@ class CategoryController {
     }
   }
 
-  async getAll(req, res) {
-    const categories = await Category.findAll();
+  async getAll(req, res, next) {
+    try {
+      const categories = await Category.findAll({ raw: true });
 
-    return res.json(categories);
+      return res.json({ categories });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
   }
 
   async deleteOne(req, res) {

@@ -1,9 +1,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
+const sequalize = require('sequelize');
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Product, ProductInfo } = require('../../models');
+const { Product, ProductInfo, Brand } = require('../../models');
+
+const getProducts = (config) => Product.findAll({
+  ...config,
+  attributes: {
+    include: [[sequalize.col('brand.name'), 'brand']],
+    exclude: ['brandId', 'categoryId']
+  },
+  include: {
+    model: Brand,
+    attributes: []
+  },
+  raw: true
+});
 
 class ProductController {
   async create(req, res, next) {
@@ -91,12 +105,10 @@ class ProductController {
     }
 
     if (!brandId && categoryId) {
-      products = await Product.findAll({
-        where: {
-          categoryId
-        },
-        limit,
-        offset
+      products = await getProducts({
+        where: { categoryId },
+        offset,
+        limit
       });
     }
 

@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -20,10 +21,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-   "start": "craco start",
-   "build": "craco build",
-   "test": "craco test",
-   "eject": "craco eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "plugins": [

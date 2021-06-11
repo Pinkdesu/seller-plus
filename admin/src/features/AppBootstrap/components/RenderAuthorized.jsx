@@ -3,6 +3,8 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import DefaultView from '~/features/DefaultView';
 import Applications from '~/features/Applications';
 import AddApplication from '~/features/AddApplication';
+import Products from '~/features/Products';
+import AddProduct from '~/features/AddProduct';
 import AddAct from '~/features/AddAct';
 import AddProject from '~/features/AddProject';
 import AddPermission from '~/features/AddPermission';
@@ -16,6 +18,8 @@ const RenderAuthorized = () => {
         <Route path="/project" component={AddProject} exact />
         <Route path="/permission" component={AddPermission} exact />
         <Route path="/application" component={AddApplication} exact />
+        <Route path="/products" component={Products} exact />
+        <Route path="/product" component={AddProduct} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

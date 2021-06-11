@@ -43,4 +43,22 @@ export const ADD_PAGE_STYLE = (theme) => ({
     marginTop: theme.spacing(5),
     gap: 20,
   },
+  infoWrapper: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    marginTop: theme.spacing(5),
+    width: '100%',
+  },
+  infoList: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    gap: theme.spacing(2),
+  },
+  infoItem: {
+    gap: theme.spacing(2),
+  },
+  infoTextField: {
+    width: 300,
+  },
 });
