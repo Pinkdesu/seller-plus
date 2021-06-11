@@ -1,3 +1,5 @@
+const path = require('path');
+
 const ROLES = {
   VISITOR: 'VISITOR',
   USER: 'USER',
@@ -11,10 +13,17 @@ const PASSWORD_VALID = {
 
 const API_BASE_URL = process.env.API_URL;
 
-const URL = (fileName) => `${API_BASE_URL}/${fileName}`;
+const STATIC_FOLDER = 'static';
+
+const URL = (fileName, folder = '') => {
+  const filePath = folder ? `${folder}/${fileName}` : fileName;
+
+  return `${API_BASE_URL}/${filePath}`;
+};
 
 module.exports = {
   ROLES,
   PASSWORD_VALID,
-  URL
+  URL,
+  STATIC_FOLDER
 };

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    padding: theme.spacing(8, 8, 0, 8),
+    padding: theme.spacing(12, 8, 5, 8),
     backgroundColor: '#eeeeee',
   },
 }));

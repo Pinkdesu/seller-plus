@@ -1,13 +1,12 @@
 const Router = require('express');
 
 const router = new Router();
-const unitController = require('../../controllers/admin/unitController');
+const productController = require('../../controllers/admin/productController');
 
 const checkRole = require('../../middleware/checkRoleMiddleware');
 const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../../constants');
 
-router.get('/', [decodeToken, checkRole(ROLES.ADMIN)], unitController.getAll);
-router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], unitController.create);
+router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], productController.create);
 
 module.exports = router;

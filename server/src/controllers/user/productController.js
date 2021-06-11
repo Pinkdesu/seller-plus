@@ -3,14 +3,14 @@
 /* eslint-disable class-methods-use-this */
 const sequalize = require('sequelize');
 const ApiError = require('../../error/apiError');
-const moveFile = require('../../utils/moveFile');
 const { Product, ProductInfo, Brand } = require('../../models');
+const { URL } = require('../../constants');
 
 const getProducts = (config) => Product.findAll({
   ...config,
   attributes: {
     include: [[sequalize.col('brand.name'), 'brand']],
-    exclude: ['brandId', 'categoryId']
+    exclude: ['brandId', 'categoryId', 'images']
   },
   include: {
     model: Brand,
@@ -20,59 +20,6 @@ const getProducts = (config) => Product.findAll({
 });
 
 class ProductController {
-  async create(req, res, next) {
-    try {
-      const {
-        info,
-        name,
-        price,
-        count,
-        description,
-        brandId,
-        categoryId
-      } = req.body;
-      const { images } = req.files;
-
-      const imagesNames = [];
-
-      if (Array.isArray(images)) {
-        images.forEach((image) => {
-          const fileName = moveFile(image);
-          imagesNames.push(fileName);
-        });
-      }
-      else {
-        const fileName = moveFile(images);
-        imagesNames.push(fileName);
-      }
-
-      const product = await Product.create({
-        images: imagesNames,
-        price: +price,
-        name,
-        count,
-        description,
-        brandId,
-        categoryId
-      });
-
-      if (info) {
-        const parsedInfo = JSON.parse(info);
-
-        parsedInfo.forEach((item) => ProductInfo.create({
-          title: item.title,
-          description: item.description,
-          productId: product.id
-        }));
-      }
-
-      return res.json(product);
-    }
-    catch (e) {
-      return next(ApiError.badRequest(e.message));
-    }
-  }
-
   async getAll(req, res) {
     const {
       brandId,
@@ -123,7 +70,12 @@ class ProductController {
       });
     }
 
-    return res.json(products);
+    const productsWithUrl = products.map((product) => ({
+      ...product,
+      imageMain: URL(product.imageMain)
+    }));
+
+    return res.json({ products: productsWithUrl });
   }
 
   async getOne(req, res, next) {

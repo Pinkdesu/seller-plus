@@ -15,3 +15,7 @@ export const INFO = [
     unitId: null,
   },
 ];
+
+export const getOptionBrand = (option) => option.name;
+export const getOptionCategory = (option) => option.name;
+export const getOptionUnit = (option) => option.value;

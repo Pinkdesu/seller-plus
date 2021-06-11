@@ -57,10 +57,11 @@ const OrderStatus = sequelize.define('order_status', {
 const Product = sequelize.define('product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.STRING(3000), allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
-  //  supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
+  supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  imageMain: { type: DataTypes.STRING },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });
 

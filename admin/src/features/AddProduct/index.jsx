@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useStore } from 'effector-react';
 import { $brands, $categories, $units } from './store';
-import { getBrands, getCategories, getUnits } from './store/events';
+import { getBrands, getCategories, getUnits, addProduct } from './store/events';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { INFO } from './constants';
+import { INFO, getOptionBrand, getOptionCategory } from './constants';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import SearchSelect from '~/features/Common/SearchSelect';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Typography from '@material-ui/core/Typography';
 import FileButton from '~/features/Common/FileButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import InfoItem from './components/InfoItem';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -25,12 +26,12 @@ const AddProduct = () => {
   const categories = useStore($categories);
 
   const [name, setName] = useState();
-  const [category, setCategory] = useState();
-  const [brand, setBrand] = useState({});
+  const [categoryId, setCategoryId] = useState();
+  const [brandId, setBrandId] = useState({});
   const [price, setPrice] = useState(0);
   const [supplierPrice, setSupplierPrice] = useState(0);
   const [count, setCount] = useState(1);
-  const [files, setFiles] = useState([]);
+  const [images, setImages] = useState([]);
   const [description, setDescription] = useState('');
 
   const [info, setInfo] = useState(INFO);
@@ -48,12 +49,12 @@ const AddProduct = () => {
 
   const handleCategoryChange = (_, value) => {
     const id = value?.id;
-    setCategory(id);
+    setCategoryId(id);
   };
 
   const handleBrandChange = (_, value) => {
     const id = value?.id;
-    setBrand(id);
+    setBrandId(id);
   };
 
   const handleSupplierPriceChange = (e) => {
@@ -76,40 +77,85 @@ const AddProduct = () => {
     setDescription(value);
   };
 
-  const handleFilesChange = (e) => {
+  const handleImagesChange = (e) => {
     const files = e.target.files;
-    setFiles((prevState) => [...prevState, ...files]);
+    setImages([...images, ...files]);
   };
 
-  const handleInfoChange = (stateName, index) => (e) => {
-    const value = e.target.value;
+  const handleInfoChange = useCallback(
+    (stateName, index) => (e) => {
+      const value = e.target.value;
 
-    setInfo((prevState) => {
-      const newState = [...prevState];
-      const newItem = {
-        ...newState[index],
-        [stateName]: value,
-      };
+      setInfo((prevState) =>
+        prevState.map((item, itemIndex) => {
+          if (index !== itemIndex) return item;
 
-      newState.splice(index, 1, newItem);
-      return newState;
+          return { ...item, [stateName]: value };
+        }, []),
+      );
+    },
+    [],
+  );
+
+  const handleInfoUnitChange = useCallback(
+    (index) => (_, value) => {
+      const id = value?.id;
+
+      setInfo((prevState) =>
+        prevState.map((item, itemIndex) => {
+          if (index !== itemIndex) return item;
+
+          return { ...item, id };
+        }, []),
+      );
+    },
+    [],
+  );
+
+  const addInfo = () => {
+    setInfo([
+      ...info,
+      {
+        title: '',
+        description: '',
+        unitId: null,
+      },
+    ]);
+  };
+
+  const deleteInfo = () => {
+    if (info.length === 1) return;
+    const newState = [...info];
+
+    newState.pop();
+    setInfo(newState);
+  };
+
+  const onProduct = () => {
+    const correctInfo = info.filter(
+      ({ title, description }) => Boolean(title) && Boolean(description),
+    );
+
+    addProduct({
+      name,
+      count,
+      price,
+      images,
+      brandId,
+      categoryId,
+      description,
+      supplierPrice,
+      info: correctInfo,
     });
   };
 
-  const handleInfoUnitChange = (index) => (_, value) => {
-    const id = value?.id;
-
-    setInfo((prevState) => {
-      const newState = [...prevState];
-      const newItem = {
-        ...newState[index],
-        unitId: id,
-      };
-
-      newState.splice(index, 1, newItem);
-      return newState;
-    });
-  };
+  const disabled =
+    !name ||
+    !price ||
+    !brandId ||
+    !categoryId ||
+    !description ||
+    !supplierPrice;
 
   return (
     <div className={classes.root}>
@@ -129,31 +175,15 @@ const AddProduct = () => {
                 variant="outlined"
                 label="Название товара"
               />
-              <Autocomplete
+              <SearchSelect
                 options={categories}
                 onChange={handleCategoryChange}
-                getOptionLabel={(option) => option.name}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    required
-                    label="Категория"
-                    variant="outlined"
-                  />
-                )}
+                getOptionLabel={getOptionCategory}
               />
-              <Autocomplete
+              <SearchSelect
                 options={brands}
                 onChange={handleBrandChange}
-                getOptionLabel={(option) => option.name}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    required
-                    label="Бренд"
-                    variant="outlined"
-                  />
-                )}
+                getOptionLabel={getOptionBrand}
               />
             </div>
             <div className={classes.fieldsWrapper}>
@@ -198,53 +228,47 @@ const AddProduct = () => {
           <div className={classes.infoWrapper}>
             <List className={classes.infoList}>
               {info.map((info, index) => (
-                <ListItem key={index} className={classes.infoItem}>
-                  <TextField
-                    required
-                    value={info.title}
-                    onChange={handleInfoChange('title', index)}
-                    variant="outlined"
-                    label="Название характеристики"
-                    className={classes.infoTextField}
-                  />
-                  <TextField
-                    required
-                    value={info.title}
-                    onChange={handleInfoChange('description', index)}
-                    variant="outlined"
-                    label="Значение"
-                    className={classes.infoTextField}
-                  />
-                  <Autocomplete
-                    options={units}
-                    onChange={handleInfoUnitChange(index)}
-                    getOptionLabel={(option) => option.value}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Ед. измер."
-                        variant="outlined"
-                      />
-                    )}
-                  />
-                </ListItem>
+                <InfoItem
+                  key={index}
+                  index={index}
+                  title={info.title}
+                  onTitle={handleInfoChange}
+                  description={info.description}
+                  onDescription={handleInfoChange}
+                  onUnit={handleInfoUnitChange}
+                  units={units}
+                />
               ))}
+              <ListItem className={classes.infoItem}>
+                <Button onClick={addInfo} variant="contained" color="primary">
+                  Добавить
+                </Button>
+                <Button
+                  onClick={deleteInfo}
+                  variant="contained"
+                  disabled={info.length === 1}
+                >
+                  Удалить
+                </Button>
+              </ListItem>
             </List>
           </div>
           <div className={classes.formBottomSide}>
             <div styles={{ maxWidth: '150px' }}>
-              {files.map((file, index) => (
-                <div key={index}>{file.name}</div>
+              {images.map((image, index) => (
+                <div key={index}>{image.name}</div>
               ))}
             </div>
-            <FileButton onChange={handleFilesChange} />
+            <FileButton onChange={handleImagesChange} />
             <Button
               variant="contained"
               component="label"
               color="primary"
+              disabled={disabled}
+              onClick={onProduct}
               startIcon={<PostAddIcon />}
             >
-              Создать разрешение
+              Добавить продукт
             </Button>
           </div>
         </form>
