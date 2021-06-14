@@ -79,7 +79,7 @@ const OrderPage = () => {
                 id={product.id}
                 name={product.name}
                 price={product.purchasePrice}
-                image={product.image}
+                imageMain={product.imageMain}
                 count={product.purchaseCount}
                 brand={product.brand}
                 withButton={false}

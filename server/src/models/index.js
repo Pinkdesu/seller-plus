@@ -73,7 +73,7 @@ const ProductInfo = sequelize.define('product_info', {
 
 const Unit = sequelize.define('unit', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false }
+  value: { type: DataTypes.STRING, unique: true, allowNull: false }
 });
 
 const Category = sequelize.define('category', {
@@ -100,7 +100,7 @@ Order.belongsTo(User);
 Basket.hasMany(BasketProduct);
 BasketProduct.belongsTo(Basket);
 
-Order.hasMany(OrderProduct);
+Order.hasMany(OrderProduct, { as: 'products' });
 OrderProduct.belongsTo(Order);
 
 OrderStatus.hasMany(Order);

@@ -1,16 +1,21 @@
 export const INFO = [
   {
-    title: '',
+    title: 'Страна',
     description: '',
     unitId: null,
   },
   {
-    title: '',
+    title: 'Тип',
     description: '',
     unitId: null,
   },
   {
-    title: '',
+    title: 'Способ нагрева',
+    description: '',
+    unitId: null,
+  },
+  {
+    title: 'Тип нагрева',
     description: '',
     unitId: null,
   },

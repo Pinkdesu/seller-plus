@@ -17,7 +17,7 @@ const PopularProducts = () => {
       </S.HeaderWrapper>
       <S.Products>
         {popularProducts.map((product) => (
-          <Product key={product.id} {...product}>
+          <Product key={product.id} {...product} imageMain={product.image}>
             <Product.Brand />
             <Product.Name />
             <Product.Price />

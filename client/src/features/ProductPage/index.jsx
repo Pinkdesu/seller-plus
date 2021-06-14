@@ -14,7 +14,16 @@ const ProductPage = () => {
 
   const product = useStore($product);
   const isLoading = useStore(getProductById.pending);
-  const { images, description, info, name, count, price } = product;
+  const {
+    images,
+    imageMain,
+    description,
+    info,
+    name,
+    count,
+    price,
+    brand,
+  } = product;
 
   useEffect(() => {
     getProductById(id);
@@ -30,9 +39,10 @@ const ProductPage = () => {
           <LayoutAside
             id={id}
             name={name}
+            brand={brand}
             count={count}
             price={price}
-            imageMain={images[0]}
+            imageMain={imageMain}
           />
         </S.ProductLayout>
       </S.ProductSection>

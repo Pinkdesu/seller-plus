@@ -3,7 +3,9 @@
 /* eslint-disable class-methods-use-this */
 const sequalize = require('sequelize');
 const ApiError = require('../../error/apiError');
-const { Product, ProductInfo, Brand } = require('../../models');
+const {
+  Product, ProductInfo, Brand, Unit
+} = require('../../models');
 const { URL } = require('../../constants');
 
 const getProducts = (config) => Product.findAll({
@@ -84,14 +86,38 @@ class ProductController {
 
       const product = await Product.findOne({
         where: { id },
-        include: {
+        attributes: [
+          'name',
+          'description',
+          'count',
+          'price',
+          'images',
+          'imageMain'
+        ],
+        include: [{
           model: ProductInfo,
-          as: 'info'
+          as: 'info',
+
+          include: {
+            model: Unit,
+            attributes: ['value']
+          }
         },
-        attributes: ['name', 'description', 'count', 'price', 'images']
+        {
+          model: Brand,
+          attributes: ['name']
+        }]
       });
 
-      return res.json({ product });
+      const values = product.dataValues;
+
+      const productWithUrl = {
+        ...values,
+        images: values.images.map((image) => URL(image, 'products')),
+        imageMain: URL(values.imageMain, 'products')
+      };
+
+      return res.json({ product: productWithUrl });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

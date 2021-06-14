@@ -79,7 +79,7 @@ class OrderController {
         attributes: [
           'orderId',
           'productId',
-          [sequelize.col('product.images'), 'images']
+          [sequelize.col('product.imageMain'), 'imageMain']
         ],
         where: {
           orderId: {
@@ -97,12 +97,12 @@ class OrderController {
         const products = [];
 
         for (let i = 0; i < ordersProduct.length; i++) {
-          const { orderId, productId, images } = ordersProduct[i];
+          const { orderId, productId, imageMain } = ordersProduct[i];
 
           if (orderId === current.id) {
             products.push({
               productId,
-              image: URL(images[0])
+              imageMain: URL(imageMain, 'products')
             });
           }
         }
@@ -141,7 +141,7 @@ class OrderController {
         where: { orderId },
         include: {
           model: Product,
-          attributes: ['id', 'name', 'images'],
+          attributes: ['id', 'name', 'imageMain'],
 
           include: Brand
         }
@@ -150,7 +150,7 @@ class OrderController {
       const products = ordersProduct.map((orderProduct) => {
         const { count, purchasePrice, product } = orderProduct.dataValues;
         const {
-          id, name, images, brand
+          id, name, imageMain, brand
         } = product.dataValues;
 
         return {
@@ -159,7 +159,7 @@ class OrderController {
           purchasePrice,
           brand: brand.name,
           purchaseCount: count,
-          image: URL(images[0])
+          imageMain: URL(imageMain, 'products')
         };
       });
 

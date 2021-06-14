@@ -27,7 +27,7 @@ const Order = (props) => {
           {displayedProducts.map((product, index) => (
             <S.ProductItem key={product.productId}>
               <S.OrderProductLink to={`/account/order/${id}`}>
-                <ImageThumb image={product.image} />
+                <ImageThumb image={product.imageMain} />
                 {otherCount !== 0 && index === 2 && (
                   <S.OtherCountWrapper>
                     <S.OtherCount>{`+${otherCount}`}</S.OtherCount>

@@ -1,5 +1,3 @@
-import { URL } from '~/api/constants';
-
 export const setCategories = (state, payload) => {
   const { categories } = payload.data;
 
@@ -14,13 +12,12 @@ export const setProducts = (_, payload) => {
   return products;
 };
 
-export const setProduct = (_, { data }) => {
-  const { product } = data;
-
-  const imagesWithUrl = product.images.map((image) => URL(image));
+export const setProduct = (_, payload) => {
+  const { product } = payload.data;
+  const { brand } = product;
 
   return {
     ...product,
-    images: imagesWithUrl,
+    brand: brand.name,
   };
 };

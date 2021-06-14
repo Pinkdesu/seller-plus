@@ -33,9 +33,9 @@ const ProductDetails = (props) => {
           <S.SpecificationsWrapper>
             {details.map((detail, index) => (
               <S.Specification key={index}>
-                <span>{detail.name}:</span>
-                <span>{detail.value}</span>
-                <span>{detail.unit}</span>
+                <span>{detail.title}:</span>
+                <span>{detail.description}</span>
+                <span>{detail.unit?.value}</span>
               </S.Specification>
             ))}
           </S.SpecificationsWrapper>
