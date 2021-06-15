@@ -1,12 +1,12 @@
-import { api } from '../index';
+import { noAuthApi } from '../index';
 
 export class ShopController {
-  static getCategories = () => api.get('/category');
+  static getCategories = () => noAuthApi.get('/category');
 
   static getProductsByCategory = ({ categoryId }) =>
-    api.get(`/product?categoryId=${categoryId}`);
+    noAuthApi.get(`/product?categoryId=${categoryId}`);
 
-  static getProductById = (id) => api.get(`/product/${id}`);
+  static getProductById = (id) => noAuthApi.get(`/product/${id}`);
 
-  static getFilters = () => api.get(`/product/filter`);
+  static getFilters = () => noAuthApi.get(`/product/filter`);
 }

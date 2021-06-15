@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ls from 'store2';
 import { URL, LOCAL_STORAGE_TOKENS_KEY } from './constants';
+import { refreshAuth } from '~/features/AppBootstrap/store/events';
 
 export const api = axios.create({
   baseURL: URL('api'),
@@ -13,6 +14,15 @@ api.interceptors.request.use((config) => {
 
   return config;
 });
+
+api.interceptors.response.use(
+  (config) => config,
+  (error) => {
+    if (error.response.status === 401) {
+      refreshAuth();
+    }
+  },
+);
 
 export const noAuthApi = axios.create({
   baseURL: URL('api'),
