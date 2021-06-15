@@ -15,8 +15,8 @@ const API_BASE_URL = process.env.API_URL;
 
 const STATIC_FOLDER = 'static';
 
-const URL = (fileName, folder = '') => {
-  const filePath = folder ? `${folder}/${fileName}` : fileName;
+const URL = (fileName, routePath = '') => {
+  const filePath = routePath ? `${routePath}/${fileName}` : fileName;
 
   return `${API_BASE_URL}/${filePath}`;
 };

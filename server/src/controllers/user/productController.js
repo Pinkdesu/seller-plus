@@ -123,6 +123,28 @@ class ProductController {
       return next(ApiError.badRequest(e.message));
     }
   }
+
+  async getFilters(req, res, next) {
+    try {
+      const countries = await ProductInfo.findAll({
+        where: {
+          title: 'Страна'
+        },
+        attributes: ['description'],
+        include: {
+          model: Product,
+          attributes: [],
+          required: false
+        },
+        group: [['product_info.description'], ['product.categoryId']]
+      });
+
+      return res.json({ countries });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 module.exports = new ProductController();

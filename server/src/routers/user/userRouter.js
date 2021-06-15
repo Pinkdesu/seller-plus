@@ -15,13 +15,17 @@ router.post('/register', [
 ], userController.registration);
 
 router.post('/login', userController.login);
+router.post('/logout', userController.logout);
 
 router.get('/auth', decodeToken, userController.checkAuth);
+router.get('/activate/:link', decodeToken, userController.activateAccount);
 
 router.put('/',
-  [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)], userController.updateUserInfo);
+  [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)],
+  userController.updateUserInfo);
 
 router.put('/password',
-  [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)], userController.changePassword);
+  [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)],
+  userController.changePassword);
 
 module.exports = router;

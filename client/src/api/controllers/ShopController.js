@@ -7,4 +7,6 @@ export class ShopController {
     api.get(`/product?categoryId=${categoryId}`);
 
   static getProductById = (id) => api.get(`/product/${id}`);
+
+  static getFilters = () => api.get(`/product/filter`);
 }

@@ -13,4 +13,6 @@ export const getProductById = ShopDomain.effect().use(
   ShopController.getProductById,
 );
 
+export const getFilters = ShopDomain.effect().use(ShopController.getFilters);
+
 export const resetProduct = ShopDomain.event();

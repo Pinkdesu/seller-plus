@@ -1,9 +1,12 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
+const { ROLES } = require('../constants');
 
 const User = sequelize.define('user', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   email: { type: DataTypes.STRING, unique: true },
+  isActivated: { type: DataTypes.BOOLEAN, defaultValue: false },
+  activationLink: { type: DataTypes.STRING },
   firstName: { type: DataTypes.STRING, allowNull: false },
   secondName: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING },
@@ -11,7 +14,11 @@ const User = sequelize.define('user', {
   region: { type: DataTypes.STRING },
   city: { type: DataTypes.STRING },
   otherAddress: { type: DataTypes.STRING },
-  role: { type: DataTypes.INTEGER, defaultValue: 1 }
+  role: { type: DataTypes.INTEGER, defaultValue: ROLES.USER }
+});
+
+const Token = sequelize.define('token', {
+  refreshToken: { type: DataTypes.STRING }
 });
 
 const Service = sequelize.define('service', {
@@ -93,6 +100,9 @@ const CategoryBrand = sequelize.define('category_brand', {
 
 User.hasOne(Basket);
 Basket.belongsTo(User);
+
+Token.hasMany(User);
+User.belongsTo(Token);
 
 User.hasMany(Order);
 Order.belongsTo(User);

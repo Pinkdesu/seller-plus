@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import { $productsList } from '~/features/Shop/store';
-import { getProductsByCategory } from '~/features/Shop/store/events';
+import {
+  getProductsByCategory,
+  getFilters,
+} from '~/features/Shop/store/events';
 import * as S from './elements';
 import SearchBar from '~/features/SearchBar';
 import Filters from '~/features/Filters';
@@ -13,6 +16,7 @@ const ShopCategory = () => {
   const products = useStore($productsList);
 
   useEffect(() => {
+    getFilters();
     getProductsByCategory({ categoryId: id });
   }, [id]);
 

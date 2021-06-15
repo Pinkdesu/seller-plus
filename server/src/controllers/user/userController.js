@@ -1,12 +1,16 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const { validationResult } = require('express-validator');
 const generateAccessToken = require('../../utils/generateAccessToken');
 const createUserResponse = require('../../utils/createUserResponse');
 const ApiError = require('../../error/apiError');
+const mailService = require('../../services/mailService');
+const tokenService = require('../../services/tokenService');
 const { User, Basket } = require('../../models');
 const { ROLES } = require('../../constants');
+const { URL } = require('../../constants');
 
 class UserController {
   async registration(req, res, next) {
@@ -36,20 +40,32 @@ class UserController {
       }
 
       const hashPassword = await bcrypt.hash(password, 5);
+      const activationLink = uuid.v4();
 
       const user = await User.create({
         email,
         firstName,
         secondName,
-        role: ROLES.USER,
+        activationLink,
         password: hashPassword
       });
+
       await Basket.create({ userId: user.id });
+      await mailService.sendActivationMail(
+        email,
+        URL(activationLink, 'user/activate')
+      );
 
       const userData = createUserResponse(user.dataValues);
-      const token = generateAccessToken(userData);
+      const tokens = tokenService.generateTokens(userData);
 
-      return res.json({ user: userData, token });
+      tokenService.saveToken(userData.id, tokens.refreshToken);
+      res.cookie('refreshToken', tokens.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
+
+      return res.json({ user: userData, ...tokens });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -76,6 +92,24 @@ class UserController {
       const token = generateAccessToken(userData);
 
       return res.json({ user: userData, token });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async logout(req, res, next) {
+    try {
+      return res.json();
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async activateAccount(req, res, next) {
+    try {
+      return res.json();
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
