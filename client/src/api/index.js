@@ -18,8 +18,21 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (config) => config,
   (error) => {
-    if (error.response.status === 401) {
-      refreshAuth();
+    try {
+      const originalRequest = error.config;
+
+      if (
+        error.response.status === 401 &&
+        originalRequest &&
+        !originalRequest._isRetry
+      ) {
+        originalRequest._isRetry = true;
+        refreshAuth();
+      }
+
+      //setTimeout(() => api.request(originalRequest));
+    } catch (e) {
+      console.log(e);
     }
   },
 );
