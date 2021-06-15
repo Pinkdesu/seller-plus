@@ -3,13 +3,14 @@
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const { validationResult } = require('express-validator');
-const generateAccessToken = require('../../utils/generateAccessToken');
 const createUserResponse = require('../../utils/createUserResponse');
 const ApiError = require('../../error/apiError');
 const mailService = require('../../services/mailService');
 const tokenService = require('../../services/tokenService');
 const { User, Basket } = require('../../models');
 const { URL } = require('../../constants');
+
+const MAX_AGE = 30 * 24 * 60 * 60 * 1000;
 
 class UserController {
   async registration(req, res, next) {
@@ -52,16 +53,14 @@ class UserController {
       await Basket.create({ userId: user.id });
       await mailService.sendActivationMail(
         email,
-        URL(activationLink, 'user/activate')
+        URL(activationLink, 'api/user/activate')
       );
 
       const userData = createUserResponse(user.dataValues);
       const tokens = tokenService.generateTokens(userData);
-
       await tokenService.saveToken(userData.id, tokens.refreshToken);
-
       res.cookie('refreshToken', tokens.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: MAX_AGE,
         httpOnly: true
       });
 
@@ -90,11 +89,9 @@ class UserController {
 
       const userData = createUserResponse(user.dataValues);
       const tokens = tokenService.generateTokens(userData);
-
       await tokenService.saveToken(userData.id, tokens.refreshToken);
-
       res.cookie('refreshToken', tokens.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: MAX_AGE,
         httpOnly: true
       });
 
@@ -165,11 +162,9 @@ class UserController {
 
       const userData = createUserResponse(user.dataValues);
       const tokens = tokenService.generateTokens(userData);
-
       await tokenService.saveToken(userData.id, tokens.refreshToken);
-
       res.cookie('refreshToken', tokens.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: MAX_AGE,
         httpOnly: true
       });
 
@@ -209,9 +204,14 @@ class UserController {
       );
 
       const userData = createUserResponse(updatedUser[1].dataValues);
-      const token = generateAccessToken(userData);
+      const tokens = tokenService.generateTokens(userData);
+      await tokenService.saveToken(userData.id, tokens.refreshToken);
+      res.cookie('refreshToken', tokens.refreshToken, {
+        maxAge: MAX_AGE,
+        httpOnly: true
+      });
 
-      return res.json({ user: userData, token });
+      return res.json({ user: userData, ...tokens });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -244,9 +244,14 @@ class UserController {
       const updatedUser = await user.save();
 
       const userData = createUserResponse(updatedUser.dataValues);
-      const token = generateAccessToken(userData);
+      const tokens = tokenService.generateTokens(userData);
+      await tokenService.saveToken(userData.id, tokens.refreshToken);
+      res.cookie('refreshToken', tokens.refreshToken, {
+        maxAge: MAX_AGE,
+        httpOnly: true
+      });
 
-      return res.json({ user: userData, token });
+      return res.json({ user: userData, ...tokens });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

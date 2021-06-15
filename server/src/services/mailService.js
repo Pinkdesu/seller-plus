@@ -24,11 +24,11 @@ class MainService {
          <div>
             <h1>
                Вы зарегистрировались на сайте 
-               <a href="${API_BASE_URL}">ТменьСтройГаз</a>
+               <a href=${API_BASE_URL}>ТюменьСтройГаз</a>
             </h1>
             <p>
                Для завершения регистрации перейдите по сыллке 
-               <a href="${link}">${link}</a>
+               <a href=${link}>${link}</a>
             </p>
          </div>
        `
