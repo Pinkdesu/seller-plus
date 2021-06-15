@@ -113,7 +113,7 @@ class UserController {
 
       res.clearCookie('refreshToken');
 
-      return res.status(200);
+      return res.status(200).json();
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -153,10 +153,10 @@ class UserController {
       }
 
       const tokenData = tokenService.validateRefreshToken(refreshToken);
-      const tokenFromDb = await tokenService.findToken();
+      const tokenFromDb = await tokenService.findToken(refreshToken);
 
       if (!tokenData || !tokenFromDb) {
-        return next(ApiError.unauthorized(''));
+        return next(ApiError.unauthorized('Token data error'));
       }
 
       const user = await User.findOne({

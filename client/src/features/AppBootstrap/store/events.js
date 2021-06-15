@@ -43,6 +43,6 @@ export const logout = AppBootstrapDomain.effect().use(
   AppBootstrapController.logout,
 );
 
-export const clearLocalStorage = logout.map(() =>
+export const clearLocalStorage = logout.done.map(() =>
   ls.remove(LOCAL_STORAGE_TOKENS_KEY),
 );

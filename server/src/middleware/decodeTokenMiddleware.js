@@ -11,7 +11,6 @@ module.exports = function decodeTokenMiddleware(req, res, next) {
     const token = req.headers.authorization.split(' ')[1]; // Bearer token
 
     if (!token) return next(ApiError.unauthorized('No auth'));
-
     const userData = tokenService.validateAccessToken(token);
 
     if (!userData) {

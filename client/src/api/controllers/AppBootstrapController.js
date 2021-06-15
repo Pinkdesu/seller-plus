@@ -1,21 +1,14 @@
-import { api } from '../index';
-import ls from 'store2';
-import { LOCAL_STORAGE_TOKENS_KEY } from '~/api/constants';
-import { setToken } from '~/api';
+import { api, noAuthApi } from '../index';
 
 export class AppBootstrapController {
-  static getServices = () => api.get('/service');
+  static getServices = () => noAuthApi.get('/service');
 
   static login = ({ email, password }) =>
     api.post('/user/login', { email, password });
 
   static logout = () => api.post('/user/logout');
 
-  static refreshAuth = () => {
-    setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
-
-    return api.get('/user/refresh');
-  };
+  static refreshAuth = () => noAuthApi.get('/user/refresh');
 
   static register = (payload) => api.post('/user/register', payload);
 

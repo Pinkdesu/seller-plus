@@ -9,6 +9,7 @@ const cors = require('cors');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
+const { CLIENT_BASE_URL } = require('./src/constants');
 const sequelize = require('./src/database/db');
 const indexRouter = require('./src/routers');
 
@@ -16,7 +17,7 @@ const errorHandler = require('./src/middleware/errorHandingMiddleware');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: CLIENT_BASE_URL }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, 'static')));
