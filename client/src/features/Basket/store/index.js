@@ -1,6 +1,6 @@
 import { BasketDomain } from './domain';
 import { combine, guard, split } from 'effector';
-import { auth, logOut } from '~/features/AppBootstrap/store/events';
+import { auth, logout } from '~/features/AppBootstrap/store/events';
 import { addOrder } from '~/features/Account/store/events';
 import { $isAuth } from '~/features/AppBootstrap/store';
 import * as events from './events';
@@ -26,7 +26,7 @@ export const $products = BasketDomain.store(initProducts)
     reducers.deleteProduct,
   )
   .on(events.getBasket.done, reducers.setBasket)
-  .reset([logOut, addOrder.done]);
+  .reset([logout.done, addOrder.done]);
 
 export const $totalPrice = $products.map((state) =>
   state.reduce(

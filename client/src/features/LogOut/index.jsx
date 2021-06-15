@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { logOut } from '~/features/AppBootstrap/store/events';
+import { logout } from '~/features/AppBootstrap/store/events';
 import { Redirect } from 'react-router-dom';
 
-const LogOut = () => {
-  useEffect(() => logOut(), []);
+const Logout = () => {
+  useEffect(() => logout(), []);
 
   return <Redirect to="/account/login" />;
 };
 
-export default LogOut;
+export default Logout;

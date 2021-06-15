@@ -9,6 +9,8 @@ export class AppBootstrapController {
   static login = ({ email, password }) =>
     api.post('/user/login', { email, password });
 
+  static logout = () => api.post('/user/logout');
+
   static checkAuth = () => {
     setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
 

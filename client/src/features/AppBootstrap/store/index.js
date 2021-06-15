@@ -10,11 +10,11 @@ const initialServices = [...SERVICES];
 
 export const $isAuth = AppBootstrapDomain.store(initialIsAuth)
   .on(events.auth, () => true)
-  .reset(events.logOut);
+  .reset(events.logout.done);
 
 export const $userData = AppBootstrapDomain.store(initialUserData)
   .on([events.auth, events.changeUserData], reducers.setUserData)
-  .reset(events.logOut);
+  .reset(events.logout.done);
 
 export const $isAddress = $userData.map(
   (state) =>

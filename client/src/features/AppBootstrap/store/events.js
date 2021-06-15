@@ -39,8 +39,10 @@ export const changeUserData = merge([
   changePassword.doneData,
 ]);
 
-export const logOut = AppBootstrapDomain.event();
+export const logout = AppBootstrapDomain.effect().use(
+  AppBootstrapController.logout,
+);
 
-export const clearLocalStorage = logOut.map(() =>
+export const clearLocalStorage = logout.map(() =>
   ls.remove(LOCAL_STORAGE_TOKENS_KEY),
 );
