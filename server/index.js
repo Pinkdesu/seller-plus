@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 require('./src/models');
+require('./src/models/adminPanel');
 
 const SERVER_PORT = process.env.SERVER_PORT || 4000;
 

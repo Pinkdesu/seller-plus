@@ -3,14 +3,14 @@
 const bcrypt = require('bcrypt');
 const generateAccessToken = require('../../utils/generateAccessToken');
 const ApiError = require('../../error/apiError');
-const { User } = require('../../models');
+const { Employee } = require('../../models/adminPanel');
 const { ROLES } = require('../../constants');
 
-class UserController {
+class EmployeeController {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ raw: true, where: { email } });
+      const user = await Employee.findOne({ raw: true, where: { email } });
 
       if (!user) {
         return next(ApiError.badRequest('User not found'));
@@ -37,4 +37,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new EmployeeController();

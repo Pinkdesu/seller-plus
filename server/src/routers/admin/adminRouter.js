@@ -1,8 +1,8 @@
 const Router = require('express');
 
 const router = new Router();
-const userController = require('../../controllers/admin/adminController');
+const employeeController = require('../../controllers/admin/adminController');
 
-router.post('/login', userController.login);
+router.post('/login', employeeController.login);
 
 module.exports = router;

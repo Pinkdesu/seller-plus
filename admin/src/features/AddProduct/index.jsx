@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useStore } from 'effector-react';
-import { $brands, $categories, $units } from './store';
-import { getBrands, getCategories, getUnits, addProduct } from './store/events';
+import * as stores from './store';
+import * as events from './store/events';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { INFO, getOptionBrand, getOptionCategory } from './constants';
+import { getOptionBrand, getOptionCategory } from './constants';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -21,114 +21,96 @@ const useStyles = makeStyles(ADD_PAGE_STYLE);
 const AddProduct = () => {
   const classes = useStyles();
 
-  const units = useStore($units);
-  const brands = useStore($brands);
-  const categories = useStore($categories);
+  const units = useStore(stores.$units);
+  const brands = useStore(stores.$brands);
+  const categories = useStore(stores.$categories);
 
-  const [name, setName] = useState();
-  const [categoryId, setCategoryId] = useState();
-  const [brandId, setBrandId] = useState({});
-  const [price, setPrice] = useState(0);
-  const [supplierPrice, setSupplierPrice] = useState(0);
-  const [count, setCount] = useState(1);
-  const [images, setImages] = useState([]);
-  const [description, setDescription] = useState('');
-
-  const [info, setInfo] = useState(INFO);
+  const {
+    name,
+    price,
+    count,
+    brandId,
+    categoryId,
+    supplierPrice,
+    description,
+  } = useStore(stores.$formValues);
+  const info = useStore(stores.$infoValues);
+  const images = useStore(stores.$images);
 
   useEffect(() => {
-    getUnits();
-    getBrands();
-    getCategories();
+    events.getUnits();
+    events.getBrands();
+    events.getCategories();
   }, []);
 
   const handleNameChange = (e) => {
     const value = e.target.value;
-    setName(value);
+    events.changeFormValues({ stateName: 'name', value });
   };
 
   const handleCategoryChange = (_, value) => {
-    const id = value?.id;
-    setCategoryId(id);
+    const id = +value?.id;
+    events.changeFormValues({ stateName: 'categoryId', value: id });
   };
 
   const handleBrandChange = (_, value) => {
-    const id = value?.id;
-    setBrandId(id);
+    const id = +value?.id;
+    events.changeFormValues({ stateName: 'brandId', value: id });
   };
 
   const handleSupplierPriceChange = (e) => {
     const value = +e.target.value;
-    setSupplierPrice(value);
+    events.changeFormValues({ stateName: 'supplierPrice', value });
   };
 
   const handlePriceChange = (e) => {
     const value = +e.target.value;
-    setPrice(value);
+    events.changeFormValues({ stateName: 'price', value });
   };
 
   const handleCountChange = (e) => {
     const value = +e.target.value;
-    setCount(value);
+    events.changeFormValues({ stateName: 'count', value });
   };
 
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
-    setDescription(value);
+    events.changeFormValues({ stateName: 'description', value });
   };
 
   const handleImagesChange = (e) => {
     const files = e.target.files;
-    setImages([...images, ...files]);
+    events.addImages(files);
   };
 
   const handleInfoChange = useCallback(
     (stateName, index) => (e) => {
       const value = e.target.value;
-
-      setInfo((prevState) =>
-        prevState.map((item, itemIndex) => {
-          if (index !== itemIndex) return item;
-
-          return { ...item, [stateName]: value };
-        }, []),
-      );
+      events.changeInfoValues({ stateName, index, value });
     },
     [],
   );
 
   const handleInfoUnitChange = useCallback(
     (index) => (_, value) => {
-      const id = value?.id;
-
-      setInfo((prevState) =>
-        prevState.map((item, itemIndex) => {
-          if (index !== itemIndex) return item;
-
-          return { ...item, id };
-        }, []),
-      );
+      const id = +value?.id;
+      events.changeUnitId({ index, id });
     },
     [],
   );
 
   const addInfo = () => {
-    setInfo([
-      ...info,
-      {
-        title: '',
-        description: '',
-        unitId: null,
-      },
-    ]);
+    events.addInfoItem({
+      title: '',
+      description: '',
+      unitId: null,
+    });
   };
 
   const deleteInfo = () => {
     if (info.length === 1) return;
-    const newState = [...info];
 
-    newState.pop();
-    setInfo(newState);
+    events.deleteInfoItem();
   };
 
   const onProduct = () => {
@@ -136,7 +118,7 @@ const AddProduct = () => {
       ({ title, description }) => Boolean(title) && Boolean(description),
     );
 
-    addProduct({
+    events.addProduct({
       name,
       count,
       price,

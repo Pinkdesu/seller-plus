@@ -15,3 +15,15 @@ export const getUnits = ProductsDomain.effect().use(UnitController.getUnits);
 export const addProduct = ProductsDomain.effect().use(
   ProductController.addProduct,
 );
+
+export const addImages = ProductsDomain.event();
+
+export const changeFormValues = ProductsDomain.event();
+
+export const addInfoItem = ProductsDomain.event();
+
+export const deleteInfoItem = ProductsDomain.event();
+
+export const changeInfoValues = ProductsDomain.event();
+
+export const changeUnitId = ProductsDomain.event();
