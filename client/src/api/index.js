@@ -3,6 +3,7 @@ import { URL } from './constants';
 
 export const api = axios.create({
   baseURL: URL('api'),
+  withCredentials: true,
 });
 
 export const setToken = (token) => {

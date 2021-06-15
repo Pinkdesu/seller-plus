@@ -11,10 +11,10 @@ export class AppBootstrapController {
 
   static logout = () => api.post('/user/logout');
 
-  static checkAuth = () => {
+  static refreshAuth = () => {
     setToken(ls(LOCAL_STORAGE_TOKENS_KEY));
 
-    return api.get('/user/auth');
+    return api.get('/user/refresh');
   };
 
   static register = (payload) => api.post('/user/register', payload);

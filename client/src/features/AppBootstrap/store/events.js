@@ -12,8 +12,8 @@ export const register = AppBootstrapDomain.effect().use(
   AppBootstrapController.register,
 );
 
-export const checkAuth = AppBootstrapDomain.effect().use(
-  AppBootstrapController.checkAuth,
+export const refreshAuth = AppBootstrapDomain.effect().use(
+  AppBootstrapController.refreshAuth,
 );
 
 export const updateUser = AppBootstrapDomain.effect().use(
@@ -31,7 +31,7 @@ export const getServices = AppBootstrapDomain.effect().use(
 export const auth = merge([
   login.doneData,
   register.doneData,
-  checkAuth.doneData,
+  refreshAuth.doneData,
 ]);
 
 export const changeUserData = merge([
