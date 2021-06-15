@@ -3,14 +3,14 @@ import { LOCAL_STORAGE_TOKENS_KEY, URL } from '~/api/constants';
 import { setToken } from '~/api';
 
 export const setUserData = (_, result) => {
-  const { user, token } = result.data;
+  const { user, accessToken } = result.data;
 
-  ls(LOCAL_STORAGE_TOKENS_KEY, token);
-  setToken(token);
+  ls(LOCAL_STORAGE_TOKENS_KEY, accessToken);
+  setToken(accessToken);
 
   return {
     ...user,
-    token,
+    accessToken,
   };
 };
 

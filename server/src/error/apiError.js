@@ -19,6 +19,10 @@ class ApiError extends Error {
     return new ApiError(ERROR_CODES.FORBIDDEN, message);
   }
 
+  static unauthorized(message) {
+    return new ApiError(ERROR_CODES.UNAUTHORIZED, message);
+  }
+
   static createError(code, message) {
     return new ApiError(code, message);
   }

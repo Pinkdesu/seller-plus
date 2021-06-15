@@ -1,7 +1,8 @@
-const ERROR_CODES = require('../error/errorCodes');
+/* eslint-disable consistent-return */
+const ApiError = require('../error/apiError');
 
 module.exports = function checkRoleMiddleware(...roles) {
-  return (req, res, next) => {
+  return (req, _, next) => {
     if (req.method === 'OPTIONS') {
       next();
     }
@@ -10,19 +11,19 @@ module.exports = function checkRoleMiddleware(...roles) {
       const isArray = Array.isArray(roles);
 
       if (!isArray) {
-        res.status(ERROR_CODES.FORBIDDEN).json({ message: 'No access' });
+        return next(ApiError.forbidden('No access'));
       }
 
       const available = roles.includes(req.user.role);
 
       if (!available) {
-        res.status(ERROR_CODES.FORBIDDEN).json({ message: 'No access' });
+        return next(ApiError.forbidden('No access'));
       }
 
       next();
     }
     catch (e) {
-      res.status(ERROR_CODES.FORBIDDEN).json({ message: e.message });
+      return next(ApiError.forbidden(e));
     }
   };
 };

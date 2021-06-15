@@ -9,7 +9,6 @@ const ApiError = require('../../error/apiError');
 const mailService = require('../../services/mailService');
 const tokenService = require('../../services/tokenService');
 const { User, Basket } = require('../../models');
-const { ROLES } = require('../../constants');
 const { URL } = require('../../constants');
 
 class UserController {
@@ -59,7 +58,8 @@ class UserController {
       const userData = createUserResponse(user.dataValues);
       const tokens = tokenService.generateTokens(userData);
 
-      tokenService.saveToken(userData.id, tokens.refreshToken);
+      await tokenService.saveToken(userData.id, tokens.refreshToken);
+
       res.cookie('refreshToken', tokens.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true
@@ -89,9 +89,16 @@ class UserController {
       }
 
       const userData = createUserResponse(user.dataValues);
-      const token = generateAccessToken(userData);
+      const tokens = tokenService.generateTokens(userData);
 
-      return res.json({ user: userData, token });
+      await tokenService.saveToken(userData.id, tokens.refreshToken);
+
+      res.cookie('refreshToken', tokens.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
+
+      return res.json({ user: userData, ...tokens });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -100,7 +107,13 @@ class UserController {
 
   async logout(req, res, next) {
     try {
-      return res.json();
+      const { refreshToken } = req.cookies;
+
+      await tokenService.removeToken(refreshToken);
+
+      res.clearCookie('refreshToken');
+
+      return res.status(200);
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -109,56 +122,58 @@ class UserController {
 
   async activateAccount(req, res, next) {
     try {
-      return res.json();
+      const { link } = req.params;
+
+      const user = await User.findOne({
+        where: {
+          activationLink: link
+        }
+      });
+
+      if (!user) {
+        return next(ApiError.badRequest('Invalid link'));
+      }
+
+      user.isActivated = true;
+      await user.save();
+
+      return res.redirect(process.env.CLIENT_URL);
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
     }
   }
 
-  async adminLogin(req, res, next) {
+  async refresh(req, res, next) {
     try {
-      const { email, password } = req.body;
-      const user = await User.findOne({ where: { email } });
+      const { refreshToken } = req.cookies;
 
-      if (!user) {
-        return next(ApiError.badRequest('User not found'));
+      if (!refreshToken) {
+        return next(ApiError.unauthorized('Empty token'));
       }
 
-      if (user.role !== ROLES.ADMIN) {
-        return next(ApiError.forbidden('No access'));
+      const tokenData = tokenService.validateRefreshToken(refreshToken);
+      const tokenFromDb = await tokenService.findToken();
+
+      if (!tokenData || !tokenFromDb) {
+        return next(ApiError.unauthorized(''));
       }
 
-      const validPassword = bcrypt.compareSync(password, user.password);
-
-      if (!validPassword) {
-        return next(ApiError.badRequest('Invalid password'));
-      }
+      const user = await User.findOne({
+        where: { id: tokenData.id }
+      });
 
       const userData = createUserResponse(user.dataValues);
-      const token = generateAccessToken(userData);
+      const tokens = tokenService.generateTokens(userData);
 
-      return res.json({ user: userData, token });
-    }
-    catch (e) {
-      return next(ApiError.badRequest(e.message));
-    }
-  }
+      await tokenService.saveToken(userData.id, tokens.refreshToken);
 
-  async checkAuth(req, res, next) {
-    try {
-      const { id } = req.user;
+      res.cookie('refreshToken', tokens.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+      });
 
-      const user = await User.findOne({ where: { id } });
-
-      if (!user) {
-        return next(ApiError.badRequest('User not found'));
-      }
-
-      const userData = createUserResponse(user.dataValues);
-      const token = generateAccessToken(userData);
-
-      return res.json({ user: userData, token });
+      return res.json({ user: userData, ...tokens });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

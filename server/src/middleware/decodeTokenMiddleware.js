@@ -1,6 +1,7 @@
-const jwt = require('jsonwebtoken');
-const ERROR_CODES = require('../error/errorCodes');
+const ApiError = require('../error/apiError');
+const tokenService = require('../services/tokenService');
 
+// eslint-disable-next-line consistent-return
 module.exports = function decodeTokenMiddleware(req, res, next) {
   if (req.method === 'OPTIONS') {
     next();
@@ -9,13 +10,18 @@ module.exports = function decodeTokenMiddleware(req, res, next) {
   try {
     const token = req.headers.authorization.split(' ')[1]; // Bearer token
 
-    if (!token) res.status(ERROR_CODES.UNAUTHORIZED).json({ message: 'No auth' });
+    if (!token) return next(ApiError.unauthorized('No auth'));
 
-    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    req.user = decodedToken;
+    const userData = tokenService.validateAccessToken(token);
+
+    if (!userData) {
+      return next(ApiError.unauthorized('No user data'));
+    }
+
+    req.user = userData;
     next();
   }
   catch (e) {
-    res.status(ERROR_CODES.UNAUTHORIZED).json({ message: e.message });
+    return next(ApiError.unauthorized(e));
   }
 };

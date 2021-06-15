@@ -17,8 +17,8 @@ router.post('/register', [
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 
-router.get('/auth', decodeToken, userController.checkAuth);
-router.get('/activate/:link', decodeToken, userController.activateAccount);
+router.get('/refresh', userController.refresh);
+router.get('/activate/:link', userController.activateAccount);
 
 router.put('/',
   [decodeToken, checkRole(ROLES.USER, ROLES.ADMIN)],
