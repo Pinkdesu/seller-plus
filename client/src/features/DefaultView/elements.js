@@ -1,9 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const PageOverflow = createGlobalStyle`
-  body {
-   overflow-y: ${(props) => (props.scroll ? 'auto' : 'hidden')} !important;
-  }
 `;
 
 export const Wrapper = styled.div`

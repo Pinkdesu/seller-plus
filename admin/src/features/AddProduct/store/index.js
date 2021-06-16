@@ -1,5 +1,5 @@
 import { ProductsDomain } from './domain';
-import { INFO } from '../constants';
+import { INFO_CATEGORY1 } from '../constants';
 import * as events from './events';
 import * as reducers from './reducers';
 
@@ -8,7 +8,7 @@ const initialBrands = [];
 const initialCategories = [];
 
 const initialImages = [];
-const initialInfoValues = INFO;
+const initialInfoValues = INFO_CATEGORY1;
 const initialFormValues = {
   name: '',
   brandId: null,

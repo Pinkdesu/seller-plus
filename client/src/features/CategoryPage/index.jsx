@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
-import { $productsList } from '~/features/Shop/store';
-import {
-  getProductsByCategory,
-  getFilters,
-} from '~/features/Shop/store/events';
+import { useScrollLoader } from '~/utils/useScrollLoader';
+import { $productsList, $hasMore, $pageNumber } from './store';
+import { getProducts, getFilters, resetProducts } from './store/events';
 import * as S from './elements';
 import SearchBar from '~/features/SearchBar';
 import Filters from '~/features/Filters';
@@ -14,11 +12,24 @@ import Product from '~/features/Product';
 const ShopCategory = () => {
   const { id } = useParams();
   const products = useStore($productsList);
+  const hasMore = useStore($hasMore);
+  const pageNumber = useStore($pageNumber);
 
   useEffect(() => {
-    getFilters();
-    getProductsByCategory({ categoryId: id });
+    getFilters(id);
+    getProducts({ categoryId: id });
+
+    return () => resetProducts();
   }, [id]);
+
+  const getMoreProducts = useCallback(() => {
+    getProducts({ categoryId: id, page: pageNumber });
+  }, [pageNumber, id]);
+
+  useScrollLoader(getMoreProducts, {
+    hasMore,
+    perOffset: 20,
+  });
 
   return (
     <S.ShopCategory>

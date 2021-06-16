@@ -1,12 +1,14 @@
 import { noAuthApi } from '../index';
+import { LIMIT } from '~/features/CategoryPage/constants';
 
 export class ShopController {
   static getCategories = () => noAuthApi.get('/category');
 
-  static getProductsByCategory = ({ categoryId }) =>
-    noAuthApi.get(`/product?categoryId=${categoryId}`);
+  static getProducts = (paylaod) =>
+    noAuthApi.get('/product', { params: { ...paylaod, limit: LIMIT } });
 
   static getProductById = (id) => noAuthApi.get(`/product/${id}`);
 
-  static getFilters = () => noAuthApi.get(`/product/filter`);
+  static getFilters = (categoryId) =>
+    noAuthApi.get(`/product/filter?categoryId=${categoryId}`);
 }

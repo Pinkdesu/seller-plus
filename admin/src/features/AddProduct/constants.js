@@ -4,23 +4,31 @@ export const INFO = [
     description: '',
     unitId: null,
   },
+];
+
+export const INFO_CATEGORY1 = [
   {
-    title: 'Тип',
+    title: 'Страна',
     description: '',
     unitId: null,
   },
   {
-    title: 'Способ нагрева',
+    title: 'Принцип работы',
     description: '',
     unitId: null,
   },
   {
-    title: 'Тип нагрева',
+    title: 'Тип камеры',
+    description: '',
+    unitId: null,
+  },
+  {
+    title: 'Кол-во контуров',
     description: '',
     unitId: null,
   },
 ];
 
-export const getOptionBrand = (option) => option.name;
-export const getOptionCategory = (option) => option.name;
 export const getOptionUnit = (option) => option.value;
+export const getOptionLabel = (option) => option.name;
+export const getOptionSelected = (option, value) => option?.id === value?.id;

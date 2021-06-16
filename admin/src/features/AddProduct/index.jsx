@@ -4,7 +4,7 @@ import * as stores from './store';
 import * as events from './store/events';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { getOptionBrand, getOptionCategory } from './constants';
+import { getOptionLabel, getOptionSelected } from './constants';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -160,12 +160,14 @@ const AddProduct = () => {
               <SearchSelect
                 options={categories}
                 onChange={handleCategoryChange}
-                getOptionLabel={getOptionCategory}
+                getOptionLabel={getOptionLabel}
+                getOptionSelected={getOptionSelected}
               />
               <SearchSelect
                 options={brands}
                 onChange={handleBrandChange}
-                getOptionLabel={getOptionBrand}
+                getOptionLabel={getOptionLabel}
+                getOptionSelected={getOptionSelected}
               />
             </div>
             <div className={classes.fieldsWrapper}>

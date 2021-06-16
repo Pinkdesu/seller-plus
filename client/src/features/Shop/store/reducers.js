@@ -6,12 +6,6 @@ export const setCategories = (state, payload) => {
   return categories;
 };
 
-export const setProducts = (_, payload) => {
-  const { products } = payload.data;
-
-  return products;
-};
-
 export const setProduct = (_, payload) => {
   const { product } = payload.data;
   const { brand } = product;

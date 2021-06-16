@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { useList } from 'effector-react';
+import { $filterList } from '~/features/CategoryPage/store';
 import * as S from './elements';
 import Filter from './components/Filter';
 
 const Filters = () => {
+  const filterList = useList($filterList, (filter) => (
+    <Filter title={filter.title} values={filter.values} />
+  ));
+
   return (
     <S.FiltersWrapper>
-      <S.FiltersList>
-        <Filter title="Фильтр1" />
-        <Filter title="Фильтр2" />
-        <Filter title="Фильтр3" />
-        <Filter title="Фильтр4" />
-      </S.FiltersList>
+      <S.FiltersList>{filterList}</S.FiltersList>
     </S.FiltersWrapper>
   );
 };
 
-export default Filters;
+export default memo(Filters);

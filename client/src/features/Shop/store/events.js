@@ -5,14 +5,8 @@ export const getCategories = ShopDomain.effect().use(
   ShopController.getCategories,
 );
 
-export const getProductsByCategory = ShopDomain.effect().use(
-  ShopController.getProductsByCategory,
-);
-
 export const getProductById = ShopDomain.effect().use(
   ShopController.getProductById,
 );
-
-export const getFilters = ShopDomain.effect().use(ShopController.getFilters);
 
 export const resetProduct = ShopDomain.event();
