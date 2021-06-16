@@ -11,6 +11,10 @@ export const ADD_PAGE_STYLE = (theme) => ({
     padding: theme.spacing(5, 6),
     backgroundColor: '#ffffff',
   },
+  defaultWrapper: {
+    padding: 0,
+    backgroundColor: '#ffffff',
+  },
   pageHeaderWrapper: {
     backgroundColor: '#ffffff',
     padding: theme.spacing(2, 6),

@@ -2,6 +2,19 @@ const { DataTypes, STRING } = require('sequelize');
 const sequelize = require('../database/db');
 const { ROLES } = require('../constants');
 
+const Client = sequelize.define('client', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING },
+  email: { type: DataTypes.STRING, unique: true },
+  phone: { type: DataTypes.STRING },
+  passportSeries: { type: DataTypes.INTEGER },
+  passportNumber: { type: DataTypes.INTEGER },
+  issued: { type: DataTypes.STRING },
+  issuedDate: { type: DataTypes.DATE },
+  address: { type: DataTypes.STRING },
+  inn: { type: DataTypes.STRING }
+});
+
 const Employee = sequelize.define('employee', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   email: { type: DataTypes.STRING, unique: true },
@@ -20,5 +33,6 @@ Employee.belongsTo(Position);
 
 module.exports = {
   Employee,
-  Position
+  Position,
+  Client
 };

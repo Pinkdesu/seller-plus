@@ -13,6 +13,11 @@ export const NAV_ITEMS = [
     path: '/',
   },
   {
+    primary: 'Клиенты',
+    icon: <PeopleIcon />,
+    path: '/clients',
+  },
+  {
     primary: 'Заявки',
     icon: <AllInboxIcon />,
     path: '/applications',
