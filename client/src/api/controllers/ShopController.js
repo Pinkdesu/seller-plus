@@ -7,6 +7,9 @@ export class ShopController {
   static getProducts = (paylaod) =>
     noAuthApi.get('/product', { params: { ...paylaod, limit: LIMIT } });
 
+  static getSearchProducts = (payload) =>
+    noAuthApi.get('/product/search', { params: { ...payload, limit: LIMIT } });
+
   static getProductById = (id) => noAuthApi.get(`/product/${id}`);
 
   static getFilters = (categoryId) =>

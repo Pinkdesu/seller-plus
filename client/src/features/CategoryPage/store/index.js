@@ -7,7 +7,7 @@ import { combine } from 'effector';
 const initialBrands = [];
 const initialProducts = [];
 const initialPagesCount = 1;
-const initialPageNumber = 0;
+const initialPageNumber = 1;
 const initialFilterList = FILTERS;
 const initialPriceFilter = {
   min: 0,
@@ -24,13 +24,13 @@ export const $pagesCount = CategoryPageDomain.store(initialPagesCount)
 
 export const $pageNumber = CategoryPageDomain.store(initialPageNumber)
   .on(events.getProducts, (state) => state + 1)
-  .on(events.getProducts.fail, (state) => state - 1)
+  .on(events.getProducts.fail, (state) => (state > 1 ? state - 1 : state))
   .reset(events.resetProducts);
 
 export const $hasMore = combine(
   $pagesCount,
   $pageNumber,
-  (count, number) => count > number,
+  (count, number) => count >= number,
 );
 
 export const $filterList = CategoryPageDomain.store(initialFilterList).on(

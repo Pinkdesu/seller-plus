@@ -15,6 +15,7 @@ import Account from '~/features/Account';
 import LogOut from '~/features/LogOut';
 import ServicesPage from '~/features/ServicesPage';
 import PaymentPage from '~/features/PaymentPage';
+import SearchPage from '~/features/SearchPage';
 
 const Sign = () => {
   const user = useStore($user);
@@ -28,6 +29,7 @@ const Sign = () => {
         <Route path="/basket" component={Basket} exact />
         <Route path="/shop" component={Shop} exact />
         <Route path="/services" component={ServicesPage} exact />
+        <Route path="/shop/search" component={SearchPage} exact />
         <Route path="/shop/category/:id" component={CategoryPage} exact />
         <Route path="/shop/product/:id" component={ProductPage} exact />
 

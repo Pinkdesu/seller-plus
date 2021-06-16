@@ -14,6 +14,8 @@ const CLIENT_BASE_URL = process.env.CLIENT_URL;
 
 const STATIC_FOLDER = 'static';
 
+const PRODUCTS_LIMIT = 16;
+
 const URL = (fileName, routePath = '') => {
   const filePath = routePath ? `${routePath}/${fileName}` : fileName;
 
@@ -24,6 +26,7 @@ module.exports = {
   URL,
   ROLES,
   PASSWORD_VALID,
+  PRODUCTS_LIMIT,
   STATIC_FOLDER,
   CLIENT_BASE_URL
 };

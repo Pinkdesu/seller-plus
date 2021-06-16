@@ -1,25 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const sequalize = require('sequelize');
+const {
+  Op, where, col
+} = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
   Product, ProductInfo, Brand, Unit, Category
 } = require('../../models');
-const { URL } = require('../../constants');
-
-const getProducts = (config) => Product.findAndCountAll({
-  ...config,
-  attributes: {
-    include: [[sequalize.col('brand.name'), 'brand']],
-    exclude: ['brandId', 'categoryId', 'images', 'cratedAt', 'updatedAt']
-  },
-  include: {
-    model: Brand,
-    attributes: []
-  },
-  raw: true
-});
+const { URL, PRODUCTS_LIMIT } = require('../../constants');
+const productService = require('../../services/produstService');
+const produstService = require('../../services/produstService');
 
 class ProductController {
   async getAll(req, res, next) {
@@ -27,61 +18,49 @@ class ProductController {
       const {
         brandId,
         categoryId,
-        limit: defLimit,
         page: defPage
       } = req.query;
 
-      let products;
+      let productsWithCount;
 
-      const limit = defLimit > 0 ? defLimit : 20;
       const page = defPage > 0 ? defPage : 1;
-      const offset = page * limit - limit;
+      const offset = page * PRODUCTS_LIMIT - PRODUCTS_LIMIT;
 
       if (!brandId && !categoryId) {
-        products = await Product.findAll({
-          limit,
+        productsWithCount = await productService.getProductsWithCount({
           offset
         });
       }
 
       if (brandId && !categoryId) {
-        products = await Product.findAll({
+        productsWithCount = await productService.getProductsWithCount({
           where: {
             brandId
           },
-          limit,
           offset
         });
       }
 
       if (!brandId && categoryId) {
-        products = await getProducts({
+        productsWithCount = await productService.getProductsWithCount({
           where: { categoryId },
-          offset,
-          limit
-        });
-      }
-
-      if (brandId && categoryId) {
-        products = await Product.findAll({
-          where: {
-            categoryId,
-            brandId
-          },
-          limit,
           offset
         });
       }
 
-      const { count, rows } = products;
+      if (brandId && categoryId) {
+        productsWithCount = await productService.getProductsWithCount({
+          where: {
+            categoryId,
+            brandId
+          },
+          offset
+        });
+      }
 
-      const pagesCount = Math.ceil(count / limit);
-      const productsWithUrl = rows.map((product) => ({
-        ...product,
-        imageMain: URL(product.imageMain, 'products')
-      }));
+      const { pagesCount, products } = productsWithCount;
 
-      return res.json({ products: productsWithUrl, pagesCount });
+      return res.json({ products, pagesCount });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));
@@ -174,6 +153,37 @@ class ProductController {
         priceMax,
         priceMin
       });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getSearch(req, res, next) {
+    try {
+      const { text, page: defPage } = req.query;
+
+      const page = defPage > 0 ? defPage : 1;
+      const offset = page * PRODUCTS_LIMIT - PRODUCTS_LIMIT;
+      const reg = `%${text}%`;
+
+      const productsWithCount = await produstService.getProductsWithCount({
+        where: {
+          [Op.or]: [
+            where(col('brand.name'), { [Op.iLike]: reg }),
+            {
+              name: {
+                [Op.iLike]: reg
+              }
+            }
+          ]
+        },
+        offset
+      });
+
+      const { pagesCount, products } = productsWithCount;
+
+      return res.json({ products, pagesCount });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

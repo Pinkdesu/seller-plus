@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-
+import throttle from 'lodash.throttle';
 export const useScrollLoader = (callback, { hasMore, perOffset = 100 }) => {
   const loadScroll = useCallback(() => {
     if (hasMore) {
@@ -14,10 +14,12 @@ export const useScrollLoader = (callback, { hasMore, perOffset = 100 }) => {
   }, [callback, hasMore, perOffset]);
 
   useEffect(() => {
-    window.addEventListener('scroll', loadScroll);
+    const onScroll = throttle(loadScroll, 200);
+
+    window.addEventListener('scroll', onScroll);
 
     return () => {
-      window.removeEventListener('scroll', loadScroll);
+      window.removeEventListener('scroll', onScroll);
     };
   }, [loadScroll]);
 };
