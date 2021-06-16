@@ -1,38 +1,31 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { TABS } from './constants';
+import { TABS } from '~/features/Clients/constants';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Button from '@material-ui/core/Button';
-import Individuals from './components/Individuals';
-import Companies from './components/Companies';
+import CompanyForm from './components/CompanyForm';
+import IndividualForm from './components/IndividualForm';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
-const Clients = () => {
+const AddClient = () => {
   const classes = useStyles();
-  const history = useHistory();
 
   const [activeTab, setActiveTab] = useState(1);
 
-  const changeTab = (_, newValue) => {
-    setActiveTab(newValue);
-  };
-
-  const onCreate = () => {
-    history.push('/client');
+  const changeTab = (_, value) => {
+    setActiveTab(value);
   };
 
   return (
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Клиеты
+          Добавить клиента
         </Typography>
       </Container>
       <Container className={classes.defaultWrapper}>
@@ -49,17 +42,12 @@ const Clients = () => {
           </Tabs>
         </AppBar>
         <Container className={classes.formWrapper}>
-          {activeTab === 1 && <Individuals />}
-          {activeTab === 2 && <Companies />}
+          {activeTab === 1 && <IndividualForm />}
+          {activeTab === 2 && <CompanyForm />}
         </Container>
-        <div className={classes.formWrapper}>
-          <Button onClick={onCreate} variant="contained" color="primary">
-            Добавить клиента
-          </Button>
-        </div>
       </Container>
     </div>
   );
 };
 
-export default Clients;
+export default AddClient;

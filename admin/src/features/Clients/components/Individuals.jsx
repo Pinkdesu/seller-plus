@@ -9,8 +9,10 @@ const Individuals = () => {
   const clients = useStore($clients);
 
   useEffect(() => {
-    getClients();
-  }, []);
+    if (!clients.length) {
+      getClients();
+    }
+  }, [clients]);
 
   return (
     <TabItem

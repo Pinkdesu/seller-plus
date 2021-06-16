@@ -9,6 +9,7 @@ import AddAct from '~/features/AddAct';
 import AddProject from '~/features/AddProject';
 import AddPermission from '~/features/AddPermission';
 import Clients from '~/features/Clients';
+import AddClient from '~/features/AddClient';
 
 const RenderAuthorized = () => {
   return (
@@ -20,6 +21,7 @@ const RenderAuthorized = () => {
         <Route path="/permission" component={AddPermission} exact />
         <Route path="/application" component={AddApplication} exact />
         <Route path="/clients" component={Clients} exact />
+        <Route path="/client" component={AddClient} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/product" component={AddProduct} exact />
         <Redirect from="*" to="/" />
