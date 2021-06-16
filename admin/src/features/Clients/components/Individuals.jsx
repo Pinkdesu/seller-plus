@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from 'effector-react';
+import { $clients } from '../store';
+import { getClients } from '../store/events';
 import TabItem from './TabItem';
+import { COLUMNS } from '../constants';
 
 const Individuals = () => {
-  return <TabItem searchFieldLabel="Поиск по ФИО" />;
+  const clients = useStore($clients);
+
+  useEffect(() => {
+    getClients();
+  }, []);
+
+  return (
+    <TabItem
+      searchFieldLabel="Поиск по ФИО"
+      tableColumns={COLUMNS}
+      data={clients}
+    />
+  );
 };
 
 export default Individuals;

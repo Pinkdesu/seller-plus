@@ -14,6 +14,21 @@ class ClientController {
       return next(ApiError.badRequest(e.message));
     }
   }
+
+  async getAll(req, res, next) {
+    try {
+      const clients = await Client.findAll({
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        }
+      });
+
+      return res.json({ clients });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 module.exports = new ClientController();

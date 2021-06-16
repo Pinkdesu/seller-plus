@@ -29,7 +29,7 @@ const Clients = () => {
         </Typography>
       </Container>
       <Container className={classes.defaultWrapper}>
-        <AppBar position="static" color="white">
+        <AppBar position="static" color="inherit">
           <Tabs
             value={activeTab}
             onChange={changeTab}

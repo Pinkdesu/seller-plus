@@ -12,7 +12,7 @@ const useStyles = makeStyles(STYLES);
 const Companies = (props) => {
   const classes = useStyles();
 
-  const { searchFieldLabel } = props;
+  const { searchFieldLabel, tableColumns, data } = props;
 
   return (
     <div role="tabpanel">
@@ -25,7 +25,7 @@ const Companies = (props) => {
           <SearchSelect label="Ответственный" className={classes.filter} />
         </div>
         <div className={classes.tableWrapper}>
-          <DataTable columns={[]} pagesCount={2} data={[]} />
+          <DataTable columns={tableColumns} pagesCount={2} data={data} />
         </div>
       </Container>
     </div>

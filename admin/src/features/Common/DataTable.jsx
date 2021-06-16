@@ -71,9 +71,7 @@ const DataTable = (props) => {
                       className={classes.cell}
                     >
                       <span className={column.class}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
+                        {column.format ? column.format(value) : value}
                       </span>
                     </TableCell>
                   );
