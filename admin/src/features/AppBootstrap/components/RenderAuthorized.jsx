@@ -11,6 +11,7 @@ import AddProject from '~/features/AddProject';
 import AddPermission from '~/features/AddPermission';
 import Clients from '~/features/Clients';
 import AddClient from '~/features/AddClient';
+import Permissions from '~/features/Permissions';
 
 const RenderAuthorized = () => {
   return (
@@ -26,6 +27,7 @@ const RenderAuthorized = () => {
         <Route path="/clients" component={Clients} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/product" component={AddProduct} exact />
+        <Route path="/permissions" component={Permissions} exact />
         <Redirect from="*" to="/applications" />
       </Switch>
     </DefaultView>

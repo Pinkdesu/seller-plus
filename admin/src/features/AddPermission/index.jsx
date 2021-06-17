@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DataSelect from '~/features/Common/DataSelect';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import Typography from '@material-ui/core/Typography';
+import Header from '~/features/Common/Header';
+import FileButton from '~/features/Common/FileButton';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -15,11 +16,7 @@ const AddPermission = () => {
 
   return (
     <div className={classes.root}>
-      <Container className={classes.pageHeaderWrapper}>
-        <Typography variant="h1" className={classes.pageHeader}>
-          Добавить разрешение
-        </Typography>
-      </Container>
+      <Header title={`Добавить разрешение №${1}`} />
       <Container className={classes.formWrapper}>
         <form>
           <div className={classes.formFieldsSide}>
@@ -30,12 +27,11 @@ const AddPermission = () => {
                 data={[[1, '1']]}
                 value={1}
               />
-              <TextField
-                fullWidth
-                variant="outlined"
-                required
-                label="Номер разрешения"
-                autoComplete="current-password"
+              <DataSelect
+                defaultValue="-"
+                label="Ответственный"
+                data={[[1, 'Иваное']]}
+                value={1}
               />
             </div>
             <div className={classes.fieldsWrapper}>
@@ -62,6 +58,7 @@ const AddPermission = () => {
             />
           </div>
           <div className={classes.formBottomSide}>
+            <FileButton onChange={() => {}} />
             <Button
               variant="contained"
               component="label"
