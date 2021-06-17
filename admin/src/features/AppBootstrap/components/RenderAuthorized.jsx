@@ -14,6 +14,8 @@ import Permissions from '~/features/Permissions';
 import AddPermission from '~/features/AddPermission';
 import Projects from '~/features/Projects';
 import AddProject from '~/features/AddProject';
+import Contracts from '~/features/Contracts';
+import AddContract from '~/features/AddContract';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -36,6 +38,8 @@ const RenderAuthorized = () => {
         <Route path="/products" component={Products} exact />
         <Route path="/permission" component={AddPermission} exact />
         <Route path="/permissions" component={Permissions} exact />
+        <Route path="/contract" component={AddContract} exact />
+        <Route path="/contracts" component={Contracts} exact />
         <Redirect from="*" to="/applications" />
       </Switch>
     </DefaultView>

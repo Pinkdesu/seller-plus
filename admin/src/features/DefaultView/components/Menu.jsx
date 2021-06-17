@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NavItem from './NavItem';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles((theme) => ({
   root: {
