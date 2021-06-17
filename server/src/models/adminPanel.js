@@ -31,9 +31,8 @@ const CityDistrict = sequelize.define('city_district', {
 
 const Application = sequelize.define('application', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.STRING },
   submissionDate: { type: DataTypes.DATE },
-  documents: { type: DataTypes.ARRAY(DataTypes.STRING) },
+  document: { type: DataTypes.STRING },
   description: { type: DataTypes.STRING }
 });
 
@@ -60,6 +59,7 @@ const Project = sequelize.define('project', {
 
 const ProjectFile = sequelize.define('project_file', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING },
   document: { type: DataTypes.STRING }
 });
 

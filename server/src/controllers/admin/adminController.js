@@ -7,6 +7,35 @@ const { Employee } = require('../../models/adminPanel');
 const { ROLES } = require('../../constants');
 
 class EmployeeController {
+  async create(req, res, next) {
+    try {
+      const {
+        name, email, password, positionId
+      } = req.body;
+
+      const employee = await Employee.findOne({ where: { email } });
+
+      if (employee) {
+        return next(ApiError.badRequest('User already register'));
+      }
+
+      const hashPassword = await bcrypt.hash(password, 5);
+
+      const newEmployee = await Employee.create({
+        name,
+        email,
+        positionId,
+        role: ROLES.ADMIN,
+        password: hashPassword
+      });
+
+      return res.json({ newEmployee });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
   async login(req, res, next) {
     try {
       const { email, password } = req.body;

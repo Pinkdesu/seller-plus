@@ -6,9 +6,20 @@ const { Client } = require('../../models/adminPanel');
 class ClientController {
   async create(req, res, next) {
     try {
-      const { value } = req.body;
+      const { email, ...otherData } = req.body;
 
-      return res.json(value);
+      const client = await Client.findOne({ where: { email } });
+
+      if (client) {
+        return next(ApiError.badRequest('User already register'));
+      }
+
+      const newClient = await Client.create({
+        email,
+        ...otherData
+      });
+
+      return res.json({ client: newClient });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

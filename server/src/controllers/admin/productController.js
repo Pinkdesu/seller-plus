@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const sequalize = require('sequelize');
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Product, ProductInfo, Brand } = require('../../models');
+const { Product, ProductInfo } = require('../../models');
 
 class ProductController {
   async create(req, res, next) {

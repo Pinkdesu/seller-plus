@@ -1,13 +1,15 @@
 const Router = require('express');
 
 const router = new Router();
-const employeeController = require('../../controllers/admin/adminController');
+const applicationController = require('../../controllers/admin/applicationController');
 
 const checkRole = require('../../middleware/checkRoleMiddleware');
 const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../../constants');
 
-router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], employeeController.create);
-router.post('/login', employeeController.login);
+router.post('/', [decodeToken, checkRole(ROLES.ADMIN)],
+  applicationController.create);
+router.get('/', [decodeToken, checkRole(ROLES.ADMIN)],
+  applicationController.getAll);
 
 module.exports = router;
