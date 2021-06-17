@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
+import { COLUMNS, ROWS } from './constants';
 import Container from '@material-ui/core/Container';
 import DataTable from '~/features/Common/DataTable';
 import TextField from '@material-ui/core/TextField';
@@ -45,7 +46,7 @@ const Contracts = () => {
           </div>
         </div>
         <div className={classes.tableWrapper}>
-          <DataTable columns={[]} pagesCount={2} data={[]} />
+          <DataTable columns={COLUMNS} data={ROWS} />
         </div>
         <div className={classes.formBottomSide}>
           <AddButton onClick={handleClick} text="Создать новый договор" />

@@ -34,11 +34,17 @@ const AddAct = () => {
               <DataSelect
                 defaultValue="-"
                 label="Ответственный"
-                data={[[1, 'Иванов']]}
+                data={[[1, 'Иванов Павел']]}
                 value={1}
               />
             </div>
             <div className={classes.fieldsWrapper}>
+              <TextField
+                label="Номер акта"
+                variant="outlined"
+                defaultValue="14"
+                required
+              />
               <TextField
                 type="date"
                 label="Дата"

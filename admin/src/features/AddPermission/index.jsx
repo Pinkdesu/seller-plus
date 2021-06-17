@@ -16,7 +16,7 @@ const AddPermission = () => {
 
   return (
     <div className={classes.root}>
-      <Header title={`Добавить разрешение №${1}`} />
+      <Header title="Добавить разрешение" />
       <Container className={classes.formWrapper}>
         <form>
           <div className={classes.formFieldsSide}>
@@ -35,6 +35,11 @@ const AddPermission = () => {
               />
             </div>
             <div className={classes.fieldsWrapper}>
+              <TextField
+                label="Номер разрешения"
+                variant="outlined"
+                value="23"
+              />
               <TextField
                 type="date"
                 label="Дата"

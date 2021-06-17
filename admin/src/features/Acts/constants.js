@@ -34,7 +34,7 @@ data.pop();
 
 export const ROWS = data.map((item, index) => {
   const [number, submissionDate, desctiption] = item.map((el) => el.trim());
-  console.log(desctiption);
+
   return {
     id: index + 1,
     projectId: index + 1,

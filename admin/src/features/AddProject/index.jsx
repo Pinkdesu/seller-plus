@@ -19,15 +19,16 @@ const AddProject = () => {
 
   return (
     <div className={classes.root}>
-      <Header title={`Добавить проект №${1}`} />
+      <Header title="Добавить проект" />
       <Container className={classes.formWrapper}>
         <form>
           <div className={classes.formFieldsSide}>
             <div className={classes.fieldsWrapper}>
+              <TextField label="Номер проекта" variant="outlined" required />
               <SearchSelect defaultValue="-" label="Разрешение" />
-              <SearchSelect defaultValue="-" label="Акт" />
             </div>
             <div className={classes.fieldsWrapper}>
+              <SearchSelect defaultValue="-" label="Акт" />
               <SearchSelect defaultValue="-" label="Ответственный" />
               <TextField
                 type="date"

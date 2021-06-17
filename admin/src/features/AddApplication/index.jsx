@@ -18,7 +18,7 @@ const AddApplication = () => {
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить заявку №1
+          Добавить заявку
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>
@@ -61,10 +61,9 @@ const AddApplication = () => {
               label="Содержание"
               multiline
               rows={10}
+              value="Сроки проектирования должны быть в диапазоне 3 месяцев с даты подачи заявки"
               placeholder="Опишите..."
               fullWidth
-              defaultValue=""
-              value=""
               variant="outlined"
             />
           </div>

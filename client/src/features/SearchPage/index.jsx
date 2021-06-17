@@ -6,6 +6,7 @@ import { getSearchProducts, resetSearchProducts } from './store/events';
 import { $productsList, $hasMore, $pageNumber } from './store';
 import queryString from 'query-string';
 import * as S from '~/features/CategoryPage/elements';
+import { SearchQueryWrapper } from './elements';
 import SearchBar from '~/features/SearchBar';
 import Product from '~/features/Product';
 
@@ -39,6 +40,7 @@ const SearchPage = () => {
   return (
     <S.ShopCategory>
       <SearchBar />
+      <SearchQueryWrapper>Поиск по запросу: {text}</SearchQueryWrapper>
       <S.Content>
         {products.map((product) => (
           <Product key={product.id} {...product}>

@@ -15,7 +15,7 @@ const AddContracts = () => {
 
   return (
     <div className={classes.root}>
-      <Header title={`Добавить договор №${1}`} />
+      <Header title="Добавить договор" />
       <Container className={classes.formWrapper}>
         <form>
           <div className={classes.formFieldsSide}>
