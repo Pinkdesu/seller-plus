@@ -15,6 +15,6 @@ export class ProductController {
     });
   };
 
-  static getCategories = (payload = {}) =>
+  static getProducts = (payload = {}) =>
     api.get('/product', { params: payload });
 }

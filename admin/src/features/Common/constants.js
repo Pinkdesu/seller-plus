@@ -1,5 +1,3 @@
-export const ROWS_PER_PAGE = 20;
-
 export const ADD_PAGE_STYLE = (theme) => ({
   root: {
     display: 'flex',

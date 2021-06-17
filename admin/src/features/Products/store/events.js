@@ -12,3 +12,5 @@ export const getCategories = ProductsDomain.effect().use(
 export const getProducts = ProductsDomain.effect().use(
   ProductController.getProducts,
 );
+
+export const resetProducts = ProductsDomain.event();
