@@ -35,14 +35,14 @@ export const NAV_ITEMS = [
     path: '/acts',
   },
   {
-    primary: 'Проекты',
-    icon: <AssistantPhotoIcon />,
-    path: '/projects',
-  },
-  {
     primary: 'Разрешения',
     icon: <GavelIcon />,
     path: '/permissions',
+  },
+  {
+    primary: 'Проекты',
+    icon: <AssistantPhotoIcon />,
+    path: '/projects',
   },
   {
     primary: 'Заказы',

@@ -2,12 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import DataSelect from '~/features/Common/DataSelect';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import Typography from '@material-ui/core/Typography';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
+import SearchSelect from '~/features/Common/SearchSelect';
+import AddButton from '~/features/Common/AddButton';
+import FileButton from '~/features/Common/FileButton';
+import Header from '~/features/Common/Header';
+import EquipmentItem from './components/EquipmentItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -16,35 +19,16 @@ const AddProject = () => {
 
   return (
     <div className={classes.root}>
-      <Container className={classes.pageHeaderWrapper}>
-        <Typography variant="h1" className={classes.pageHeader}>
-          Добавить проект
-        </Typography>
-      </Container>
+      <Header title={`Добавить проект №${1}`} />
       <Container className={classes.formWrapper}>
         <form>
           <div className={classes.formFieldsSide}>
             <div className={classes.fieldsWrapper}>
-              <DataSelect
-                defaultValue="-"
-                label="Разрешение"
-                data={[[1, '1']]}
-                value={1}
-              />
-              <TextField
-                fullWidth
-                variant="outlined"
-                required
-                label="Номер проекта"
-              />
+              <SearchSelect defaultValue="-" label="Разрешение" />
+              <SearchSelect defaultValue="-" label="Акт" />
             </div>
             <div className={classes.fieldsWrapper}>
-              <DataSelect
-                defaultValue="-"
-                label="Акт"
-                data={[[1, '1']]}
-                value={1}
-              />
+              <SearchSelect defaultValue="-" label="Ответственный" />
               <TextField
                 type="date"
                 label="Дата"
@@ -68,23 +52,22 @@ const AddProject = () => {
               variant="outlined"
             />
           </div>
+          <div className={classes.infoWrapper}>
+            <List className={classes.infoList}>
+              {[1].map((index) => (
+                <EquipmentItem key={index} />
+              ))}
+              <ListItem className={classes.infoItem}>
+                <Button variant="contained" color="primary">
+                  Добавить
+                </Button>
+                <Button variant="contained">Удалить</Button>
+              </ListItem>
+            </List>
+          </div>
           <div className={classes.formBottomSide}>
-            <Button
-              variant="contained"
-              component="label"
-              startIcon={<AttachFileIcon />}
-            >
-              Загрузить файлы
-              <input type="file" hidden />
-            </Button>
-            <Button
-              variant="contained"
-              component="label"
-              color="primary"
-              startIcon={<PostAddIcon />}
-            >
-              Создать проект
-            </Button>
+            <FileButton />
+            <AddButton text="Создать проект" />
           </div>
         </form>
       </Container>
