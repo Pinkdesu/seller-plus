@@ -1,8 +1,11 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
+const { col } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Application } = require('../../models/adminPanel');
+const {
+  Application, Client, ApplicationStatus, ApplicationTheme
+} = require('../../models/adminPanel');
 
 class ApplicationController {
   async create(req, res, next) {
@@ -35,7 +38,30 @@ class ApplicationController {
 
   async getAll(_, res, next) {
     try {
-      const applications = await Application.findAll();
+      const applications = await Application.findAll({
+        attributes: {
+          include: [
+            [col('client.name'), 'client'],
+            [col('application_status.name'), 'status'],
+            [col('application_theme.name'), 'theme']
+          ]
+        },
+        include: [
+          {
+            model: Client,
+            attributes: []
+          },
+          {
+            model: ApplicationStatus,
+            attributes: []
+          },
+          {
+            model: ApplicationTheme,
+            attributes: []
+          }
+        ],
+        raw: true
+      });
 
       return res.json({ applications });
     }

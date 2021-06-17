@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from 'effector-react';
+import { $applications } from './store';
+import { getApplications, resetApplications } from './store/events';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import { columns, rows } from './constants';
+import { COLUMNS } from './constants';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import Container from '@material-ui/core/Container';
 import DataTable from '~/features/Common/DataTable';
@@ -16,6 +19,14 @@ const useStyles = makeStyles(ADD_PAGE_STYLE);
 const Applications = () => {
   const classes = useStyles();
   const history = useHistory();
+
+  const applications = useStore($applications);
+
+  useEffect(() => {
+    getApplications();
+
+    return () => resetApplications();
+  }, []);
 
   const handleClick = () => {
     history.push('/application');
@@ -44,7 +55,7 @@ const Applications = () => {
           </div>
         </div>
         <div className={classes.tableWrapper}>
-          <DataTable columns={columns} pagesCount={2} data={rows} />
+          <DataTable columns={COLUMNS} data={applications} />
         </div>
         <div className={classes.formBottomSide}>
           <Button

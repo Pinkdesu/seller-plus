@@ -128,7 +128,7 @@ const Menu = () => {
             noWrap
             className={classes.title}
           >
-            Панель админа
+            Учёт заявок
           </Typography>
         </Toolbar>
       </AppBar>

@@ -11,7 +11,7 @@ import RecentActorsIcon from '@material-ui/icons/RecentActors';
 
 export const NAV_ITEMS = [
   {
-    primary: 'Панель',
+    primary: 'Отчёты',
     icon: <Dashboard />,
     path: '/',
   },

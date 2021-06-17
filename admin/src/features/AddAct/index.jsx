@@ -18,7 +18,7 @@ const AddAct = () => {
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить акт №1
+          Добавить акт
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>

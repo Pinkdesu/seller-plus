@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from 'effector-react';
+import { $projects } from './store';
+import { getProjects, resetProjects } from './store/events';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
+import { COLUMNS } from './constants';
 import Container from '@material-ui/core/Container';
 import DataTable from '~/features/Common/DataTable';
 import TextField from '@material-ui/core/TextField';
@@ -16,6 +20,13 @@ const useStyles = makeStyles(ADD_PAGE_STYLE);
 const Projects = () => {
   const classes = useStyles();
   const history = useHistory();
+
+  const projects = useStore($projects);
+
+  useEffect(() => {
+    getProjects();
+    return () => resetProjects();
+  }, []);
 
   const handleClick = () => {
     history.push('/project');
@@ -45,7 +56,7 @@ const Projects = () => {
           </div>
         </div>
         <div className={classes.tableWrapper}>
-          <DataTable columns={[]} pagesCount={2} data={[]} />
+          <DataTable columns={COLUMNS} data={projects} />
         </div>
         <div className={classes.formBottomSide}>
           <AddButton onClick={handleClick} text="Создать новый проект" />
