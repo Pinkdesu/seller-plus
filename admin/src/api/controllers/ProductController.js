@@ -14,4 +14,7 @@ export class ProductController {
       },
     });
   };
+
+  static getCategories = (payload = {}) =>
+    api.get('/product', { params: payload });
 }

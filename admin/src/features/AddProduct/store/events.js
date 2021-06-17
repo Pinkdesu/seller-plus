@@ -1,29 +1,21 @@
-import { ProductsDomain } from './domain';
-import { BrandController } from '~/api/controllers/BrandController';
-import { CategoryController } from '~/api/controllers/CategoryController';
+import { AddProductDomain } from './domain';
 import { UnitController } from '~/api/controllers/UnitController';
 import { ProductController } from '~/api/controllers/ProductController';
 
-export const getBrands = ProductsDomain.effect().use(BrandController.getBrands);
+export const getUnits = AddProductDomain.effect().use(UnitController.getUnits);
 
-export const getCategories = ProductsDomain.effect().use(
-  CategoryController.getCategories,
-);
-
-export const getUnits = ProductsDomain.effect().use(UnitController.getUnits);
-
-export const addProduct = ProductsDomain.effect().use(
+export const addProduct = AddProductDomain.effect().use(
   ProductController.addProduct,
 );
 
-export const addImages = ProductsDomain.event();
+export const addImages = AddProductDomain.event();
 
-export const changeFormValues = ProductsDomain.event();
+export const changeFormValues = AddProductDomain.event();
 
-export const addInfoItem = ProductsDomain.event();
+export const addInfoItem = AddProductDomain.event();
 
-export const deleteInfoItem = ProductsDomain.event();
+export const deleteInfoItem = AddProductDomain.event();
 
-export const changeInfoValues = ProductsDomain.event();
+export const changeInfoValues = AddProductDomain.event();
 
-export const changeUnitId = ProductsDomain.event();
+export const changeUnitId = AddProductDomain.event();

@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useStore } from 'effector-react';
 import * as stores from './store';
 import * as events from './store/events';
+import { $brands, $categories } from '~/features/Products/store';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import { getOptionLabel, getOptionSelected } from './constants';
@@ -22,8 +23,8 @@ const AddProduct = () => {
   const classes = useStyles();
 
   const units = useStore(stores.$units);
-  const brands = useStore(stores.$brands);
-  const categories = useStore(stores.$categories);
+  const brands = useStore($brands);
+  const categories = useStore($categories);
 
   const {
     name,
@@ -39,8 +40,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     events.getUnits();
-    events.getBrands();
-    events.getCategories();
   }, []);
 
   const handleNameChange = (e) => {

@@ -1,11 +1,9 @@
-import { ProductsDomain } from './domain';
+import { AddProductDomain } from './domain';
 import { INFO_CATEGORY1 } from '../constants';
 import * as events from './events';
 import * as reducers from './reducers';
 
 const initialUnits = [];
-const initialBrands = [];
-const initialCategories = [];
 
 const initialImages = [];
 const initialInfoValues = INFO_CATEGORY1;
@@ -19,30 +17,20 @@ const initialFormValues = {
   supplierPrice: 0,
 };
 
-export const $units = ProductsDomain.store(initialUnits).on(
+export const $units = AddProductDomain.store(initialUnits).on(
   events.getUnits.doneData,
   reducers.setUnits,
 );
 
-export const $brands = ProductsDomain.store(initialBrands).on(
-  events.getBrands.doneData,
-  reducers.setBrands,
-);
-
-export const $categories = ProductsDomain.store(initialCategories).on(
-  events.getCategories.doneData,
-  reducers.setCategories,
-);
-
-export const $images = ProductsDomain.store(initialImages)
+export const $images = AddProductDomain.store(initialImages)
   .on(events.addImages, reducers.addImages)
   .reset(events.addProduct.done);
 
-export const $formValues = ProductsDomain.store(initialFormValues)
+export const $formValues = AddProductDomain.store(initialFormValues)
   .on(events.changeFormValues, reducers.setFormValue)
   .reset(events.addProduct.done);
 
-export const $infoValues = ProductsDomain.store(initialInfoValues)
+export const $infoValues = AddProductDomain.store(initialInfoValues)
   .on(events.changeInfoValues, reducers.setInfoValue)
   .on(events.changeUnitId, reducers.setUnitId)
   .on(events.addInfoItem, reducers.addInfoItem)
