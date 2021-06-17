@@ -2,9 +2,14 @@ import { ClientsDomain } from './domain';
 import * as events from './events';
 import * as reducers from './reducers';
 
-const initialClients = [];
+const initialCompanyClients = [];
+const initialIndividualClients = [];
 
-export const $clients = ClientsDomain.store(initialClients).on(
-  events.getClients.doneData,
-  reducers.setClients,
+export const $companyClients = ClientsDomain.store(initialCompanyClients).on(
+  events.getCompanyClients.doneData,
+  reducers.setCompanyClients,
 );
+
+export const $individualClients = ClientsDomain.store(
+  initialIndividualClients,
+).on(events.getIndividualClients.doneData, reducers.setIndividualClients);

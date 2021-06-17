@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import { TABS } from './constants';
+import { resetCompanyClients, resetIndividualClients } from './store/events';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,6 +20,13 @@ const Clients = () => {
   const history = useHistory();
 
   const [activeTab, setActiveTab] = useState(1);
+
+  useEffect(() => {
+    return () => {
+      resetCompanyClients();
+      resetIndividualClients();
+    };
+  }, []);
 
   const changeTab = (_, newValue) => {
     setActiveTab(newValue);

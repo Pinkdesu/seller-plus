@@ -11,6 +11,7 @@ const appThemeRouter = require('./appThemeRouter');
 const appStatusRouter = require('./appStatusRouter');
 const positionRouter = require('./positionRouter');
 const applicationRouter = require('./applicationRouter');
+const projectRouter = require('./projectRouter');
 
 router.use('/', adminRouter);
 router.use('/unit', unitRouter);
@@ -22,5 +23,6 @@ router.use('/app-theme', appThemeRouter);
 router.use('/app-status', appStatusRouter);
 router.use('/position', positionRouter);
 router.use('/application', applicationRouter);
+router.use('/project', projectRouter);
 
 module.exports = router;

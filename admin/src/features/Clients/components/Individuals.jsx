@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
-import { $clients } from '../store';
-import { getClients } from '../store/events';
+import { $individualClients } from '../store';
+import { getIndividualClients } from '../store/events';
 import TabItem from './TabItem';
-import { COLUMNS } from '../constants';
+import { INDIVIDUAL_COLUMNS } from '../constants';
 
 const Individuals = () => {
-  const clients = useStore($clients);
+  const clients = useStore($individualClients);
 
   useEffect(() => {
     if (!clients.length) {
-      getClients();
+      getIndividualClients({ clientCategoryId: 1 });
     }
-  }, [clients]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <TabItem
       searchFieldLabel="Поиск по ФИО"
-      tableColumns={COLUMNS}
+      tableColumns={INDIVIDUAL_COLUMNS}
       data={clients}
     />
   );

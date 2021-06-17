@@ -1,7 +1,8 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
+const { col } = require('sequelize');
 const ApiError = require('../../error/apiError');
-const { Client } = require('../../models/adminPanel');
+const { Client, CityDistrict } = require('../../models/adminPanel');
 
 class ClientController {
   async create(req, res, next) {
@@ -28,10 +29,21 @@ class ClientController {
 
   async getAll(req, res, next) {
     try {
+      const { clientCategoryId } = req.query;
+
       const clients = await Client.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt']
-        }
+          include: [[col('city_district.name'), 'district']],
+          exclude: ['createdAt', 'updatedAt', 'cityDistrictId', 'clientCategoryId']
+        },
+        where: {
+          clientCategoryId
+        },
+        include: {
+          model: CityDistrict,
+          attributes: []
+        },
+        raw: true
       });
 
       return res.json({ clients });

@@ -11,7 +11,7 @@ export const TABS = [
   },
 ];
 
-export const COLUMNS = [
+export const COMMON_COLUMNS = [
   { id: 'id', label: 'ID', minWidth: 80 },
   { id: 'name', label: 'ФИО', minWidth: 150 },
   { id: 'email', label: 'Email', minWidth: 100 },
@@ -20,6 +20,20 @@ export const COLUMNS = [
     label: 'Телефон',
     minWidth: 100,
   },
+  {
+    id: 'district',
+    label: 'Район',
+    minWidth: 100,
+  },
+  {
+    id: 'inn',
+    label: 'ИНН',
+    minWidth: 100,
+  },
+];
+
+export const INDIVIDUAL_COLUMNS = [
+  ...COMMON_COLUMNS,
   {
     id: 'passportSeries',
     label: 'Серия паспорта',
@@ -46,9 +60,23 @@ export const COLUMNS = [
     label: 'Адрес',
     minWidth: 200,
   },
+];
+
+export const COMPANY_COLUMNS = [
+  ...COMMON_COLUMNS,
   {
-    id: 'inn',
-    label: 'ИНН',
+    id: 'companyName',
+    label: 'Название компании',
     minWidth: 100,
+  },
+  {
+    id: 'legalAddress',
+    label: 'Юр. адрес',
+    minWidth: 100,
+  },
+  {
+    id: 'ogrn',
+    label: 'ОГРН',
+    minWidth: 80,
   },
 ];
