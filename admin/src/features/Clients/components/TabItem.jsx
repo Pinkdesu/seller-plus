@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { STYLES } from '../constants';
+import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import SearchSelect from '~/features/Common/SearchSelect';
 import SearchField from '~/features/Common/SearchField';
 import DataTable from '~/features/Common/DataTable';
 
-const useStyles = makeStyles(STYLES);
+const useStyles = makeStyles(ADD_PAGE_STYLE);
 
 const Companies = (props) => {
   const classes = useStyles();

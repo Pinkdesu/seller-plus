@@ -11,20 +11,6 @@ export const TABS = [
   },
 ];
 
-export const STYLES = (theme) => ({
-  filtersWrapper: {
-    display: 'flex',
-    gap: theme.spacing(3),
-    marginTop: theme.spacing(2),
-  },
-  filter: {
-    flex: '0 0 350px',
-  },
-  tableWrapper: {
-    marginTop: theme.spacing(4),
-  },
-});
-
 export const COLUMNS = [
   { id: 'id', label: 'ID', minWidth: 80 },
   { id: 'name', label: 'ФИО', minWidth: 150 },

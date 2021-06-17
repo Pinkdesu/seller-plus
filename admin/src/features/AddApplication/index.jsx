@@ -18,7 +18,7 @@ const AddApplication = () => {
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить заявку
+          Добавить заявку №1
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>
@@ -27,14 +27,8 @@ const AddApplication = () => {
             <div className={classes.fieldsWrapper}>
               <DataSelect
                 defaultValue="-"
-                label="Заказчик"
+                label="Клиент"
                 data={[[1, 'Иван Иванов']]}
-                value={1}
-              />
-              <DataSelect
-                defaultValue="-"
-                label="Статус"
-                data={[[1, 'В работе']]}
                 value={1}
               />
               <DataSelect
@@ -45,16 +39,15 @@ const AddApplication = () => {
               />
             </div>
             <div className={classes.fieldsWrapper}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                required
-                label="Район города"
-                autoComplete="current-password"
+              <DataSelect
+                defaultValue="-"
+                label="Ответственный"
+                data={[[1, 'Иваныч']]}
+                value={1}
               />
               <TextField
                 type="date"
-                label="Дата"
+                label="Дата подачи"
                 variant="outlined"
                 defaultValue="2021-06-01"
                 InputLabelProps={{

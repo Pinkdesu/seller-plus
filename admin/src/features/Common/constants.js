@@ -63,4 +63,15 @@ export const ADD_PAGE_STYLE = (theme) => ({
   infoTextField: {
     width: 300,
   },
+  filtersWrapper: {
+    display: 'flex',
+    gap: theme.spacing(3),
+    marginTop: theme.spacing(2),
+  },
+  filter: {
+    flex: '0 1 350px',
+  },
+  tableWrapper: {
+    marginTop: theme.spacing(4),
+  },
 });

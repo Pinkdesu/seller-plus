@@ -5,6 +5,7 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
+//import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 export const NAV_ITEMS = [
   {
@@ -12,6 +13,11 @@ export const NAV_ITEMS = [
     icon: <Dashboard />,
     path: '/',
   },
+  //  {
+  //    primary: 'Панель',
+  //    icon: <AssignmentIndIcon  />,
+  //    path: '/',
+  //  },
   {
     primary: 'Клиенты',
     icon: <PeopleIcon />,

@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import DataSelect from '~/features/Common/DataSelect';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import Typography from '@material-ui/core/Typography';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -17,7 +18,7 @@ const AddAct = () => {
     <div className={classes.root}>
       <Container className={classes.pageHeaderWrapper}>
         <Typography variant="h1" className={classes.pageHeader}>
-          Добавить акт
+          Добавить акт №1
         </Typography>
       </Container>
       <Container className={classes.formWrapper}>
@@ -30,11 +31,11 @@ const AddAct = () => {
                 data={[[1, '1']]}
                 value={1}
               />
-              <TextField
-                fullWidth
-                variant="outlined"
-                required
-                label="Номер акта"
+              <DataSelect
+                defaultValue="-"
+                label="Ответственный"
+                data={[[1, 'Иванов']]}
+                value={1}
               />
             </div>
             <div className={classes.fieldsWrapper}>
@@ -62,6 +63,14 @@ const AddAct = () => {
             />
           </div>
           <div className={classes.formBottomSide}>
+            <Button
+              variant="contained"
+              component="label"
+              startIcon={<AttachFileIcon />}
+            >
+              Загрузить файл
+              <input type="file" hidden />
+            </Button>
             <Button
               variant="contained"
               component="label"
