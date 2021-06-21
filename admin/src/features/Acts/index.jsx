@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useStore } from 'effector-react';
 import { useHistory } from 'react-router';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { ROWS, COLUMNS } from './constants';
+import { COLUMNS } from './constants';
+import { $acts } from './store';
+import { getActs, resetActs } from './store/events';
 import Container from '@material-ui/core/Container';
 import DataTable from '~/features/Common/DataTable';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import SearchSelect from '~/features/Common/SearchSelect';
 import SearchField from '~/features/Common/SearchField';
+import AddButton from '~/features/Common/AddButton';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
 const Acts = () => {
   const classes = useStyles();
   const history = useHistory();
+
+  const acts = useStore($acts);
+
+  useEffect(() => {
+    getActs();
+
+    return () => resetActs();
+  }, []);
 
   const handleClick = () => {
     history.push('/act');
@@ -50,18 +60,10 @@ const Acts = () => {
           </div>
         </div>
         <div className={classes.tableWrapper}>
-          <DataTable columns={COLUMNS} data={ROWS} />
+          <DataTable columns={COLUMNS} data={acts} />
         </div>
         <div className={classes.formBottomSide}>
-          <Button
-            variant="contained"
-            component="label"
-            color="primary"
-            onClick={handleClick}
-            startIcon={<PostAddIcon />}
-          >
-            Создать новый акт
-          </Button>
+          <AddButton text="Создать новый акт" onClick={handleClick} />
         </div>
       </Container>
     </div>
