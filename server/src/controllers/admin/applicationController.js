@@ -7,6 +7,18 @@ const { Application } = require('../../models/adminPanel');
 const applicationService = require('../../services/applicationService');
 
 class ApplicationController {
+  async getPeriod(_, res, next) {
+    try {
+      const to = await Application.max('submissionDate');
+      const from = await Application.min('submissionDate');
+
+      return res.json({ to, from });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
   async create(req, res, next) {
     try {
       const {

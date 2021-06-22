@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-// const { fn, col } = require('sequelize');
+const { Op } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, Employee
@@ -9,6 +9,8 @@ const {
 class ReportController {
   async getEmployeeReport(req, res, next) {
     try {
+      const { periodFrom, periodTo } = req.query;
+
       const statuses = await ApplicationStatus.findAll({
         attributes: ['id', 'name']
       });
@@ -21,6 +23,12 @@ class ReportController {
         include: {
           model: Application,
           attributes: ['id', ['applicationStatusId', 'status']],
+          where: {
+            submissionDate: {
+              [Op.gte]: periodFrom,
+              [Op.lte]: periodTo
+            }
+          },
           through: {
             attributes: []
           }
@@ -34,7 +42,9 @@ class ReportController {
       const report = employee.map((item) => {
         const { id, name, applications } = item;
 
-        const data = statuses.map((value) => {
+        const result = { id, employee: name };
+
+        statuses.forEach((value) => {
           const count = applications.reduce(
             (sum, current) => (
               current.dataValues.status === value.id ? sum + 1 : sum
@@ -42,18 +52,10 @@ class ReportController {
             0
           );
 
-          return {
-            id: value.id,
-            name: value.name,
-            count
-          };
+          result[`status${value.id}`] = count;
         });
 
-        return {
-          id,
-          name,
-          statuses: data
-        };
+        return result;
       });
 
       return res.json({ report });

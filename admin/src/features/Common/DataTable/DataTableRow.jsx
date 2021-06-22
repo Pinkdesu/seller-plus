@@ -28,7 +28,7 @@ const DataTableRow = (props) => {
         const value = row[columnId];
 
         return (
-          <TableCell key={key} align={column.align} className={classes.cell}>
+          <TableCell key={key} align="center" className={classes.cell}>
             <span className={column.class}>
               {column.format ? column.format(value) : value}
             </span>

@@ -11,5 +11,7 @@ router.post('/', [decodeToken, checkRole(ROLES.ADMIN)],
   applicationController.create);
 router.get('/', [decodeToken, checkRole(ROLES.ADMIN)],
   applicationController.getAll);
+router.get('/period', [decodeToken, checkRole(ROLES.ADMIN)],
+  applicationController.getPeriod);
 
 module.exports = router;
