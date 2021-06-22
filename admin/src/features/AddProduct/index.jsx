@@ -23,7 +23,6 @@ const AddProduct = () => {
   const classes = useStyles();
 
   const units = useStore(stores.$units);
-  const countries = useStore(stores.$originCountries);
   const brands = useStore($brands);
   const categories = useStore($categories);
 
@@ -33,7 +32,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     events.getUnits();
-    events.getCountries();
   }, []);
 
   const handleSelectChange = useCallback(
@@ -130,13 +128,6 @@ const AddProduct = () => {
                 getOptionLabel={getOptionLabel}
                 getOptionSelected={getOptionSelected}
               />
-              <SearchSelect
-                label="Страна производитель"
-                options={countries}
-                onChange={handleSelectChange('originCountryId')}
-                getOptionLabel={getOptionLabel}
-                getOptionSelected={getOptionSelected}
-              />
             </div>
             <div className={classes.fieldsWrapper}>
               <TextField
@@ -162,6 +153,17 @@ const AddProduct = () => {
                 onChange={handleFieldChange('count')}
                 variant="outlined"
                 label="Количество"
+              />
+              <TextField
+                required
+                type="date"
+                label="Дата закупки"
+                variant="outlined"
+                value={formValues.supplierDate}
+                onChange={handleFieldChange('supplierDate')}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
           </div>

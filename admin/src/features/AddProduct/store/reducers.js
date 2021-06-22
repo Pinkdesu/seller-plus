@@ -4,12 +4,6 @@ export const setUnits = (_, payload) => {
   return units;
 };
 
-export const setCountries = (_, payload) => {
-  const { countries } = payload.data;
-
-  return countries;
-};
-
 export const setFormValue = (state, payload) => {
   const { stateName, value } = payload;
 

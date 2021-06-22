@@ -4,7 +4,6 @@ import * as events from './events';
 import * as reducers from './reducers';
 
 const initialUnits = [];
-const initialOriginCountries = [];
 
 const initialImages = [];
 const initialInfoValues = INFO;
@@ -14,6 +13,7 @@ const initialFormValues = {
   price: 0,
   count: 1,
   supplierPrice: 0,
+  supplierDate: '',
   brandId: null,
   categoryId: null,
   originCountryId: null,
@@ -23,10 +23,6 @@ export const $units = AddProductDomain.store(initialUnits).on(
   events.getUnits.doneData,
   reducers.setUnits,
 );
-
-export const $originCountries = AddProductDomain.store(
-  initialOriginCountries,
-).on(events.getCountries.doneData, reducers.setCountries);
 
 export const $images = AddProductDomain.store(initialImages)
   .on(events.addImages, reducers.addImages)

@@ -68,17 +68,12 @@ const Product = sequelize.define('product', {
   imageMain: { type: DataTypes.STRING }
 });
 
-const OriginCountry = sequelize.define('origin_country', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
 const Supply = sequelize.define('supply', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  date: { type: DataTypes.DATE, allowNull: false },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  supplierDate: { type: DataTypes.DATE, allowNull: false },
   supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 }
-});
+}, { timestamps: false });
 
 const ProductInfo = sequelize.define('product_info', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -136,9 +131,6 @@ BasketProduct.belongsTo(Product);
 Product.hasMany(Supply);
 Supply.belongsTo(Product);
 
-OriginCountry.hasMany(Product);
-Product.belongsTo(OriginCountry);
-
 Product.hasMany(OrderProduct);
 OrderProduct.belongsTo(Product);
 
@@ -166,6 +158,5 @@ module.exports = {
   Category,
   Token,
   CategoryBrand,
-  Supply,
-  OriginCountry
+  Supply
 };

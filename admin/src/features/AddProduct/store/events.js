@@ -1,13 +1,8 @@
 import { AddProductDomain } from './domain';
 import { UnitController } from '~/api/controllers/UnitController';
 import { ProductController } from '~/api/controllers/ProductController';
-import { OriginCountryController } from '~/api/controllers/OriginCountryController';
 
 export const getUnits = AddProductDomain.effect().use(UnitController.getUnits);
-
-export const getCountries = AddProductDomain.effect().use(
-  OriginCountryController.getCountries,
-);
 
 export const addProduct = AddProductDomain.effect().use(
   ProductController.addProduct,

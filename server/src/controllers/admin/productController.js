@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Product, ProductInfo } = require('../../models');
+const { Product, ProductInfo, Supply } = require('../../models');
 
 class ProductController {
   async create(req, res, next) {
@@ -16,7 +16,8 @@ class ProductController {
         brandId,
         categoryId,
         description,
-        supplierPrice
+        supplierPrice,
+        supplierDate
       } = req.body;
 
       const { images } = req.files;
@@ -40,12 +41,18 @@ class ProductController {
         brandId,
         categoryId,
         description,
-        supplierPrice,
         images: imagesNames,
         imageMain: imagesNames[0]
       });
 
       const parsedInfo = JSON.parse(info);
+
+      await Supply.create({
+        productId: product.id,
+        supplierDate,
+        supplierPrice,
+        count
+      });
 
       parsedInfo.forEach((item) => ProductInfo.create({
         title: item.title,
