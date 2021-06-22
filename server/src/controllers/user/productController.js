@@ -9,8 +9,7 @@ const {
   Product, ProductInfo, Brand, Unit, Category
 } = require('../../models');
 const { URL, PRODUCTS_LIMIT } = require('../../constants');
-const productService = require('../../services/produstService');
-const produstService = require('../../services/produstService');
+const productService = require('../../services/productService');
 
 class ProductController {
   async getAll(req, res, next) {
@@ -167,7 +166,7 @@ class ProductController {
       const offset = page * PRODUCTS_LIMIT - PRODUCTS_LIMIT;
       const reg = `%${text}%`;
 
-      const productsWithCount = await produstService.getProductsWithCount({
+      const productsWithCount = await productService.getProductsWithCount({
         where: {
           [Op.or]: [
             where(col('brand.name'), { [Op.iLike]: reg }),

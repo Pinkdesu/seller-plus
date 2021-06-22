@@ -65,6 +65,11 @@ const Product = sequelize.define('product', {
   price: { type: DataTypes.REAL, allowNull: false },
   supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  сoverage: { type: DataTypes.STRING },
+  installation: { type: DataTypes.STRING },
+  functionality: { type: DataTypes.STRING },
+  circuitCount: { type: DataTypes.INTEGER },
+  boilerType: { type: DataTypes.STRING },
   imageMain: { type: DataTypes.STRING },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
 });
@@ -84,34 +89,14 @@ const HeatingType = sequelize.define('heating_type', {
   value: { type: DataTypes.STRING, allowNull: false, unique: true }
 });
 
-const Coverage = sequelize.define('сoverage', {
+const CombustionСhamber = sequelize.define('combustion_chamber', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const BoilerType = sequelize.define('boiler_type', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const Functionality = sequelize.define('functionality', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const CombustionСhamber = sequelize.define('сombustion_chamber', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const CircuitCount = sequelize.define('circuit_count', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.INTEGER, allowNull: false, unique: true }
 });
 
 const OperatingPrinciple = sequelize.define('operating_principle', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.INTEGER, allowNull: false, unique: true }
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
 });
 
 const Supply = sequelize.define('supply', {
@@ -185,20 +170,8 @@ Product.belongsTo(HeatingMethod);
 HeatingType.hasMany(Product);
 Product.belongsTo(HeatingType);
 
-Coverage.hasMany(Product);
-Product.belongsTo(Coverage);
-
-BoilerType.hasMany(Product);
-Product.belongsTo(BoilerType);
-
-Functionality.hasMany(Product);
-Product.belongsTo(Functionality);
-
 CombustionСhamber.hasMany(Product);
 Product.belongsTo(CombustionСhamber);
-
-CircuitCount.hasMany(Product);
-Product.belongsTo(CircuitCount);
 
 OperatingPrinciple.hasMany(Product);
 Product.belongsTo(OperatingPrinciple);
@@ -234,10 +207,6 @@ module.exports = {
   HeatingMethod,
   HeatingType,
   OriginCountry,
-  Coverage,
-  BoilerType,
-  Functionality,
   CombustionСhamber,
-  CircuitCount,
   OperatingPrinciple
 };
