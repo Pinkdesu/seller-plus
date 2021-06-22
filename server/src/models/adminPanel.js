@@ -31,6 +31,7 @@ const CityDistrict = sequelize.define('city_district', {
 
 const Application = sequelize.define('application', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  number: { type: DataTypes.STRING, unique: true },
   submissionDate: { type: DataTypes.DATE },
   document: { type: DataTypes.STRING },
   description: { type: DataTypes.STRING }

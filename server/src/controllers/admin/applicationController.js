@@ -1,11 +1,10 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { col } = require('sequelize');
+const { col, Op, where } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const {
-  Application, Client, ApplicationStatus, ApplicationTheme
-} = require('../../models/adminPanel');
+const { Application } = require('../../models/adminPanel');
+const applicationService = require('../../services/applicationService');
 
 class ApplicationController {
   async create(req, res, next) {
@@ -36,34 +35,93 @@ class ApplicationController {
     }
   }
 
-  async getAll(_, res, next) {
+  async getAll(req, res, next) {
     try {
-      const applications = await Application.findAll({
-        attributes: {
-          include: [
-            [col('client.name'), 'client'],
-            [col('application_status.name'), 'status'],
-            [col('application_theme.name'), 'theme']
-          ]
-        },
-        include: [
-          {
-            model: Client,
-            attributes: []
-          },
-          {
-            model: ApplicationStatus,
-            attributes: []
-          },
-          {
-            model: ApplicationTheme,
-            attributes: []
-          }
-        ],
-        raw: true
-      });
+      const {
+        searchValue, clientId, applicationStatusId, page: defPage
+      } = req.query;
 
-      return res.json({ applications });
+      const page = defPage > 0 ? defPage : 1;
+      const offset = page * 20 - 20;
+      const reg = `%${searchValue}%`;
+
+      let applications;
+
+      const searchWhere = {
+        [Op.or]: [
+          where(col('application_theme.name'), { [Op.iLike]: reg }),
+          {
+            number: {
+              [Op.iLike]: reg
+            }
+          }
+        ]
+      };
+
+      if (!searchValue && !clientId && !applicationStatusId) {
+        applications = await applicationService.getApplications({ offset });
+      }
+
+      if (searchValue && !clientId && !applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: searchWhere,
+          offset
+        });
+      }
+
+      if (!searchValue && clientId && !applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: { clientId },
+          offset
+        });
+      }
+
+      if (!searchValue && !clientId && applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: { applicationStatusId },
+          offset
+        });
+      }
+
+      if (!searchValue && clientId && applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: { applicationStatusId, clientId },
+          offset
+        });
+      }
+
+      if (searchValue && clientId && !applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: {
+            ...searchWhere,
+            clientId
+          },
+          offset
+        });
+      }
+
+      if (searchValue && !clientId && applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: {
+            ...searchWhere,
+            applicationStatusId
+          },
+          offset
+        });
+      }
+
+      if (searchValue && clientId && applicationStatusId) {
+        applications = await applicationService.getApplications({
+          where: {
+            ...searchWhere,
+            clientId,
+            applicationStatusId
+          },
+          offset
+        });
+      }
+
+      return res.json(applications);
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

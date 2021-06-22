@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-const useScrollLoader = (callback, { hasMore, perOffset = 100 }) => {
+const useScrollLoader = (callback, { hasMore, perOffset = 20 }) => {
   return useCallback(
     ({ target }) => {
       if (hasMore) {
