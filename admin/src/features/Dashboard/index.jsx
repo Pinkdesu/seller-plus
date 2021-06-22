@@ -16,6 +16,10 @@ const Dashboard = () => {
     history.push('/report/employee');
   };
 
+  const goToClientReport = () => {
+    history.push('/report/client');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -29,6 +33,13 @@ const Dashboard = () => {
                 onClick={goToEmployeeReport}
               >
                 Отчёт по ответственным
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToClientReport}
+              >
+                Отчёт по клиентам
               </Button>
             </div>
             <div className={classes.fieldsWrapper}></div>

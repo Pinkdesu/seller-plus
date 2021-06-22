@@ -19,6 +19,7 @@ import Contracts from '~/features/Contracts';
 import AddContract from '~/features/AddContract';
 import Dashboard from '~/features/Dashboard';
 import EmployeeReport from '~/features/EmployeeReport';
+import ClientReport from '~/features/ClientReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const RenderAuthorized = () => {
         <Route path="/contract" component={AddContract} exact />
         <Route path="/contracts" component={Contracts} exact />
         <Route path="/report/employee" component={EmployeeReport} exact />
+        <Route path="/report/client" component={ClientReport} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

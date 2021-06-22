@@ -3,7 +3,7 @@
 const { Op } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
-  Application, ApplicationStatus, Employee
+  Application, ApplicationStatus, Employee, Client
 } = require('../../models/adminPanel');
 
 class ReportController {
@@ -56,6 +56,40 @@ class ReportController {
         });
 
         return result;
+      });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getClientReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await Application.findAll({
+        attributes: [
+          'id'
+        ],
+        where: {
+          submissionDate: {
+            [Op.gte]: periodFrom,
+            [Op.lte]: periodTo
+          }
+        },
+        include: [
+          {
+            model: Client,
+            attributes: ['id', 'name']
+          },
+          {
+            model: ApplicationStatus,
+            attributes: ['name']
+          }
+        ],
+        group: ['application.id', 'client.id', 'application_status.id']
       });
 
       return res.json({ report });

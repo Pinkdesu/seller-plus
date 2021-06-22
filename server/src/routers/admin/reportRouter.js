@@ -10,4 +10,7 @@ const { ROLES } = require('../../constants');
 router.get('/employee', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getEmployeeReport);
 
+router.get('/client', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getClientReport);
+
 module.exports = router;
