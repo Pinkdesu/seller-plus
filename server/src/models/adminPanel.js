@@ -49,7 +49,7 @@ const ApplicationTheme = sequelize.define('application_theme', {
 
 const ApplicationEmployee = sequelize.define('application_employee', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
-});
+}, { timestamps: false });
 
 const Project = sequelize.define('project', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

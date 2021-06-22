@@ -92,6 +92,7 @@ const AddProduct = () => {
 
     events.addProduct({
       ...formValues,
+      images,
       info: correctInfo,
     });
   };

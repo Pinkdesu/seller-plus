@@ -17,6 +17,8 @@ import Projects from '~/features/Projects';
 import AddProject from '~/features/AddProject';
 import Contracts from '~/features/Contracts';
 import AddContract from '~/features/AddContract';
+import Dashboard from '~/features/Dashboard';
+import EmployeeReport from '~/features/EmployeeReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -28,6 +30,7 @@ const RenderAuthorized = () => {
   return (
     <DefaultView>
       <Switch>
+        <Route path="/" component={Dashboard} exact />
         <Route path="/act" component={AddAct} exact />
         <Route path="/acts" component={Acts} exact />
         <Route path="/project" component={AddProject} exact />
@@ -42,7 +45,8 @@ const RenderAuthorized = () => {
         <Route path="/permissions" component={Permissions} exact />
         <Route path="/contract" component={AddContract} exact />
         <Route path="/contracts" component={Contracts} exact />
-        <Redirect from="*" to="/applications" />
+        <Route path="/report/employee" component={EmployeeReport} exact />
+        <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>
   );

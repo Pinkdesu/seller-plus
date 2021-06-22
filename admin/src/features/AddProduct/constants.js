@@ -1,5 +1,10 @@
 export const INFO = [
   {
+    title: 'Страна',
+    description: '',
+    unitId: null,
+  },
+  {
     title: 'Установка',
     description: '',
     unitId: null,
