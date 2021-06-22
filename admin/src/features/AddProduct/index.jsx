@@ -10,9 +10,9 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SearchSelect from '~/features/Common/SearchSelect';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import Typography from '@material-ui/core/Typography';
 import FileButton from '~/features/Common/FileButton';
+import AddButton from '~/features/Common/AddButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import InfoItem from './components/InfoItem';
@@ -23,59 +23,34 @@ const AddProduct = () => {
   const classes = useStyles();
 
   const units = useStore(stores.$units);
+  const countries = useStore(stores.$originCountries);
   const brands = useStore($brands);
   const categories = useStore($categories);
 
-  const {
-    name,
-    price,
-    count,
-    brandId,
-    categoryId,
-    supplierPrice,
-    description,
-  } = useStore(stores.$formValues);
+  const formValues = useStore(stores.$formValues);
   const info = useStore(stores.$infoValues);
   const images = useStore(stores.$images);
 
   useEffect(() => {
     events.getUnits();
+    events.getCountries();
   }, []);
 
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    events.changeFormValues({ stateName: 'name', value });
-  };
+  const handleSelectChange = useCallback(
+    (stateName) => (_, value) => {
+      const id = +value?.id;
+      events.changeFormValues({ stateName, value: id });
+    },
+    [],
+  );
 
-  const handleCategoryChange = (_, value) => {
-    const id = +value?.id;
-    events.changeFormValues({ stateName: 'categoryId', value: id });
-  };
-
-  const handleBrandChange = (_, value) => {
-    const id = +value?.id;
-    events.changeFormValues({ stateName: 'brandId', value: id });
-  };
-
-  const handleSupplierPriceChange = (e) => {
-    const value = +e.target.value;
-    events.changeFormValues({ stateName: 'supplierPrice', value });
-  };
-
-  const handlePriceChange = (e) => {
-    const value = +e.target.value;
-    events.changeFormValues({ stateName: 'price', value });
-  };
-
-  const handleCountChange = (e) => {
-    const value = +e.target.value;
-    events.changeFormValues({ stateName: 'count', value });
-  };
-
-  const handleDescriptionChange = (e) => {
-    const value = e.target.value;
-    events.changeFormValues({ stateName: 'description', value });
-  };
+  const handleFieldChange = useCallback(
+    (stateName) => (e) => {
+      const value = e.target.value;
+      events.changeFormValues({ stateName, value });
+    },
+    [],
+  );
 
   const handleImagesChange = (e) => {
     const files = e.target.files;
@@ -118,25 +93,10 @@ const AddProduct = () => {
     );
 
     events.addProduct({
-      name,
-      count,
-      price,
-      images,
-      brandId,
-      categoryId,
-      description,
-      supplierPrice,
+      ...formValues,
       info: correctInfo,
     });
   };
-
-  const disabled =
-    !name ||
-    !price ||
-    !brandId ||
-    !categoryId ||
-    !description ||
-    !supplierPrice;
 
   return (
     <div className={classes.root}>
@@ -151,20 +111,29 @@ const AddProduct = () => {
             <div className={classes.fieldsWrapper}>
               <TextField
                 required
-                value={name}
-                onChange={handleNameChange}
+                value={formValues.name}
+                onChange={handleFieldChange('name')}
                 variant="outlined"
                 label="Название товара"
               />
               <SearchSelect
+                label="Категория"
                 options={categories}
-                onChange={handleCategoryChange}
+                onChange={handleSelectChange('categoryId')}
                 getOptionLabel={getOptionLabel}
                 getOptionSelected={getOptionSelected}
               />
               <SearchSelect
+                label="Бренд"
                 options={brands}
-                onChange={handleBrandChange}
+                onChange={handleSelectChange('brandId')}
+                getOptionLabel={getOptionLabel}
+                getOptionSelected={getOptionSelected}
+              />
+              <SearchSelect
+                label="Страна производитель"
+                options={countries}
+                onChange={handleSelectChange('originCountryId')}
                 getOptionLabel={getOptionLabel}
                 getOptionSelected={getOptionSelected}
               />
@@ -173,24 +142,24 @@ const AddProduct = () => {
               <TextField
                 required
                 type="number"
-                value={supplierPrice}
-                onChange={handleSupplierPriceChange}
+                value={formValues.supplierPrice}
+                onChange={handleFieldChange('supplierPrice')}
                 variant="outlined"
                 label="Закупочная цена"
               />
               <TextField
                 required
                 type="number"
-                value={price}
-                onChange={handlePriceChange}
+                value={formValues.price}
+                onChange={handleFieldChange('price')}
                 variant="outlined"
                 label="Цена продажи"
               />
               <TextField
                 required
                 type="number"
-                value={count}
-                onChange={handleCountChange}
+                value={formValues.count}
+                onChange={handleFieldChange('count')}
                 variant="outlined"
                 label="Количество"
               />
@@ -203,8 +172,8 @@ const AddProduct = () => {
               placeholder="Описание товара..."
               fullWidth
               multiline
-              value={description}
-              onChange={handleDescriptionChange}
+              value={formValues.description}
+              onChange={handleFieldChange('description')}
               variant="outlined"
             />
           </div>
@@ -243,16 +212,7 @@ const AddProduct = () => {
               ))}
             </div>
             <FileButton onChange={handleImagesChange} />
-            <Button
-              variant="contained"
-              component="label"
-              color="primary"
-              disabled={disabled}
-              onClick={onProduct}
-              startIcon={<PostAddIcon />}
-            >
-              Добавить продукт
-            </Button>
+            <AddButton text="Добавить продукт" onClick={onProduct} />
           </div>
         </form>
       </Container>

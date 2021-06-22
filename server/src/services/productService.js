@@ -62,22 +62,6 @@ class ProductService {
       {
         model: model.OriginCountry,
         attributes: []
-      },
-      {
-        model: model.HeatingMethod,
-        attributes: []
-      },
-      {
-        model: model.HeatingType,
-        attributes: []
-      },
-      {
-        model: model.CombustionСhamber,
-        attributes: []
-      },
-      {
-        model: model.OperatingPrinciple,
-        attributes: []
       }]
     });
 

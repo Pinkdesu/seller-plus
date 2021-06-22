@@ -25,6 +25,7 @@ export const ADD_PAGE_STYLE = (theme) => ({
     display: 'flex',
     flexFlow: 'row nowrap',
     gap: 50,
+    marginBottom: theme.spacing(4),
   },
   fieldsWrapper: {
     display: 'flex',

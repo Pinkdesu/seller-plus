@@ -63,15 +63,9 @@ const Product = sequelize.define('product', {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   description: { type: DataTypes.STRING(3000), allowNull: false },
   price: { type: DataTypes.REAL, allowNull: false },
-  supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
-  сoverage: { type: DataTypes.STRING },
-  installation: { type: DataTypes.STRING },
-  functionality: { type: DataTypes.STRING },
-  circuitCount: { type: DataTypes.INTEGER },
-  boilerType: { type: DataTypes.STRING },
-  imageMain: { type: DataTypes.STRING },
-  images: { type: DataTypes.ARRAY(DataTypes.STRING) }
+  images: { type: DataTypes.ARRAY(DataTypes.STRING) },
+  imageMain: { type: DataTypes.STRING }
 });
 
 const OriginCountry = sequelize.define('origin_country', {
@@ -79,30 +73,11 @@ const OriginCountry = sequelize.define('origin_country', {
   name: { type: DataTypes.STRING, allowNull: false, unique: true }
 });
 
-const HeatingMethod = sequelize.define('heating_method', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const HeatingType = sequelize.define('heating_type', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const CombustionСhamber = sequelize.define('combustion_chamber', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
-const OperatingPrinciple = sequelize.define('operating_principle', {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  value: { type: DataTypes.STRING, allowNull: false, unique: true }
-});
-
 const Supply = sequelize.define('supply', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   date: { type: DataTypes.DATE, allowNull: false },
-  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  supplierPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 }
 });
 
 const ProductInfo = sequelize.define('product_info', {
@@ -164,18 +139,6 @@ Supply.belongsTo(Product);
 OriginCountry.hasMany(Product);
 Product.belongsTo(OriginCountry);
 
-HeatingMethod.hasMany(Product);
-Product.belongsTo(HeatingMethod);
-
-HeatingType.hasMany(Product);
-Product.belongsTo(HeatingType);
-
-CombustionСhamber.hasMany(Product);
-Product.belongsTo(CombustionСhamber);
-
-OperatingPrinciple.hasMany(Product);
-Product.belongsTo(OperatingPrinciple);
-
 Product.hasMany(OrderProduct);
 OrderProduct.belongsTo(Product);
 
@@ -204,9 +167,5 @@ module.exports = {
   Token,
   CategoryBrand,
   Supply,
-  HeatingMethod,
-  HeatingType,
-  OriginCountry,
-  CombustionСhamber,
-  OperatingPrinciple
+  OriginCountry
 };

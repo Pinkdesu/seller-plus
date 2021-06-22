@@ -1,26 +1,32 @@
 import { AddProductDomain } from './domain';
-import { INFO_CATEGORY1 } from '../constants';
+import { INFO } from '../constants';
 import * as events from './events';
 import * as reducers from './reducers';
 
 const initialUnits = [];
+const initialOriginCountries = [];
 
 const initialImages = [];
-const initialInfoValues = INFO_CATEGORY1;
+const initialInfoValues = INFO;
 const initialFormValues = {
   name: '',
-  brandId: null,
-  categoryId: null,
+  description: '',
   price: 0,
   count: 1,
-  description: '',
   supplierPrice: 0,
+  brandId: null,
+  categoryId: null,
+  originCountryId: null,
 };
 
 export const $units = AddProductDomain.store(initialUnits).on(
   events.getUnits.doneData,
   reducers.setUnits,
 );
+
+export const $originCountries = AddProductDomain.store(
+  initialOriginCountries,
+).on(events.getCountries.doneData, reducers.setCountries);
 
 export const $images = AddProductDomain.store(initialImages)
   .on(events.addImages, reducers.addImages)

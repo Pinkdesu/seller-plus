@@ -14,6 +14,7 @@ const applicationRouter = require('./applicationRouter');
 const projectRouter = require('./projectRouter');
 const actRouter = require('./actRouter');
 const permissionRouter = require('./permissionRouter');
+const originCountryRouter = require('./originCountryRouter');
 
 router.use('/', adminRouter);
 router.use('/unit', unitRouter);
@@ -28,5 +29,6 @@ router.use('/application', applicationRouter);
 router.use('/project', projectRouter);
 router.use('/act', actRouter);
 router.use('/permission', permissionRouter);
+router.use('/origin-country', originCountryRouter);
 
 module.exports = router;
