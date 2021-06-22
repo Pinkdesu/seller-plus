@@ -31,7 +31,7 @@ const Companies = () => {
       pageNumber={companyPageNumber}
       getClients={getClients}
       searchClients={searchClients}
-      searchFieldLabel="Поиск по названию"
+      searchFieldLabel="Поиск по названию, ФИО"
       tableColumns={COMPANY_COLUMNS}
       data={clients}
     />
