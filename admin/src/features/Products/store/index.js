@@ -23,8 +23,8 @@ export const $pagesCount = ProductsDomain.store(initialPagesCount)
   .reset(events.resetProducts);
 
 export const $pageNumber = ProductsDomain.store(initialPageNumber)
-  .on(events.getProducts, (state) => state + 1)
-  .on(events.getProducts.fail, (state) => (state > 1 ? state - 1 : state))
+  .on(events.getProducts, reducers.increasePageNumber)
+  .on(events.getProducts.fail, reducers.reducePageNumber)
   .reset(events.resetProducts);
 
 export const $hasMore = combine(

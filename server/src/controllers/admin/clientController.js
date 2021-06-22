@@ -1,8 +1,9 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { col } = require('sequelize');
+const { Op } = require('sequelize');
 const ApiError = require('../../error/apiError');
-const { Client, CityDistrict } = require('../../models/adminPanel');
+const clientService = require('../../services/clientService');
+const { Client } = require('../../models/adminPanel');
 
 class ClientController {
   async create(req, res, next) {
@@ -29,24 +30,60 @@ class ClientController {
 
   async getAll(req, res, next) {
     try {
-      const { clientCategoryId } = req.query;
+      const { clientCategoryId, searchName, page: defPage } = req.query;
 
-      const clients = await Client.findAll({
-        attributes: {
-          include: [[col('city_district.name'), 'district']],
-          exclude: ['createdAt', 'updatedAt', 'cityDistrictId', 'clientCategoryId']
-        },
-        where: {
-          clientCategoryId
-        },
-        include: {
-          model: CityDistrict,
-          attributes: []
-        },
-        raw: true
-      });
+      const page = defPage > 0 ? defPage : 1;
+      const offset = page * 20 - 20;
 
-      return res.json({ clients });
+      let clientsWithCount;
+
+      if (!clientCategoryId && !searchName) {
+        clientsWithCount = await clientService.getClietns({ offset });
+      }
+
+      if (clientCategoryId && !searchName) {
+        clientsWithCount = await clientService.getClietns({
+          where: { clientCategoryId },
+          offset
+        });
+      }
+
+      if (!clientCategoryId && searchName) {
+        clientsWithCount = await clientService.getClietns({
+          where: {
+            [Op.or]: {
+              name: {
+                [Op.iLike]: `%${searchName}%`
+              },
+              companyName: {
+                [Op.iLike]: `%${searchName}%`
+              }
+            }
+          },
+          offset
+        });
+      }
+
+      if (clientCategoryId && searchName) {
+        clientsWithCount = await clientService.getClietns({
+          where: {
+            [Op.and]: {
+              [Op.or]: {
+                name: {
+                  [Op.iLike]: `%${searchName}%`
+                },
+                companyName: {
+                  [Op.iLike]: `%${searchName}%`
+                }
+              },
+              clientCategoryId
+            }
+          },
+          offset
+        });
+      }
+
+      return res.json(clientsWithCount);
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

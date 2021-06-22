@@ -9,6 +9,14 @@ export const getIndividualClients = ClientsDomain.effect().use(
   ClientController.getClients,
 );
 
+export const searchCompanyClients = ClientsDomain.effect().use(
+  ClientController.getClients,
+);
+
+export const searchIndividualClients = ClientsDomain.effect().use(
+  ClientController.getClients,
+);
+
 export const resetCompanyClients = ClientsDomain.event();
 
 export const resetIndividualClients = ClientsDomain.event();

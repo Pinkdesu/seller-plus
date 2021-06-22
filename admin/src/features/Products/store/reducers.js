@@ -16,6 +16,10 @@ export const setPagesCount = (_, payload) => {
   return pagesCount;
 };
 
+export const increasePageNumber = (state) => state + 1;
+
+export const reducePageNumber = (state) => (state > 1 ? state - 1 : state);
+
 export const setCategories = (_, payload) => {
   const { categories } = payload.data;
 

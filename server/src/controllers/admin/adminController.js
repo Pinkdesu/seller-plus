@@ -64,6 +64,17 @@ class EmployeeController {
       return next(ApiError.badRequest(e.message));
     }
   }
+
+  async getAll(_, res, next) {
+    try {
+      const employees = await Employee.findAll();
+
+      return res.json({ employees });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 module.exports = new EmployeeController();

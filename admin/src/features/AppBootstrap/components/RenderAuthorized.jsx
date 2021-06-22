@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { getBrands, getCategories } from '~/features/Products/store/events';
+import { getEmployees } from '../store/events';
 import DefaultView from '~/features/DefaultView';
 import Applications from '~/features/Applications';
 import AddApplication from '~/features/AddApplication';
@@ -21,6 +22,7 @@ const RenderAuthorized = () => {
   useEffect(() => {
     getBrands();
     getCategories();
+    getEmployees();
   }, []);
 
   return (

@@ -17,3 +17,9 @@ export const login = (_, payload) => {
     phone,
   };
 };
+
+export const setEmployees = (_, payload) => {
+  const { employees } = payload.data;
+
+  return employees;
+};

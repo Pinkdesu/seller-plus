@@ -1,11 +1,11 @@
-export const setCompanyClients = (state, payload) => {
+export const setClients = (state, payload) => {
   const { clients } = payload.data;
 
   return [...state, ...clients];
 };
 
-export const setIndividualClients = (state, payload) => {
+export const setSearchClients = (_, payload) => {
   const { clients } = payload.data;
 
-  return [...state, ...clients];
+  return [...clients];
 };

@@ -8,6 +8,7 @@ const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../../constants');
 
 router.post('/', [decodeToken, checkRole(ROLES.ADMIN)], employeeController.create);
+router.get('/', [decodeToken, checkRole(ROLES.ADMIN)], employeeController.getAll);
 router.post('/login', employeeController.login);
 
 module.exports = router;
