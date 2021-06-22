@@ -11,9 +11,7 @@ const User = sequelize.define('user', {
   secondName: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING },
   phone: { type: DataTypes.STRING },
-  region: { type: DataTypes.STRING },
-  city: { type: DataTypes.STRING },
-  otherAddress: { type: DataTypes.STRING },
+  address: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: ROLES.USER }
 });
 
@@ -46,9 +44,7 @@ const Order = sequelize.define('order', {
   deliveryPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   sentAt: { type: DataTypes.DATE },
   doneAt: { type: DataTypes.DATE },
-  region: { type: DataTypes.STRING, allowNull: false },
-  city: { type: DataTypes.STRING, allowNull: false },
-  otherAddress: { type: DataTypes.STRING, allowNull: false }
+  address: { type: DataTypes.STRING, allowNull: false }
 });
 
 const OrderProduct = sequelize.define('order_product', {
@@ -71,6 +67,57 @@ const Product = sequelize.define('product', {
   count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   imageMain: { type: DataTypes.STRING },
   images: { type: DataTypes.ARRAY(DataTypes.STRING) }
+});
+
+const OriginCountry = sequelize.define('origin_country', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const HeatingMethod = sequelize.define('heating_method', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const HeatingType = sequelize.define('heating_type', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const Coverage = sequelize.define('сoverage', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const BoilerType = sequelize.define('boiler_type', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const Functionality = sequelize.define('functionality', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const CombustionСhamber = sequelize.define('сombustion_chamber', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.STRING, allowNull: false, unique: true }
+});
+
+const CircuitCount = sequelize.define('circuit_count', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.INTEGER, allowNull: false, unique: true }
+});
+
+const OperatingPrinciple = sequelize.define('operating_principle', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  value: { type: DataTypes.INTEGER, allowNull: false, unique: true }
+});
+
+const Supply = sequelize.define('supply', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  date: { type: DataTypes.DATE, allowNull: false },
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
 });
 
 const ProductInfo = sequelize.define('product_info', {
@@ -126,6 +173,36 @@ Product.belongsTo(Brand);
 Product.hasMany(BasketProduct);
 BasketProduct.belongsTo(Product);
 
+Product.hasMany(Supply);
+Supply.belongsTo(Product);
+
+OriginCountry.hasMany(Product);
+Product.belongsTo(OriginCountry);
+
+HeatingMethod.hasMany(Product);
+Product.belongsTo(HeatingMethod);
+
+HeatingType.hasMany(Product);
+Product.belongsTo(HeatingType);
+
+Coverage.hasMany(Product);
+Product.belongsTo(Coverage);
+
+BoilerType.hasMany(Product);
+Product.belongsTo(BoilerType);
+
+Functionality.hasMany(Product);
+Product.belongsTo(Functionality);
+
+CombustionСhamber.hasMany(Product);
+Product.belongsTo(CombustionСhamber);
+
+CircuitCount.hasMany(Product);
+Product.belongsTo(CircuitCount);
+
+OperatingPrinciple.hasMany(Product);
+Product.belongsTo(OperatingPrinciple);
+
 Product.hasMany(OrderProduct);
 OrderProduct.belongsTo(Product);
 
@@ -152,5 +229,15 @@ module.exports = {
   Brand,
   Category,
   Token,
-  CategoryBrand
+  CategoryBrand,
+  Supply,
+  HeatingMethod,
+  HeatingType,
+  OriginCountry,
+  Coverage,
+  BoilerType,
+  Functionality,
+  CombustionСhamber,
+  CircuitCount,
+  OperatingPrinciple
 };
