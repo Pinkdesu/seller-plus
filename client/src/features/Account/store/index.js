@@ -5,10 +5,15 @@ import * as reducers from './reducers';
 
 const initialOrder = {};
 const initialOrders = [];
+const initialIsSuccess = false;
 
 export const $order = AccountDomain.store(initialOrder)
   .on(events.getOrderById.doneData, reducers.setOrder)
   .reset(logout.done);
+
+export const $isSuccess = AccountDomain.store(initialIsSuccess)
+  .on(events.getOrderById.doneData, () => true)
+  .reset(events.resetIsSuccess);
 
 export const $orderProductsCount = $order.map((state) => {
   if (!state?.products) return 0;

@@ -82,6 +82,7 @@ export const Loader = styled.div`
   right: 0;
   bottom: 0;
   background-color: ${({ theme }) => theme.white};
+  z-index: 800;
 `;
 
 export const LoaderSpinner = styled.div`
@@ -90,38 +91,6 @@ export const LoaderSpinner = styled.div`
   margin: -25px auto 0;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(
-    to right,
-    ${({ theme }) => theme.gray3} 10%,
-    ${({ theme }) => theme.gray4} 50%
-  );
-  animation: ${spinner} 1.5s infinite linear;
-  transform: translateZ(0);
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: ${({ theme }) => theme.white};
-  }
-
-  &::before {
-    width: 25px;
-    height: 25px;
-    border-radius: 100% 0 0 0;
-  }
-
-  &::after {
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  }
 `;
 
 export const ProductContent = styled.div`

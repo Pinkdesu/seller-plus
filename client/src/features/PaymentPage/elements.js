@@ -1,9 +1,26 @@
 import styled from 'styled-components';
-import { Button, FieldWrapper } from '~/features/Common/elements';
+import {
+  Button,
+  FieldWrapper,
+  Loader,
+  LoaderSpinner,
+} from '~/features/Common/elements';
+import { PageMain } from '~/features/Basket/elements';
 
 export const Text = styled.p`
   margin-top: 20px;
   margin-bottom: 0;
+`;
+
+export const Main = styled(PageMain)`
+  & ${Loader} {
+    background-color: rgba(33, 33, 33, 0.5);
+  }
+
+  & ${LoaderSpinner} {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 export const AddressPanel = styled.div`

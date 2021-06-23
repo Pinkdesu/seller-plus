@@ -19,9 +19,7 @@ const OrderPage = () => {
 
   const {
     createdAt,
-    region,
-    city,
-    otherAddress,
+    address,
     status,
     doneAt,
     sentAt,
@@ -54,11 +52,7 @@ const OrderPage = () => {
         <S.OrderAddress>
           <S.ArticleHeader>{locale('deliveryAddress')}</S.ArticleHeader>
           <Division />
-          <CurrentAdress
-            region={region}
-            city={city}
-            otherAddress={otherAddress}
-          />
+          <CurrentAdress address={address} />
         </S.OrderAddress>
         <S.ArticleWrapper>
           <S.ArticleHeaderWrapper>

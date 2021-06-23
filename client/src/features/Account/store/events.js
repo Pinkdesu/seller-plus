@@ -8,3 +8,5 @@ export const getOrders = AccountDomain.effect().use(OrderController.getOrders);
 export const getOrderById = AccountDomain.effect().use(
   OrderController.getOrderById,
 );
+
+export const resetIsSuccess = AccountDomain.event();

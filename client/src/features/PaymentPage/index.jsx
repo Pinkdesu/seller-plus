@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocale } from '~/utils/useLocale';
+import { useHistory } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { $userData, $isAddress } from '~/features/AppBootstrap/store';
+import { $isSuccess } from '~/features/Account/store';
+import { $productsCount } from '~/features/Basket/store';
 import { addOrder } from '~/features/Account/store/events';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
@@ -9,13 +12,28 @@ import Address from './components/Address';
 import CardDetails from './components/CardDetails';
 import RightSide from '~/features/Common/RightSide';
 import Button from '~/features/Common/Button';
+import Loader from '~/features/Common/Loader';
 
 const PaymentPage = () => {
   const locale = useLocale();
+  const history = useHistory();
 
   const isAddress = useStore($isAddress);
-  const { email, address } = useStore($userData);
+  const isSuccess = useStore($isSuccess);
   const pending = useStore(addOrder.pending);
+  const productCount = useStore($productsCount);
+
+  const { email, address } = useStore($userData);
+
+  useEffect(() => {
+    if (isSuccess) {
+      history.push('/payment/success');
+    }
+
+    if (!productCount && !isSuccess) {
+      history.push('/basket');
+    }
+  }, [isSuccess, productCount, history]);
 
   const handleClick = () => {
     isAddress &&
@@ -25,13 +43,14 @@ const PaymentPage = () => {
   };
 
   return (
-    <SF.PageMain>
+    <S.Main>
+      {pending && <Loader />}
       <SF.PageContentWrapper>
         <SF.Layout>
           <SF.PageContent>
             <SF.ContentHolders>
               <SF.LeftSideBlockWrapper>
-                <SF.ContentHeader>АДРЕС ЭЛЕКТРОННОЙ почты</SF.ContentHeader>
+                <SF.ContentHeader>{locale('emailAddress')}</SF.ContentHeader>
                 <S.Text>{email}</S.Text>
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
@@ -39,7 +58,7 @@ const PaymentPage = () => {
                 <Address address={address} isAddress={isAddress} />
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
-                <SF.ContentHeader>Способ оплаты</SF.ContentHeader>
+                <SF.ContentHeader>{locale('paymentMethod')}</SF.ContentHeader>
                 <CardDetails />
               </SF.LeftSideBlockWrapper>
             </SF.ContentHolders>
@@ -64,7 +83,7 @@ const PaymentPage = () => {
           </RightSide>
         </SF.Layout>
       </SF.PageContentWrapper>
-    </SF.PageMain>
+    </S.Main>
   );
 };
 
