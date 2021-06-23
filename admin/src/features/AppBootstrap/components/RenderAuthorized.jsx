@@ -18,9 +18,9 @@ import AddProject from '~/features/AddProject';
 import Contracts from '~/features/Contracts';
 import AddContract from '~/features/AddContract';
 import Dashboard from '~/features/Dashboard';
-import EmployeeReport from '~/features/EmployeeReport';
-import ClientReport from '~/features/ClientReport';
-import ProductReport from '~/features/ProductReport';
+import EmployeeReport from '~/features/Reports/components/EmployeeReport';
+import ClientReport from '~/features/Reports/components/ClientReport';
+import ProductReport from '~/features/Reports/components/ProductReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {

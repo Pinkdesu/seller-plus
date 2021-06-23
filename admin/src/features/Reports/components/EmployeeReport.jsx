@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useStore } from 'effector-react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { COLUMNS } from './constants';
-import { getClientReport, resetReport, getPeriod } from './store/events';
-import { $report, $period } from './store';
+import { EMPLOYEE_COLUMNS } from '../constants';
+import { getEmployeeReport, resetReport, getPeriod } from '../store/events';
+import { $report, $period } from '../store';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import DataTable from '~/features/Common/DataTable';
@@ -14,12 +14,12 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
-const ClientReport = () => {
+const EmployeeReport = () => {
   const classes = useStyles();
 
   const report = useStore($report);
   const period = useStore($period);
-  const pending = useStore(getClientReport.pending);
+  const pending = useStore(getEmployeeReport.pending);
 
   const [periodTo, setPeriodTo] = useState('');
   const [periodFrom, setPeriodFrom] = useState('');
@@ -38,7 +38,7 @@ const ClientReport = () => {
   }, [period]);
 
   const handleClick = () => {
-    getClientReport({ periodFrom, periodTo });
+    getEmployeeReport({ periodFrom, periodTo });
   };
 
   const handleFromChange = (e) => {
@@ -55,7 +55,7 @@ const ClientReport = () => {
 
   return (
     <div className={classes.root}>
-      <Header title="Отчёт по клиентам" />
+      <Header title="Отчёт по ответственным" />
       <Container className={classes.formWrapper}>
         <div>
           <div>
@@ -88,7 +88,7 @@ const ClientReport = () => {
         </div>
         <div className={classes.tableWrapper}>
           {Boolean(report.length) && (
-            <DataTable columns={COLUMNS} data={report} />
+            <DataTable columns={EMPLOYEE_COLUMNS} data={report} />
           )}
         </div>
       </Container>
@@ -96,4 +96,4 @@ const ClientReport = () => {
   );
 };
 
-export default ClientReport;
+export default EmployeeReport;

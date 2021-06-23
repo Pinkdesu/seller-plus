@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { COLUMNS } from './constants';
-import { getProductReport, resetReport } from './store/events';
-import { $report } from './store';
+import { PRODUCT_COLUMNS } from '../constants';
+import { getProductReport, resetReport } from '../store/events';
+import { $report } from '../store';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import DataTable from '~/features/Common/DataTable';
 import Header from '~/features/Common/Header';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -45,7 +44,7 @@ const ProductReport = () => {
         </div>
         <div className={classes.tableWrapper}>
           {Boolean(report.length) && (
-            <DataTable columns={COLUMNS} data={report} />
+            <DataTable columns={PRODUCT_COLUMNS} data={report} />
           )}
         </div>
       </Container>

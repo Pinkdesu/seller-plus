@@ -122,6 +122,17 @@ class ReportController {
       return next(ApiError.badRequest(e.message));
     }
   }
+
+  async getDistrictReport(req, res, next) {
+    try {
+      const report = {};
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 module.exports = new ReportController();
