@@ -13,5 +13,8 @@ export class ReportController {
   static getAppCountReport = (payload) =>
     api.get('/admin/report/app-count', { params: payload });
 
+  static getOrderReport = (payload) =>
+    api.get('/admin/report/order', { params: payload });
+
   static getProductReport = () => api.get('/admin/report/product');
 }

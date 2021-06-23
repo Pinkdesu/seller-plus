@@ -22,4 +22,7 @@ router.get('/district', [decodeToken, checkRole(ROLES.ADMIN)],
 router.get('/app-count', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getAppCountReport);
 
+router.get('/order', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getOrderReport);
+
 module.exports = router;

@@ -5,7 +5,7 @@ const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
 } = require('../../models/adminPanel');
-const { Product } = require('../../models');
+const { Product, Order, OrderProduct } = require('../../models');
 
 class ReportController {
   async getEmployeeReport(req, res, next) {
@@ -189,6 +189,35 @@ class ReportController {
           }
         },
         group: ['client.id']
+      });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getOrderReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await Product.findAll({
+        attributes: [
+          'id',
+          'name',
+          [fn('COUNT', col('order_products.orderId')), 'count']
+        ],
+        include: {
+          model: OrderProduct,
+          attributes: [],
+          where: {
+            createdAt: {
+              [Op.gte]: periodFrom
+            }
+          }
+        },
+        group: ['product.id']
       });
 
       return res.json({ report });

@@ -32,6 +32,10 @@ const Dashboard = () => {
     history.push('/report/app-count');
   };
 
+  const goToOrderReport = () => {
+    history.push('/report/order');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -60,8 +64,6 @@ const Dashboard = () => {
               >
                 Отчёт по продуктам
               </Button>
-            </div>
-            <div className={classes.fieldsWrapper}>
               <Button
                 variant="contained"
                 color="primary"
@@ -75,6 +77,15 @@ const Dashboard = () => {
                 onClick={goToAppCountReport}
               >
                 Отчёт по кол-ву заявок у клиентов
+              </Button>
+            </div>
+            <div className={classes.fieldsWrapper}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToOrderReport}
+              >
+                Отчёт по заказам
               </Button>
             </div>
           </div>

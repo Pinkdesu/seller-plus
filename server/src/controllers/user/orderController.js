@@ -59,6 +59,18 @@ class OrderController {
     }
   }
 
+  async getPeriod(_, res, next) {
+    try {
+      const from = await Order.min('createdAt');
+      const to = await Order.max('createdAt');
+
+      return res.json({ from, to });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
   async getAll(req, res, next) {
     try {
       const { id: userId } = req.user;

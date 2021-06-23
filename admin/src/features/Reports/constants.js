@@ -37,3 +37,9 @@ export const APP_COUNT_COLUMNS = [
   { id: 'name', label: 'ФИО', minWidth: 150 },
   { id: 'count', label: 'Количество заявок', minWidth: 150 },
 ];
+
+export const ORDER_COLUMNS = [
+  { id: 'id', label: 'ID оборудования', minWidth: 100 },
+  { id: 'name', label: 'Название', minWidth: 150 },
+  { id: 'count', label: 'Количество заказов', minWidth: 100 },
+];

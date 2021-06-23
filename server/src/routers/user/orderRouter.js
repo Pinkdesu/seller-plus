@@ -13,5 +13,7 @@ router.get('/',
   [decodeToken, checkRole(ROLES.USER)], orderController.getAll);
 router.get('/:id',
   [decodeToken, checkRole(ROLES.USER)], orderController.getOne);
+router.get('/period/all',
+  [decodeToken, checkRole(ROLES.ADMIN)], orderController.getPeriod);
 
 module.exports = router;

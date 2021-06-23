@@ -1,6 +1,7 @@
 import { ReportDomain } from './domain';
 import { ReportController } from '~/api/controllers/ReportController';
 import { ApplicationController } from '~/api/controllers/ApplicationController';
+import { OrderController } from '~/api/controllers/OrderController';
 
 export const getEmployeeReport = ReportDomain.effect().use(
   ReportController.getEmployeeReport,
@@ -22,8 +23,16 @@ export const getAppCountReport = ReportDomain.effect().use(
   ReportController.getAppCountReport,
 );
 
+export const getOrderReport = ReportDomain.effect().use(
+  ReportController.getOrderReport,
+);
+
 export const getPeriod = ReportDomain.effect().use(
   ApplicationController.getPeriod,
+);
+
+export const getOrderPeriod = ReportDomain.effect().use(
+  OrderController.getPeriod,
 );
 
 export const resetReport = ReportDomain.event();

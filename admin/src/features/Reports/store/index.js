@@ -16,11 +16,15 @@ export const $report = ReportDomain.store(initialReport)
       events.getClientReport.doneData,
       events.getDistrictReport.doneData,
       events.getAppCountReport.doneData,
+      events.getOrderReport.doneData,
     ],
     reducers.setReport,
   )
   .reset(events.resetReport);
 
 export const $period = ReportDomain.store(initialPeriod)
-  .on(events.getPeriod.doneData, reducers.setPeriod)
+  .on(
+    [events.getPeriod.doneData, events.getOrderPeriod.doneData],
+    reducers.setPeriod,
+  )
   .reset(events.resetReport);
