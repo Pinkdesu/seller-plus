@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { spinner } from '~/assets/style/animation';
 import { Link } from 'react-router-dom';
 
 const textStyle = css`

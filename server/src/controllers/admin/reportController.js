@@ -1,9 +1,9 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { Op } = require('sequelize');
+const { Op, col } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
-  Application, ApplicationStatus, Employee, Client
+  Application, ApplicationStatus, ApplicationTheme, Employee, Client
 } = require('../../models/adminPanel');
 
 class ReportController {
@@ -71,7 +71,10 @@ class ReportController {
 
       const report = await Application.findAll({
         attributes: [
-          'id'
+          'id',
+          [col('application_theme.name'), 'theme'],
+          [col('application_status.name'), 'status'],
+          [col('client.name'), 'name']
         ],
         where: {
           submissionDate: {
@@ -81,15 +84,18 @@ class ReportController {
         },
         include: [
           {
+            model: ApplicationTheme,
+            attributes: []
+          },
+          {
             model: Client,
-            attributes: ['id', 'name']
+            attributes: []
           },
           {
             model: ApplicationStatus,
-            attributes: ['name']
+            attributes: []
           }
-        ],
-        group: ['application.id', 'client.id', 'application_status.id']
+        ]
       });
 
       return res.json({ report });

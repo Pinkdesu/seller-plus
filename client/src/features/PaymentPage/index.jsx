@@ -27,11 +27,11 @@ const PaymentPage = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      history.push('/payment/success');
+      history.replace('/payment/success');
     }
 
     if (!productCount && !isSuccess) {
-      history.push('/basket');
+      history.replace('/basket');
     }
   }, [isSuccess, productCount, history]);
 

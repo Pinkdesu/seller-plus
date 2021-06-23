@@ -1,6 +1,6 @@
 import { ClientReportDomain } from './domain';
 import * as events from './events';
-import * as reducers from './reducers';
+import * as reducers from '~/features/EmployeeReport/store/reducers';
 
 const initialReport = [];
 const initialPeriod = {
