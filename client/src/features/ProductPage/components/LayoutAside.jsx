@@ -8,7 +8,7 @@ import * as S from '../elements';
 const LayoutAside = (props) => {
   const locale = useLocale();
 
-  const { name, count, price, id, imageMain } = props;
+  const { name, count, price, id, imageMain, brand } = props;
 
   const [productCount, setProductCount] = useState(1);
 
@@ -44,11 +44,16 @@ const LayoutAside = (props) => {
     });
   };
 
+  const isOut = count === 0;
+
+  const buttonText = isOut ? 'outOfStock' : 'addToBasket';
+
   return (
     <S.LayoutAside>
       <S.AsideContent>
         <S.ProductHero>
           <S.ProductName>{name}</S.ProductName>
+          <S.ProductBrand>{brand}</S.ProductBrand>
           <S.ProductPrice>
             <span>{locale('priceWithCurrency', { price: formatedPrice })}</span>
           </S.ProductPrice>
@@ -56,27 +61,29 @@ const LayoutAside = (props) => {
             <span>{locale('freeDelivery')}</span>
           </S.Delivery>
         </S.ProductHero>
-        <S.ProductSettings>
-          <S.ProductCount>
-            <S.CountLabel>
-              <label>{locale('quantity')}:</label>
-            </S.CountLabel>
-            <S.CountSelect>
-              <S.CountInput
-                type="number"
-                value={productCount}
-                onChange={handleChange}
-              />
-              <S.CountButton onClick={reduceCount}>-</S.CountButton>
-              <S.CountButton onClick={increaseCount}>+</S.CountButton>
-            </S.CountSelect>
-          </S.ProductCount>
-        </S.ProductSettings>
+        {!isOut && (
+          <S.ProductSettings>
+            <S.ProductCount>
+              <S.CountLabel>
+                <label>{locale('quantity')}:</label>
+              </S.CountLabel>
+              <S.CountSelect>
+                <S.CountInput
+                  type="number"
+                  value={productCount}
+                  onChange={handleChange}
+                />
+                <S.CountButton onClick={reduceCount}>-</S.CountButton>
+                <S.CountButton onClick={increaseCount}>+</S.CountButton>
+              </S.CountSelect>
+            </S.ProductCount>
+          </S.ProductSettings>
+        )}
         <S.ButtonWrapper>
           <S.AddButton
             onClick={handleClick}
             disabled={!hasMore}
-            text={locale('addToBasket')}
+            text={locale(buttonText)}
           />
         </S.ButtonWrapper>
       </S.AsideContent>

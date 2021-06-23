@@ -71,3 +71,27 @@ export const ProductPrice = styled(ProductBrand)`
 export const ProductCount = styled(ProductName)`
   font-weight: 700;
 `;
+
+export const ProductShadow = styled.div`
+  position: absolute;
+  bottom: 0;
+  background: rgba(33, 33, 33, 0.5);
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 1;
+`;
+
+export const ShadowText = styled.span`
+  position: absolute;
+  color: ${({ theme }) => theme.white};
+  letter-spacing: 0.3rem;
+  line-height: 1.2;
+  font-size: 1.6rem;
+  font-weight: 700;
+  right: 0;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+`;

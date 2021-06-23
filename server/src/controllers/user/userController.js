@@ -183,9 +183,7 @@ class UserController {
         secondName,
         email,
         phone,
-        region,
-        city,
-        otherAddress
+        address
       } = req.body;
 
       const updatedUser = await User.update(
@@ -194,9 +192,7 @@ class UserController {
           secondName,
           email,
           phone,
-          region,
-          city,
-          otherAddress
+          address
         },
         {
           where: { id }, returning: true, plain: true

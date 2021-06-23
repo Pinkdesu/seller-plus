@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useLocale } from '~/utils/useLocale';
 import * as S from '../elements';
 import { ReactComponent as SearchSVG } from '~/assets/images/common/search.svg';
 import { ReactComponent as CloseSVG } from '~/assets/images/common/close.svg';
 
 const DesktopSearchBar = () => {
+  const locale = useLocale();
   const history = useHistory();
 
   const [value, setValue] = useState('');
@@ -31,7 +33,7 @@ const DesktopSearchBar = () => {
     <S.SearchBarWrapper>
       <S.SearchBar>
         <S.SearchField
-          placeholder="Что искать..."
+          placeholder={locale('searchBy')}
           value={value}
           onChange={handleChange}
           onKeyDown={onKeyDown}

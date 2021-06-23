@@ -146,6 +146,14 @@ export const ProductName = styled.h1`
   padding-bottom: 12px;
 `;
 
+export const ProductBrand = styled.p`
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  color: ${({ theme }) => theme.gray4};
+  padding-bottom: 12px;
+`;
+
 export const ProductPrice = styled.div`
   position: relative;
   padding: 2px 0 8px 0;

@@ -18,6 +18,8 @@
    "change": "Change",
    "cancel": "Cancel",
    "save": "Save",
+   "outOfStock": "Out of stock",
+   "searchBy": "Search by name, brand...",
    "forgotPassword": "Forgot your password?",
    "registration": "Registration",
    "shop": "Shop",

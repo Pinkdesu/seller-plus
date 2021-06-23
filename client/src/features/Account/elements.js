@@ -3,7 +3,7 @@ import { DefaultMain } from '~/features/DefaultView/elements';
 import { NavLink, Link } from 'react-router-dom';
 import { FieldWrapper, Button, ImageWrapper } from '~/features/Common/elements';
 import { AddressValue } from '~/features/PaymentPage/elements';
-import { Product } from '~/features/Product/elements';
+import { Product, ShadowText } from '~/features/Product/elements';
 
 export const AccountMain = styled(DefaultMain)`
   background-color: ${({ theme }) => theme.gray1};
@@ -222,32 +222,13 @@ export const ProductItem = styled.div`
   }
 `;
 
-export const OtherCountWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  background: rgba(33, 33, 33, 0.5);
-  left: 0;
-  right: 0;
-  text-align: center;
-  top: 0;
-  z-index: 1;
-`;
-
-export const OtherCount = styled.span`
-  position: absolute;
-  color: ${({ theme }) => theme.white};
-  letter-spacing: 0.3rem;
-  line-height: 125px;
-  font-size: 2.6rem;
-  font-weight: 700;
-  right: 0;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-`;
-
 export const OrderProductLink = styled(Link)`
   text-decoration: none;
+
+  & ${ShadowText} {
+    line-height: 1.1;
+    font-size: 2.6rem;
+  }
 `;
 
 export const OrderLinkWrapper = styled.div`

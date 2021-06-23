@@ -6,9 +6,7 @@ const createUserResponse = (userData) => {
     email,
     phone,
     role,
-    region,
-    city,
-    otherAddress
+    address
   } = userData;
 
   return {
@@ -18,11 +16,7 @@ const createUserResponse = (userData) => {
     email,
     phone,
     role,
-    address: {
-      city,
-      region,
-      otherAddress
-    }
+    address
   };
 };
 

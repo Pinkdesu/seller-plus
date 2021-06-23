@@ -9,6 +9,7 @@ import ProductBrand from './components/ProductBrand';
 import ProductName from './components/ProductName';
 import ProductPrice from './components/ProductPrice';
 import ProductCount from './components/ProductCount';
+import ProductShadow from './components/ProductShadow';
 import { ReactComponent as CartSVG } from '~/assets/images/common/shopping-cart.svg';
 
 const Product = (props) => {
@@ -26,6 +27,7 @@ const Product = (props) => {
   } = props;
 
   const hasMore = useCheckQuantity(id, count);
+  const isOut = count === 0;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,7 +40,8 @@ const Product = (props) => {
       <S.Product>
         <S.ProductLink to={`/shop/product/${id}`}>
           <ImageThumb image={imageMain}>
-            {withButton && (
+            {isOut && <ProductShadow text={locale('outOfStock')} />}
+            {!isOut && withButton && (
               <S.CartButton onClick={handleClick} disabled={!hasMore}>
                 <CartSVG />
               </S.CartButton>

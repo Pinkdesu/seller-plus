@@ -20,7 +20,7 @@ const PaymentPage = () => {
   const handleClick = () => {
     isAddress &&
       addOrder({
-        ...address,
+        address,
       });
   };
 

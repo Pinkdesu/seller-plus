@@ -4,6 +4,7 @@ import { ORDER_STATUSES, DISPLAYED_COUNT } from '../../constants';
 import convertDate from '~/utils/convertDate';
 import ImageThumb from '~/features/Common/ImageThumb';
 import Division from '~/features/Common/Division';
+import ProductShadow from '~/features/Product/components/ProductShadow';
 import * as S from '../../elements';
 
 const Order = (props) => {
@@ -29,9 +30,7 @@ const Order = (props) => {
               <S.OrderProductLink to={`/account/order/${id}`}>
                 <ImageThumb image={product.imageMain} />
                 {otherCount !== 0 && index === 2 && (
-                  <S.OtherCountWrapper>
-                    <S.OtherCount>{`+${otherCount}`}</S.OtherCount>
-                  </S.OtherCountWrapper>
+                  <ProductShadow text={`+${otherCount}`} />
                 )}
               </S.OrderProductLink>
             </S.ProductItem>
