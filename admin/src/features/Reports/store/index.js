@@ -14,6 +14,7 @@ export const $report = ReportDomain.store(initialReport)
       events.getEmployeeReport.doneData,
       events.getProductReport.doneData,
       events.getClientReport.doneData,
+      events.getDistrictReport.doneData,
     ],
     reducers.setReport,
   )

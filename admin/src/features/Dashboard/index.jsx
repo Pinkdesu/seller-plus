@@ -24,6 +24,10 @@ const Dashboard = () => {
     history.push('/report/product');
   };
 
+  const goToDistrictReport = () => {
+    history.push('/report/district');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -53,7 +57,15 @@ const Dashboard = () => {
                 Отчёт по продуктам
               </Button>
             </div>
-            <div className={classes.fieldsWrapper}></div>
+            <div className={classes.fieldsWrapper}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToDistrictReport}
+              >
+                Отчёт по районам
+              </Button>
+            </div>
           </div>
         </form>
       </Container>

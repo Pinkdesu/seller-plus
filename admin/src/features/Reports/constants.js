@@ -24,3 +24,10 @@ export const CLIENT_COLUMNS = [
   { id: 'name', label: 'Клиент', minWidth: 120 },
   { id: 'status', label: 'Статус заявки', minWidth: 150 },
 ];
+
+export const DISTRICT_COLUMNS = [
+  { id: 'id', label: 'ID заявки', minWidth: 100 },
+  { id: 'district', label: 'Район', minWidth: 150 },
+  { id: 'theme', label: 'Тема', minWidth: 150 },
+  { id: 'status', label: 'Статус заявки', minWidth: 120 },
+];

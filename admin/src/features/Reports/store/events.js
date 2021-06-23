@@ -14,6 +14,10 @@ export const getClientReport = ReportDomain.effect().use(
   ReportController.getClientReport,
 );
 
+export const getDistrictReport = ReportDomain.effect().use(
+  ReportController.getDistrictReport,
+);
+
 export const getPeriod = ReportDomain.effect().use(
   ApplicationController.getPeriod,
 );

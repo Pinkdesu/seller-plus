@@ -3,7 +3,7 @@
 const { Op, col } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
-  Application, ApplicationStatus, ApplicationTheme, Employee, Client
+  Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
 } = require('../../models/adminPanel');
 const { Product } = require('../../models');
 
@@ -125,7 +125,41 @@ class ReportController {
 
   async getDistrictReport(req, res, next) {
     try {
-      const report = {};
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await Application.findAll({
+        attributes: [
+          'id',
+          [col('application_theme.name'), 'theme'],
+          [col('application_status.name'), 'status'],
+          [col('client.name'), 'name'],
+          [col('client.city_district.name'), 'district']
+        ],
+        where: {
+          submissionDate: {
+            [Op.gte]: periodFrom,
+            [Op.lte]: periodTo
+          }
+        },
+        include: [
+          {
+            model: ApplicationTheme,
+            attributes: []
+          },
+          {
+            model: Client,
+            attributes: [],
+            include: {
+              model: CityDistrict,
+              attributes: []
+            }
+          },
+          {
+            model: ApplicationStatus,
+            attributes: []
+          }
+        ]
+      });
 
       return res.json({ report });
     }
