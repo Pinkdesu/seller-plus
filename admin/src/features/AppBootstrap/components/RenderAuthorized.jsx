@@ -22,6 +22,7 @@ import EmployeeReport from '~/features/Reports/components/EmployeeReport';
 import ClientReport from '~/features/Reports/components/ClientReport';
 import ProductReport from '~/features/Reports/components/ProductReport';
 import DistrictReport from '~/features/Reports/components/DistrictReport';
+import AppCountReport from '~/features/Reports/components/AppCountReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -52,6 +53,7 @@ const RenderAuthorized = () => {
         <Route path="/report/client" component={ClientReport} exact />
         <Route path="/report/product" component={ProductReport} exact />
         <Route path="/report/district" component={DistrictReport} exact />
+        <Route path="/report/app-count" component={AppCountReport} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

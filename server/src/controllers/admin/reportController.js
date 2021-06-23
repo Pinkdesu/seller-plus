@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { Op, col } = require('sequelize');
+const { Op, col, fn } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
@@ -159,6 +159,36 @@ class ReportController {
             attributes: []
           }
         ]
+      });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getAppCountReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await Client.findAll({
+        attributes: [
+          'id',
+          'name',
+          [fn('COUNT', col('applications.id')), 'count']
+        ],
+        include: {
+          model: Application,
+          attributes: [],
+          where: {
+            submissionDate: {
+              [Op.gte]: periodFrom,
+              [Op.lte]: periodTo
+            }
+          }
+        },
+        group: ['client.id']
       });
 
       return res.json({ report });

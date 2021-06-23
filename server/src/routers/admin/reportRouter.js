@@ -19,4 +19,7 @@ router.get('/product', [decodeToken, checkRole(ROLES.ADMIN)],
 router.get('/district', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getDistrictReport);
 
+router.get('/app-count', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getAppCountReport);
+
 module.exports = router;

@@ -28,6 +28,10 @@ const Dashboard = () => {
     history.push('/report/district');
   };
 
+  const goToAppCountReport = () => {
+    history.push('/report/app-count');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -64,6 +68,13 @@ const Dashboard = () => {
                 onClick={goToDistrictReport}
               >
                 Отчёт по районам
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToAppCountReport}
+              >
+                Отчёт по кол-ву заявок у клиентов
               </Button>
             </div>
           </div>

@@ -31,3 +31,9 @@ export const DISTRICT_COLUMNS = [
   { id: 'theme', label: 'Тема', minWidth: 150 },
   { id: 'status', label: 'Статус заявки', minWidth: 120 },
 ];
+
+export const APP_COUNT_COLUMNS = [
+  { id: 'id', label: 'ID клиента', minWidth: 80 },
+  { id: 'name', label: 'ФИО', minWidth: 150 },
+  { id: 'count', label: 'Количество заявок', minWidth: 150 },
+];
