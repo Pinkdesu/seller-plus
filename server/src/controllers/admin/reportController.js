@@ -5,6 +5,7 @@ const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client
 } = require('../../models/adminPanel');
+const { Product } = require('../../models');
 
 class ReportController {
   async getEmployeeReport(req, res, next) {
@@ -95,6 +96,23 @@ class ReportController {
             model: ApplicationStatus,
             attributes: []
           }
+        ]
+      });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getProductReport(_, res, next) {
+    try {
+      const report = await Product.findAll({
+        attributes: [
+          'id',
+          'name',
+          'count'
         ]
       });
 

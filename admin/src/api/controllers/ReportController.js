@@ -6,4 +6,6 @@ export class ReportController {
 
   static getClientReport = (payload) =>
     api.get('/admin/report/client', { params: payload });
+
+  static getProductReport = () => api.get('/admin/report/product');
 }

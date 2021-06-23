@@ -13,4 +13,7 @@ router.get('/employee', [decodeToken, checkRole(ROLES.ADMIN)],
 router.get('/client', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getClientReport);
 
+router.get('/product', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getProductReport);
+
 module.exports = router;
