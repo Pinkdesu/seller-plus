@@ -40,6 +40,10 @@ const Dashboard = () => {
     history.push('/report/user');
   };
 
+  const goToAverageCheckReport = () => {
+    history.push('/report/average-check');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -97,6 +101,13 @@ const Dashboard = () => {
                 onClick={goToUserReport}
               >
                 Отчёт по кол-ву заказов у пользователя
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToAverageCheckReport}
+              >
+                Средний чек
               </Button>
             </div>
           </div>

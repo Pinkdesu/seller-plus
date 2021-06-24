@@ -19,5 +19,8 @@ export class ReportController {
   static getUserReport = (payload) =>
     api.get('/admin/report/user', { params: payload });
 
+  static getAverageCheckReport = (payload) =>
+    api.get('/admin/report/average-check', { params: payload });
+
   static getProductReport = () => api.get('/admin/report/product');
 }

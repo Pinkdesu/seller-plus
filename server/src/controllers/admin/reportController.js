@@ -266,9 +266,21 @@ class ReportController {
     try {
       const { periodFrom, periodTo } = req.query;
 
-      const report = {};
+      const options = {
+        where: {
+          createdAt: {
+            [Op.gte]: periodFrom
+          }
+        }
+      };
 
-      return res.json({ report });
+      const sum = await Order.sum('totalPrice', options);
+      const count = await Order.count(options);
+      const average = sum / count;
+
+      return res.json({
+        report: [{ sum: `${sum} руб.`, count, average: `${average} руб.` }]
+      });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

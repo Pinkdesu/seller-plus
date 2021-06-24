@@ -49,3 +49,9 @@ export const USER_COLUMNS = [
   { id: 'name', label: 'Имя пользователя', minWidth: 150 },
   { id: 'count', label: 'Количество заказов', minWidth: 100 },
 ];
+
+export const AVERAGE_CHECK_COLUMNS = [
+  { id: 'sum', label: 'Выручка', minWidth: 100 },
+  { id: 'count', label: 'Количество заказов', minWidth: 150 },
+  { id: 'average', label: 'Средний чек', minWidth: 100 },
+];

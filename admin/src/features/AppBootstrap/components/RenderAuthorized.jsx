@@ -25,6 +25,7 @@ import DistrictReport from '~/features/Reports/components/DistrictReport';
 import AppCountReport from '~/features/Reports/components/AppCountReport';
 import OrderReport from '~/features/Reports/components/OrderReport';
 import UserReport from '~/features/Reports/components/UserReport';
+import AverageCheck from '~/features/Reports/components/AverageCheck';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -58,6 +59,7 @@ const RenderAuthorized = () => {
         <Route path="/report/app-count" component={AppCountReport} exact />
         <Route path="/report/order" component={OrderReport} exact />
         <Route path="/report/user" component={UserReport} exact />
+        <Route path="/report/average-check" component={AverageCheck} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

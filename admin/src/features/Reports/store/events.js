@@ -31,6 +31,10 @@ export const getUserReport = ReportDomain.effect().use(
   ReportController.getUserReport,
 );
 
+export const getAverageCheckReport = ReportDomain.effect().use(
+  ReportController.getAverageCheckReport,
+);
+
 export const getPeriod = ReportDomain.effect().use(
   ApplicationController.getPeriod,
 );
