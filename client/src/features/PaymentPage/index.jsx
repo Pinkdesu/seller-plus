@@ -30,7 +30,7 @@ const PaymentPage = () => {
       history.replace({
         pathname: '/payment/success',
         state: {
-          isSuccess: true,
+          isSuccess,
         },
       });
     }
