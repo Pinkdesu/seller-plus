@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { useStore } from 'effector-react';
+import { useStore, useList } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import { useScrollLoader } from '~/utils/useScrollLoader';
 import { $productsList, $hasMore, $pageNumber } from './store';
@@ -8,12 +8,21 @@ import * as S from './elements';
 import SearchBar from '~/features/SearchBar';
 import Filters from '~/features/Filters';
 import Product from '~/features/Product';
+import Loader from '~/features/Common/Loader';
 
 const ShopCategory = () => {
   const { id } = useParams();
-  const products = useStore($productsList);
   const hasMore = useStore($hasMore);
+  const products = useStore($productsList);
   const pageNumber = useStore($pageNumber);
+
+  const productsList = useList($productsList, (product) => (
+    <Product {...product}>
+      <Product.Brand />
+      <Product.Name />
+      <Product.Price />
+    </Product>
+  ));
 
   useEffect(() => {
     getFilters(id);
@@ -35,15 +44,7 @@ const ShopCategory = () => {
     <S.ShopCategory>
       <SearchBar />
       <Filters />
-      <S.Content>
-        {products.map((product) => (
-          <Product key={product.id} {...product}>
-            <Product.Brand />
-            <Product.Name />
-            <Product.Price />
-          </Product>
-        ))}
-      </S.Content>
+      <S.Content>{!products.length ? <Loader /> : productsList}</S.Content>
     </S.ShopCategory>
   );
 };

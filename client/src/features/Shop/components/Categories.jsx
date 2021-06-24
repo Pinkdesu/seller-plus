@@ -1,22 +1,15 @@
 import React from 'react';
+import { useList } from 'effector-react';
+import { $categoriesList } from '../store';
 import * as S from '../elements';
 import Category from './Category';
 
-const Categories = (props) => {
-  const { categories } = props;
+const Categories = () => {
+  const categories = useList($categoriesList, (category) => (
+    <Category {...category} />
+  ));
 
-  return (
-    <S.Categories>
-      {categories.map((category) => (
-        <Category
-          key={category.id}
-          id={category.id}
-          name={category.name}
-          image={category.image}
-        />
-      ))}
-    </S.Categories>
-  );
+  return <S.Categories>{categories}</S.Categories>;
 };
 
 export default Categories;

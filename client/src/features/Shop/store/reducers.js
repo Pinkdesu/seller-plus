@@ -1,7 +1,5 @@
-export const setCategories = (state, payload) => {
+export const setCategories = (_, payload) => {
   const { categories } = payload.data;
-
-  if (!categories.length) return state;
 
   return categories;
 };

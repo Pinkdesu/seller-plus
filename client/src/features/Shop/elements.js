@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Product, ProductInfoBlock } from '~/features/Product/elements';
+import { Loader } from '~/features/Common/elements';
 
 const rowContent = css`
   display: flex;
@@ -35,9 +36,14 @@ export const Categories = styled.section`
 `;
 
 export const Category = styled.article`
+  position: relative;
   background-color: #fbc02d;
   height: 40vh;
   width: 50%;
+
+  & ${Loader} {
+    background-color: #fbc02d;
+  }
 
   & span {
     color: #ffffff;
@@ -45,6 +51,10 @@ export const Category = styled.article`
 
   &:nth-child(even) {
     background-color: #b3e5fc;
+
+    & ${Loader} {
+      background-color: #b3e5fc;
+    }
 
     & span {
       color: #00000099;

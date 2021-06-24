@@ -9,6 +9,7 @@ const flexColumn = css`
 `;
 
 export const Footer = styled.footer`
+  width: 100%;
   padding: 40px 30px 30px 30px;
   background-color: ${({ theme }) => theme.blue6};
 

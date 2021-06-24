@@ -1,8 +1,17 @@
 import React from 'react';
 import * as S from '../elements';
+import Loader from '~/features/Common/Loader';
 
 const Category = (props) => {
-  const { className, image, name, id } = props;
+  const { className, image, name, id, loading = false } = props;
+
+  if (loading) {
+    return (
+      <S.Category>
+        <Loader />
+      </S.Category>
+    );
+  }
 
   return (
     <S.Category className={className}>

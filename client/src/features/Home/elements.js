@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { LoaderSpinner } from '~/features/Common/elements';
 
 const commonTitleStyle = css`
   color: #ffffff;
@@ -205,6 +206,10 @@ export const Card = styled.article`
     min-height: 400px;
     cursor: pointer;
     padding: 0;
+
+    & ${LoaderSpinner} svg > path {
+      fill: ${({ theme }) => theme.black2};
+    }
 
     @media (min-width: 992px) {
       width: 48%;
