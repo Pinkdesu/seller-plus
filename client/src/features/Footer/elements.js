@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const flexColumn = css`
   display: flex;
@@ -66,7 +65,7 @@ export const FooterBottomSide = styled.div`
 
 export const SocialsWrapper = styled.div``;
 
-export const SocialNetwor = styled(Link)`
+export const SocialNetwor = styled.a`
   display: inline-block;
   font-size: 0;
   margin-right: 15px;

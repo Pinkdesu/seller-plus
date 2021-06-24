@@ -11,7 +11,7 @@ const Footer = () => {
     <S.Footer>
       <S.FooterTopSide>
         <S.SocialsWrapper>
-          <S.SocialNetwor to={SOTIALS_LINKS.vk}>
+          <S.SocialNetwor href={SOTIALS_LINKS.vk}>
             <VkSVG />
           </S.SocialNetwor>
         </S.SocialsWrapper>
