@@ -15,6 +15,7 @@ import Account from '~/features/Account';
 import LogOut from '~/features/LogOut';
 import ServicesPage from '~/features/ServicesPage';
 import PaymentPage from '~/features/PaymentPage';
+import PaymentSuccess from '~/features/PaymentSuccess';
 import SearchPage from '~/features/SearchPage';
 
 const Sign = () => {
@@ -76,6 +77,14 @@ const Sign = () => {
           redirectTo="/account/login"
           authed={isAuth}
           component={PaymentPage}
+          exact
+        />
+
+        <PrivateRoute
+          path="/payment/success"
+          redirectTo="/account/login"
+          authed={isAuth}
+          component={PaymentSuccess}
           exact
         />
 

@@ -3,22 +3,34 @@ import { useLocale } from '~/utils/useLocale';
 import { useStore } from 'effector-react';
 import { useStringNumber } from '~/utils/useStringNumber';
 import { $basket } from './store';
+import { $user } from '~/features/AppBootstrap/store';
 import * as S from './elements';
 import CartProduct from '~/features/Common/CartProduct.jsx';
-import EmptyContent from './components/EmptyContent';
+import EmptyContent from '~/features/Common/EmptyContent';
 import RightSide from '~/features/Common/RightSide';
 
 const Basket = () => {
   const locale = useLocale();
 
+  const { isAuth } = useStore($user);
   const { products, totalPrice } = useStore($basket);
 
+  const isEmpty = !products.length;
   const formatedPrice = useStringNumber(totalPrice);
 
-  const isEmpty = !products.length;
-
   if (isEmpty) {
-    return <EmptyContent />;
+    return (
+      <EmptyContent
+        path={isAuth ? '/shop' : '/account/login'}
+        title={locale('basket.yourBagIsEmpty')}
+        linkText={locale(isAuth ? 'shop' : 'signIn')}
+        subtitle={locale(
+          isAuth ? 'basket.addProductsToBag' : 'basket.logInToView',
+        )}
+      >
+        <EmptyContent.CartIcon />
+      </EmptyContent>
+    );
   }
 
   return (

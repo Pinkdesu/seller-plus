@@ -98,6 +98,8 @@
    "account.order.orderInformation": "Order Information",
    "account.order.thankYou": "Thank you for ordering! Check out the details below.",
    "account.address.thisYourAddress": "This is your delivery address.",
+   "payment.wasCreated": "The order was successfully created!",
+   "payment.seeOrderStatus": "See the order status in the 'Orders' section",
    "error.passwordLength": "The password must contain between 8 and 40 characters",
    "error.enterCorrectEmail": "Email address entered incorrectly",
    "error.enterCorrectPhone": "Phoneentered incorrectly",

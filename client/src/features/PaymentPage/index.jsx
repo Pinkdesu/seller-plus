@@ -5,7 +5,7 @@ import { useStore } from 'effector-react';
 import { $userData, $isAddress } from '~/features/AppBootstrap/store';
 import { $isSuccess } from '~/features/Account/store';
 import { $productsCount } from '~/features/Basket/store';
-import { addOrder } from '~/features/Account/store/events';
+import { addOrder, resetIsSuccess } from '~/features/Account/store/events';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
@@ -27,12 +27,19 @@ const PaymentPage = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      history.replace('/payment/success');
+      history.replace({
+        pathname: '/payment/success',
+        state: {
+          isSuccess: true,
+        },
+      });
     }
 
     if (!productCount && !isSuccess) {
       history.replace('/basket');
     }
+
+    return () => resetIsSuccess();
   }, [isSuccess, productCount, history]);
 
   const handleClick = () => {

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { DefaultMain } from '~/features/DefaultView/elements';
 
 const textStyle = css`
   font-size: 14px;
@@ -191,4 +192,78 @@ export const Division = styled.hr`
   border: none;
   height: 1px;
   width: 100%;
+`;
+
+export const EmptyMain = styled(DefaultMain)`
+  padding: 0;
+`;
+
+export const EmptyContentWrapper = styled.div`
+  max-width: 960px;
+  min-width: 500px;
+  padding: 140px 10px 10px 10px;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 0;
+  justify-content: center;
+  align-items: center;
+  min-height: inherit;
+`;
+
+export const EmptyContent = styled.div`
+  max-width: 394px;
+  padding: 20px 25px;
+  width: 100%;
+  color: ${({ theme }) => theme.black3};
+  text-align: center;
+`;
+
+export const EmptyBagTitleWrapper = styled.div`
+  text-align: center;
+`;
+
+export const EmptyBagTitle = styled.h2`
+  font-weight: 700;
+  font-size: 1.3em;
+  line-height: 22px;
+  letter-spacing: 2.5px;
+  padding-top: 24px;
+  margin: 0;
+`;
+
+export const EmptyBagIcon = styled.span`
+  font-size: 0;
+
+  svg {
+    fill: ${({ theme }) => theme.gray2};
+    height: 60px;
+    width: 60px;
+  }
+`;
+
+export const EmptyBagText = styled.p`
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  letter-spacing: 0.4px;
+`;
+
+export const EmptyLink = styled(Link)`
+  width: 288px;
+  margin: 0 auto;
+  text-decoration: none;
+  width: 100%;
+  letter-spacing: 1.9px;
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.blue3};
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 1.0714285714em;
+  text-align: center;
+  text-transform: uppercase;
 `;

@@ -98,6 +98,8 @@
    "account.order.orderInformation": "Информация о заказе",
    "account.order.thankYou": "Спасибо за заказ! Ознакомьтесь с деталями ниже.",
    "account.address.thisYourAddress": "Это ваш адрес для доставки.",
+   "payment.wasCreated": "Заказ успешно создан!",
+   "payment.seeOrderStatus": "Смотрите статус заказа в разделе 'Заказы'",
    "error.passwordLength": "Пароль должен содержать от 8 до 40 символов",
    "error.enterCorrectEmail": "Email введён некорректно",
    "error.enterCorrectPhone": "Телефон введён некорректно",
