@@ -43,3 +43,9 @@ export const ORDER_COLUMNS = [
   { id: 'name', label: 'Название', minWidth: 150 },
   { id: 'count', label: 'Количество заказов', minWidth: 100 },
 ];
+
+export const USER_COLUMNS = [
+  { id: 'id', label: 'ID', minWidth: 100 },
+  { id: 'name', label: 'Имя пользователя', minWidth: 150 },
+  { id: 'count', label: 'Количество заказов', minWidth: 100 },
+];

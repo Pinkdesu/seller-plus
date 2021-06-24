@@ -27,6 +27,10 @@ export const getOrderReport = ReportDomain.effect().use(
   ReportController.getOrderReport,
 );
 
+export const getUserReport = ReportDomain.effect().use(
+  ReportController.getUserReport,
+);
+
 export const getPeriod = ReportDomain.effect().use(
   ApplicationController.getPeriod,
 );

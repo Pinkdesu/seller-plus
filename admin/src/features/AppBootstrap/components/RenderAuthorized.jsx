@@ -24,6 +24,7 @@ import ProductReport from '~/features/Reports/components/ProductReport';
 import DistrictReport from '~/features/Reports/components/DistrictReport';
 import AppCountReport from '~/features/Reports/components/AppCountReport';
 import OrderReport from '~/features/Reports/components/OrderReport';
+import UserReport from '~/features/Reports/components/UserReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -56,6 +57,7 @@ const RenderAuthorized = () => {
         <Route path="/report/district" component={DistrictReport} exact />
         <Route path="/report/app-count" component={AppCountReport} exact />
         <Route path="/report/order" component={OrderReport} exact />
+        <Route path="/report/user" component={UserReport} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

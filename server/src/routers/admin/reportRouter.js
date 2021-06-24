@@ -25,4 +25,10 @@ router.get('/app-count', [decodeToken, checkRole(ROLES.ADMIN)],
 router.get('/order', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getOrderReport);
 
+router.get('/user', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getUserReport);
+
+router.get('/average-check', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getAverageCheckReport);
+
 module.exports = router;

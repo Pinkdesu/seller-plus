@@ -39,7 +39,7 @@ const Applications = () => {
   const pageNumber = useStore($pageNumber);
 
   const [searchValue, setSearchValue] = useState('');
-  const [filters, setFilters] = useState({
+  const [filters] = useState({
     employeeId: null,
     clientId: null,
     applicationStatusId: null,
@@ -68,18 +68,6 @@ const Applications = () => {
   const onSearch = useCallback(() => {
     getSearchApplications({ searchValue, ...filters });
   }, [searchValue, filters]);
-
-  const handleFilterChange = useCallback(
-    (stateName) => (_, value) => {
-      const id = value?.id;
-
-      setFilters((prevState) => ({
-        ...prevState,
-        [stateName]: id,
-      }));
-    },
-    [],
-  );
 
   const getMoreApplications = useCallback(() => {
     getApplications({

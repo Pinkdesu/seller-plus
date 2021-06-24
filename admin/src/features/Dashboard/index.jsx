@@ -36,6 +36,10 @@ const Dashboard = () => {
     history.push('/report/order');
   };
 
+  const goToUserReport = () => {
+    history.push('/report/user');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -86,6 +90,13 @@ const Dashboard = () => {
                 onClick={goToOrderReport}
               >
                 Отчёт по заказам
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={goToUserReport}
+              >
+                Отчёт по кол-ву заказов у пользователя
               </Button>
             </div>
           </div>

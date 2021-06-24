@@ -1,11 +1,15 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { Op, col, fn } = require('sequelize');
+const {
+  Op, col, fn
+} = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
 } = require('../../models/adminPanel');
-const { Product, Order, OrderProduct } = require('../../models');
+const {
+  Product, OrderProduct, User, Order
+} = require('../../models');
 
 class ReportController {
   async getEmployeeReport(req, res, next) {
@@ -213,12 +217,56 @@ class ReportController {
           attributes: [],
           where: {
             createdAt: {
-              [Op.gte]: periodFrom
+              [Op.gte]: periodFrom,
+              [Op.lte]: periodTo
             }
           }
         },
         group: ['product.id']
       });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getUserReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await User.findAll({
+        attributes: [
+          'id',
+          [fn('COUNT', col('orders.id')), 'count'],
+          [fn('CONCAT', col('firstName'), ' ', col('secondName')), 'name']
+        ],
+        include: {
+          model: Order,
+          where: {
+            createdAt: {
+              [Op.gte]: periodFrom,
+              [Op.lte]: periodTo
+            }
+          },
+          attributes: []
+        },
+        group: ['user.id']
+      });
+
+      return res.json({ report });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getAverageCheckReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = {};
 
       return res.json({ report });
     }
