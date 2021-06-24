@@ -8,7 +8,7 @@ const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
 } = require('../../models/adminPanel');
 const {
-  Product, OrderProduct, User, Order
+  Product, OrderProduct, User, Order, Supply
 } = require('../../models');
 
 class ReportController {
@@ -269,7 +269,8 @@ class ReportController {
       const options = {
         where: {
           createdAt: {
-            [Op.gte]: periodFrom
+            [Op.gte]: periodFrom,
+            [Op.lte]: periodTo
           }
         }
       };
@@ -279,8 +280,40 @@ class ReportController {
       const average = sum / count;
 
       return res.json({
-        report: [{ sum: `${sum} руб.`, count, average: `${average} руб.` }]
+        report: [{ sum, count, average }]
       });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getSupplyReport(req, res, next) {
+    try {
+      const { periodFrom, periodTo } = req.query;
+
+      const report = await Supply.findAll({
+        attributes: {
+          include: [
+            'id',
+            'supplierPrice',
+            'supplierDate',
+            [col('product.name'), 'name']
+          ]
+        },
+        where: {
+          supplierDate: {
+            [Op.gte]: periodFrom
+            // [Op.lte]: periodTo
+          }
+        },
+        include: {
+          model: Product,
+          attributes: []
+        }
+      });
+
+      return res.json({ report });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

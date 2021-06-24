@@ -15,6 +15,7 @@ const projectRouter = require('./projectRouter');
 const actRouter = require('./actRouter');
 const permissionRouter = require('./permissionRouter');
 const reportRouter = require('./reportRouter');
+const supplyRouter = require('./supplyRouter');
 
 router.use('/', adminRouter);
 router.use('/unit', unitRouter);
@@ -30,5 +31,6 @@ router.use('/project', projectRouter);
 router.use('/act', actRouter);
 router.use('/permission', permissionRouter);
 router.use('/report', reportRouter);
+router.use('/supply', supplyRouter);
 
 module.exports = router;

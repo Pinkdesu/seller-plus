@@ -2,6 +2,7 @@ import { ReportDomain } from './domain';
 import { ReportController } from '~/api/controllers/ReportController';
 import { ApplicationController } from '~/api/controllers/ApplicationController';
 import { OrderController } from '~/api/controllers/OrderController';
+import { SupplyController } from '~/api/controllers/SupplyController';
 
 export const getEmployeeReport = ReportDomain.effect().use(
   ReportController.getEmployeeReport,
@@ -35,12 +36,20 @@ export const getAverageCheckReport = ReportDomain.effect().use(
   ReportController.getAverageCheckReport,
 );
 
+export const getSupplyReport = ReportDomain.effect().use(
+  ReportController.getSupplyReport,
+);
+
 export const getPeriod = ReportDomain.effect().use(
   ApplicationController.getPeriod,
 );
 
 export const getOrderPeriod = ReportDomain.effect().use(
   OrderController.getPeriod,
+);
+
+export const getSupplyPeriod = ReportDomain.effect().use(
+  SupplyController.getPeriod,
 );
 
 export const resetReport = ReportDomain.event();

@@ -1,3 +1,7 @@
+import { getDate } from '~/utils/getDate';
+
+const addCurrency = (value) => `${value} руб.`;
+
 export const EMPLOYEE_COLUMNS = [
   { id: 'employee', label: 'Ответственный', minWidth: 120 },
   { id: 'status1', label: 'Открыта', minWidth: 100 },
@@ -51,7 +55,30 @@ export const USER_COLUMNS = [
 ];
 
 export const AVERAGE_CHECK_COLUMNS = [
-  { id: 'sum', label: 'Выручка', minWidth: 100 },
+  {
+    id: 'sum',
+    label: 'Выручка',
+    minWidth: 100,
+    format: addCurrency,
+  },
   { id: 'count', label: 'Количество заказов', minWidth: 150 },
-  { id: 'average', label: 'Средний чек', minWidth: 100 },
+  {
+    id: 'average',
+    label: 'Средний чек',
+    minWidth: 100,
+    format: addCurrency,
+  },
+];
+
+export const SUPPLY_COLUMNS = [
+  { id: 'id', label: 'ID поставки', minWidth: 80 },
+  { id: 'name', label: 'Название товара', minWidth: 150 },
+  { id: 'count', label: 'Количество в поставке', minWidth: 100 },
+  {
+    id: 'supplierPrice',
+    label: 'Закупочная цена за 1 ед.',
+    minWidth: 120,
+    format: addCurrency,
+  },
+  { id: 'supplierDate', label: 'Дата закупки', minWidth: 120, format: getDate },
 ];

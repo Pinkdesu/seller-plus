@@ -19,6 +19,7 @@ export const $report = ReportDomain.store(initialReport)
       events.getOrderReport.doneData,
       events.getUserReport.doneData,
       events.getAverageCheckReport.doneData,
+      events.getSupplyReport.doneData,
     ],
     reducers.setReport,
   )
@@ -26,7 +27,11 @@ export const $report = ReportDomain.store(initialReport)
 
 export const $period = ReportDomain.store(initialPeriod)
   .on(
-    [events.getPeriod.doneData, events.getOrderPeriod.doneData],
+    [
+      events.getPeriod.doneData,
+      events.getOrderPeriod.doneData,
+      events.getSupplyPeriod.doneData,
+    ],
     reducers.setPeriod,
   )
   .reset(events.resetReport);

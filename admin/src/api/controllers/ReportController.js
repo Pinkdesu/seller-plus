@@ -22,5 +22,8 @@ export class ReportController {
   static getAverageCheckReport = (payload) =>
     api.get('/admin/report/average-check', { params: payload });
 
+  static getSupplyReport = (payload) =>
+    api.get('/admin/report/supply', { params: payload });
+
   static getProductReport = () => api.get('/admin/report/product');
 }
