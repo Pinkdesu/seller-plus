@@ -136,24 +136,6 @@ export const ProductItem = styled.li`
   }
 `;
 
-export const ProductLink = styled(Link)`
-  display: flex;
-  cursor: pointer;
-  text-decoration: none;
-  flex-direction: row;
-  line-height: 2.14;
-  color: ${({ theme }) => theme.black2};
-  font-size: 0.875rem;
-  letter-spacing: 0.4px;
-`;
-
-export const ProductImage = styled.img`
-  margin-right: 1em;
-  width: 109px;
-  align-self: flex-start;
-  flex-shrink: 0;
-`;
-
 export const ProductInfo = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -204,6 +186,25 @@ export const Image = styled.img`
   transform: translate(-50%, -50%);
   max-width: 100%;
   max-height: 100%;
+`;
+
+export const ProductLink = styled(Link)`
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  flex-direction: row;
+  line-height: 2.14;
+  color: ${({ theme }) => theme.black2};
+  font-size: 0.875rem;
+  letter-spacing: 0.4px;
+
+  & ${ImageWrapper} {
+    width: 109px;
+    height: 120px;
+    margin-right: 1em;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
 `;
 
 export const Division = styled.hr`

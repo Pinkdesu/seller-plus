@@ -42,8 +42,10 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    getProducts({ categoryId, brandId });
-    resetProducts();
+    if (Boolean(categoryId) || Boolean(brandId)) {
+      getProducts({ categoryId, brandId });
+      resetProducts();
+    }
   }, [categoryId, brandId]);
 
   const handleClick = () => {

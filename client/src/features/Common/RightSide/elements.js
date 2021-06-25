@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
   ProductName,
-  ProductImage,
+  ImageWrapper,
   ProductCount,
   ProductContent,
   linkStyle,
@@ -101,13 +101,14 @@ export const PayLink = styled(Link)`
 
 export const ProductList = styled.ul`
   padding: 0 10px;
-  max-height: 280px;
+  max-height: 420px;
+  overflow-y: auto;
 
   & ${ProductContent} {
     border: none;
     margin: 0;
 
-    & ${ProductImage} {
+    & ${ImageWrapper} {
       width: 85px;
       height: 110px;
     }

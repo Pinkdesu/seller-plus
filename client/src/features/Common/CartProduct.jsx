@@ -3,6 +3,7 @@ import { useLocale } from '~/utils/useLocale';
 import { useStringNumber } from '~/utils/useStringNumber';
 import { deleteProduct } from '~/features/Basket/store/events';
 import * as S from './elements';
+import ImageThumb from '~/features/Common/ImageThumb';
 import { ReactComponent as DeleteSVG } from '~/assets/images/common/delete.svg';
 
 const DeleteOneButton = (props) => {
@@ -30,7 +31,7 @@ const CartProduct = memo((props) => {
     <S.ProductItem>
       <S.ProductContent>
         <S.ProductLink to={`/shop/product/${id}`}>
-          <S.ProductImage src={imageMain} alt={name} />
+          <ImageThumb src={imageMain} alt={name} />
           <S.ProductInfo>
             <S.ProductPrice>
               {locale('priceWithCurrency', { price: formatedPrice })}
