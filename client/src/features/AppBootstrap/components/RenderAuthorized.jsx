@@ -15,6 +15,7 @@ import Basket from '~/features/Basket';
 import ServicesPage from '~/features/ServicesPage';
 import SearchPage from '~/features/SearchPage';
 import PrivateRoute from './PrivateRoute';
+import ActivatedPage from '~/features/ActivatedPage';
 
 const RenderAuthorized = () => {
   const { isActivated } = useStore($userData);
@@ -30,6 +31,7 @@ const RenderAuthorized = () => {
         <Route path="/shop/category/:id" component={CategoryPage} exact />
         <Route path="/shop/product/:id" component={ProductPage} exact />
 
+        <Route path="/account/log-out" component={LogOut} exact />
         <Route
           path={[
             '/account',
@@ -41,11 +43,18 @@ const RenderAuthorized = () => {
           component={Account}
           exact
         />
-        <Route path="/account/log-out" component={LogOut} exact />
+
+        <PrivateRoute
+          path="/activate"
+          redirectTo="/account"
+          authed={!isActivated}
+          component={ActivatedPage}
+          exact
+        />
 
         <PrivateRoute
           path="/payment"
-          redirectTo="/"
+          redirectTo="/activate"
           authed={isActivated}
           component={PaymentPage}
           exact
@@ -53,16 +62,13 @@ const RenderAuthorized = () => {
 
         <PrivateRoute
           path="/payment/success"
-          redirectTo="/"
+          redirectTo="/activate"
           authed={isActivated}
           component={PaymentSuccess}
           exact
         />
 
-        <Redirect
-          from={['/account/login', '/account/register']}
-          to="/account"
-        />
+        <Redirect from="/account" to="/account" />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

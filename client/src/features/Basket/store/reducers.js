@@ -1,5 +1,3 @@
-import { URL } from '~/api/constants';
-
 export const addProduct = (state, payload) => {
   const data = payload?.params ?? payload;
   const { id, quantity = 1 } = data;
@@ -33,9 +31,5 @@ export const deleteProduct = (state, payload) => {
 export const setBasket = (_, { result }) => {
   const { basket } = result.data;
 
-  return basket.map(({ quantity, product }) => ({
-    ...product,
-    quantity,
-    image: URL(product.images[0]),
-  }));
+  return basket;
 };

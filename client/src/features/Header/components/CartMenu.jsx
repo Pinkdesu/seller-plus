@@ -64,14 +64,7 @@ const CartMenu = (props) => {
           </S.MenuTopSide>
           <S.ProductsList>
             {products.map((product) => (
-              <CartProduct
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                quantity={product.quantity}
-                imageMain={product.imageMain}
-              >
+              <CartProduct key={product.id} {...product}>
                 <CartProduct.DeleteOneButton id={product.id} />
               </CartProduct>
             ))}

@@ -6,7 +6,8 @@ const createUserResponse = (userData) => {
     email,
     phone,
     role,
-    address
+    address,
+    isActivated
   } = userData;
 
   return {
@@ -16,7 +17,8 @@ const createUserResponse = (userData) => {
     email,
     phone,
     role,
-    address
+    address,
+    isActivated
   };
 };
 

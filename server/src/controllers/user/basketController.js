@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
-const { Op } = require('sequelize');
+const { Op, col } = require('sequelize');
 const ApiError = require('../../error/apiError');
-const { Basket, BasketProduct, Product } = require('../../models');
+const {
+  Basket, BasketProduct, Product, Brand
+} = require('../../models');
+
+const { URL } = require('../../constants');
 
 class BasketController {
   async getBasket(req, res, next) {
@@ -15,13 +19,28 @@ class BasketController {
       const currentBasket = await BasketProduct.findAll(
         {
           where: { basketId: basket.id },
-          attributes: [['count', 'quantity']],
-          include: [{
+          attributes: [
+            ['productId', 'id'],
+            ['count', 'quantity'],
+            [col('product.name'), 'name'],
+            [col('product.price'), 'price'],
+            [col('product.brand.name'), 'brand'],
+            [col('product.imageMain'), 'imageMain']
+          ],
+          include: {
             model: Product,
-            attributes: ['id', 'name', 'price', 'images']
-          }]
+            attributes: [],
+            include: {
+              model: Brand,
+              attributes: []
+            }
+          },
+          raw: true
         }
-      );
+      ).then((data) => data.map((item) => ({
+        ...item,
+        imageMain: URL(item.imageMain, 'products')
+      })));
 
       return res.json({ basket: currentBasket });
     }

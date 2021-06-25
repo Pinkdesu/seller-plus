@@ -5,6 +5,7 @@ import {
   ProductImage,
   ProductCount,
   ProductContent,
+  linkStyle,
 } from '../elements';
 
 const headerStyle = css`
@@ -95,20 +96,7 @@ export const PayLinkWrapper = styled.div`
 `;
 
 export const PayLink = styled(Link)`
-  text-decoration: none;
-  width: 100%;
-  letter-spacing: 1.9px;
-  color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.blue3};
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  display: block;
-  font-size: 1em;
-  line-height: 1.2em;
-  padding: 1.0714285714em;
-  text-align: center;
-  text-transform: uppercase;
+  ${linkStyle}
 `;
 
 export const ProductList = styled.ul`

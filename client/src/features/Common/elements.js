@@ -7,6 +7,25 @@ const textStyle = css`
   line-height: 1.5;
 `;
 
+export const linkStyle = css`
+  width: 288px;
+  margin: 0 auto;
+  text-decoration: none;
+  width: 100%;
+  letter-spacing: 1.9px;
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.blue3};
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 1.0714285714em;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
 export const FieldWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -250,20 +269,9 @@ export const EmptyBagText = styled.p`
 `;
 
 export const EmptyLink = styled(Link)`
-  width: 288px;
-  margin: 0 auto;
-  text-decoration: none;
-  width: 100%;
-  letter-spacing: 1.9px;
-  color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.blue3};
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  display: block;
-  font-size: 1em;
-  line-height: 1.2em;
-  padding: 1.0714285714em;
-  text-align: center;
-  text-transform: uppercase;
+  ${linkStyle}
+`;
+
+export const MailLink = styled.a`
+  ${linkStyle}
 `;
