@@ -14,4 +14,6 @@ export class ShopController {
 
   static getFilters = (categoryId) =>
     noAuthApi.get(`/product/filter?categoryId=${categoryId}`);
+
+  static getPopularity = () => noAuthApi.get(`/product/popularity`);
 }

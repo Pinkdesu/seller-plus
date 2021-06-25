@@ -8,9 +8,40 @@ const useStyles = makeStyles((theme) => ({
     '&  span.status-cell': {
       borderRadius: 10,
       padding: theme.spacing(1),
-      backgroundColor: 'green',
       color: '#ffffff',
+      fontWeight: 700,
+      fontSize: 16,
     },
+  },
+  'status-cell1': {
+    backgroundColor: '#00e676',
+  },
+  'status-cell2': {
+    backgroundColor: '#ffeb3b',
+  },
+  'status-cell3': {
+    backgroundColor: '#ff9800',
+  },
+  'status-cell4': {
+    backgroundColor: '#dd2c00',
+  },
+  'status-cell5': {
+    backgroundColor: '#03a9f4',
+  },
+  'status-cell6': {
+    backgroundColor: '#689f38',
+  },
+  'status-cell7': {
+    backgroundColor: '#ff8f00',
+  },
+  'status-cell8': {
+    backgroundColor: '#e91e63',
+  },
+  'status-cell9': {
+    backgroundColor: '#757575',
+  },
+  'status-cell10': {
+    backgroundColor: '#795548',
   },
 }));
 
@@ -27,9 +58,13 @@ const DataTableRow = (props) => {
         const key = `${row.id}-${columnId}`;
         const value = row[columnId];
 
+        const className = column?.class
+          ? classes[`status-cell${row.statusId}`]
+          : '';
+
         return (
           <TableCell key={key} align={column?.align} className={classes.cell}>
-            <span className={column.class}>
+            <span className={`${column?.class} ${className}`}>
               {column.format ? column.format(value) : value}
             </span>
           </TableCell>

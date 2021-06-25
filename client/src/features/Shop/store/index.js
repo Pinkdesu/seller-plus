@@ -2,11 +2,11 @@ import { ShopDomain } from './domain';
 import * as events from './events';
 import * as reducers from './reducers';
 
-import { PRODUCTS, DEFAULT_CATEGORIES } from '../constants';
+import { DEFAULT_CATEGORIES } from '../constants';
 
 const initialCategories = DEFAULT_CATEGORIES;
 const initialIsCategories = false;
-const initialProducts = [...PRODUCTS];
+const initialProducts = [];
 const initialProduct = {
   images: [],
   info: [],
@@ -26,4 +26,7 @@ export const $isCategories = ShopDomain.store(initialIsCategories).on(
   () => true,
 );
 
-export const $popularProductsList = ShopDomain.store(initialProducts);
+export const $popularProductsList = ShopDomain.store(initialProducts).on(
+  events.getPopularity.doneData,
+  reducers.setPopularity,
+);

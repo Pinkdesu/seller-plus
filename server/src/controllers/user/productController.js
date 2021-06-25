@@ -2,11 +2,11 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const {
-  Op, where, col
+  Op, where, col, fn, literal
 } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
-  Product, ProductInfo, Brand, Unit, Category
+  Product, ProductInfo, Brand, Unit, Category, OrderProduct
 } = require('../../models');
 const { URL, PRODUCTS_LIMIT } = require('../../constants');
 const productService = require('../../services/productService');
@@ -183,6 +183,51 @@ class ProductController {
       const { pagesCount, products } = productsWithCount;
 
       return res.json({ products, pagesCount });
+    }
+    catch (e) {
+      return next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getPopularity(_, res, next) {
+    try {
+      const popularity = await OrderProduct.findAll({
+        attributes: [
+          ['productId', 'id'],
+          [col('product.name'), 'name'],
+          [col('product.price'), 'price'],
+          [col('product.count'), 'count'],
+          [col('product.imageMain'), 'imageMain'],
+          [col('product->brand.name'), 'brand']
+        ],
+        include: {
+          model: Product,
+          attributes: [],
+          include: {
+            model: Brand,
+            attributes: [],
+            required: false
+          }
+        },
+        group: [
+          'productId',
+          'product.name',
+          'product.price',
+          'product.count',
+          'product.imageMain',
+          'product->brand.id'
+        ],
+        order: [
+          [fn('max', 'quantity'), 'DESC']
+        ],
+        limit: 10,
+        raw: true
+      }).then((data) => data.map((item) => ({
+        ...item,
+        imageMain: URL(item.imageMain, 'products')
+      })));
+
+      return res.json({ popularity });
     }
     catch (e) {
       return next(ApiError.badRequest(e.message));

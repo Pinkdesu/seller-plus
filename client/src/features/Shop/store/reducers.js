@@ -13,3 +13,9 @@ export const setProduct = (_, payload) => {
     brand: brand.name,
   };
 };
+
+export const setPopularity = (_, payload) => {
+  const { popularity } = payload.data;
+
+  return popularity;
+};

@@ -217,8 +217,8 @@ class ReportController {
           attributes: [],
           where: {
             createdAt: {
-              [Op.gte]: periodFrom,
-              [Op.lte]: periodTo
+              [Op.gte]: periodFrom
+              // [Op.lte]: periodTo
             }
           }
         },
@@ -246,8 +246,8 @@ class ReportController {
           model: Order,
           where: {
             createdAt: {
-              [Op.gte]: periodFrom,
-              [Op.lte]: periodTo
+              [Op.gte]: periodFrom
+              // [Op.lte]: periodTo
             }
           },
           attributes: []
@@ -269,8 +269,8 @@ class ReportController {
       const options = {
         where: {
           createdAt: {
-            [Op.gte]: periodFrom,
-            [Op.lte]: periodTo
+            [Op.gte]: periodFrom
+            // [Op.lte]: periodTo
           }
         }
       };

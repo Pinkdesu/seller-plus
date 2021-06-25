@@ -3,7 +3,13 @@ import { getDate } from '~/utils/getDate';
 export const COLUMNS = [
   { id: 'id', label: 'ID', minWidth: 100 },
   { id: 'client', label: 'Заказчик', minWidth: 150 },
-  { id: 'status', label: 'Статус', class: 'status-cell', minWidth: 250 },
+  {
+    id: 'status',
+    label: 'Статус',
+    class: 'status-cell',
+    align: 'center',
+    minWidth: 250,
+  },
   {
     id: 'submissionDate',
     label: 'Создано',

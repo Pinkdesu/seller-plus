@@ -1,6 +1,6 @@
 import { getDate } from '~/utils/getDate';
 
-const addCurrency = (value) => `${value} руб.`;
+const addCurrency = (value) => `${+value.toFixed(2)} руб.`;
 
 export const EMPLOYEE_COLUMNS = [
   { id: 'employee', label: 'Ответственный', minWidth: 120 },

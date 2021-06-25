@@ -11,6 +11,7 @@ class ApplicationService {
     const appWithCount = await Application.findAndCountAll({
       attributes: {
         include: [
+          ['applicationStatusId', 'statusId'],
           [col('client.name'), 'client'],
           [col('application_status.name'), 'status'],
           [col('application_theme.name'), 'theme']
