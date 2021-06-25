@@ -4,6 +4,7 @@ export const PageOverflow = createGlobalStyle`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   background-color: ${({ theme }) => theme.white};
 `;
 

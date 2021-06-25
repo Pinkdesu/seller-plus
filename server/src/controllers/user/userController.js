@@ -55,7 +55,7 @@ class UserController {
         email,
         URL(activationLink, 'api/user/activate')
       );
-
+      // TODO: take out
       const userData = createUserResponse(user.dataValues);
       const tokens = tokenService.generateTokens(userData);
       await tokenService.saveToken(userData.id, tokens.refreshToken);
@@ -186,18 +186,27 @@ class UserController {
         address
       } = req.body;
 
-      const updatedUser = await User.update(
-        {
-          firstName,
-          secondName,
+      const info = {
+        firstName,
+        secondName,
+        email,
+        phone,
+        address
+      };
+
+      if (email) {
+        info.isActivated = false;
+        info.activationLink = uuid.v4();
+
+        await mailService.sendActivationMail(
           email,
-          phone,
-          address
-        },
-        {
-          where: { id }, returning: true, plain: true
-        }
-      );
+          URL(info.activationLink, 'api/user/activate')
+        );
+      }
+
+      const updatedUser = await User.update(info, {
+        where: { id }, returning: true, plain: true
+      });
 
       const userData = createUserResponse(updatedUser[1].dataValues);
       const tokens = tokenService.generateTokens(userData);
