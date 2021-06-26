@@ -17,6 +17,7 @@ import Projects from '~/features/Projects';
 import AddProject from '~/features/AddProject';
 import Contracts from '~/features/Contracts';
 import AddContract from '~/features/AddContract';
+import AddInvoice from '~/features/AddInvoice';
 import Dashboard from '~/features/Dashboard';
 import EmployeeReport from '~/features/Reports/components/EmployeeReport';
 import ClientReport from '~/features/Reports/components/ClientReport';
@@ -53,6 +54,7 @@ const RenderAuthorized = () => {
         <Route path="/permissions" component={Permissions} exact />
         <Route path="/contract" component={AddContract} exact />
         <Route path="/contracts" component={Contracts} exact />
+        <Route path="/invoice" component={AddInvoice} exact />
         <Route path="/report/employee" component={EmployeeReport} exact />
         <Route path="/report/client" component={ClientReport} exact />
         <Route path="/report/product" component={ProductReport} exact />

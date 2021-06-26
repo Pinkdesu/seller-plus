@@ -48,6 +48,10 @@ const Dashboard = () => {
     history.push('/report/supply');
   };
 
+  const goToInvoice = () => {
+    history.push('/invoice');
+  };
+
   return (
     <div className={classes.root}>
       <Header title="Главная" />
@@ -119,6 +123,9 @@ const Dashboard = () => {
                 onClick={goToAverageCheckReport}
               >
                 Средний чек
+              </Button>
+              <Button variant="contained" color="primary" onClick={goToInvoice}>
+                Добавить накладную
               </Button>
             </div>
           </div>

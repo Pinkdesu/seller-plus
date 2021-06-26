@@ -17,4 +17,7 @@ export class ProductController {
 
   static getProducts = (payload = {}) =>
     api.get('/product', { params: payload });
+
+  static getSearchProducts = (payload) =>
+    api.get('/product/search', { params: payload });
 }
