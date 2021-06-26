@@ -46,7 +46,7 @@ const Permissions = () => {
             <SearchSelect label="Ответственный" className={classes.filter} />
             <TextField
               type="date"
-              label="Дата"
+              label="Дата получения"
               variant="outlined"
               defaultValue="2021-06-01"
               className={classes.filter}

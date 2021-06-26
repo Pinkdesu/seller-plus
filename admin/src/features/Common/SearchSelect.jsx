@@ -4,25 +4,11 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const SearchSelect = (props) => {
-  const {
-    label,
-    options,
-    onChange,
-    className,
-    getOptionLabel,
-    getOptionSelected,
-    onInputChange,
-    loading = false,
-  } = props;
+  const { label, loading = false, ...otherProps } = props;
 
   return (
     <Autocomplete
-      options={options}
-      onChange={onChange}
-      onInputChange={onInputChange}
-      className={className}
-      getOptionLabel={getOptionLabel}
-      getOptionSelected={getOptionSelected}
+      {...otherProps}
       loading={loading}
       renderInput={(params) => (
         <TextField

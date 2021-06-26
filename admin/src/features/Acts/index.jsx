@@ -50,7 +50,7 @@ const Acts = () => {
             <SearchSelect label="Заявка" className={classes.filter} />
             <TextField
               type="date"
-              label="Дата"
+              label="Дата получения"
               variant="outlined"
               defaultValue="2021-06-01"
               InputLabelProps={{

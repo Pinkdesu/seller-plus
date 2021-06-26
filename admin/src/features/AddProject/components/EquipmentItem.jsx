@@ -13,9 +13,9 @@ const EquipmentItem = () => {
   return (
     <ListItem className={classes.infoItem}>
       <SearchSelect
-        defaultValue="-"
         className={classes.infoTextField}
         label="Оборудование"
+        options={['Водонагреватель NI-t122']}
       />
       <TextField
         type="number"

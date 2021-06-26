@@ -138,6 +138,7 @@ const Application = sequelize.define('application', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   number: { type: DataTypes.STRING, unique: true },
   submissionDate: { type: DataTypes.DATE },
+  executionDate: { type: DataTypes.DATE },
   document: { type: DataTypes.STRING },
   description: { type: DataTypes.STRING }
 });

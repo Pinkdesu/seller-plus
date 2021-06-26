@@ -6,12 +6,12 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const DataSelect = (props) => {
-  const { data, label, defaultValue, value, onChange } = props;
+  const { data, label, defaultValue, ...otherProps } = props;
 
   return (
     <FormControl variant="outlined">
       <InputLabel required>{label}</InputLabel>
-      <Select value={value} onChange={onChange} label={label}>
+      <Select label={label} {...otherProps}>
         <MenuItem value={defaultValue}>
           <em>{defaultValue}</em>
         </MenuItem>

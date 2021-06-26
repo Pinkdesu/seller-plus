@@ -6,7 +6,7 @@ const {
 const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict,
-  Product, OrderProduct, User, Order, Invoice
+  Product, OrderProduct, User, Order, Invoice, Brand
 } = require('../../models');
 
 class ReportController {
@@ -290,28 +290,46 @@ class ReportController {
     try {
       const { periodFrom, periodTo } = req.query;
 
-      const report = await Invoice.findAll({
+      const report = await Product.findAll({
         attributes: {
           include: [
-            [col('product.name'), 'name'],
-            [col('product.count'), 'count'],
-            [col('product.supplierPrice'), 'supplierPrice']
+            [col('brand.name'), 'brandName'],
+            [col('invoices.number'), 'number'],
+            [col('invoices.supplierDate'), 'supplierDate'],
+            [col('invoices->employee.name'), 'employee'],
+            [col('invoices->invoice_product.count'), 'count'],
+            [col('invoices->invoice_product.supplierPrice'), 'supplierPrice']
+          ],
+          exclude: [
+            'brandId',
+            'categoryId',
+            'images',
+            'imageMain',
+            'price',
+            'count',
+            'description',
+            'createdAt',
+            'updatedAt'
           ]
         },
-        where: {
-          supplierDate: {
-            [Op.gte]: periodFrom
-            // [Op.lte]: periodTo
-          }
-        },
-        include: {
-          model: Product,
+        include: [{
+          model: Invoice,
           attributes: [],
-          through: {
-            attributes: ['supplierPrice']
+          where: {
+            supplierDate: {
+              [Op.gte]: periodFrom
+              // [Op.lte]: periodTo
+            }
+          },
+          include: {
+            model: Employee,
+            attributes: []
           }
         },
-        order: ['id']
+        {
+          model: Brand,
+          attributes: []
+        }]
       });
 
       return res.json({ report });

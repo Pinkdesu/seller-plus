@@ -12,6 +12,7 @@ import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import Individuals from './components/Individuals';
 import Companies from './components/Companies';
+import Header from '~/features/Common/Header';
 
 const useStyles = makeStyles(ADD_PAGE_STYLE);
 
@@ -38,11 +39,7 @@ const Clients = () => {
 
   return (
     <div className={classes.root}>
-      <Container className={classes.pageHeaderWrapper}>
-        <Typography variant="h1" className={classes.pageHeader}>
-          Клиеты
-        </Typography>
-      </Container>
+      <Header title="Клиенты" />
       <Container className={classes.defaultWrapper}>
         <AppBar position="static" color="inherit">
           <Tabs

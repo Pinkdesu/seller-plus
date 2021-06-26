@@ -70,15 +70,17 @@ export const AVERAGE_CHECK_COLUMNS = [
   },
 ];
 
-export const SUPPLY_COLUMNS = [
-  { id: 'id', label: 'ID поставки', minWidth: 80 },
-  { id: 'name', label: 'Название товара', minWidth: 150 },
-  { id: 'count', label: 'Количество в поставке', minWidth: 100 },
+export const INVOICE_COLUMNS = [
+  { id: 'number', label: '№ накладной', minWidth: 80 },
+  { id: 'employee', label: 'Ответственный', minWidth: 100 },
+  { id: 'supplierDate', label: 'Дата', minWidth: 120, format: getDate },
+  { id: 'name', label: 'Название товара', minWidth: 120 },
+  { id: 'brandName', label: 'Бренд', minWidth: 80 },
+  { id: 'count', label: 'Количество', minWidth: 100 },
   {
     id: 'supplierPrice',
     label: 'Закупочная цена за 1 ед.',
     minWidth: 120,
     format: addCurrency,
   },
-  { id: 'supplierDate', label: 'Дата закупки', minWidth: 120, format: getDate },
 ];

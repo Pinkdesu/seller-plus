@@ -25,16 +25,18 @@ const AddAct = () => {
         <form>
           <div className={classes.formFieldsSide}>
             <div className={classes.fieldsWrapper}>
+              <DataSelect label="Заявка" data={[[1, '131']]} value={1} />
               <DataSelect
-                defaultValue="-"
-                label="Заявка"
-                data={[[1, '1']]}
-                value={1}
+                multiple
+                disabled
+                label="Ответственние(ый)"
+                data={[[1, 'Аксенова Вероника Максимовна']]}
+                value={[1]}
               />
               <DataSelect
-                defaultValue="-"
-                label="Ответственный"
-                data={[[1, 'Иванов Павел']]}
+                disabled
+                label="Клиент"
+                data={[[1, 'Цветков Захар Артёмович']]}
                 value={1}
               />
             </div>

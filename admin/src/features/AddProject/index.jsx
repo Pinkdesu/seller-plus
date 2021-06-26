@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import SearchSelect from '~/features/Common/SearchSelect';
+import DataSelect from '~/features/Common/DataSelect';
 import AddButton from '~/features/Common/AddButton';
 import FileButton from '~/features/Common/FileButton';
 import Header from '~/features/Common/Header';
@@ -24,12 +24,23 @@ const AddProject = () => {
         <form>
           <div className={classes.formFieldsSide}>
             <div className={classes.fieldsWrapper}>
-              <TextField label="Номер проекта" variant="outlined" required />
-              <SearchSelect defaultValue="-" label="Разрешение" />
+              <DataSelect label="Заявка" data={[[1, '131']]} value={1} />
+              <DataSelect
+                multiple
+                disabled
+                label="Ответственние(ый)"
+                data={[[1, 'Аксенова Вероника Максимовна']]}
+                value={[1, 2]}
+              />
+              <DataSelect
+                disabled
+                label="Клиент"
+                data={[[1, 'Цветков Захар Артёмович']]}
+                value={1}
+              />
             </div>
             <div className={classes.fieldsWrapper}>
-              <SearchSelect defaultValue="-" label="Акт" />
-              <SearchSelect defaultValue="-" label="Ответственный" />
+              <TextField label="Номер проекта" variant="outlined" required />
               <TextField
                 type="date"
                 label="Дата"

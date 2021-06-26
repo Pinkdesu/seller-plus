@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useStore } from 'effector-react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
-import { SUPPLY_COLUMNS } from '../constants';
+import { INVOICE_COLUMNS } from '../constants';
 import {
   getInvoiceReport,
   resetReport,
@@ -59,7 +59,7 @@ const SupplyReport = () => {
 
   return (
     <div className={classes.root}>
-      <Header title="Отчёт по поставкам" />
+      <Header title="Отчёт по поставкам на склад" />
       <Container className={classes.formWrapper}>
         <div>
           <div>
@@ -92,7 +92,7 @@ const SupplyReport = () => {
         </div>
         <div className={classes.tableWrapper}>
           {Boolean(report.length) && (
-            <DataTable columns={SUPPLY_COLUMNS} data={report} />
+            <DataTable columns={INVOICE_COLUMNS} data={report} />
           )}
         </div>
       </Container>
