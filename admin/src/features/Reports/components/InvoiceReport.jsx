@@ -3,7 +3,11 @@ import { useStore } from 'effector-react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import { SUPPLY_COLUMNS } from '../constants';
-import { getSupplyReport, resetReport, getSupplyPeriod } from '../store/events';
+import {
+  getInvoiceReport,
+  resetReport,
+  getInvoicePeriod,
+} from '../store/events';
 import { $report, $period } from '../store';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -19,14 +23,14 @@ const SupplyReport = () => {
 
   const report = useStore($report);
   const period = useStore($period);
-  const pending = useStore(getSupplyReport.pending);
+  const pending = useStore(getInvoiceReport.pending);
 
   const [periodTo, setPeriodTo] = useState('');
   const [periodFrom, setPeriodFrom] = useState('');
 
   useEffect(() => {
     if (!period.to || !periodFrom) {
-      getSupplyPeriod();
+      getInvoicePeriod();
     }
     return () => resetReport();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +42,7 @@ const SupplyReport = () => {
   }, [period]);
 
   const handleClick = () => {
-    getSupplyReport({ periodFrom, periodTo });
+    getInvoiceReport({ periodFrom, periodTo });
   };
 
   const handleFromChange = (e) => {

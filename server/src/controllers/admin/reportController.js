@@ -5,10 +5,8 @@ const {
 } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {
-  Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
-} = require('../../models');
-const {
-  Product, OrderProduct, User, Order, Supply
+  Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict,
+  Product, OrderProduct, User, Order, Invoice
 } = require('../../models');
 
 class ReportController {
@@ -288,17 +286,16 @@ class ReportController {
     }
   }
 
-  async getSupplyReport(req, res, next) {
+  async getInvoiceReport(req, res, next) {
     try {
       const { periodFrom, periodTo } = req.query;
 
-      const report = await Supply.findAll({
+      const report = await Invoice.findAll({
         attributes: {
           include: [
-            'id',
-            'supplierPrice',
-            'supplierDate',
-            [col('product.name'), 'name']
+            [col('product.name'), 'name'],
+            [col('product.count'), 'count'],
+            [col('product.supplierPrice'), 'supplierPrice']
           ]
         },
         where: {
@@ -309,8 +306,12 @@ class ReportController {
         },
         include: {
           model: Product,
-          attributes: []
-        }
+          attributes: [],
+          through: {
+            attributes: ['supplierPrice']
+          }
+        },
+        order: ['id']
       });
 
       return res.json({ report });

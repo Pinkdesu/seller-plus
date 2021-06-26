@@ -27,7 +27,7 @@ import AppCountReport from '~/features/Reports/components/AppCountReport';
 import OrderReport from '~/features/Reports/components/OrderReport';
 import UserReport from '~/features/Reports/components/UserReport';
 import AverageCheck from '~/features/Reports/components/AverageCheck';
-import SupplyReport from '~/features/Reports/components/SupplyReport';
+import InvoiceReport from '~/features/Reports/components/InvoiceReport';
 
 const RenderAuthorized = () => {
   useEffect(() => {
@@ -63,7 +63,7 @@ const RenderAuthorized = () => {
         <Route path="/report/order" component={OrderReport} exact />
         <Route path="/report/user" component={UserReport} exact />
         <Route path="/report/average-check" component={AverageCheck} exact />
-        <Route path="/report/supply" component={SupplyReport} exact />
+        <Route path="/report/invoice" component={InvoiceReport} exact />
         <Redirect from="*" to="/" />
       </Switch>
     </DefaultView>

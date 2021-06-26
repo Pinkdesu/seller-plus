@@ -44,8 +44,8 @@ const Dashboard = () => {
     history.push('/report/average-check');
   };
 
-  const goToSupplyReport = () => {
-    history.push('/report/supply');
+  const goToInvoiceReport = () => {
+    history.push('/report/invoice');
   };
 
   const goToInvoice = () => {
@@ -113,7 +113,7 @@ const Dashboard = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={goToSupplyReport}
+                onClick={goToInvoiceReport}
               >
                 Отчёт по поставкам
               </Button>

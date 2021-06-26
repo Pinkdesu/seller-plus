@@ -31,7 +31,7 @@ router.get('/user', [decodeToken, checkRole(ROLES.ADMIN)],
 router.get('/average-check', [decodeToken, checkRole(ROLES.ADMIN)],
   reportController.getAverageCheckReport);
 
-router.get('/supply', [decodeToken, checkRole(ROLES.ADMIN)],
-  reportController.getSupplyReport);
+router.get('/invoice', [decodeToken, checkRole(ROLES.ADMIN)],
+  reportController.getInvoiceReport);
 
 module.exports = router;

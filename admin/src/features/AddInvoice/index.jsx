@@ -4,7 +4,12 @@ import { ADD_PAGE_STYLE } from '~/features/Common/constants';
 import { useStore } from 'effector-react';
 import { $formValues, $products } from './store';
 import { $employees } from '~/features/AppBootstrap/store';
-import { addProduct, deleteProduct, changeFormValues } from './store/events';
+import {
+  addProduct,
+  deleteProduct,
+  changeFormValues,
+  addInvoice,
+} from './store/events';
 import {
   getOptionLabel,
   getOptionSelected,
@@ -37,6 +42,10 @@ const AddInvoice = () => {
     const id = value?.id;
     changeFormValues({ stateName: 'employeeId', value: id });
   }, []);
+
+  const handleClick = () => {
+    addInvoice({ ...formValues, products });
+  };
 
   return (
     <div className={classes.root}>
@@ -75,7 +84,7 @@ const AddInvoice = () => {
           <div className={classes.infoWrapper}>
             <List className={classes.infoList}>
               {products.map((product, index) => (
-                <Product key={index} {...product} />
+                <Product key={index} index={index} {...product} />
               ))}
               <ListItem className={classes.infoItem}>
                 <Button
@@ -96,7 +105,7 @@ const AddInvoice = () => {
             </List>
           </div>
           <div className={classes.formBottomSide}>
-            <AddButton text="Добавить накладную" />
+            <AddButton text="Добавить накладную" onClick={handleClick} />
           </div>
         </form>
       </Container>

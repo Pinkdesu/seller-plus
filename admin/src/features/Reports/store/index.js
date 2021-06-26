@@ -19,7 +19,7 @@ export const $report = ReportDomain.store(initialReport)
       events.getOrderReport.doneData,
       events.getUserReport.doneData,
       events.getAverageCheckReport.doneData,
-      events.getSupplyReport.doneData,
+      events.getInvoiceReport.doneData,
     ],
     reducers.setReport,
   )
@@ -30,7 +30,7 @@ export const $period = ReportDomain.store(initialPeriod)
     [
       events.getPeriod.doneData,
       events.getOrderPeriod.doneData,
-      events.getSupplyPeriod.doneData,
+      events.getInvoicePeriod.doneData,
     ],
     reducers.setPeriod,
   )

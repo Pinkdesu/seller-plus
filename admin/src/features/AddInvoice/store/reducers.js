@@ -9,6 +9,12 @@ export const setFormValue = (state, payload) => {
   };
 };
 
+export const setSearchProducts = (_, payload) => {
+  const { products } = payload.data;
+
+  return products;
+};
+
 export const setProductValue = (state, payload) => {
   const { stateName, index, value } = payload;
 

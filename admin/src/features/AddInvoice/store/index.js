@@ -21,4 +21,6 @@ export const $products = AddInvoiceDomain.store(initialProducts)
   .on(events.deleteProduct, reducers.deleteProduct)
   .reset(events.addInvoice.done);
 
-export const $searchProducts = AddInvoiceDomain.store(initialSearchProducts);
+export const $searchProducts = AddInvoiceDomain.store(initialSearchProducts)
+  .on(events.getSearchProducts.doneData, reducers.setSearchProducts)
+  .reset(events.addInvoice.done);

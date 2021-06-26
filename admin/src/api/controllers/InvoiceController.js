@@ -6,4 +6,6 @@ export class InvoiceController {
       ...payload,
       products: JSON.stringify(payload.products),
     });
+
+  static getPeriod = () => api.get('/admin/invoice/period');
 }
