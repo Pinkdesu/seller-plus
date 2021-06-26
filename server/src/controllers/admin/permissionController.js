@@ -2,7 +2,7 @@
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Permission } = require('../../models/adminPanel');
+const { Permission } = require('../../models');
 
 class PermissionController {
   async create(req, res, next) {

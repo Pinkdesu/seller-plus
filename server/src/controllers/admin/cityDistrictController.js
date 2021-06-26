@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
-const { CityDistrict } = require('../../models/adminPanel');
+const { CityDistrict } = require('../../models');
 
 class CityDistrictController {
   async create(req, res, next) {

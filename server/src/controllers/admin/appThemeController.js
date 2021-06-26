@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
-const { ApplicationTheme } = require('../../models/adminPanel');
+const { ApplicationTheme } = require('../../models');
 
 class AppThemeController {
   async create(req, res, next) {

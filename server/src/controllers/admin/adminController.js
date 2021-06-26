@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt');
 const generateAccessToken = require('../../utils/generateAccessToken');
 const ApiError = require('../../error/apiError');
-const { Employee } = require('../../models/adminPanel');
+const { Employee } = require('../../models');
 const { ROLES } = require('../../constants');
 
 class EmployeeController {

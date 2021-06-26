@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
-const { ApplicationStatus } = require('../../models/adminPanel');
+const { ApplicationStatus } = require('../../models');
 
 class AppStatusController {
   async create(req, res, next) {

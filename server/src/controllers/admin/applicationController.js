@@ -3,7 +3,7 @@
 const { col, Op, where } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Application } = require('../../models/adminPanel');
+const { Application } = require('../../models');
 const applicationService = require('../../services/applicationService');
 
 class ApplicationController {

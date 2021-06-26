@@ -2,7 +2,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const {
-  Op, where, col, fn, literal
+  Op, where, col, fn
 } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const {

@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
-const { Position } = require('../../models/adminPanel');
+const { Position } = require('../../models');
 
 class PositionController {
   async create(req, res, next) {

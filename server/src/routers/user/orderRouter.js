@@ -7,13 +7,11 @@ const checkRole = require('../../middleware/checkRoleMiddleware');
 const decodeToken = require('../../middleware/decodeTokenMiddleware');
 const { ROLES } = require('../../constants');
 
-router.post('/',
-  [decodeToken, checkRole(ROLES.USER)], orderController.create);
-router.get('/',
-  [decodeToken, checkRole(ROLES.USER)], orderController.getAll);
-router.get('/:id',
-  [decodeToken, checkRole(ROLES.USER)], orderController.getOne);
-router.get('/period/all',
+router.post('/', decodeToken, orderController.create);
+router.get('/', decodeToken, orderController.getAll);
+router.get('/period',
   [decodeToken, checkRole(ROLES.ADMIN)], orderController.getPeriod);
+
+router.get('/:id', decodeToken, orderController.getOne);
 
 module.exports = router;

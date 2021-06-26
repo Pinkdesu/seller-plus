@@ -11,12 +11,8 @@ const initialFormValues = {
   name: '',
   description: '',
   price: 0,
-  count: 1,
-  supplierPrice: 0,
-  supplierDate: '',
   brandId: null,
   categoryId: null,
-  originCountryId: null,
 };
 
 export const $units = AddProductDomain.store(initialUnits).on(

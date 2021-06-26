@@ -2,7 +2,7 @@
 const { col } = require('sequelize');
 const {
   Application, Client, ApplicationStatus, ApplicationTheme
-} = require('../models/adminPanel');
+} = require('../models');
 
 const LIMIT = 10;
 

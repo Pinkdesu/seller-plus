@@ -3,7 +3,7 @@
 const { Op } = require('sequelize');
 const ApiError = require('../../error/apiError');
 const clientService = require('../../services/clientService');
-const { Client } = require('../../models/adminPanel');
+const { Client } = require('../../models');
 
 class ClientController {
   async create(req, res, next) {

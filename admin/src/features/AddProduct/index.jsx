@@ -115,6 +115,16 @@ const AddProduct = () => {
                 variant="outlined"
                 label="Название товара"
               />
+              <TextField
+                required
+                type="number"
+                value={formValues.price}
+                onChange={handleFieldChange('price')}
+                variant="outlined"
+                label="Цена продажи"
+              />
+            </div>
+            <div className={classes.fieldsWrapper}>
               <SearchSelect
                 label="Категория"
                 options={categories}
@@ -128,43 +138,6 @@ const AddProduct = () => {
                 onChange={handleSelectChange('brandId')}
                 getOptionLabel={getOptionLabel}
                 getOptionSelected={getOptionSelected}
-              />
-            </div>
-            <div className={classes.fieldsWrapper}>
-              <TextField
-                required
-                type="number"
-                value={formValues.supplierPrice}
-                onChange={handleFieldChange('supplierPrice')}
-                variant="outlined"
-                label="Закупочная цена"
-              />
-              <TextField
-                required
-                type="number"
-                value={formValues.price}
-                onChange={handleFieldChange('price')}
-                variant="outlined"
-                label="Цена продажи"
-              />
-              <TextField
-                required
-                type="number"
-                value={formValues.count}
-                onChange={handleFieldChange('count')}
-                variant="outlined"
-                label="Количество"
-              />
-              <TextField
-                required
-                type="date"
-                label="Дата закупки"
-                variant="outlined"
-                value={formValues.supplierDate}
-                onChange={handleFieldChange('supplierDate')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
               />
             </div>
           </div>

@@ -2,7 +2,7 @@
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
 const moveFile = require('../../utils/moveFile');
-const { Act } = require('../../models/adminPanel');
+const { Act } = require('../../models');
 
 class ActController {
   async create(req, res, next) {

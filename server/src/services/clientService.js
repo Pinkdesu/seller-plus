@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 const { col } = require('sequelize');
-const { Client, CityDistrict } = require('../models/adminPanel');
+const { Client, CityDistrict } = require('../models');
 
 const LIMIT = 10;
 

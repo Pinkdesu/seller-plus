@@ -1,7 +1,7 @@
 /* eslint-disable no-empty-function */
 /* eslint-disable class-methods-use-this */
 const ApiError = require('../../error/apiError');
-const { ClientCategory } = require('../../models/adminPanel');
+const { ClientCategory } = require('../../models');
 
 class ClientCategoryController {
   async create(req, res, next) {

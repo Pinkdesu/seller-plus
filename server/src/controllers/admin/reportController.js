@@ -6,7 +6,7 @@ const {
 const ApiError = require('../../error/apiError');
 const {
   Application, ApplicationStatus, ApplicationTheme, Employee, Client, CityDistrict
-} = require('../../models/adminPanel');
+} = require('../../models');
 const {
   Product, OrderProduct, User, Order, Supply
 } = require('../../models');
