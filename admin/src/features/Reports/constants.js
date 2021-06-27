@@ -3,17 +3,15 @@ import { getDate } from '~/utils/getDate';
 const addCurrency = (value) => `${+value.toFixed(2)} руб.`;
 
 export const EMPLOYEE_COLUMNS = [
-  { id: 'employee', label: 'Ответственный', minWidth: 120 },
-  { id: 'status1', label: 'Открыта', minWidth: 100 },
-  { id: 'status2', label: 'Принята в исполнение', minWidth: 120 },
-  { id: 'status3', label: 'Просрочено исполнение', minWidth: 120 },
-  { id: 'status4', label: 'Отмена', minWidth: 100 },
-  { id: 'status5', label: 'Требует уточнения', minWidth: 120 },
-  { id: 'status6', label: 'Выполнена', minWidth: 100 },
-  { id: 'status7', label: 'Согласовано', minWidth: 100 },
-  { id: 'status8', label: 'Завершена', minWidth: 100 },
-  { id: 'status9', label: 'Приостановлена', minWidth: 100 },
-  { id: 'status10', label: 'Архив', minWidth: 80 },
+  { id: 'name', label: 'Ответственный', minWidth: 120 },
+  { id: 'count', label: 'Количество выполненых заявок', minWidth: 120 },
+  { id: 'price', label: 'Общая выручка', minWidth: 80, format: addCurrency },
+  {
+    id: 'avPrice',
+    label: 'Средняя выручка по одной заявке',
+    minWidth: 100,
+    format: addCurrency,
+  },
 ];
 
 export const PRODUCT_COLUMNS = [

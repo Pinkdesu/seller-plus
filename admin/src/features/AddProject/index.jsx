@@ -30,7 +30,7 @@ const AddProject = () => {
                 disabled
                 label="Ответственние(ый)"
                 data={[[1, 'Аксенова Вероника Максимовна']]}
-                value={[1, 2]}
+                value={[1]}
               />
               <DataSelect
                 disabled

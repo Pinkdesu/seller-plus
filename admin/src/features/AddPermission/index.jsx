@@ -21,7 +21,7 @@ const AddPermission = () => {
         <form>
           <div className={classes.formFieldsSide}>
             <div className={classes.fieldsWrapper}>
-              <DataSelect label="Заявка" data={[[1, '1']]} value={1} />
+              <DataSelect label="Заявка" data={[[1, '131']]} value={1} />
               <DataSelect
                 multiple
                 disabled

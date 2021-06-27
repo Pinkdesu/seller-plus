@@ -14,52 +14,30 @@ class ReportController {
     try {
       const { periodFrom, periodTo } = req.query;
 
-      const statuses = await ApplicationStatus.findAll({
-        attributes: ['id', 'name']
-      });
-
-      const employee = await Employee.findAll({
-        attributes: [
-          'id',
-          'name'
-        ],
+      const report = await Employee.findAll({
         include: {
           model: Application,
-          attributes: ['id', ['applicationStatusId', 'status']],
+          attributes: ['id'],
           where: {
+            applicationStatusId: 6,
             submissionDate: {
-              [Op.gte]: periodFrom,
-              [Op.lte]: periodTo
+              [Op.gte]: periodFrom
+            //  [Op.lte]: periodTo
             }
-          },
-          through: {
-            attributes: []
           }
         },
         group: [
-          'employee.id',
-          'applications.id'
+          ['employee.id'],
+          ['applications.id'],
+          ['applications->application_employee.id']
         ]
-      });
-
-      const report = employee.map((item) => {
-        const { id, name, applications } = item;
-
-        const result = { id, employee: name };
-
-        statuses.forEach((value) => {
-          const count = applications.reduce(
-            (sum, current) => (
-              current.dataValues.status === value.id ? sum + 1 : sum
-            ),
-            0
-          );
-
-          result[`status${value.id}`] = count;
-        });
-
-        return result;
-      });
+      }).then((data) => data.map(({ dataValues }) => ({
+        ...dataValues,
+        count: dataValues.applications.length,
+        price: 15670 * dataValues.applications.length + 2500 * +dataValues.id,
+        avPrice: ((15670 * dataValues.applications.length + 2500
+         * +dataValues.id) / +dataValues.applications.length)
+      })));
 
       return res.json({ report });
     }
@@ -139,8 +117,8 @@ class ReportController {
         ],
         where: {
           submissionDate: {
-            [Op.gte]: periodFrom,
-            [Op.lte]: periodTo
+            [Op.gte]: periodFrom
+            // [Op.lte]: periodTo
           }
         },
         include: [
@@ -155,10 +133,6 @@ class ReportController {
               model: CityDistrict,
               attributes: []
             }
-          },
-          {
-            model: ApplicationStatus,
-            attributes: []
           }
         ]
       });
