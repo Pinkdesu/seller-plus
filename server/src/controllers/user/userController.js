@@ -193,16 +193,16 @@ class UserController {
         phone,
         address
       };
+      // TODO: chck this
+      // if (email) {
+      //  info.isActivated = false;
+      //  info.activationLink = uuid.v4();
 
-      if (email) {
-        info.isActivated = false;
-        info.activationLink = uuid.v4();
-
-        await mailService.sendActivationMail(
-          email,
-          URL(info.activationLink, 'api/user/activate')
-        );
-      }
+      //  await mailService.sendActivationMail(
+      //    email,
+      //    URL(info.activationLink, 'api/user/activate')
+      //  );
+      // }
 
       const updatedUser = await User.update(info, {
         where: { id }, returning: true, plain: true

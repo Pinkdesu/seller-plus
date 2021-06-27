@@ -44,7 +44,8 @@ const Order = sequelize.define('order', {
   deliveryPrice: { type: DataTypes.REAL, allowNull: false, defaultValue: 0 },
   sentAt: { type: DataTypes.DATE },
   doneAt: { type: DataTypes.DATE },
-  address: { type: DataTypes.STRING, allowNull: false }
+  address: { type: DataTypes.STRING, allowNull: false },
+  phone: { type: DataTypes.STRING, allowNull: false }
 });
 
 const OrderProduct = sequelize.define('order_product', {

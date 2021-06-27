@@ -8,7 +8,7 @@ import TextField from '~/features/Common/TextField';
 import { REGION, CITY } from '../constants';
 import * as S from '../elements';
 
-const EditButtin = (props) => {
+export const EditButton = (props) => {
   const locale = useLocale();
 
   const { toggleEdit, edit } = props;
@@ -26,11 +26,11 @@ export const CurrentAdress = (props) => {
   const { address } = props;
 
   return (
-    <S.AddressValue>
+    <S.PanelContent>
       <S.Text>{REGION}</S.Text>
       <S.Text>{CITY}</S.Text>
       <S.Text>{address}</S.Text>
-    </S.AddressValue>
+    </S.PanelContent>
   );
 };
 
@@ -56,7 +56,7 @@ const EditForm = (props) => {
   };
 
   return (
-    <S.AddressValue>
+    <S.PanelContent>
       <TextField value={REGION} readonly label={locale('region')} />
       <TextField value={CITY} readonly label={locale('city')} />
       <TextField
@@ -68,7 +68,7 @@ const EditForm = (props) => {
         placeholder="ул. Пушкина, дом 1, кв. 1"
       />
       <Button text={locale('save')} disabled={disabled} onClick={handleClick} />
-    </S.AddressValue>
+    </S.PanelContent>
   );
 };
 
@@ -86,11 +86,11 @@ const Address = (props) => {
   }, []);
 
   return (
-    <S.AddressPanel>
+    <S.Panel>
       {isAddress && !edit && <CurrentAdress address={address} />}
       {(!isAddress || edit) && <EditForm otherAddress={address} />}
-      {isAddress && <EditButtin toggleEdit={toggleEdit} edit={edit} />}
-    </S.AddressPanel>
+      {isAddress && <EditButton toggleEdit={toggleEdit} edit={edit} />}
+    </S.Panel>
   );
 };
 

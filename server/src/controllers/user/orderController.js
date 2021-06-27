@@ -14,7 +14,7 @@ class OrderController {
   async create(req, res, next) {
     try {
       const { id: userId } = req.user;
-      const { address } = req.body;
+      const { address, phone } = req.body;
 
       const basket = await Basket.findOne({ where: { userId } });
       const basketProducts = await BasketProduct.findAll({
@@ -34,6 +34,7 @@ class OrderController {
       const order = await Order.create({
         userId,
         address,
+        phone,
         totalPrice,
         orderStatusId: 1
       });

@@ -9,6 +9,7 @@ import { addOrder, resetIsSuccess } from '~/features/Account/store/events';
 import * as S from './elements';
 import * as SF from '~/features/Basket/elements';
 import Address from './components/Address';
+import Phone from './components/Phone';
 import CardDetails from './components/CardDetails';
 import RightSide from '~/features/Common/RightSide';
 import Button from '~/features/Common/Button';
@@ -23,7 +24,7 @@ const PaymentPage = () => {
   const pending = useStore(addOrder.pending);
   const productCount = useStore($productsCount);
 
-  const { email, address } = useStore($userData);
+  const { email, address, phone } = useStore($userData);
 
   useEffect(() => {
     if (isSuccess) {
@@ -46,6 +47,7 @@ const PaymentPage = () => {
     isAddress &&
       addOrder({
         address,
+        phone,
       });
   };
 
@@ -61,6 +63,12 @@ const PaymentPage = () => {
                 <S.Text>{email}</S.Text>
               </SF.LeftSideBlockWrapper>
               <SF.LeftSideBlockWrapper>
+                <SF.ContentHeader>
+                  {locale('payment.phoneNumber')}
+                </SF.ContentHeader>
+                <Phone phone={phone} />
+              </SF.LeftSideBlockWrapper>
+              <SF.LeftSideBlockWrapper>
                 <SF.ContentHeader>{locale('address')}</SF.ContentHeader>
                 <Address address={address} isAddress={isAddress} />
               </SF.LeftSideBlockWrapper>
@@ -73,7 +81,7 @@ const PaymentPage = () => {
               <Button
                 text="Заказать"
                 onClick={handleClick}
-                disabled={!isAddress || pending}
+                disabled={!isAddress || !phone || pending}
               />
             </S.Footer>
           </SF.PageContent>

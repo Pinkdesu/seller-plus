@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { DefaultMain } from '~/features/DefaultView/elements';
 import { NavLink, Link } from 'react-router-dom';
 import { FieldWrapper, Button, ImageWrapper } from '~/features/Common/elements';
-import { AddressValue } from '~/features/PaymentPage/elements';
+import { PanelContent } from '~/features/PaymentPage/elements';
 import { Product, ShadowText } from '~/features/Product/elements';
 
 export const AccountMain = styled(DefaultMain)`
@@ -279,7 +279,7 @@ export const OrderInfoWrapper = styled(ArticleWrapper)`
 `;
 
 export const OrderAddress = styled(ArticleWrapper)`
-  & ${AddressValue} {
+  & ${PanelContent} {
     padding: 0 8px;
   }
 `;

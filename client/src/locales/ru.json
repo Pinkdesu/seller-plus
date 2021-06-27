@@ -103,6 +103,7 @@
    "acount.followLink": "Перейдите по ссылке в письме, чтобы совершать покупки",
    "payment.wasCreated": "Заказ успешно создан!",
    "payment.seeOrderStatus": "Смотрите статус заказа в разделе 'Заказы'",
+   "payment.phoneNumber": "Номер телефона",
    "error.passwordLength": "Пароль должен содержать от 8 до 40 символов",
    "error.enterCorrectEmail": "Email введён некорректно",
    "error.enterCorrectPhone": "Телефон введён некорректно",

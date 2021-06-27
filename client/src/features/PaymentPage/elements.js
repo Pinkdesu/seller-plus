@@ -23,7 +23,7 @@ export const Main = styled(PageMain)`
   }
 `;
 
-export const AddressPanel = styled.div`
+export const Panel = styled.div`
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
@@ -44,7 +44,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const AddressValue = styled.div`
+export const PanelContent = styled.div`
   flex: 0 1 60%;
 
   & ${Text}, ${FieldWrapper} {
@@ -62,7 +62,7 @@ export const CardDetails = styled.div`
   width: 60%;
 `;
 
-export const CardForm = styled(AddressValue)``;
+export const CardForm = styled(PanelContent)``;
 
 export const CardRow = styled.div`
   display: flex;
